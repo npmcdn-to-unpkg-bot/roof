@@ -13,7 +13,7 @@ use App\Http\Requests;
 class UserCompController extends Controller
 {
     public function create () {
-    	return view('user.comp.create');
+    	return view('user.company.create');
     }
 
     public function store (Request $request) {
@@ -55,15 +55,15 @@ class UserCompController extends Controller
 				->fit(600, 500, function ($constraint) { $constraint->upsize(); })
     			->save(storage_path('uploads/images/').$logo);
 
-	    $comp = new Comp;
-	    $comp->user_id = $user->id;
-	    $comp->name = $request->name;
-	    $comp->email = $request->email;
-	    $comp->logo = $logo;
-	    $comp->phone = $request->phone;
-	    $comp->name = $request->name;
-	    $comp->entry = $request->entry;
-	    $comp->save();
+	    $company = new Company;
+	    $company->user_id = $user->id;
+	    $company->name = $request->name;
+	    $company->email = $request->email;
+	    $company->logo = $logo;
+	    $company->phone = $request->phone;
+	    $company->name = $request->name;
+	    $company->entry = $request->entry;
+	    $company->save();
 
 
 	    return redirect('/office');

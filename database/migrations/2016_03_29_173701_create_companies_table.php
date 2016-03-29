@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompsTable extends Migration
+class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateCompsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comps', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id')->index();
@@ -38,6 +38,6 @@ class CreateCompsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('comps');
+        //
     }
 }

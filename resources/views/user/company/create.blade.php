@@ -4,7 +4,7 @@
 <div class="container breadcrumbs">
 	<span class="breadcumbs__current">РЕГИСТРАЦИЯ КОМПАНИИ</span>
 </div>
-<form action="/office/comp/create" method="POST"  enctype="multipart/form-data" class="container reg-comp">
+<form action="/office/company/create" method="POST"  enctype="multipart/form-data" class="container reg-comp">
 	{!! csrf_field() !!}
 	<div class="title">ДОБАВЛЕНИЕ КОМПАНИИ</div>
     @if (count($errors) > 0)

@@ -10,12 +10,12 @@
 			<div>
 				<div class="title">УПРАВЛЕНИЕ</div>
 				<ul>
-					@if (isset($comp)) 
+					@if (isset($company)) 
 					<li><a href="#">Создать запись в блог компании</a></li>
 					<li><a href="#">Добавить сотрудника компании</a></li>
 					<li><a href="#">Добавить объект в портфолио компании</a></li>
 					@else
-					<li><a href="/office/comp/create">Создать компанию</a></li>
+					<li><a href="/office/company/create">Создать компанию</a></li>
 					@endif
 					<li><a href="/logout">Выход</a></li>
 				</ul>
@@ -31,13 +31,13 @@
 			</div>
 		</div>
 		<div class="container__col-8">
-			@if (isset($comp))
-			<div class="title">{{ $comp->name }}</div>
+			@if (isset($company))
+			<div class="title">{{ $company->name }}</div>
 			<ul>
-				<li><img src="/imagecache/small/{{ $comp->logo }}" alt=""></li>
-				<li>{{ $comp->email }}</li>
-				<li>{{ $comp->phone }}</li>
-				<li>{{ $comp->entry }}</li>
+				<li><img src="/imagecache/small/{{ $company->logo }}" alt=""></li>
+				<li>{{ $company->email }}</li>
+				<li>{{ $company->phone }}</li>
+				<li>{{ $company->entry }}</li>
 			</ul>
 			@endif
 		</div>

@@ -37,8 +37,8 @@ Route::get('/news', function () {
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/office', 'UserOfficeController@index');
-	Route::get('/office/comp/create', 'UserCompController@create');
-	Route::post('/office/comp/create', 'UserCompController@store');
+	Route::get('/office/company/create', 'UserCompanyController@create');
+	Route::post('/office/company/create', 'UserCompanyController@store');
 });
 
 

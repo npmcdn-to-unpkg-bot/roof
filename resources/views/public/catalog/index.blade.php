@@ -113,19 +113,19 @@
 	<div class="container offset_vertical_55">
 		<div class="container__row">
 			<div class="container__col-8">
-				@foreach ($comps as $i=>$comp)
+				@foreach ($companies as $i=>$company)
 					@if ($i%2==0) <div class="container__row {{ $i!==0?'offset_vertical_55':''}}"> @endif
 						<div class="container__col-6">
 							<div class="company-cart company-cart_heihgt_220 company-cart_gray">
-								<img src="/imagecache/small/{{$comp->logo}}" alt="" class="company-cart__logo">
-								<div class="company-cart__name">{{$comp->name}}</div>
-								<div class="company-cart__description">{{$comp->entry}}</div>
+								<img src="/imagecache/small/{{$company->logo}}" alt="" class="company-cart__logo">
+								<div class="company-cart__name">{{$company->name}}</div>
+								<div class="company-cart__description">{{$company->entry}}</div>
 								<div class="company-cart__left-bottom company-cart__left-bottom_20">
-									<div class="company-cart__adress">{{$comp->adress}}</div>
+									<div class="company-cart__adress">{{$company->adress}}</div>
 									<div class="company-cart__post-date">Дата регистрации: 01.01.2001</div>
 								</div>
-								@if ($comp->association) <img src="img/user-menu-1.png" alt="" class="company-cart__member-label company-cart__right-top">
-								@elseif ($comp->privat) <img src="img/privat.png" alt="" class="company-cart__right-top"> @endif
+								@if ($company->association) <img src="img/user-menu-1.png" alt="" class="company-cart__member-label company-cart__right-top">
+								@elseif ($company->privat) <img src="img/privat.png" alt="" class="company-cart__right-top"> @endif
 								<div class="company-cart__right-bottom company-cart__rating">
 									рейтинг
 									<div class="company-cart__rating_value">9.8</div>
