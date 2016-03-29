@@ -53,7 +53,7 @@ class UserCompController extends Controller
 		Image::make($request
 				->file('logo'))
 				->fit(600, 500, function ($constraint) { $constraint->upsize(); })
-    			->save('uploads/images/'.$logo);
+    			->save(storage_path('uploads/images/').$logo);
 
 	    $comp = new Comp;
 	    $comp->user_id = $user->id;
