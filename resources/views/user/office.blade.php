@@ -34,7 +34,7 @@
 			@if (isset($comp))
 			<div class="title">{{ $comp->name }}</div>
 			<ul>
-				<li><img src="{{ url($comp->logo) }}" alt=""></li>
+				<li><img src="/imagecache/small/{{ $comp->logo }}" alt=""></li>
 				<li>{{ $comp->email }}</li>
 				<li>{{ $comp->phone }}</li>
 				<li>{{ $comp->entry }}</li>
