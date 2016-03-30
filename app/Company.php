@@ -17,10 +17,10 @@ class Company extends Model
     }
 
     public function propositions () {
-    	return $this->belongsToMany('App\Propositions');
+    	return $this->belongsToMany('App\Proposition');
     }
 
-    public function specialistions () {
-    	return $this->belongsToMany('App\Specialistions');
+    public function specialisations () {
+    	return $this->belongsToMany('App\Specialisation');
     }    
 }

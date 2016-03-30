@@ -1,102 +1,32 @@
 @extends('layout')
 
 @section('content')
-	<div class="container offset_vertical_40">
-		<div class="page-tabs">
-			<span class="page-tabs__section page-tabs__section_active">СПЕЦИАЛИЗАЦИЯ</span>
+	<div class="container offset_vertical_40 page-tabs">
+		<div>
+			<a href="#specialisations" class="page-tabs__nav page-tabs__nav_active">СПЕЦИАЛИЗАЦИЯ</a>
 			<span class="page-tabs__separator"></span>
-			<a href="#" class="page-tabs__section">ТИП ПРЕДЛОЖЕНИЯ</a>
+			<a href="#propositions" class="page-tabs__nav">ТИП ПРЕДЛОЖЕНИЯ</a>
 		</div>
-		<div class="container__row offset_vertical_20 taxonomy">
-			<div class="container__col-4">
-				<a href="#" class="taxonomy__item">Металлочерепица <span class="taxonomy__count">(56)</span></a>
-				<a href="#" class="taxonomy__item">Гибкая черепица <span class="taxonomy__count">(72)</span></a>
-				<a href="#" class="taxonomy__item">Сланцевая кровля <span class="taxonomy__count">(45)</span></a>
-				<a href="#" class="taxonomy__item">Еврошифер <span class="taxonomy__count">(78)</span></a>
-				<a href="#" class="taxonomy__item">Медная кровля <span class="taxonomy__count">(63)</span></a>
-				<a href="#" class="taxonomy__item">Водостоки <span class="taxonomy__count">(7)</span></a>
-			</div>
-			<div class="container__col-4">
-				<a href="#" class="taxonomy__item">Утеплители <span class="taxonomy__count">(56)</span></a>
-				<a href="#" class="taxonomy__item">Натуральная черепица <span class="taxonomy__count">(72)</span></a>
-				<a href="#" class="taxonomy__item">Мансардные окна <span class="taxonomy__count">(45)</span></a>
-				<a href="#" class="taxonomy__item">Еще категория <span class="taxonomy__count">(78)</span></a>
-				<a href="#" class="taxonomy__item">Еще одна категория <span class="taxonomy__count">(63)</span></a>
-				<a href="#" class="taxonomy__item">И еще направление <span class="taxonomy__count">(7)</span></a>
-			</div>
-			<div class="container__col-4">
-				<a href="#" class="taxonomy__item">Утеплители <span class="taxonomy__count">(56)</span></a>
-				<a href="#" class="taxonomy__item">Натуральная черепица <span class="taxonomy__count">(72)</span></a>
-				<a href="#" class="taxonomy__item">Мансардные окна <span class="taxonomy__count">(45)</span></a>
-				<a href="#" class="taxonomy__item">Еще категория <span class="taxonomy__count">(78)</span></a>
-			</div>
+		<div id="specialisations" class="page-tabs__tab page-tabs__tab_active container__row offset_vertical_20 taxonomy">
+			@foreach ($specialisations as $i => $specialisation)
+				@if ($i%5==0) <div class="container__col-4"> @endif
+					<a href="#" class="taxonomy__item">{{ $specialisation->name }} 
+						<span class="taxonomy__count">({{ $specialisation->companies->count() }})</span>
+					</a>
+				@if ($i+1==count($specialisations)||$i%5==4) </div> @endif
+			@endforeach
 		</div>
+		<div id="propositions" class="page-tabs__tab container__row offset_vertical_20 taxonomy">
+			@foreach ($propositions as $i => $proposition)
+				@if ($i%5==0) <div class="container__col-4"> @endif
+					<a href="#" class="taxonomy__item">{{ $proposition->name }} 
+						<span class="taxonomy__count">({{ $proposition->companies->count() }})</span>
+					</a>
+				@if ($i+1==count($propositions)||$i%5==4) </div> @endif
+			@endforeach
+		</div>		
 	</div>
-	<div class="container-fluid offset_vertical_40 padding_vertical_30" style="background-image: url(s-img/members.jpg);">
-		<div class="container">
-			<div class="title title_white text_center">
-				КОМПАНИИ-ЧЛЕНЫ АССОЦИАЦИИ КРОВЕЛЬЩИКОВ УКРАИНЫ
-			</div>
-			<div class="slider flexslider company-cart-slider slider_white offset_vertical_30">
-				<ul class="slides">
-					<li>
-						<div class="company-cart company-cart_white company-cart_big">
-							<img src="s-img/company-logo-1.jpg" alt="" class="company-cart__logo">
-							<div class="company-cart__name">ООО ФУЧС</div>
-							<div class="company-cart__description">Монтажные работы, кровельные работы, инжиниринг, промышленный альпинизм</div>
-							<div class="container__row">
-								<div class="container__col-6">
-									<div class="company-cart__adress">Украина, г. Одесса</div>
-									<div class="company-cart__post-date">Дата регистрации: 01.01.2001</div>
-								</div>
-								<div class="container__col-6">
-									+38 048 123 45 67 <br>
-									+38 096 123 45 86
-								</div>
-							</div>
-							<img src="img/user-menu-1.png" alt="" class="company-cart__member-label company-cart__right-bottom">
-						</div>
-					</li>
-					<li>
-						<div class="company-cart company-cart_white company-cart_big">
-							<img src="s-img/company-logo-1.jpg" alt="" class="company-cart__logo">
-							<div class="company-cart__name">ООО ФУЧС</div>
-							<div class="company-cart__description">Монтажные работы, кровельные работы, инжиниринг, промышленный альпинизм</div>
-							<div class="container__row">
-								<div class="container__col-6">
-									<div class="company-cart__adress">Украина, г. Одесса</div>
-									<div class="company-cart__post-date">Дата регистрации: 01.01.2001</div>
-								</div>
-								<div class="container__col-6">
-									+38 048 123 45 67 <br>
-									+38 096 123 45 86
-								</div>
-							</div>
-							<img src="img/user-menu-1.png" alt="" class="company-cart__member-label company-cart__right-bottom">
-						</div>
-					</li>
-					<li>
-						<div class="company-cart company-cart_white company-cart_big">
-							<img src="s-img/company-logo-1.jpg" alt="" class="company-cart__logo">
-							<div class="company-cart__name">ООО ФУЧС</div>
-							<div class="company-cart__description">Монтажные работы, кровельные работы, инжиниринг, промышленный альпинизм</div>
-							<div class="container__row">
-								<div class="container__col-6">
-									<div class="company-cart__adress">Украина, г. Одесса</div>
-									<div class="company-cart__post-date">Дата регистрации: 01.01.2001</div>
-								</div>
-								<div class="container__col-6">
-									+38 048 123 45 67 <br>
-									+38 096 123 45 86
-								</div>
-							</div>
-							<img src="img/user-menu-1.png" alt="" class="company-cart__member-label company-cart__right-bottom">
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	@include('public.catalog.association')
 	<div class="page-nav container">
 		<a href="#" class="page-nav__item">A</a><a href="#" class="page-nav__item">B</a><a href="#" class="page-nav__item">C</a><a href="#" class="page-nav__item">D</a><a href="#" class="page-nav__item">E</a><a href="#" class="page-nav__item">F</a><a href="#" class="page-nav__item">G</a><a href="#" class="page-nav__item">H</a><a href="#" class="page-nav__item">I</a><a href="#" class="page-nav__item">J</a><a href="#" class="page-nav__item">K</a><a href="#" class="page-nav__item">L</a><a href="#" class="page-nav__item">M</a><a href="#" class="page-nav__item">N</a><a href="#" class="page-nav__item">O</a><a href="#" class="page-nav__item">P</a><a href="#" class="page-nav__item">Q</a><a href="#" class="page-nav__item">R</a><a href="#" class="page-nav__item">S</a><a href="#" class="page-nav__item">T</a><a href="#" class="page-nav__item">U</a><a href="#" class="page-nav__item">V</a><a href="#" class="page-nav__item">W</a><a href="#" class="page-nav__item">X</a><a href="#" class="page-nav__item">Y</a><a href="#" class="page-nav__item">Z</a>
 		<br>
@@ -132,7 +62,7 @@
 								</div>
 							</div>
 						</div>
-					@if ($i%2==1) </div> @endif
+					@if ($i+1==count($companies)||$i%2==1) </div> @endif
 					@if ($i==5) <img src="s-img/baner-1.jpg" alt="" class="sda offset_vertical_55"> @endif
 				@endforeach
 				<div class="page-nav offset_vertical_55">

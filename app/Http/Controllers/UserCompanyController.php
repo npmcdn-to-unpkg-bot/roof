@@ -6,22 +6,39 @@ use Illuminate\Http\Request;
 use Validator;
 use Auth;
 use Image;
-use App\Comp;
+use App\Company;
 use App\User;
+use App\Specialisation;
+use App\Proposition;
 use App\Http\Requests;
 
-class UserCompController extends Controller
+class UserCompanyController extends Controller
 {
     public function create () {
-    	return view('user.company.create');
+    	$data['title'] = 'ДОБАВЛЕНИЕ КОМПАНИИ';
+    	$data['company'] = new Company;
+    	return $this->getForm($data);
     }
 
+    public function update () {
+    	$data['title'] = 'ДАННЫЕ КОМПАНИИ';
+    	$data['company'] = Auth::user()->company;
+    	return $this->getForm($data);
+    }   
+
+    protected function getForm ($data) {
+    	$data['specialisations'] = Specialisation::all();
+    	$data['propositions'] = Proposition::all();
+    	return view('user.company.create', $data);
+    }
+
+
     public function store (Request $request) {
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|numeric',
-            'user_name' => 'required|max:255',
             'logo' => 'required|image'
         ],[
         	'name.required' => 'Введите название компании.',
@@ -42,12 +59,6 @@ class UserCompController extends Controller
 				->withErrors($validator);
 		}
 
-	    $user = Auth::user();
-	    $user->name = $request->user_name;
-	    $user->phone = $request->user_phone;
-	    $user->job = $request->user_job;
-	    $user->save();
-
 	    $logo = time().'-'
 	    		.$request->file('logo')->getClientOriginalName();
 		Image::make($request
@@ -55,7 +66,10 @@ class UserCompController extends Controller
 				->fit(600, 500, function ($constraint) { $constraint->upsize(); })
     			->save(storage_path('uploads/images/').$logo);
 
-	    $company = new Company;
+    	$user = Auth::user();
+	    $company = $user->company
+	    		?$user->company
+	    		:new Company;
 	    $company->user_id = $user->id;
 	    $company->name = $request->name;
 	    $company->email = $request->email;
@@ -64,6 +78,8 @@ class UserCompController extends Controller
 	    $company->name = $request->name;
 	    $company->entry = $request->entry;
 	    $company->save();
+	    $company->specialisations()->sync($request->specialisations);
+	    $company->propositions()->sync($request->propositions);
 
 
 	    return redirect('/office');

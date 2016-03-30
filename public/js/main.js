@@ -49,12 +49,22 @@ $(document).ready(function(){
 	});
 	$('.tabs__nav').click(function(e){
 		e.preventDefault();
-		tabs=$(this).parents('.tabs');
+		var tabs=$(this).parents('.tabs');
 		tabs.find('.tabs__nav_active').removeClass('tabs__nav_active');
 		tabs.find('.tabs__tab_active').removeClass('tabs__tab_active');
 		$(this).addClass('tabs__nav_active');
 		$($(this).attr('href')).addClass('tabs__tab_active');
 	});
+
+	$('.page-tabs__nav').click(function(e){
+		e.preventDefault();
+		var tabs=$(this).parents('.page-tabs');
+		tabs.find('.page-tabs__nav_active').removeClass('page-tabs__nav_active');
+		tabs.find('.page-tabs__tab_active').removeClass('page-tabs__tab_active');
+		$(this).addClass('page-tabs__nav_active');
+		$($(this).attr('href')).addClass('page-tabs__tab_active');
+	});
+
 	$('.slider').flexslider({
 	    animation: "slide",
 	    animationLoop: false,

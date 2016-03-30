@@ -13,7 +13,7 @@ class UserOfficeController extends Controller
     
     public function index () {
     	$user = Auth::user();
-    	$company = $user->company()->first();
+    	$company = $user->company;
 		return view('user.office', [
 			'user' => $user,
 			'company' => $company

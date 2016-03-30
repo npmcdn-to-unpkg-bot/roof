@@ -7,9 +7,9 @@
 	<div class="container buildings-map">
 		<div class="buildings-map__control">
 			<div class="page-tabs">
-				<span class="page-tabs__section page-tabs__section_active">АКТИНВЫЕ СТРОЙКИ</span>
+				<span class="page-tabs__nav page-tabs__nav_active">АКТИНВЫЕ СТРОЙКИ</span>
 				<span class="page-tabs__separator"></span>
-				<a href="#" class="page-tabs__section">ВАКАНСИИ</a>
+				<a href="#" class="page-tabs__nav">ВАКАНСИИ</a>
 			</div>
 			<a href="#" class="buildings-map__hide">Скрыть карту</a>
 		</div>

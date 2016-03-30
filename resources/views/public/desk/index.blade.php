@@ -183,14 +183,14 @@
 			</div>
 			<div class="container__col-4">
 				<div class="title">КАТЕГОРИИ</div>
-				<form class="desk-cat">
-					<label class="desk-cat__item"><input class="checkbox" type="checkbox">Услуги</label>
-					<label class="desk-cat__item"><input class="checkbox" type="checkbox">Продажа материалов</label>
-					<label class="desk-cat__item"><input class="checkbox" type="checkbox">Продажа оборудования</label>
-					<label class="desk-cat__item"><input class="checkbox" type="checkbox">Еще одна категория</label>
-					<label class="desk-cat__item"><input class="checkbox" type="checkbox">И еще одна</label>
-					<label class="desk-cat__item"><input class="checkbox" type="checkbox">И снова категория</label>
-					<button class="desk-cat__submit button button_blue button_big">ПОКАЗАТЬ</button>
+				<form class="menu menu_blue menu_checkbox">
+					<label class="menu__item"><input class="checkbox" type="checkbox">Услуги</label>
+					<label class="menu__item"><input class="checkbox" type="checkbox">Продажа материалов</label>
+					<label class="menu__item"><input class="checkbox" type="checkbox">Продажа оборудования</label>
+					<label class="menu__item"><input class="checkbox" type="checkbox">Еще одна категория</label>
+					<label class="menu__item"><input class="checkbox" type="checkbox">И еще одна</label>
+					<label class="menu__item"><input class="checkbox" type="checkbox">И снова категория</label>
+					<button class="button button_100 button_blue button_big">ПОКАЗАТЬ</button>
 				</form>
 				<img src="s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">
 				<img src="s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">
