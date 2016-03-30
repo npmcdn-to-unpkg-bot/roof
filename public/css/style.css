@@ -1195,6 +1195,8 @@ td.calendar__date_active {
 
 .company-cart__name {
 	font-weight: bold;
+	text-decoration: none;
+	color: black;
     font-size: 24px;
     line-height: 25px;
     margin-bottom: 10px;

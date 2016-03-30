@@ -16,6 +16,11 @@ Route::get('/', function () {
 	return view('public.index');
 });
 Route::get('/catalog', 'PublicCatalogConroller@index');
+Route::get('/catalog/filter/{letter}', 'PublicCatalogConroller@filter');
+Route::get('/catalog/search/', 'PublicCatalogConroller@search');
+Route::get('/company/{id}', 'PublicCatalogConroller@company');
+Route::get('/specialisation/{id}', 'PublicCatalogConroller@specialisation');
+Route::get('/proposition/{id}', 'PublicCatalogConroller@proposition');
 
 Route::get('/buildings', function () { 
 	return view('public.buildings.index'); 
