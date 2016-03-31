@@ -9,6 +9,8 @@ class Company extends Model
 
 	protected $table = 'companies';
 
+    protected $dates = ['created_at', 'updated_at', 'register'];
+
     public function user () {
     	return $this->belongsTo('App\User');
     }
