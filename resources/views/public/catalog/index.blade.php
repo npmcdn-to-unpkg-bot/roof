@@ -53,7 +53,7 @@
 								<a href="/company/{{ $company->id }}" class="company-cart__name">{{$company->name}}</a>
 								<div class="company-cart__description">{{$company->entry}}</div>
 								<div class="company-cart__left-bottom company-cart__left-bottom_20">
-									<div class="company-cart__adress">{{$company->adress}}</div>
+									<div class="company-cart__address">{{$company->address}}</div>
 									<div class="company-cart__post-date">
 										Дата регистрации: 
 										{{ $company->register->format('m.d.Y') }}

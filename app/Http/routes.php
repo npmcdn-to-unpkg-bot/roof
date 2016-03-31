@@ -15,16 +15,21 @@
 Route::get('/', function () {
 	return view('public.index');
 });
+
+// Catalog
+
 Route::get('/catalog', 'PublicCatalogConroller@index');
 Route::get('/catalog/filter/{letter}', 'PublicCatalogConroller@filter');
-Route::get('/catalog/search/', 'PublicCatalogConroller@search');
+Route::get('/catalog/search', 'PublicCatalogConroller@search');
 Route::get('/company/{id}', 'PublicCatalogConroller@company');
 Route::get('/specialisation/{id}', 'PublicCatalogConroller@specialisation');
 Route::get('/proposition/{id}', 'PublicCatalogConroller@proposition');
 
-Route::get('/buildings', function () { 
-	return view('public.buildings.index'); 
-});
+// Buildings
+
+Route::get('/buildings', 'PublicBuildingController@index');
+Route::get('/building/{id}', 'PublicBuildingController@building');
+
 Route::get('/desk', function () { 
 	return view('public.desk.index'); 
 });

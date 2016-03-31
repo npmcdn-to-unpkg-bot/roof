@@ -80,7 +80,7 @@
 					</div>
 				</div>				
 				<div class="offset_vertical_20">
-					<button class="button button_big button_orange">РЕГИСТРАЦИЯ КОМПАНИИ</button>
+					<button class="button button_big button_orange">СОХРАНИТЬ</button>
 				</div>
 			</form>
 		</div>

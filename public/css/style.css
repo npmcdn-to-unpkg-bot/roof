@@ -955,7 +955,7 @@ td.calendar__date_active {
 }
 .building__info,
 .building__company,
-.building__adress,
+.building__address,
 .building__period,
 .building__type {
 	font-size: 16px;
@@ -977,7 +977,7 @@ td.calendar__date_active {
 	color: #0a3955;
 }
 
-.building__adress {
+.building__address {
 	background-image: url(../img/building-icon-3.png);
 }
 
@@ -1005,7 +1005,7 @@ td.calendar__date_active {
 
 .building_small .building__info,
 .building_small .building__company,
-.building_small .building__adress,
+.building_small .building__address,
 .building_small .building__period,
 .building_small .building__type {
 	font-size: 14px;
@@ -1207,7 +1207,7 @@ td.calendar__date_active {
 
 }
 
-.company-cart__adress {
+.company-cart__address {
 	font-size: 18px;
 }
 
@@ -1311,7 +1311,7 @@ td.calendar__date_active {
 	border-bottom: 1px solid #aabdc4;
 }
 
-.company-cart_page .company-cart__adress {
+.company-cart_page .company-cart__address {
 	margin-left: 200px;
 }
 .company-cart_page .company-cart__post-date {

@@ -29,7 +29,7 @@ class UserCompanyController extends Controller
     protected function getForm ($data) {
     	$data['specialisations'] = Specialisation::all();
     	$data['propositions'] = Proposition::all();
-    	return view('user.company.create', $data);
+    	return view('user.company.form', $data);
     }
 
 

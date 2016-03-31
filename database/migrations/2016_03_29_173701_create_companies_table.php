@@ -19,7 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string('slug');
             $table->string('name');
             $table->string('logo');
-            $table->string('adress');
+            $table->string('address');
             $table->string('email');            
             $table->string('phone');
             $table->boolean('privat');

@@ -8,7 +8,7 @@
 				<img src="/s-img/company.jpg" alt="" class="company-cart__logo">
 				<div class="company-cart__name">Компания ФУЧС, ООО</div>
 				<div class="company-cart__description">Монтажные работы, кровельные работы, инжиниринг, промышленный альпинизм</div>
-				<div class="company-cart__adress">Украина, г. Одесса</div>
+				<div class="company-cart__address">Украина, г. Одесса</div>
 				<div class="company-cart__post-date">Дата регистрации: 01.01.2001</div>
 				<div class="company-cart__right-top">
 					<img src="/img/user-menu-1.png" alt="" class="company-cart__member-label">
@@ -33,7 +33,7 @@
 							<a href="" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
 							<span class="building__type">Церковь</span>
 							<a href="#" class="building__company">ООО "ЗАРС"</a>
-							<span class="building__adress">Украина, Киевская обл., г. Бровары</span>
+							<span class="building__address">Украина, Киевская обл., г. Бровары</span>
 							<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
 						</div>
 						<div class="container__col-4 building building_small">
@@ -41,7 +41,7 @@
 							<a href="" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
 							<span class="building__type">Церковь</span>
 							<a href="#" class="building__company">ООО "ЗАРС"</a>
-							<span class="building__adress">Украина, Киевская обл., г. Бровары</span>
+							<span class="building__address">Украина, Киевская обл., г. Бровары</span>
 							<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
 						</div>
 						<div class="container__col-4 building building_small">
@@ -49,7 +49,7 @@
 							<a href="" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
 							<span class="building__type">Церковь</span>
 							<a href="#" class="building__company">ООО "ЗАРС"</a>
-							<span class="building__adress">Украина, Киевская обл., г. Бровары</span>
+							<span class="building__address">Украина, Киевская обл., г. Бровары</span>
 							<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
 						</div>
 					</div>
@@ -59,7 +59,7 @@
 							<a href="" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
 							<span class="building__type">Церковь</span>
 							<a href="#" class="building__company">ООО "ЗАРС"</a>
-							<span class="building__adress">Украина, Киевская обл., г. Бровары</span>
+							<span class="building__address">Украина, Киевская обл., г. Бровары</span>
 							<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
 						</div>
 						<div class="container__col-4 building building_small">
@@ -67,7 +67,7 @@
 							<a href="" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
 							<span class="building__type">Церковь</span>
 							<a href="#" class="building__company">ООО "ЗАРС"</a>
-							<span class="building__adress">Украина, Киевская обл., г. Бровары</span>
+							<span class="building__address">Украина, Киевская обл., г. Бровары</span>
 							<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
 						</div>
 					</div>
