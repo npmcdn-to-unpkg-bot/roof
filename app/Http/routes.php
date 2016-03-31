@@ -46,10 +46,10 @@ Route::get('/news', function () {
 
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/office', 'UserOfficeController@index');
-	Route::get('/office/company/create', 'UserCompanyController@create');
-	Route::get('/office/company/edit', 'UserCompanyController@update');
-	Route::post('/office/company/store', 'UserCompanyController@store');
+	Route::get('/office', 'UserCompanyController@index');
+	Route::resource('/office/company', 'UserCompanyController');
+	Route::resource('/office/building', 'UserBuildingController');
+	Route::resource('/office/job', 'UserJobController');
 });
 
 

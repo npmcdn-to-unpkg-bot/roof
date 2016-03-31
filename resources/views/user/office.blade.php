@@ -17,7 +17,7 @@
 				<li>{{ $company->email }}</li>
 				<li>{{ $company->phone }}</li>
 				<li>{{ $company->entry }}</li>
-				<li><a href="/office/company/edit">Изменить</a></li>
+				<li><a href="{{ route('office.company.edit',['id'=>$company->id]) }}">Изменить</a></li>
 			</ul>
 			@endif
 		</div>

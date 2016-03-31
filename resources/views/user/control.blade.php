@@ -2,9 +2,11 @@
 	<div class="title">УПРАВЛЕНИЕ</div>
 	<ul>
 		@if (isset($company)) 
-		<li><a href="#">Создать запись в блог компании</a></li>
-		<li><a href="#">Добавить сотрудника компании</a></li>
-		<li><a href="#">Добавить объект в портфолио компании</a></li>
+		<li><a href="{{ route('office.company.index') }}">Моя компания</a></li>
+		<li><a href="#">Мои статьи</a></li>
+		<li><a href="#">Сотрудники компании</a></li>
+		<li><a href="{{ route('office.building.index') }}">Стройки</a></li>
+		<li><a href="{{ route('office.job.index') }}">Вакансии</a></li>
 		@else
 		<li><a href="/office/company/create">Создать компанию</a></li>
 		@endif
