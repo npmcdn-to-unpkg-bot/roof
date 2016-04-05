@@ -11,7 +11,7 @@
 		</div>
 		<div class="container__col-8">
 		    <div class="title">{{ $title }}</div>
-			<form action="/office/company/store" method="POST"  enctype="multipart/form-data">
+			<form action="/office/company" method="POST"  enctype="multipart/form-data">
 				{!! csrf_field() !!}
 				<div class="offset_vertical_20">
 					<input type="text" name="name" value="{{ old('name')?old('name'):$company->name }}" placeholder="НАЗВАНИЕ КОМПАНИИ" class="input input_100 {{ $errors->has('name') ?  'input_error' : '' }} input_bold">
