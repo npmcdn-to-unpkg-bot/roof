@@ -50,20 +50,22 @@ class UserCompanyController extends Controller
     public function store(Request $request) {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
+            'name' => 'required|max:35',
             'email' => 'required|email|max:255',
             'phone' => 'required|numeric',
-            'logo' => 'required|image'
+            'logo' => 'required|image',
+            'entry' => 'max:255'
         ],[
         	'name.required' => 'Введите название компании.',
-        	'name.max' => 'Название компании должно быть не больше 255 символов.',
+        	'name.max' => 'Название компании должно быть не больше 35 символов.',
         	'email.required' => 'Введите электронную почту компании.',
         	'email.email' => 'Введите корректную электронную почту компании.',
         	'email.max' => 'Электронная почта не должна быть больше 255 символов.',
         	'phone.required' => 'Введите телефон компании.',
         	'phone.numeric' => 'Телефон должен состоять из цифр.',
         	'logo.required' => 'Загрузите логотип.',
-        	'logo.image' => 'Формат картинки должен быть jpeg, png, bmp, gif, или svg',
+        	'logo.image' => 'Формат картинки должен быть jpeg, png, bmp, gif, или svg.',
+            'entry.max' => 'Краткое описание не должно быть длинее 255 символов.'
         ]);
 
 
@@ -90,6 +92,7 @@ class UserCompanyController extends Controller
 	    $company->logo = $logo;
 	    $company->phone = $request->phone;
 	    $company->entry = $request->entry;
+        $company->about = $request->about;
 	    $company->save();
 	    $company->specialisations()->sync($request->specialisations);
 	    $company->propositions()->sync($request->propositions);

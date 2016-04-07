@@ -16,10 +16,12 @@
 <div class="offset_vertical_60">
 	<div class="title title_black">ВАШИ ДАННЫЕ</div>
 	<div class="user-data">
-		<div class="user-data__item">Имя: <span class="user-data_value">{{ $user->name }}</span></div>
-		<div class="user-data__item">Должность: <span class="user-data_value">{{ $user->job }}</span></div>
-		<div class="user-data__item">Email: <span class="user-data_value">{{ $user->email }}</span></div>
-		<div class="user-data__item">Телефон: <span class="user-data_value">{{ $user->phone }}</span></div>
+		@if($user->name)<div class="user-data__item">Имя: <span class="user-data_value">{{ $user->name }}</span></div>@endif
+		@if($user->job)<div class="user-data__item">Должность: <span class="user-data_value">{{ $user->job }}</span></div>@endif
+		@if($user->email)<div class="user-data__item">Email: <span class="user-data_value">{{ $user->email }}</span></div>@endif
+		@if($user->phone)<div class="user-data__item">Телефон: <span class="user-data_value">{{ $user->phone }}</span></div>@endif
 	</div>
-	<a href="#">Изменить личные данные</a>
+	<div class="menu menu_blue menu_medium menu_vertical menu_rare">
+		<a class="menu__item" href="#">Изменить личные данные</a>
+	</div>
 </div>

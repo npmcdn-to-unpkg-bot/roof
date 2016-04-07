@@ -1,0 +1,24 @@
+{
+  "name": "roof",
+  "description": "",
+  "main": "",
+  "authors": [
+    "scynetpro <5821262@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/scynetpro/roof",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fancybox": "^2.1.5",
+    "dropzone": "^4.3.0",
+    "flexslider": "^2.6.0",
+    "ckeditor": "^4.5.8"
+  }
+}

@@ -72,4 +72,7 @@ $(document).ready(function(){
 	    itemWidth: 510,
 	    itemMargin: 20,
 	  });
+
+	$('.ckeditor').ckeditor();
+
 });

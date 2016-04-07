@@ -22,9 +22,13 @@
 					@if ($errors->first('logo')) <div class="error">{{ $errors->first('logo') }}</div> @endif
 				</div>
 				<div class="offset_vertical_20">
-					<textarea name="entry" placeholder="ТЕКСТ О КОМПАНИИ" class="input input_100  input_textarea input_bold">{{ old('entry')?old('entry'):$company->entry }}</textarea>
+					<textarea name="entry" placeholder="КРАТКИЙ ТЕКСТ О КОМПАНИИ" class="input input_100  input_textarea input_bold">{{ old('entry')?old('entry'):$company->entry }}</textarea>
 					@if ($errors->first('entry')) <div class="error">{{ $errors->first('entry') }}</div> @endif
 				</div>
+				<div class="offset_vertical_20">
+					<textarea name="about" placeholder="ПОЛНЫЙ ТЕКСТ О КОМПАНИИ" class="ckeditor">{{ old('about')?old('about'):$company->about }}</textarea>
+					@if ($errors->first('about')) <div class="error">{{ $errors->first('about') }}</div> @endif
+				</div>				
 				<div class="offset_vertical_20">
 					<input type="text" name="email" value="{{ old('email')?old('email'):$company->email }}"  placeholder="EMAIL" class="input input_100 {{ $errors->has('email') ?  'input_error' : '' }} input_bold">
 					@if ($errors->first('email')) <div class="error">{{ $errors->first('email') }}</div> @endif
@@ -34,8 +38,8 @@
 					@if ($errors->first('phone')) <div class="error">{{ $errors->first('phone') }}</div> @endif
 				</div>
 				<div class="offset_vertical_20">
-					<div class="title title_small">СПЕЦИАЛИЗАЦИЯ</div>
-					<div class="menu menu_blue menu_checkbox">
+					<div class="title title_small title_black">СПЕЦИАЛИЗАЦИЯ</div>
+					<div class="menu menu_blue menu_vertical menu_medium">
 						@foreach ($specialisations as $specialisation)
 							<label class="menu__item">
 								<input 
@@ -57,8 +61,8 @@
 					</div>
 				</div>
 				<div class="offset_vertical_20">
-					<div class="title title_small">ТИП ПРЕДЛОЖЕНИЯ</div>
-					<div class="menu menu_blue menu_checkbox">
+					<div class="title title_small title_black">ТИП ПРЕДЛОЖЕНИЯ</div>
+					<div class="menu menu_blue menu_vertical menu_medium">
 						@foreach ($propositions as $proposition)
 							<label class="menu__item">
 								<input 

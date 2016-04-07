@@ -29,7 +29,7 @@ a {
 }
 
 .container-fluid_blue {
-	background-color: #aabdc4;
+	background-color: #88b2bf;
 }
 
 .container-fluid_light-gray {
@@ -102,15 +102,15 @@ a {
 
 
 .input_bold {
-	border: 2px solid #aabdc4;
+	border: 2px solid #88b2bf;
 	color: black;
 	font-size: 20px;
 }
 
-.input::-webkit-input-placeholder {color:#aabdc4;}
-.input::-moz-placeholder          {color:#aabdc4;}
-.input:-moz-placeholder           {color:#aabdc4;}
-.input:-ms-input-placeholder      {color:#aabdc4;}
+.input::-webkit-input-placeholder {color:#88b2bf;}
+.input::-moz-placeholder          {color:#88b2bf;}
+.input:-moz-placeholder           {color:#88b2bf;}
+.input:-ms-input-placeholder      {color:#88b2bf;}
 
 .input_error {
 	border-color: red;
@@ -239,6 +239,10 @@ a {
 	line-height: 48px;
 }
 
+.menu__item {
+	cursor: pointer;	
+}
+
 .menu_horizontal .menu__item {
 	display: inline-block;
 	margin-left: 15px;
@@ -258,9 +262,6 @@ a {
 	width: 100%;
 }
 
-.menu_item {
-	cursor: pointer;	
-}
 
 .menu_vertical .menu__item {
 	display: block;
@@ -351,7 +352,7 @@ a {
 	color: black;
 	margin-left: 95px;
 	padding-bottom: 5px;
-	border-bottom: 1px solid #aabdc4;
+	border-bottom: 1px solid #88b2bf;
 }
 
 .catalog-company__post-date {
@@ -363,7 +364,7 @@ a {
 }
 
 .catalog-company__separator {
-	color: #aabdc4;
+	color: #88b2bf;
 	display: inline-block;
 	margin-right: 5px;
 	margin-left: 5px;	
@@ -460,7 +461,7 @@ a {
 }
 
 .buildings-block__calendar:not(:last-child) {
-	border-bottom:1px solid #aabdc4;
+	border-bottom:1px solid #88b2bf;
 	padding-bottom: 10px;
 }
 
@@ -612,7 +613,7 @@ a {
 	border: 1px solid #b6c6cc;
 	height: 53px;
 	width: 53px;
-	color: #aabdc4;
+	color: #88b2bf;
 	font-size: 20px;
 	font-family: "Roboto Condensed";
 	text-align: right;
@@ -889,14 +890,14 @@ td.calendar__date_active {
 .page-tabs__nav {
 	font-family: "Roboto Condensed";
 	font-size: 24px;
-	color: #aabdc4;
+	color: #88b2bf;
 	text-decoration: underline;
 }
 
 .page-tabs__separator {
 	font-size: 24px;
 	font-family: "Roboto Condensed";
-	color: #aabdc4;
+	color: #88b2bf;
 	margin-right: 7px;
 	margin-left: 7px;
 	display: inline-block;
@@ -934,7 +935,7 @@ td.calendar__date_active {
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	color: #aabdc4;
+	color: #88b2bf;
 	display: block;
 	padding-left: 24px;
 	background-image: url(../img/hide-map.png);
@@ -1116,11 +1117,11 @@ td.calendar__date_active {
 	width: 30px;
 	height: 30px;
 	box-sizing: border-box;
-	background-color: #aabdc4;
+	background-color: #88b2bf;
 	color: white;
 	text-decoration: none;
 	font-size: 18px;
-	border: 1px solid #aabdc4;
+	border: 1px solid #88b2bf;
 	line-height: 30px;
 	margin-bottom: 14px;
 	margin-left: 3px;
@@ -1129,8 +1130,8 @@ td.calendar__date_active {
 
 .page-nav__item_active {
 	background-color: white;
-	border: 1px solid #aabdc4;
-	color: #aabdc4;
+	border: 1px solid #88b2bf;
+	color: #88b2bf;
 }
 
 /*offset*/
@@ -1243,7 +1244,7 @@ td.calendar__date_active {
 
 .company-cart__post-date {
 	font-size: 14px;
-	color: #aabdc4;
+	color: #88b2bf;
 }
 
 .company-cart__member-label {
@@ -1339,7 +1340,7 @@ td.calendar__date_active {
 	padding-bottom: 15px;
 	margin-bottom: 15px;
 	padding-right: 100px;
-	border-bottom: 1px solid #aabdc4;
+	border-bottom: 1px solid #88b2bf;
 }
 
 .company-cart_page .company-cart__address {
@@ -1529,7 +1530,7 @@ td.calendar__date_active {
 
 }
 .reviews-form__text {
-	border:1px solid #aabdc4;
+	border:1px solid #88b2bf;
 	display: block;
 	width: 100%;
 	font-size: 18px;
@@ -1674,7 +1675,7 @@ td.calendar__date_active {
 }
 
 .desk-item_dark {
-	border: 3px solid #aabdc4;
+	border: 3px solid #88b2bf;
 	background-color: #E9E7E7;
 }
 
@@ -1703,7 +1704,7 @@ td.calendar__date_active {
 
 .desk-item__sep:after{
 	content:'|';
-	color: #aabdc4;
+	color: #88b2bf;
 	display: inline-block;
 	vertical-align: middle;
 	margin-right: 5px;
@@ -1746,7 +1747,7 @@ td.calendar__date_active {
 
 .desk-single__sep:after{
 	content:'|';
-	color: #aabdc4;
+	color: #88b2bf;
 	display: inline-block;
 	vertical-align: middle;
 	margin-right: 5px;

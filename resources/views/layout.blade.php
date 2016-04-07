@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Roof</title>
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700|PT+Sans:400,700&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/all.css">
 </head>
 <body>
 	<div class="container-fluid container-fluid_gray">
@@ -80,9 +80,9 @@
 	<div class="container-fluid container-fluid_gray copyright text_center">
 		©2016 Ассоциация кровельщиков Украины. Разработка сйта - Ivmar Ukraine
 	</div>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="/bower/jquery/dist/jquery.min.js"></script>
+	<script src="/bower/ckeditor/ckeditor.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-	<script src="/js/flexslider/jquery.flexslider-min.js"></script>
-	<script src="/js/main.js"></script>
+	<script src="/js/all.js"></script>
 </body>
 </html>
