@@ -1,66 +1,34 @@
 @extends('layout')
 
 @section('content')
-<div class="container offset_vertical_60">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Вход</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail</label>
-
-                            <div class="col-md-6">
-                                <input type="email" class="form-control input" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Пароль</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control input" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Запомнить меня
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="button button_blue">
-                                    <i class="fa fa-btn fa-sign-in"></i>Вход
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Забыли пароль?</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<div class="container breadcrumbs">
+    <span class="breadcumbs__current">АВТОРИЗАЦИЯ</span>
+</div>
+<div class="container">
+    <div class="container__col-left">
+        <form action="{{ url('/login') }}" method="POST" class="reg-page reg-page_layout">
+            {!! csrf_field() !!}
+            <div class="title">ВХОД</div>      
+            <div class="offset_vertical_30">
+                <input type="email" class="input input_bold input_100 {{ $errors->has('email') ?  'input_error' : '' }} " placeholder="EMAIL" name="email" value="{{ old('email') }}">
+                @if ($errors->has('email'))<div class="error">{{ $errors->first('email') }}</div>@endif
             </div>
-        </div>
+            <div class="offset_vertical_30">
+                <input type="password" class="input input_bold input_100 {{ $errors->has('password') ?  'input_error' : '' }} " placeholder="ПАРОЛЬ" name="password">
+                @if ($errors->has('password'))<div class="error">{{ $errors->first('password') }}</div>@endif
+            </div>
+            <div class="offset_vertical_30">
+                <label>
+                    <input type="checkbox" class="input_checkbox" name="remember"><span></span> Запомнить меня
+                </label>
+            </div>
+            <button class="button button_big button_minth reg-page__button">ВХОД</button>
+            <div class="reg-page__login">Нет аккаунта? <a href="{{ url('/register') }}" class="reg-page__login">Регистрация</a></div>
+        </form>
+    </div>
+    <div class="container__col-left reg-social">
+        <div class="title">Или авторизуйтесь с помощью социальных сетей</div>
+
     </div>
 </div>
 @endsection

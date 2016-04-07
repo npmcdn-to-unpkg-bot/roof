@@ -8,17 +8,18 @@
     <div class="container__col-left">
         <form action="{{ url('/register') }}" method="POST" class="reg-page reg-page_layout">
             {!! csrf_field() !!}
-            <div class="title">РЕГИСТРАЦИЯ</div>
-            @if (count($errors) > 0)
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li class="error">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif        
-            <input type="text" name="email" value="{{ old('email') }}" placeholder="EMAIL" class="input {{ $errors->has('email') ?  'input_error' : '' }} input_bold reg-page__input">
-            <input type="password" name="password" placeholder="ПАРОЛЬ" class="input {{ $errors->has('password') ?  'input_error' : '' }} input_bold reg-page__input">
-            <input type="text" name="name" value="{{ old('name') }}" placeholder="ИМЯ" class="input {{ $errors->has('name') ?  'input_error' : '' }} input_bold reg-page__input">
+            <div class="title">РЕГИСТРАЦИЯ</div>       
+            <div class="offset_vertical_30">
+                <input type="text" name="email" value="{{ old('email') }}" placeholder="EMAIL" class="input input_100 input_bold {{ $errors->has('email') ?  'input_error' : '' }}">
+                @if ($errors->has('email'))<div class="error">{{ $errors->first('email') }}</div>@endif
+            </div>
+            <div class="offset_vertical_30">
+                <input type="password" name="password" placeholder="ПАРОЛЬ" class="input input_100 input_bold {{ $errors->has('password') ?  'input_error' : '' }}">
+                @if ($errors->has('password'))<div class="error">{{ $errors->first('password') }}</div>@endif
+            </div>
+            <div class="offset_vertical_30">
+                <input type="text" name="name" value="{{ old('name') }}" placeholder="ИМЯ" class="input input_100 input_bold {{ $errors->has('name') ?  'input_error' : '' }}">
+            </div>
             <button class="button button_big button_minth reg-page__button">РЕГИСТРАЦИЯ</button>
             <div class="reg-page__login">Уже зарегистрированы? <a href="{{ url('/login') }}" class="reg-page__login">Войти</a></div>
         </form>
