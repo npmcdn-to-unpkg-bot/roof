@@ -10,16 +10,24 @@
 			@include('user.control')
 		</div>
 		<div class="container__col-8">
-			@if (isset($company))
-			<div class="title">{{ $company->name }}</div>
-			<ul>
-				<li><img src="/imagecache/small/{{ $company->logo }}" alt=""></li>
-				<li>{{ $company->email }}</li>
-				<li>{{ $company->phone }}</li>
-				<li>{{ $company->entry }}</li>
-				<li><a href="{{ route('office.company.edit',['id'=>$company->id]) }}">Изменить</a></li>
-			</ul>
-			@endif
+			<div class="company-cart company-cart_page company-cart_white">
+				<img src="imagecache/small/{{ $company->logo }}" alt="" class="company-cart__logo">
+				<div class="company-cart__name">{{ $company->name }}</div>
+				<div class="company-cart__description">{{$company->entry}}</div>
+				<div class="container__row">
+					<div class="container__col-6">
+						<div class="company-cart__address">{{$company->address}}</div>
+						<div class="company-cart__post-date">
+							Дата регистрации: 
+							{{ $company->register->format('m.d.Y') }}
+						</div>
+					</div>
+					<div class="container__col-6">
+						<div>{{ $company->email }}</div>
+						<div>{{ $company->phone }}</div>
+					</div>
+				</div>				
+			</div>			
 		</div>
 	</div>
 </div>

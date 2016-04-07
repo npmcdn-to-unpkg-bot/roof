@@ -1,6 +1,6 @@
 <div>
-	<div class="title">УПРАВЛЕНИЕ</div>
-	<div class="menu menu_blue menu_control">
+	<div class="title title_black">УПРАВЛЕНИЕ</div>
+	<div class="menu menu_blue menu_medium menu_vertical menu_rare">
 		@if (isset($company)) 
 		<a class="menu__item" href="{{ route('office.company.index') }}">Моя компания</a>
 		<a class="menu__item" href="#">Мои статьи</a>
@@ -14,11 +14,12 @@
 	</div>
 </div>
 <div class="offset_vertical_60">
-	<div class="title">ВАШИ ДАННЫЕ</div>
-	<ul>
-		<li>{{ $user->name }}</li>
-		<li>{{ $user->job }}</li>
-		<li>{{ $user->email }}</li>
-		<li>{{ $user->phone }}</li>
-	</ul>
+	<div class="title title_black">ВАШИ ДАННЫЕ</div>
+	<div class="user-data">
+		<div class="user-data__item">Имя: <span class="user-data_value">{{ $user->name }}</span></div>
+		<div class="user-data__item">Должность: <span class="user-data_value">{{ $user->job }}</span></div>
+		<div class="user-data__item">Email: <span class="user-data_value">{{ $user->email }}</span></div>
+		<div class="user-data__item">Телефон: <span class="user-data_value">{{ $user->phone }}</span></div>
+	</div>
+	<a href="#">Изменить личные данные</a>
 </div>

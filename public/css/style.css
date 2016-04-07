@@ -172,6 +172,7 @@ a {
 .container__row {
 	margin-left: -12px;
 	margin-right: -12px;
+	clear: both;
 }
 
 .container__row:after {
@@ -257,21 +258,20 @@ a {
 	width: 100%;
 }
 
+.menu_item {
+	cursor: pointer;	
+}
+
 .menu_vertical .menu__item {
 	display: block;
-	line-height: 30px;
-}
-
-.menu__item {
-}
-
-.menu_medium .menu__item {
+	line-height: 22px;
+	margin-top: 4px;
+	margin-bottom: 4px;
 }
 
 .menu_white .menu__item {
 	font-family: "Roboto Condensed";
 	text-transform: uppercase;
-	text-decoration: underline;
 	color: white;
 }
 
@@ -281,28 +281,32 @@ a {
 
 .menu_gray .menu__item {
 	font-family: "Roboto Condensed";
-	text-transform: uppercase;
-	text-decoration: underline;	
 	color: #7d7d7d;
 }
 
 .menu_blue .menu__item {
 	color: #0a3955;
-	font-size: 18px;
+}
+
+.menu_no_underline .menu__item{
 	text-decoration: none;
 }
 
-.menu_control .menu__item {
-	cursor: pointer;
-	line-height: 22px;
+.menu_uppercase .menu__item{
+	text-transform: uppercase;
+}
+
+.menu_rare .menu__item {
 	margin-top: 14px;
 	margin-bottom: 14px;
-	display: block;
+}
+
+.menu_medium .menu__item {
+	font-size: 18px;
 }
 
 .menu_big .menu__item {
 	font-size: 20px;
-	text-decoration: none;
 }
 
 /*title*/
@@ -322,6 +326,10 @@ a {
 
 .title_white {
 	color: white;
+}
+
+.title_black {
+	color: black;
 }
 
 /*catalog-company*/
@@ -1270,6 +1278,7 @@ td.calendar__date_active {
 	font-size: 30px;
 	margin-bottom: 0;
 	line-height: normal;
+	display: block;
 }
 
 .company-cart_big .company-cart__description{
@@ -1808,4 +1817,25 @@ td.calendar__date_active {
 	padding-right: 67px;
 	width: 365px;
 }
+
+
+/*user-data*/
+.user-data {
+	padding-left: 8px;
+	border-left: 5px solid #6fc0d1;
+}
+
+.user-data__item {
+	display: block;
+	line-height: 22px;
+	margin-top: 14px;
+	margin-bottom: 14px;
+	font-size: 18px;
+	color: black;
+}
+
+.user-data_value {
+	color: #0a3955;
+}
+
 /*# sourceMappingURL=style.css.map */

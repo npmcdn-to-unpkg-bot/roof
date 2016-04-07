@@ -9,7 +9,7 @@
 <body>
 	<div class="container-fluid container-fluid_gray">
 		<div class="container">
-			<div class="container__col-right menu menu_horizontal menu_white menu_medium">
+			<div class="container__col-right menu menu_horizontal menu_uppercase menu_white">
 				<a href="#" class="menu__item">ОБ АССОЦИАЦИИ</a>
 				<a href="#" class="menu__item">КАЛЕНДАРЬ</a>
 				<a href="#" class="menu__item">ОПРОСЫ</a>
@@ -37,7 +37,7 @@
 		</div>
 	</div>
 	<div class="container-fluid container-fluid_blue">
-		<div class="container menu menu_horizontal menu_big menu_white menu_justified">
+		<div class="container menu menu_horizontal menu_uppercase menu_no_underline menu_big menu_white menu_justified">
 			<a href="/catalog" class="menu__item">Каталог компаний</a>
 			<a href="/buildings" class="menu__item">Стройки и вакансии</a>
 			<a href="/desk" class="menu__item">Доска объявлений</a>
@@ -50,7 +50,7 @@
 	<div class="container-fluid container-fluid_gray container-fluid_footer">
 		<div class="container">
 			<div class="container__row">
-				<div class="container__col-2 menu menu_vertical menu_gray menu_medium">
+				<div class="container__col-2 menu menu_vertical menu_uppercase menu_gray">
 					<a href="#" class="menu__item">Каталог компаний</a>
 					<a href="#" class="menu__item">Стройки и вакансии</a>
 					<a href="#" class="menu__item">Доска объявлений</a>
@@ -68,7 +68,7 @@
 						<a href="" class="social-buttons__item social-buttons__item_yo"></a>
 					</div>
 				</div>
-				<div class="container__col-2 text_right menu menu_vertical menu_gray menu_medium">
+				<div class="container__col-2 text_right menu menu_vertical menu_uppercase menu_gray">
 					<a href="#" class="menu__item">ОБ АССОЦИАЦИИ</a>
 					<a href="#" class="menu__item">КАЛЕНДАРЬ</a>
 					<a href="#" class="menu__item">ОПРОСЫ</a>

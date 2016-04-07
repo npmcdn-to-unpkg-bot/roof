@@ -183,7 +183,7 @@
 			</div>
 			<div class="container__col-4">
 				<div class="title">КАТЕГОРИИ</div>
-				<form class="menu menu_blue menu_control">
+				<form class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare">
 					<label class="menu__item">
 						<input class="input_checkbox" type="checkbox">
 						<span></span>
