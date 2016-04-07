@@ -63,7 +63,7 @@ a {
 .input:-ms-input-placeholder      {color:#88b2bf;}
 
 .input_select {
-	padding-right: 70px;
+	padding-right: 50px;
 	background-image: url(../img/caret.png);
 	cursor: pointer;
 	background-repeat: no-repeat;
