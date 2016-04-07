@@ -85,7 +85,7 @@
 						@endforeach
 					</div>
 				</div>				
-				<div class="offset_vertical_20">
+				<div class="offset_vertical_20 offset_bottom_60">
 					<button class="button button_big button_orange">СОХРАНИТЬ</button>
 				</div>
 			</form>

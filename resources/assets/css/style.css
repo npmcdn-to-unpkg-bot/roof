@@ -1169,6 +1169,10 @@ td.calendar__date_active {
 	margin-top: 60px;
 }
 
+.offset_bottom_60 {
+	margin-bottom: 60px;
+}
+
 /*padding*/
 
 .padding_vertical_20 {
