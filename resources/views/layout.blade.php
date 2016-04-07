@@ -28,7 +28,7 @@
 			@endif
 			<a href="{{ url('/register') }}" style="background-color: #7dc691; background-image: url(/img/user-menu-3.png);" class="actions-menu__item">
 				@if (Auth::guest())
-				ВХОД РЕГИСТРАЦИЯ
+				ВХОД <br> РЕГИСТРАЦИЯ
 				@else
 				{{ Auth::user()->name }}
 				@endif

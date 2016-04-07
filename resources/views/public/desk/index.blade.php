@@ -183,14 +183,38 @@
 			</div>
 			<div class="container__col-4">
 				<div class="title">КАТЕГОРИИ</div>
-				<form class="menu menu_blue menu_checkbox">
-					<label class="menu__item"><input class="checkbox" type="checkbox">Услуги</label>
-					<label class="menu__item"><input class="checkbox" type="checkbox">Продажа материалов</label>
-					<label class="menu__item"><input class="checkbox" type="checkbox">Продажа оборудования</label>
-					<label class="menu__item"><input class="checkbox" type="checkbox">Еще одна категория</label>
-					<label class="menu__item"><input class="checkbox" type="checkbox">И еще одна</label>
-					<label class="menu__item"><input class="checkbox" type="checkbox">И снова категория</label>
-					<button class="button button_100 button_blue button_big">ПОКАЗАТЬ</button>
+				<form class="menu menu_blue menu_control">
+					<label class="menu__item">
+						<input class="input_checkbox" type="checkbox">
+						<span></span>
+						Услуги
+					</label>
+					<label class="menu__item">
+						<input class="input_checkbox" type="checkbox">
+						<span></span>
+						Продажа материалов
+					</label>
+					<label class="menu__item">
+						<input class="input_checkbox" type="checkbox">
+						<span></span>
+						Продажа оборудования
+					</label>
+					<label class="menu__item">
+						<input class="input_checkbox" type="checkbox">
+						<span></span>
+						Еще одна категория
+					</label>
+					<label class="menu__item">
+						<input class="input_checkbox" type="checkbox">
+						<span></span>
+						И еще одна
+					</label>
+					<label class="menu__item">
+						<input class="input_checkbox" type="checkbox">
+						<span></span>
+						И снова категория
+					</label>
+					<button class="button button_100 button_cyan button_big">ПОКАЗАТЬ</button>
 				</form>
 				<img src="s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">
 				<img src="s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">

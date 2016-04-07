@@ -7,7 +7,7 @@
 	<div class="container buildings-map">
 		<div class="buildings-map__control">
 			<div class="page-tabs">
-				<span class="page-tabs__nav page-tabs__nav_active">АКТИНВЫЕ СТРОЙКИ</span>
+				<span class="page-tabs__nav page-tabs__nav_active">АКТИВНЫЕ СТРОЙКИ</span>
 				<span class="page-tabs__separator"></span>
 				<a href="#" class="page-tabs__nav">ВАКАНСИИ</a>
 			</div>
@@ -19,10 +19,10 @@
 		<div class="title">ФИЛЬТР ОБЪЕКТОВ</div>
 		<form action="" class="offset_vertical_15 jus">
 			<select name="" id="" class="input_select input jus__item">
-				<option value="">ВЫБИРИТЕ СТРАНУ</option>
+				<option value="">ВЫБЕРИТЕ СТРАНУ</option>
 			</select>
 			<select name="" id="" class="input_select input jus__item">
-				<option value="">ВЫБИРИТЕ ГОРОД</option>
+				<option value="">ВЫБЕРИТЕ ГОРОД</option>
 			</select>
 			<select name="" id="" class="input_select input jus__item">
 				<option value="">ТИП ОБЪЕКТОВ</option>

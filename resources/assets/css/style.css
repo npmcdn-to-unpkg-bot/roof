@@ -1,9 +1,15 @@
 /*reset*/
 
-html{color:#000;background:#FFF;font-family: "PT Sans", sans-serif;font-size: 14px}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}select{border: none;-webkit-appearance: none;-moz-appearance: none;text-indent: 1px;text-overflow: ''}select::-ms-expand {display: none;}
+html{color:#000;background:#FFF;font-family: "PT Sans", sans-serif;font-size: 14px}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{background: none;font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}select{border: none;-webkit-appearance: none;-moz-appearance: none;text-indent: 1px;text-overflow: ''}select::-ms-expand {display: none;}
 textarea {resize:none;}
+
 body {
 	min-width: 1209px;
+}
+
+a {
+	color: #88b2bf;
+	transition: color .1s;
 }
 
 /*container fluid*/
@@ -58,7 +64,6 @@ body {
 
 .input_select {
 	padding-right: 70px;
-	background-color: white;
 	background-image: url(../img/caret.png);
 	cursor: pointer;
 	background-repeat: no-repeat;
@@ -67,6 +72,32 @@ body {
 
 .input_textarea {
 	height: 130px;
+}
+
+.input_checkbox {
+	/*display: none;*/
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.input_checkbox:focus+span {
+	box-shadow: 0 0 1px #88B2BF;
+}
+
+.input_checkbox+span{
+	cursor: pointer;	
+	background-image: url(../img/checkbox.png);
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	margin-right: 7px;
+	vertical-align: -4%;
+	outline: none;
+}
+
+.input_checkbox:checked+span{
+	background-image: url(../img/checkbox-checked.png);
 }
 
 
@@ -150,8 +181,12 @@ body {
 }
 
 /*actions-menu*/
-.actions-menu {
-	line-height: 123px;
+.actions-menu:before {
+	content:'';
+	display: inline-block;
+	height: 123px;
+	width: 0;
+	vertical-align: middle;
 }
 
 .actions-menu__item {
@@ -257,7 +292,7 @@ body {
 	text-decoration: none;
 }
 
-.menu_checkbox .menu__item {
+.menu_control .menu__item {
 	cursor: pointer;
 	line-height: 22px;
 	margin-top: 14px;
@@ -629,24 +664,6 @@ td.calendar__date_active {
 	display: block;
 }
 
-/*checkbox*/
-.checkbox
-{
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	cursor: pointer;	
-	background-image: url(../img/checkbox.png);
-	display: inline-block;
-	width: 14px;
-	height: 14px;
-	margin-right: 7px;
-	vertical-align: -4%;
-	outline: none;
-}
-.checkbox:checked{
-	background-image: url(../img/checkbox-checked.png);
-}
-
 /*button*/
 
 .button {
@@ -674,6 +691,11 @@ td.calendar__date_active {
 
 .button_blue {
 	background-color: #6fc0d1;
+	color: white;
+}
+
+.button_cyan {
+	background-color: #88b2bf;
 	color: white;
 }
 
@@ -1476,9 +1498,11 @@ td.calendar__date_active {
 	vertical-align: middle;
 }
 
+.rate-form__radio {
+	display: none;
+}
+
 .rate-form__star {
-	-webkit-appearance: none;
-	-moz-appearance: none;
 	display: inline-block;
 	width: 21px;
 	height: 20px;
@@ -1487,11 +1511,7 @@ td.calendar__date_active {
 	outline: none;
 }
 
-.rate-form__star_placeholder {
-	display: none;
-}
-
-.rate-form__star:checked~.rate-form__star {
+.rate-form__radio:checked~.rate-form__star {
 	background-image: url(../img/star.png);
 }
 

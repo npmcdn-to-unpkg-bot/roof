@@ -183,16 +183,11 @@
 					<button class="button button_big button_blue reviews-form__submit">ОТПРАВИТЬ</button>
 					<div class="reviews-form__rate">Оценка компании: 
 						<div class="rate-form">
-							<input type="radio" class="rate-form__star rate-form__star_placeholder" checked name="rate">
-							<input type="radio" class="rate-form__star" value="2" name="rate">
-							<input type="radio" class="rate-form__star" value="3" name="rate">
-							<input type="radio" class="rate-form__star" value="4" name="rate">
-							<input type="radio" class="rate-form__star" value="5" name="rate">
-							<input type="radio" class="rate-form__star" value="6" name="rate">
-							<input type="radio" class="rate-form__star" value="7" name="rate">
-							<input type="radio" class="rate-form__star" value="8" name="rate">
-							<input type="radio" class="rate-form__star" value="9" name="rate">
-							<input type="radio" class="rate-form__star" value="10" name="rate">
+							<input type="radio" class="rate-form__radio" checked name="rate">
+							@for ($i=1;$i<=10;$i++)
+								<label for="rate-form__{{ $i }}" class="rate-form__star"></label>
+								<input type="radio" id="rate-form__{{ $i }}" class="rate-form__radio" value="{{ $i }}" name="rate">
+							@endfor
 						</div>
 					</div>
 				</form>

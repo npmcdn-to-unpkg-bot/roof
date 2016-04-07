@@ -1,17 +1,17 @@
 <div>
 	<div class="title">УПРАВЛЕНИЕ</div>
-	<ul>
+	<div class="menu menu_blue menu_control">
 		@if (isset($company)) 
-		<li><a href="{{ route('office.company.index') }}">Моя компания</a></li>
-		<li><a href="#">Мои статьи</a></li>
-		<li><a href="#">Сотрудники компании</a></li>
-		<li><a href="{{ route('office.building.index') }}">Стройки</a></li>
-		<li><a href="{{ route('office.job.index') }}">Вакансии</a></li>
+		<a class="menu__item" href="{{ route('office.company.index') }}">Моя компания</a>
+		<a class="menu__item" href="#">Мои статьи</a>
+		<a class="menu__item" href="#">Сотрудники компании</a>
+		<a class="menu__item" href="{{ route('office.building.index') }}">Стройки</a>
+		<a class="menu__item" href="{{ route('office.job.index') }}">Вакансии</a>
 		@else
-		<li><a href="/office/company/create">Создать компанию</a></li>
+		<a class="menu__item" href="/office/company/create">Создать компанию</a>
 		@endif
-		<li><a href="/logout">Выход</a></li>
-	</ul>
+		<a class="menu__item" href="/logout">Выход</a>
+	</div>
 </div>
 <div class="offset_vertical_60">
 	<div class="title">ВАШИ ДАННЫЕ</div>
