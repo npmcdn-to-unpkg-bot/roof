@@ -24,7 +24,8 @@ class UserCompanyController extends Controller
     {
         $user = Auth::user();
         $company = $user->company;
-        return view('user.office', [
+        if (!isset($company)) return redirect()->route('office.company.create');
+        return view('user.company.index', [
             'user' => $user,
             'company' => $company
         ]);

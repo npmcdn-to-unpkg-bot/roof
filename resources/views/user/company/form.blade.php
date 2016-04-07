@@ -43,7 +43,7 @@
 						@foreach ($specialisations as $specialisation)
 							<label class="menu__item">
 								<input 
-									class="checkbox"
+									class="input_checkbox"
 									type="checkbox"
 									name="specialisations[{{ $specialisation->id }}]"
 									value="{{ $specialisation->id }}"
@@ -55,6 +55,7 @@
 									checked
 									@endif
 								>
+								<span></span>
 								{{ $specialisation->name }}
 							</label>
 						@endforeach
@@ -66,7 +67,7 @@
 						@foreach ($propositions as $proposition)
 							<label class="menu__item">
 								<input 
-									class="checkbox"
+									class="input_checkbox"
 									type="checkbox"
 									name="propositions[{{ $proposition->id }}]"
 									value="{{ $proposition->id }}"
@@ -78,6 +79,7 @@
 									checked
 									@endif									
 								>
+								<span></span>
 								{{ $proposition->name }}
 							</label>
 						@endforeach

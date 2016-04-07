@@ -10,6 +10,7 @@
 			@include('user.control')
 		</div>
 		<div class="container__col-8">
+			@if (isset($company))
 			<div class="company-cart company-cart_page company-cart_white">
 				<img src="/imagecache/small/{{ $company->logo }}" alt="" class="company-cart__logo">
 				<div class="company-cart__name">{{ $company->name }}</div>
@@ -31,7 +32,8 @@
 			</div>
 			<div class="text_right menu menu_blue menu_medium menu_vertical menu_rare">
 				<a class="menu__item" href="{{ route('office.company.edit',['id'=>$company->id]) }}">Изменить информацию о компании</a>
-			</div>						
+			</div>
+			@endif					
 		</div>
 	</div>
 </div>
