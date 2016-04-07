@@ -276,7 +276,8 @@ a {
 	color: white;
 }
 
-.menu_white .menu__item_active {
+.menu_main .menu__item:hover,
+.menu_main .menu__item_active {
 	color: #0a3955;
 }
 
