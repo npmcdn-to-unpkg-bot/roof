@@ -9,8 +9,8 @@
 			<div class="container__col-8">
 				<div class="title">ОБЪЯВЛЕНИЯ</div>
 				<form action="" class="jus offset_vertical_20">
-					<input type="text" width="490" placeholder="КЛЮЧЕВЫЕ СЛОВА" class="input jus__item">
-					<select name="" width="200" class="input_select input jus__item">
+					<input type="text" style="width: 490px" placeholder="КЛЮЧЕВЫЕ СЛОВА" class="input jus__item">
+					<select name="" style="width: 200px" class="input_select input jus__item">
 						<option value="">ВЫБИРИТЕ СТРАНУ</option>
 					</select>
 					<button class="jus__item button button_search"></button>
