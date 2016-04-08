@@ -83,8 +83,6 @@
 	<script src="/bower/jquery/dist/jquery.min.js"></script>
 	<script src="/bower/ckeditor/ckeditor.js"></script>
 	<script src="/bower/flexslider/jquery.flexslider-min.js"></script>
-	<script src="/bower/dropzone/dist/min/dropzone.min.js"></script>
-	<link rel="stylesheet" href="/bower/dropzone/dist/dropzone.css">
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 	<script src="/js/all.js"></script>
 </body>

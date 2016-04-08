@@ -50,11 +50,21 @@ class UserCompanyController extends Controller
      */
     public function store(Request $request) {
 
+        if ($request->hasFile('upload')) {
+            $logo = time().'-'
+                .$request->file('upload')->getClientOriginalName();
+            Image::make($request
+                ->file('upload'))
+                ->fit(600, 500, function ($constraint) { $constraint->upsize(); })
+                ->save(storage_path('uploads/images/').$logo);
+            $request->merge(['logo' => $logo]);
+        }
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:35',
             'email' => 'required|email|max:255',
             'phone' => 'required|numeric',
-            'logo' => 'required|image',
+            'logo' => 'required',
             'entry' => 'max:255'
         ],[
         	'name.required' => 'Введите название компании.',
@@ -76,13 +86,6 @@ class UserCompanyController extends Controller
 				->withErrors($validator);
 		}
 
-	    $logo = time().'-'
-	    		.$request->file('logo')->getClientOriginalName();
-		Image::make($request
-				->file('logo'))
-				->fit(600, 500, function ($constraint) { $constraint->upsize(); })
-    			->save(storage_path('uploads/images/').$logo);
-
     	$user = Auth::user();
 	    $company = $user->company
 	    		?$user->company
@@ -90,7 +93,7 @@ class UserCompanyController extends Controller
 	    $company->user_id = $user->id;
 	    $company->name = $request->name;
 	    $company->email = $request->email;
-	    $company->logo = $logo;
+	    $company->logo = $request->logo;
 	    $company->phone = $request->phone;
 	    $company->entry = $request->entry;
         $company->about = $request->about;

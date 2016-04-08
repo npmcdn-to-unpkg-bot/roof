@@ -36,10 +36,13 @@ if (document.getElementById('buildings-map__map')){
 	});
 }
 
-Dropzone.dictDefaultMessage = "Загрузить картинку.";
-Dropzone.dictRemoveFile = "Удалить";
-
 $(document).ready(function(){
+
+	$('.removable__remove').click(function(e){
+		e.preventDefault();
+		$(this).parents('.removable').remove();
+	});
+
 	$('.buildings-block__nav-tab').click(function(){
 		$(this).parents('.buildings-block').find('.buildings-block__tab_active').removeClass('buildings-block__tab_active');
 		$(this).parents('.buildings-block__tab').addClass('buildings-block__tab_active');
