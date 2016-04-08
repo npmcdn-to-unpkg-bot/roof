@@ -14,32 +14,34 @@
 			<form action="/office/company" method="POST" enctype="multipart/form-data">
 				{!! csrf_field() !!}
 				<div class="offset_vertical_20">
-					<input type="text" name="name" value="{{ old('name')?old('name'):$company->name }}" placeholder="НАЗВАНИЕ КОМПАНИИ" class="input input_100 {{ $errors->has('name') ?  'input_error' : '' }} input_bold">
+					<input type="text" name="name" value="{{ old()?old('name'):$company->name }}" placeholder="НАЗВАНИЕ КОМПАНИИ" class="input input_100 {{ $errors->has('name') ?  'input_error' : '' }} input_bold">
 					@if ($errors->first('name')) <div class="error">{{ $errors->first('name') }}</div> @endif
 				</div>
 				<div class="offset_vertical_20">
-					<div class="removable">
-						<a href="#" class="removable__remove">Удалить</a><br>
-						<img src="/imagecache/small/{{ old('logo')?old('logo'):$company->logo }}" alt="">
-						<input type="hidden" name="logo" value="{{ old('logo')?old('logo'):$company->logo }}">
-					</div>
+					@if (!old()&&!empty($company->logo)||old()&&!empty(old('logo')))
+						<div class="removable">
+							<a href="#" class="removable__remove">Удалить</a><br>
+							<img src="/imagecache/small/{{ old()?old('logo'):$company->logo }}" alt="">
+							<input type="hidden" name="logo" value="{{ old()?old('logo'):$company->logo }}">
+						</div>
+					@endif
 					<input type="file" name="upload">
 					@if ($errors->first('logo')) <div class="error">{{ $errors->first('logo') }}</div> @endif
 				</div>
 				<div class="offset_vertical_20">
-					<textarea name="entry" placeholder="КРАТКИЙ ТЕКСТ О КОМПАНИИ" class="input input_100  input_textarea input_bold">{{ old('entry')?old('entry'):$company->entry }}</textarea>
+					<textarea name="entry" placeholder="КРАТКИЙ ТЕКСТ О КОМПАНИИ" class="input input_100  input_textarea input_bold">{{ old()?old('entry'):$company->entry }}</textarea>
 					@if ($errors->first('entry')) <div class="error">{{ $errors->first('entry') }}</div> @endif
 				</div>
 				<div class="offset_vertical_20">
-					<textarea name="about" placeholder="ПОЛНЫЙ ТЕКСТ О КОМПАНИИ" class="ckeditor">{{ old('about')?old('about'):$company->about }}</textarea>
+					<textarea name="about" placeholder="ПОЛНЫЙ ТЕКСТ О КОМПАНИИ" class="ckeditor">{{ old()?old('about'):$company->about }}</textarea>
 					@if ($errors->first('about')) <div class="error">{{ $errors->first('about') }}</div> @endif
 				</div>				
 				<div class="offset_vertical_20">
-					<input type="text" name="email" value="{{ old('email')?old('email'):$company->email }}"  placeholder="EMAIL" class="input input_100 {{ $errors->has('email') ?  'input_error' : '' }} input_bold">
+					<input type="text" name="email" value="{{ old()?old('email'):$company->email }}"  placeholder="EMAIL" class="input input_100 {{ $errors->has('email') ?  'input_error' : '' }} input_bold">
 					@if ($errors->first('email')) <div class="error">{{ $errors->first('email') }}</div> @endif
 				</div>
 				<div class="offset_vertical_20">
-					<input type="text" name="phone" value="{{ old('phone')?old('phone'):$company->phone }}" placeholder="ТЕЛЕФОН" class="input input_100 {{ $errors->has('phone') ?  'input_error' : '' }} input_bold">
+					<input type="text" name="phone" value="{{ old()?old('phone'):$company->phone }}" placeholder="ТЕЛЕФОН" class="input input_100 {{ $errors->has('phone') ?  'input_error' : '' }} input_bold">
 					@if ($errors->first('phone')) <div class="error">{{ $errors->first('phone') }}</div> @endif
 				</div>
 				<div class="offset_vertical_20">
