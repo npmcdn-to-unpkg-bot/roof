@@ -36,6 +36,9 @@ if (document.getElementById('buildings-map__map')){
 	});
 }
 
+Dropzone.dictDefaultMessage = "Загрузить картинку.";
+Dropzone.dictRemoveFile = "Удалить";
+
 $(document).ready(function(){
 	$('.buildings-block__nav-tab').click(function(){
 		$(this).parents('.buildings-block').find('.buildings-block__tab_active').removeClass('buildings-block__tab_active');
@@ -72,8 +75,6 @@ $(document).ready(function(){
 	    itemWidth: 510,
 	    itemMargin: 20,
 	  });
-
-	$('.ckeditor').ckeditor();
 
 });
 //# sourceMappingURL=all.js.map

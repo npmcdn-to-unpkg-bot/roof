@@ -11,14 +11,28 @@
 		</div>
 		<div class="container__col-8">
 		    <div class="title">{{ $title }}</div>
-			<form action="/office/company" method="POST"  enctype="multipart/form-data">
+			<form action="/office/company" method="POST" id="company" class="dropzone" enctype="multipart/form-data">
 				{!! csrf_field() !!}
 				<div class="offset_vertical_20">
 					<input type="text" name="name" value="{{ old('name')?old('name'):$company->name }}" placeholder="НАЗВАНИЕ КОМПАНИИ" class="input input_100 {{ $errors->has('name') ?  'input_error' : '' }} input_bold">
 					@if ($errors->first('name')) <div class="error">{{ $errors->first('name') }}</div> @endif
 				</div>
 				<div class="offset_vertical_20">
-					<input type="file" name="logo">
+					<div class="dz-preview"></div>
+					<script>
+						document.addEventListener(
+							'DOMContentLoaded', 
+							function () {
+								Dropzone.options.company =
+								{
+								    autoProcessQueue: false,
+								    uploadMultiple: true,
+								    parallelUploads: 100,
+								    maxFiles: 100
+								};
+							}
+						);
+					</script>
 					@if ($errors->first('logo')) <div class="error">{{ $errors->first('logo') }}</div> @endif
 				</div>
 				<div class="offset_vertical_20">

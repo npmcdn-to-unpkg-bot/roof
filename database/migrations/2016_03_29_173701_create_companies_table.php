@@ -24,7 +24,6 @@ class CreateCompaniesTable extends Migration
             $table->string('phone');
             $table->boolean('privat');
             $table->boolean('association');
-            $table->date('register');
             $table->text('entry');
             $table->text('about');
             $table->text('services');

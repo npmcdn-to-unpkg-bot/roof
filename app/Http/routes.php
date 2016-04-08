@@ -42,7 +42,9 @@ Route::get('/knowladge', function () {
 Route::get('/news', function () { 
 	return view('public.news.index'); 
 });
-   
+
+Route::get('/upload', function () { return 'success'; });
+Route::post('/upload', function () { return 'success'; });
 
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {

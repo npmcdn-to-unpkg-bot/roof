@@ -56,7 +56,7 @@
 									<div class="company-cart__address">{{$company->address}}</div>
 									<div class="company-cart__post-date">
 										Дата регистрации: 
-										{{ $company->register->format('m.d.Y') }}
+										{{ $company->created_at->format('m.d.Y') }}
 									</div>
 								</div>
 								@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label company-cart__right-top">
