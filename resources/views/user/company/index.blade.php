@@ -1,40 +1,32 @@
-@extends('layout')
+@extends('user.layout')
 
-@section('content')
-<div class="container breadcrumbs">
+@section('breadcrumbs')
 	<span class="breadcumbs__current">ЛИЧНЫЙ КАБИНЕТ</span>
-</div>
-<div class="container">
-	<div class="container__row">
-		<div class="container__col-4">
-			@include('user.control')
-		</div>
-		<div class="container__col-8">
-			@if (isset($company))
-			<div class="company-cart company-cart_page company-cart_white">
-				<img src="/imagecache/small/{{ $company->logo }}" alt="" class="company-cart__logo">
-				<div class="company-cart__name">{{ $company->name }}</div>
-				<div class="company-cart__description">{{$company->entry}}</div>
-				<div class="container__row">
-					<div class="container__col-8">
-						<div class="company-cart__address">{{$company->address}}</div>
-						<div class="company-cart__post-date">
-							Дата регистрации: 
-							{{ $company->created_at->format('m.d.Y') }}
-						</div>
-					</div>
-					<div class="container__col-4">
-						<div>{{ $company->email }}</div>
-						<div>{{ $company->phone }}</div>
-					</div>
+@endsection
+
+@section('workspace')
+	@if (isset($company))
+	<div class="company-cart company-cart_page company-cart_white">
+		<img src="/imagecache/small/{{ $company->logo }}" alt="" class="company-cart__logo">
+		<div class="company-cart__name">{{ $company->name }}</div>
+		<div class="company-cart__description">{{$company->entry}}</div>
+		<div class="container__row">
+			<div class="container__col-8">
+				<div class="company-cart__address">{{$company->address}}</div>
+				<div class="company-cart__post-date">
+					Дата регистрации: 
+					{{ $company->created_at->format('m.d.Y') }}
 				</div>
-				<div>{!! $company->about !!}</div>
 			</div>
-			<div class="text_right menu menu_blue menu_medium menu_vertical menu_rare">
-				<a class="menu__item" href="{{ route('office.company.edit',['id'=>$company->id]) }}">Изменить информацию о компании</a>
+			<div class="container__col-4">
+				<div>{{ $company->email }}</div>
+				<div>{{ $company->phone }}</div>
 			</div>
-			@endif					
 		</div>
+		<div>{!! $company->about !!}</div>
 	</div>
-</div>
+	<div class="text_right menu menu_blue menu_medium menu_vertical menu_rare">
+		<a class="menu__item" href="{{ route('office.company.edit',['id'=>$company->id]) }}">Изменить информацию о компании</a>
+	</div>
+	@endif
 @endsection

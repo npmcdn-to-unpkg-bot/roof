@@ -43,15 +43,15 @@ Route::get('/news', function () {
 	return view('public.news.index'); 
 });
 
-Route::get('/upload', function () { return 'success'; });
-Route::post('/upload', function () { return 'success'; });
-
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/office', 'UserCompanyController@index');
 	Route::resource('/office/company', 'UserCompanyController');
 	Route::resource('/office/building', 'UserBuildingController');
 	Route::resource('/office/job', 'UserJobController');
+	Route::resource('image', 'ImageController', ['only' => 
+		['store', 'destroy']
+	]);
 });
 
 

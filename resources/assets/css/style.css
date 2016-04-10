@@ -41,6 +41,12 @@ a {
 	color: red;
 }
 
+/*dropzone*/
+.dropzone {
+	border-color: #88b2bf;
+	min-height: 214px;
+}
+
 /*input*/
 .input {
 	border: 1px solid #88b2bf;

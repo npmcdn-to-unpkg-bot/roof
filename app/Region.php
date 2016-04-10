@@ -15,4 +15,8 @@ class Region extends Model
     	return $this->hasMany('App\Building');
     }
 
+    public function cities () {
+    	return $this->hasMany('App\City');
+    }
+
 }

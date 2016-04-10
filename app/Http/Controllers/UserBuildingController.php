@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Validator;
+
 use App\Building;
+
+use Auth;
 
 class UserBuildingController extends Controller
 {
@@ -17,7 +21,8 @@ class UserBuildingController extends Controller
      */
     public function index()
     {
-        //
+        $buildings = Auth::user()->company->buildings;
+        return view('user.building.index');
     }
 
     /**
@@ -40,7 +45,29 @@ class UserBuildingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+                'name' => 'required|min:3|max:33',
+                'type' => 'required|min:3|max:33',
+                'images' => 'required',
+                'information' => 'required|min:50|max:255'
+            ],[
+                'name.required' => 'Введите название объекта',
+                'name.max' => 'Название должно быть не больше 33 символов',
+                'name.min' => 'Название должно быть не меньше 3 символов',
+                'type.required' => 'Введите тип обхекта',
+                'type.max' => 'Тип объекта должен быть не больше 33 символов',
+                'type.min' => 'Тип объекта должен быть не меньше 3 символов',
+                'images.required' => 'Загрузите изображения',
+                'information.required' => 'Введите инофрмация об объекте',
+                'information.min' => 'Описание должно быть не менее 50 символов',
+                'information.max' => 'Описание должно быть не более 255 символов'
+            ]);
+        if ($validator->fails())
+            return back()
+                ->withInput()
+                ->withErrors($validator);
+
+        return 'true';
     }
 
     /**

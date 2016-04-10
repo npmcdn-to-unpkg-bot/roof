@@ -15,4 +15,8 @@ class Country extends Model
     	return $this->hasMany('App\Building');
     }
 
+    public function regions () {
+    	return $this->hasMany('App\Region');
+    }
+
 }

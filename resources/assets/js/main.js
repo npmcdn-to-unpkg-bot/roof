@@ -79,4 +79,43 @@ $(document).ready(function(){
 	    itemMargin: 20,
 	  });
 
+	Dropzone.autoDiscover = false;
+	ImageField = new Dropzone('.dropzone', {
+		url: '/image',
+		addRemoveLinks : true,
+		dictDefaultMessage: 'Выберите фотографии, или перетащите мышью',
+		dictRemoveFile: 'Удалить',
+		dictMaxFilesExceeded: 'Превышено максимальное количество фотографий',
+		headers: { 'X-CSRF-Token': $('[name="_token"]').val()}
+	});
+
+	ImageField.on( 'success', function (file, response) {
+		file.id = response.id;
+		console.log(response);
+		$('.dropzone').append('<input type="hidden" name="images['+file.id+']" class="dropzone__image-id" value='+response.name+'>');
+	});
+
+	ImageField.on('removedfile', function (file) {
+		$.ajax({
+		    url: '/image/'+file.id,
+		    type: 'post',
+		    data: {_method: 'delete'},
+		    headers: { 'X-CSRF-Token': $('[name="_token"]').val()},
+		    success: function (response) {
+		    	$('.dropzone__image-id[value='+file.name+']').remove();
+		    },
+		    error: function (response) {
+		    	console.log(response.responseText)
+		    }
+		});
+	});
+
+	ImageField.files = ImageField.options.old;
+	$.each(ImageField.files, function (index, file) {
+		ImageField.emit("addedfile", file);
+		ImageField.emit("thumbnail", file, "/imagecache/small/"+file.name);
+		ImageField.emit("complete", file);
+		$('.dropzone').append('<input type="hidden" name="images['+file.id+']" class="dropzone__image-id" value='+file.name+'>');
+	});
+
 });

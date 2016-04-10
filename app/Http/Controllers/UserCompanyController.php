@@ -80,11 +80,10 @@ class UserCompanyController extends Controller
         ]);
 
 
-        if ($validator->fails()) {
+        if ($validator->fails())
 			return back()
 				->withInput()
 				->withErrors($validator);
-		}
 
     	$user = Auth::user();
 	    $company = $user->company

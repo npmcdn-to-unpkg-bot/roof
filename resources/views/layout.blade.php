@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Roof</title>
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700|PT+Sans:400,700&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/bower/dropzone/dist/min/dropzone.min.css">
 	<link rel="stylesheet" href="/css/all.css">
 </head>
 <body>
@@ -83,6 +84,7 @@
 	<script src="/bower/jquery/dist/jquery.min.js"></script>
 	<script src="/bower/ckeditor/ckeditor.js"></script>
 	<script src="/bower/flexslider/jquery.flexslider-min.js"></script>
+	<script src="/bower/dropzone/dist/min/dropzone.min.js" ></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 	<script src="/js/all.js"></script>
 </body>

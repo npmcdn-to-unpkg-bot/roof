@@ -7,7 +7,7 @@ use Auth;
 use App\Company;
 use App\User;
 
-class UserControlComposer
+class UserLayoutComposer
 {
     /**
      * Bind data to the view.

@@ -21,11 +21,13 @@ class CreateCitiesTable extends Migration
         Schema::create('regions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('country_id')->index();
         });
 
         Schema::create('cities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('region_id')->index();
         });
 
     }
