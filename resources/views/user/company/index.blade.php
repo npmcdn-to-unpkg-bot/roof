@@ -5,7 +5,7 @@
 @endsection
 
 @section('workspace')
-	@if (isset($company))
+	@if ($company)
 	<div class="company-cart company-cart_page company-cart_white">
 		<img src="/imagecache/small/{{ $company->logo }}" alt="" class="company-cart__logo">
 		<div class="company-cart__name">{{ $company->name }}</div>

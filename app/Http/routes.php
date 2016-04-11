@@ -18,17 +18,17 @@ Route::get('/', function () {
 
 // Catalog
 
-Route::get('/catalog', 'PublicCatalogConroller@index');
-Route::get('/catalog/filter/{letter}', 'PublicCatalogConroller@filter');
-Route::get('/catalog/search', 'PublicCatalogConroller@search');
-Route::get('/company/{id}', 'PublicCatalogConroller@company');
-Route::get('/specialisation/{id}', 'PublicCatalogConroller@specialisation');
-Route::get('/proposition/{id}', 'PublicCatalogConroller@proposition');
+Route::resource('catalog', 'ThePublic\CompanyController', [ 'only' =>
+	['index','show',]
+]);
+Route::get('/specialisation/{id}', 'ThePublic\CompanyController@specialisation');
+Route::get('/proposition/{id}', 'ThePublic\CompanyController@proposition');
 
 // Buildings
 
-Route::get('/buildings', 'PublicBuildingController@index');
-Route::get('/building/{id}', 'PublicBuildingController@building');
+Route::resource('buildings', 'ThePublic\BuildingController', [ 'only' =>
+	['index','show',]
+]);
 
 Route::get('/desk', function () { 
 	return view('public.desk.index'); 
@@ -45,11 +45,11 @@ Route::get('/news', function () {
 
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/office', 'UserCompanyController@index');
-	Route::resource('/office/company', 'UserCompanyController');
-	Route::resource('/office/building', 'UserBuildingController');
-	Route::resource('/office/job', 'UserJobController');
-	Route::resource('image', 'ImageController', ['only' => 
+	Route::get('/office', 'User\CompanyController@index');
+	Route::resource('/office/company', 'User\CompanyController');
+	Route::resource('/office/building', 'User\BuildingController');
+	Route::resource('/office/job', 'User\JobController');
+	Route::resource('image', 'User\ImageController', ['only' => 
 		['store', 'destroy']
 	]);
 });

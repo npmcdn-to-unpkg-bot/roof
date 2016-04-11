@@ -37,130 +37,26 @@
 		</form>
 	</div>
 	<div class="container">
-		<div class="container__row offset_vertical_60">
-			<div class="container__col-4 building">
-				<img src="s-img/building-1.jpg" alt="" class="building__image">
-				<a href="/building/1" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-				<span class="building__type">Церковь</span>
-				<a href="/company/1" class="building__company">ООО "ЗАРС"</a>
-				<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-				<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-				<div class="building__title">Вакансии на объекте</div>
-				<div class="building__job-list">
-					Кровельщик, Монтажник кровельных и фасадных систем, Промышленный альпинист, Разнорабочие на кровлю, Жестянщик-кровельщик
+		@foreach ($buildings as $i => $building)
+			@if ($i%3==0) <div class="container__row offset_vertical_60"> @endif
+				<div class="container__col-4 building">
+					<img src="/imagecache/370x200/{{ $building->images->first()->image }}" alt="" class="building__image">
+					<a href="{{ route('buildings.show', $building) }}" class="building__name">{{ $building->name }}</a>
+					<span class="building__type">{{ $building->type }}</span>
+					<a href="{{ route('catalog.show', $building->company) }}" class="building__company">{{ $building->company->name }}</a>
+					<span class="building__address">Украина, Киевская обл., г. Бровары</span>
+					<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
+					@if ( !$building->jobs->isEmpty() )
+						<div class="building__title">Вакансии на объекте</div>
+						<div class="building__job-list">
+							{{ $building->jobs->implode('name',', ') }}
+						</div>
+					@endif
 				</div>
-			</div>
-			<div class="container__col-4 building">
-				<img src="s-img/building-1.jpg" alt="" class="building__image">
-				<a href="/building/1" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-				<span class="building__type">Церковь</span>
-				<a href="/company/1" class="building__company">ООО "ЗАРС"</a>
-				<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-				<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-				<div class="building__title">Вакансии на объекте</div>
-				<div class="building__job-list">
-					Кровельщик, Монтажник кровельных и фасадных систем, Промышленный альпинист, Разнорабочие на кровлю, Жестянщик-кровельщик
-				</div>
-			</div>
-			<div class="container__col-4 building">
-				<img src="s-img/building-1.jpg" alt="" class="building__image">
-				<a href="/building/1" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-				<span class="building__type">Церковь</span>
-				<a href="/company/1" class="building__company">ООО "ЗАРС"</a>
-				<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-				<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-				<div class="building__title">Вакансии на объекте</div>
-				<div class="building__job-list">
-					Кровельщик, Монтажник кровельных и фасадных систем, Промышленный альпинист, Разнорабочие на кровлю, Жестянщик-кровельщик
-				</div>
-			</div>
-		</div>
-		<div class="container__row offset_vertical_60">
-			<div class="container__col-4 building">
-				<img src="s-img/building-1.jpg" alt="" class="building__image">
-				<a href="/building/1" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-				<span class="building__type">Церковь</span>
-				<a href="/company/1" class="building__company">ООО "ЗАРС"</a>
-				<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-				<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-				<div class="building__title">Вакансии на объекте</div>
-				<div class="building__job-list">
-					Кровельщик, Монтажник кровельных и фасадных систем, Промышленный альпинист, Разнорабочие на кровлю, Жестянщик-кровельщик
-				</div>
-			</div>
-			<div class="container__col-4 building">
-				<img src="s-img/building-1.jpg" alt="" class="building__image">
-				<a href="/building/1" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-				<span class="building__type">Церковь</span>
-				<a href="/company/1" class="building__company">ООО "ЗАРС"</a>
-				<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-				<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-				<div class="building__title">Вакансии на объекте</div>
-				<div class="building__job-list">
-					Кровельщик, Монтажник кровельных и фасадных систем, Промышленный альпинист, Разнорабочие на кровлю, Жестянщик-кровельщик
-				</div>
-			</div>
-			<div class="container__col-4 building">
-				<img src="s-img/building-1.jpg" alt="" class="building__image">
-				<a href="/building/1" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-				<span class="building__type">Церковь</span>
-				<a href="/company/1" class="building__company">ООО "ЗАРС"</a>
-				<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-				<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-				<div class="building__title">Вакансии на объекте</div>
-				<div class="building__job-list">
-					Кровельщик, Монтажник кровельных и фасадных систем, Промышленный альпинист, Разнорабочие на кровлю, Жестянщик-кровельщик
-				</div>
-			</div>
-		</div>
-		<div class="container__row offset_vertical_60">
-			<div class="container__col-4 building">
-				<img src="s-img/building-1.jpg" alt="" class="building__image">
-				<a href="/building/1" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-				<span class="building__type">Церковь</span>
-				<a href="/company/1" class="building__company">ООО "ЗАРС"</a>
-				<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-				<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-				<div class="building__title">Вакансии на объекте</div>
-				<div class="building__job-list">
-					Кровельщик, Монтажник кровельных и фасадных систем, Промышленный альпинист, Разнорабочие на кровлю, Жестянщик-кровельщик
-				</div>
-			</div>
-			<div class="container__col-4 building">
-				<img src="s-img/building-1.jpg" alt="" class="building__image">
-				<a href="/building/1" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-				<span class="building__type">Церковь</span>
-				<a href="/company/1" class="building__company">ООО "ЗАРС"</a>
-				<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-				<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-				<div class="building__title">Вакансии на объекте</div>
-				<div class="building__job-list">
-					Кровельщик, Монтажник кровельных и фасадных систем, Промышленный альпинист, Разнорабочие на кровлю, Жестянщик-кровельщик
-				</div>
-			</div>
-			<div class="container__col-4 building">
-				<img src="s-img/building-1.jpg" alt="" class="building__image">
-				<a href="/building/1" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-				<span class="building__type">Церковь</span>
-				<a href="/company/1" class="building__company">ООО "ЗАРС"</a>
-				<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-				<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-				<div class="building__title">Вакансии на объекте</div>
-				<div class="building__job-list">
-					Кровельщик, Монтажник кровельных и фасадных систем, Промышленный альпинист, Разнорабочие на кровлю, Жестянщик-кровельщик
-				</div>
-			</div>
-		</div>
+			@if ($i+1==count($buildings)||$i%3==2) </div> @endif
+		@endforeach
 	</div>
-	<div class="page-nav offset_vertical_60">
-		<a href="#" class="page-nav__item"><</a>
-		<a href="#" class="page-nav__item">1</a>
-		<a href="#" class="page-nav__item">2</a>
-		<a href="#" class="page-nav__item">3</a>
-		<a href="#" class="page-nav__item page-nav__item_active">4</a>
-		<a href="#" class="page-nav__item">5</a>
-		<a href="#" class="page-nav__item">></a>
-	</div>
+	@include('pagenav',['items'=>$buildings])
 	<div class="container-fluid container-fluid_light-gray padding_vertical_40">
 		<div class="container">
 			<div class="title">НОВОСТИ РЫНКА</div>

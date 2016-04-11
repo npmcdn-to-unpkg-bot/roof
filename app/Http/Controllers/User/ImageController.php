@@ -1,19 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Image;
-
 use Illuminate\Support\Str;
-
 use Storage;
-
 use Validator;
-
 use Image as ImageWorker;
 
 class ImageController extends Controller

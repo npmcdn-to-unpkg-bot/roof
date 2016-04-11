@@ -1,22 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use Validator;
-
 use App\Image;
-
 use Storage;
-
 use App\Building;
-
 use Auth;
 
-class UserBuildingController extends Controller
+class BuildingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,10 +20,9 @@ class UserBuildingController extends Controller
      */
     public function index()
     {
-        $buildings = Auth::user()->company->buildings;
         return view('user.building.index', [
-                'buildings' => $buildings
-            ]);
+           'buildings' => Auth::user()->company->buildings
+        ]);
     }
 
     /**
@@ -38,9 +32,10 @@ class UserBuildingController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Добавить стройку';
-        $data['building'] = new Building;
-        return $this->getForm($data);
+        return view('user.building.form', [
+            'title' => 'Добавить стройку',
+            'building' => new Building
+        ]);
     }
 
     /**
@@ -55,7 +50,7 @@ class UserBuildingController extends Controller
                 'name' => 'required|min:3|max:33',
                 'type' => 'required|min:3|max:33',
                 'images' => 'required',
-                'information' => 'required|min:50|max:255'
+                'information' => 'required|min:50|max:1024'
             ],[
                 'name.required' => 'Введите название объекта',
                 'name.max' => 'Название должно быть не больше 33 символов',
@@ -74,13 +69,9 @@ class UserBuildingController extends Controller
                 ->withInput()
                 ->withErrors($validator);
 
-        $user = Auth::user();
+        $company = Auth::user()->company;
         
-        $building = Building::find($request->id);
-
-        $building = $building && $building->company->user->id == $user->id
-                    ? $building 
-                    : new Building;
+        $building = $company->buildings->keyBy('id')->get($request->id, new Building);
 
         $images = $building->images()->whereIn('image', $request->images)->get();
 
@@ -99,7 +90,7 @@ class UserBuildingController extends Controller
 
         $building->images()->whereNotIn('id', $images)->delete();
 
-        $building->company_id = $user->company->id;
+        $building->company_id = $company->id;
         $building->name = $request->name;
         $building->type = $request->type;
         $building->information = $request->information;
@@ -129,16 +120,10 @@ class UserBuildingController extends Controller
      */
     public function edit($id)
     {
-        $title = 'Изменить стройку';
-        $building = Building::find($id);
-
-        if (!$building||$building->company->user->id !== Auth::user()->id) 
-            return redirect()->route('office.building.create');
-
-        return $this->getForm([
-                'title' => $title,
-                'building' => $building
-            ]);
+        return view('user.building.form', [
+            'title' => 'Изменить стройку',
+            'building' => Auth::user()->company->buildings->keyBy('id')->get($id, new Building)
+        ]);
     }
 
     /**
@@ -164,9 +149,4 @@ class UserBuildingController extends Controller
         //
     }
 
-    protected function getForm($data) {
-
-        return view('user.building.form', $data);
-
-    }
 }

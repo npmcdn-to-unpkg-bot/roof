@@ -42,7 +42,7 @@
 		<div class="offset_vertical_20">
 			<div class="title title_small title_black">СПЕЦИАЛИЗАЦИЯ</div>
 			<div class="menu menu_blue menu_vertical menu_medium">
-				@foreach ($specialisations as $specialisation)
+				@foreach (App\Specialisation::all() as $specialisation)
 					<label class="menu__item">
 						<input 
 							class="input_checkbox"
@@ -66,7 +66,7 @@
 		<div class="offset_vertical_20">
 			<div class="title title_small title_black">ТИП ПРЕДЛОЖЕНИЯ</div>
 			<div class="menu menu_blue menu_vertical menu_medium">
-				@foreach ($propositions as $proposition)
+				@foreach (App\Proposition::all() as $proposition)
 					<label class="menu__item">
 						<input 
 							class="input_checkbox"

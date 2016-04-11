@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
@@ -12,7 +13,7 @@ use App\Specialisation;
 use App\Proposition;
 use App\Http\Requests;
 
-class UserCompanyController extends Controller
+class CompanyController extends Controller
 {
 
     /**
@@ -37,9 +38,10 @@ class UserCompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-    	$data['title'] = 'ДОБАВЛЕНИЕ КОМПАНИИ';
-    	$data['company'] = new Company;
-    	return $this->getForm($data);
+    	return view('user.company.form', [
+            'title' => 'ДОБАВЛЕНИЕ КОМПАНИИ',
+            'company' => new Company
+        ]);
     }
 
     /**
@@ -56,7 +58,7 @@ class UserCompanyController extends Controller
             Image::make($request
                 ->file('upload'))
                 ->fit(600, 500, function ($constraint) { $constraint->upsize(); })
-                ->save(storage_path('uploads/images/').$logo);
+                ->save(storage_path('app/images/').$logo);
             $request->merge(['logo' => $logo]);
         }
 
@@ -122,9 +124,10 @@ class UserCompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $data['title'] = 'ДАННЫЕ КОМПАНИИ';
-        $data['company'] = Auth::user()->company;
-        return $this->getForm($data);
+        return view('user.company.form', [
+            'title' => 'ДАННЫЕ КОМПАНИИ',
+            'company' => Auth::user()->company
+        ]);
     }   
 
     /**
@@ -148,12 +151,6 @@ class UserCompanyController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    protected function getForm ($data) {
-        $data['specialisations'] = Specialisation::all();
-        $data['propositions'] = Proposition::all();
-        return view('user.company.form', $data);
     }
 
 }

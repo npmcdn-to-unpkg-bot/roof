@@ -19,6 +19,10 @@ class Company extends Model
         return $this->hasMany('App\Building');
     }
 
+    public function jobs () {
+        return $this->hasMany('App\Job');
+    }
+
     public function propositions () {
     	return $this->belongsToMany('App\Proposition');
     }

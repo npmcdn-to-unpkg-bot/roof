@@ -8,7 +8,7 @@
 			<a href="#propositions" class="page-tabs__nav">ТИП ПРЕДЛОЖЕНИЯ</a>
 		</div>
 		<div id="specialisations" class="page-tabs__tab page-tabs__tab_active container__row offset_vertical_20 taxonomy">
-			@foreach ($specialisations as $i => $specialisation)
+			@foreach ($specialisations=App\Specialisation::all() as $i => $specialisation)
 				@if ($i%5==0) <div class="container__col-4"> @endif
 					<a href="/specialisation/{{ $specialisation->id }}" class="taxonomy__item">{{ $specialisation->name }} 
 						<span class="taxonomy__count">({{ $specialisation->companies->count() }})</span>
@@ -17,7 +17,7 @@
 			@endforeach
 		</div>
 		<div id="propositions" class="page-tabs__tab container__row offset_vertical_20 taxonomy">
-			@foreach ($propositions as $i => $proposition)
+			@foreach ($propositions=App\Proposition::all() as $i => $proposition)
 				@if ($i%5==0) <div class="container__col-4"> @endif
 					<a href="/proposition/{{ $proposition->id }}" class="taxonomy__item">{{ $proposition->name }} 
 						<span class="taxonomy__count">({{ $proposition->companies->count() }})</span>
@@ -30,14 +30,14 @@
 		@include('public.catalog.association')
 	</div>
 	<div class="page-nav container">
-		@foreach (range('A', 'Z') as $char)<a href="/catalog/filter/{{ $char }}" class="page-nav__item">{{ $char }}</a>@endforeach
+		@foreach (range('A', 'Z') as $char)<a href="{{ route ( 'catalog.index', ['letter' => $char] ) }}" class="page-nav__item">{{ $char }}</a>@endforeach
 		<br>
-		@foreach (range(chr(0xC0), chr(0xDF)) as $char)<a href="/catalog/filter/{{ iconv('CP1251', 'UTF-8', $char) }}" class="page-nav__item">{{ iconv('CP1251', 'UTF-8', $char) }}</a>@endforeach
+		@foreach (range(chr(0xC0), chr(0xDF)) as $char)<a href="{{ route ( 'catalog.index', ['letter' => iconv('CP1251', 'UTF-8', $char) ] ) }}" class="page-nav__item">{{ iconv('CP1251', 'UTF-8', $char) }}</a>@endforeach
 		<br>
-		@foreach (range(0, 9) as $char)<a href="/catalog/filter/{{ $char }}" class="page-nav__item">{{ $char }}</a>@endforeach		
+		@foreach (range(0, 9) as $char)<a href="{{ route ( 'catalog.index', ['letter' => $char] ) }}" class="page-nav__item">{{ $char }}</a>@endforeach		
 	</div>
 	<div class="container text_center">
-		<form action="/catalog/search/">
+		<form action="{{ route('catalog.index') }}">
 			<input type="text" name="search" value="{{ isset($search) ? $search : '' }}" placeholder="КЛЮЧИВОЕ СЛОВО" size="40" class="input">
 			<button class="button button_search"></button>
 		</form>

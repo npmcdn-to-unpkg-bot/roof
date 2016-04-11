@@ -477,6 +477,7 @@ a {
 
 .input_textarea {
 	height: 130px;
+	line-height: normal;
 }
 
 .input_checkbox {
