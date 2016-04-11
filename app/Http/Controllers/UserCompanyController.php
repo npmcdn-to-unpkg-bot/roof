@@ -97,8 +97,8 @@ class UserCompanyController extends Controller
 	    $company->entry = $request->entry;
         $company->about = $request->about;
 	    $company->save();
-	    $company->specialisations()->sync($request->specialisations);
-	    $company->propositions()->sync($request->propositions);
+	    $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
+	    $company->propositions()->sync($request->propositions ? $request->propositions : []);
 
 
 	    return redirect('/office');

@@ -8,6 +8,10 @@ use App\Http\Requests;
 
 use Validator;
 
+use App\Image;
+
+use Storage;
+
 use App\Building;
 
 use Auth;
@@ -22,7 +26,9 @@ class UserBuildingController extends Controller
     public function index()
     {
         $buildings = Auth::user()->company->buildings;
-        return view('user.building.index');
+        return view('user.building.index', [
+                'buildings' => $buildings
+            ]);
     }
 
     /**
@@ -62,12 +68,46 @@ class UserBuildingController extends Controller
                 'information.min' => 'Описание должно быть не менее 50 символов',
                 'information.max' => 'Описание должно быть не более 255 символов'
             ]);
+        
         if ($validator->fails())
             return back()
                 ->withInput()
                 ->withErrors($validator);
 
-        return 'true';
+        $user = Auth::user();
+        
+        $building = Building::find($request->id);
+
+        $building = $building && $building->company->user->id == $user->id
+                    ? $building 
+                    : new Building;
+
+        $images = $building->images()->whereIn('image', $request->images)->get();
+
+        foreach ($request->images as $image) {
+            if ( Storage::exists('temp/'.$image) ) {
+                Storage::move(
+                    'temp/'.$image,
+                    'images/'.$image
+                );
+            }
+            if ( !$images->contains('image', $image) ) {
+                $image = Image::create( ['image'=>$image] );
+                $images->push($image);
+            }
+        }
+
+        $building->images()->whereNotIn('id', $images)->delete();
+
+        $building->company_id = $user->company->id;
+        $building->name = $request->name;
+        $building->type = $request->type;
+        $building->information = $request->information;
+        $building->published = $request->published;
+        $building->save();
+        $building->images()->sync($images);
+
+        return redirect()->route('office.building.index');
     }
 
     /**
@@ -89,7 +129,16 @@ class UserBuildingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = 'Изменить стройку';
+        $building = Building::find($id);
+
+        if (!$building||$building->company->user->id !== Auth::user()->id) 
+            return redirect()->route('office.building.create');
+
+        return $this->getForm([
+                'title' => $title,
+                'building' => $building
+            ]);
     }
 
     /**

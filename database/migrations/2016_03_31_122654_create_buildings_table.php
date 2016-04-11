@@ -29,7 +29,7 @@ class CreateBuildingsTable extends Migration
             $table->integer('city_id')->index();
         });
 
-        Schema::create('buliding_image', function (Blueprint $table) {
+        Schema::create('building_image', function (Blueprint $table) {
             $table->integer('building_id')->index();
             $table->integer('image_id')->index();
         });
@@ -44,6 +44,6 @@ class CreateBuildingsTable extends Migration
     public function down()
     {
         Schema::drop('buildings');
-        Schema::drop('buliding_image');
+        Schema::drop('building_image');
     }
 }

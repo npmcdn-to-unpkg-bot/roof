@@ -31,7 +31,8 @@ return array(
     */
     
     'paths' => array(
-        storage_path('uploads/images/')
+        storage_path('app/images/'),
+        storage_path('app/temp/')
     ),
 
     /*
@@ -53,7 +54,10 @@ return array(
     'templates' => array(
         'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
-        'large' => 'Intervention\Image\Templates\Large'
+        'large' => 'Intervention\Image\Templates\Large',
+        'full' => 'App\Filters\Full',
+        '120x120' => 'App\Filters\Filter120x120',
+        '240x200' => 'App\Filters\Filter240x200'
     ),
 
     /*

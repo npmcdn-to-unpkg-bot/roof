@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Image;
 
+use Illuminate\Support\Str;
+
 use Storage;
 
 use Validator;
@@ -37,20 +39,16 @@ class ImageController extends Controller
             return response()
                 ->json( $validator->errors()->first(), 400);
 
-        $file = time().'-'
-            .$request->file('file')->getClientOriginalName();
+        $extension = $request->file('file')->getClientOriginalExtension();
+        $name = $request->file('file')->getClientOriginalName();
+        $name = Str::slug( str_replace ( $extension, '', $name ) );
+        $name = time() . '-' . $name . '.' . $extension;
+
         ImageWorker::make($request->file('file'))
-            ->fit(600, 500, function ($constraint) { $constraint->upsize(); })
-            ->save(storage_path('uploads/images/').$file);
+            ->resize(1600, 1024, function ($constraint) { $constraint->upsize(); })
+            ->save(storage_path('app/temp/').$name);
 
-        $image = new Image;
-        $image->image = $file;
-        $image->save();
-
-        return  response()->json([ 
-            'id' => $image->id,
-            'name' => $image->image
-        ], 200);
+        return  response()->json($name, 200);
     }
 
     /**
@@ -59,11 +57,9 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($name)
     {
-        $image = Image::find($id);
-        unlink(storage_path('uploads/images/').$image->image);
-        $image->delete();
-        return storage_path('uploads/images/').$image->image;
+        Storage::delete('temp/'.$name);
+        return response()->json($name,200);
     }
 }

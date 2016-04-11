@@ -8,12 +8,13 @@
 	<div class="title">{{ $title }}</div>
 	<form action="{{ route('office.building.store') }}" method="POST" enctype="multipart/form-data">
 		{!! csrf_field() !!}
+		@if ($building->id) <input type="hidden" name="id" value="{{ $building->id }}"> @endif
 		<div class="offset_vertical_20">
-			<input type="text" name="name" value="{{ old('name')?old('name'):$building->name }}" placeholder="НАЗВАНИЕ ОБЪЕКТА" class="input input_100 {{ $errors->has('name') ?  'input_error' : '' }} input_bold">
+			<input type="text" name="name" value="{{ old('')?old('name'):$building->name }}" placeholder="НАЗВАНИЕ ОБЪЕКТА" class="input input_100 {{ $errors->has('name') ?  'input_error' : '' }} input_bold">
 			@if ($errors->first('name')) <div class="error">{{ $errors->first('name') }}</div> @endif
 		</div>
 		<div class="offset_vertical_20">
-			<input type="text" name="type" value="{{ old('type')?old('type'):$building->type }}" placeholder="ТИП ОБЪЕКТА" class="input input_100 {{ $errors->has('type') ?  'input_error' : '' }} input_bold">
+			<input type="text" name="type" value="{{ old('')?old('type'):$building->type }}" placeholder="ТИП ОБЪЕКТА" class="input input_100 {{ $errors->has('type') ?  'input_error' : '' }} input_bold">
 			@if ($errors->first('type')) <div class="error">{{ $errors->first('type') }}</div> @endif
 		</div>
 		<div class="offset_vertical_20">
@@ -25,8 +26,12 @@
 						maxFiles: 5,
 						old: [
 							@if (old('images'))
-								@foreach (old('images') as $id => $image)
-									{name: '{{ $image }}', id: '{{ $id }}'},
+								@foreach (old('images') as $image)
+									{name: '{{ $image }}', serverName: '{{ $image }}'},
+								@endforeach
+							@elseif ($building && $building->images)
+								@foreach ($building->images as $image)
+									{name: '{{ $image->image }}', serverName: '{{ $image->image }}'},
 								@endforeach
 							@endif
 						]
@@ -35,7 +40,7 @@
 			</script>
 		</div>				
 		<div class="offset_vertical_20">
-			<textarea name="information" placeholder="ИНФОРМАЦИЯ" class="input input_100 {{ $errors->has('information') ?  'input_error' : '' }} input_textarea input_bold">{{ old('information')?old('information'):$building->information }}</textarea>
+			<textarea name="information" placeholder="ИНФОРМАЦИЯ" class="input input_100 {{ $errors->has('information') ?  'input_error' : '' }} input_textarea input_bold">{{ old()?old('information'):$building->information }}</textarea>
 			@if ($errors->first('information')) <div class="error">{{ $errors->first('information') }}</div> @endif
 		</div>
 		<div class="offset_vertical_20">
@@ -45,7 +50,7 @@
 		</div>
 		<div class="offset_vertical_20">
 			<label>
-				<input type="checkbox" name="published" class="input_checkbox"><span></span>
+				<input type="checkbox" name="published" value="1" {{ old()&&old('published')||!old()&&$building->published?'checked':'' }} class="input_checkbox"><span></span>
 				Опубликовать в разделе "Стройки и Вакансии"
 			</label>
 		</div>

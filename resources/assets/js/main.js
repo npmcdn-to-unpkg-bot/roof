@@ -90,20 +90,21 @@ $(document).ready(function(){
 	});
 
 	ImageField.on( 'success', function (file, response) {
-		file.id = response.id;
-		console.log(response);
-		$('.dropzone').append('<input type="hidden" name="images['+file.id+']" class="dropzone__image-id" value='+response.name+'>');
+		file.serverName = response;
+		$('.dropzone').append('<input type="hidden" name="images[]" class="dropzone__image-id" value='+response+'>');
+	});
+
+	ImageField.on('addedfile', function (file) {
+		$('.dz-size').remove();
 	});
 
 	ImageField.on('removedfile', function (file) {
+		$('.dropzone__image-id[value="'+file.serverName+'"]').remove();
 		$.ajax({
-		    url: '/image/'+file.id,
+		    url: '/image/'+file.serverName,
 		    type: 'post',
 		    data: {_method: 'delete'},
 		    headers: { 'X-CSRF-Token': $('[name="_token"]').val()},
-		    success: function (response) {
-		    	$('.dropzone__image-id[value='+file.name+']').remove();
-		    },
 		    error: function (response) {
 		    	console.log(response.responseText)
 		    }
@@ -113,9 +114,9 @@ $(document).ready(function(){
 	ImageField.files = ImageField.options.old;
 	$.each(ImageField.files, function (index, file) {
 		ImageField.emit("addedfile", file);
-		ImageField.emit("thumbnail", file, "/imagecache/small/"+file.name);
+		ImageField.emit("thumbnail", file, "/imagecache/120x120/"+file.serverName);
 		ImageField.emit("complete", file);
-		$('.dropzone').append('<input type="hidden" name="images['+file.id+']" class="dropzone__image-id" value='+file.name+'>');
+		$('.dropzone').append('<input type="hidden" name="images[]" class="dropzone__image-id" value='+file.serverName+'>');
 	});
 
 });
