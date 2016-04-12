@@ -30,9 +30,10 @@ Route::resource('buildings', 'ThePublic\BuildingController', [ 'only' =>
 	['index','show',]
 ]);
 
-Route::get('/desk', function () { 
-	return view('public.desk.index'); 
-});
+Route::resource('desk', 'ThePublic\OfferController', [ 'only' =>
+	['index', 'show']
+]);
+
 Route::get('/sales', function () { 
 	return view('public.sales.index'); 
 });
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('/office/company', 'User\CompanyController');
 	Route::resource('/office/building', 'User\BuildingController');
 	Route::resource('/office/job', 'User\JobController');
+	Route::resource('/office/offer', 'User\OfferController');
 	Route::resource('image', 'User\ImageController', ['only' => 
 		['store', 'destroy']
 	]);

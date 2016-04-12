@@ -27,4 +27,9 @@ class User extends Authenticatable
     public function company () {
         return $this->hasOne('App\Company');
     }
+
+    public function offers () {
+        return $this->hasMany('App\Offer');
+    }
+
 }

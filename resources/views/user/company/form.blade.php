@@ -13,7 +13,7 @@
 			@if ($errors->first('name')) <div class="error">{{ $errors->first('name') }}</div> @endif
 		</div>
 		<div class="offset_vertical_20">
-			@if (!old()&&!empty($company->logo)||old()&&!empty(old('logo')))
+			@if (!old()&&$company->logo||old()&&old('logo'))
 				<div class="removable">
 					<a href="#" class="removable__remove">Удалить</a><br>
 					<img src="/imagecache/small/{{ old()?old('logo'):$company->logo }}" alt="">

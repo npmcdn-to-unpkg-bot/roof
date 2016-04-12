@@ -77,7 +77,6 @@ class CompanyController extends Controller
         	'phone.required' => 'Введите телефон компании.',
         	'phone.numeric' => 'Телефон должен состоять из цифр.',
         	'logo.required' => 'Загрузите логотип.',
-        	'logo.image' => 'Формат картинки должен быть jpeg, png, bmp, gif, или svg.',
             'entry.max' => 'Краткое описание не должно быть длинее 255 символов.'
         ]);
 

@@ -8,8 +8,8 @@
 		<div class="container__row">
 			<div class="container__col-8">
 				<div class="title">ОБЪЯВЛЕНИЯ</div>
-				<form action="" class="jus offset_vertical_20">
-					<input type="text" style="width: 490px" placeholder="КЛЮЧЕВЫЕ СЛОВА" class="input jus__item">
+				<form action="{{ route('desk.index') }}" class="jus offset_vertical_20">
+					<input type="text" name="search" value="{{ $search ? $search : '' }}" style="width: 490px" placeholder="КЛЮЧЕВЫЕ СЛОВА" class="input jus__item">
 					<select name="" style="width: 200px" class="input_select input jus__item">
 						<option value="">ВЫБИРИТЕ СТРАНУ</option>
 					</select>
@@ -35,185 +35,36 @@
 						</a>
 					</div>
 				</div>
-				<div class="desk-item offset_vertical_20">
-					<a href="">
-						<img src="s-img/desk-1.jpg" alt="" class="desk-item__image">
-					</a>
-					<a href="" class="desk-item__title">Демонтаж стен, алмазная резка бетона, сверление отверстий, вырезка проемов</a>
-					<div class="desk-item__bottom">
-						<div class="desk-item__info">№231123   Дата размещения: 21.09.2015</div>
-						<div>Специализация: Кровельные материалы</div>
-						<a href="" class="desk-item__cat">Услуги</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Продажа материалов</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Еще одна категория</a>
+				@foreach ($offers as $offer)
+					<div class="desk-item offset_vertical_20 {{ $offer->framged ? 'desk-item_dark' : '' }}">
+						<a href="">
+							<img src="s-img/desk-1.jpg" alt="" class="desk-item__image">
+						</a>
+						<a href="" class="desk-item__title">{{ $offer->title }}</a>
+						<div class="desk-item__bottom">
+							<div class="desk-item__info">№{{ $offer->id }}   Дата размещения: {{ $offer->created_at->format('d.m.Y') }}</div>
+							<div>Специализация: {{ $offer->specialisation }}</div>
+							@foreach ($offer->deskcategories as $category)
+								<a href="" class="desk-item__cat">{{ $category->name }}</a>
+								@if ( $category!==$offer->deskcategories->last() ) <span class="desk-item__sep"></span> @endif
+							@endforeach
+						</div>
 					</div>
-				</div>
-				<div class="desk-item desk-item_dark">
-					<a href="">
-						<img src="s-img/desk-1.jpg" alt="" class="desk-item__image">
-					</a>
-					<a href="" class="desk-item__title">Демонтаж стен, алмазная резка бетона, сверление отверстий, вырезка проемов</a>
-					<div class="desk-item__bottom">
-						<div class="desk-item__info">№231123   Дата размещения: 21.09.2015</div>
-						<div>Специализация: Кровельные материалы</div>
-						<a href="" class="desk-item__cat">Услуги</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Продажа материалов</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Еще одна категория</a>
-					</div>
-				</div>
-				<div class="desk-item offset_vertical_20">
-					<a href="">
-						<img src="s-img/desk-1.jpg" alt="" class="desk-item__image">
-					</a>
-					<a href="" class="desk-item__title">Демонтаж стен, алмазная резка бетона, сверление отверстий, вырезка проемов</a>
-					<div class="desk-item__bottom">
-						<div class="desk-item__info">№231123   Дата размещения: 21.09.2015</div>
-						<div>Специализация: Кровельные материалы</div>
-						<a href="" class="desk-item__cat">Услуги</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Продажа материалов</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Еще одна категория</a>
-					</div>
-				</div>
-				<div class="desk-item offset_vertical_20">
-					<a href="">
-						<img src="s-img/desk-1.jpg" alt="" class="desk-item__image">
-					</a>
-					<a href="" class="desk-item__title">Демонтаж стен, алмазная резка бетона, сверление отверстий, вырезка проемов</a>
-					<div class="desk-item__bottom">
-						<div class="desk-item__info">№231123   Дата размещения: 21.09.2015</div>
-						<div>Специализация: Кровельные материалы</div>
-						<a href="" class="desk-item__cat">Услуги</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Продажа материалов</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Еще одна категория</a>
-					</div>
-				</div>
-				<div class="desk-item offset_vertical_20">
-					<a href="">
-						<img src="s-img/desk-1.jpg" alt="" class="desk-item__image">
-					</a>
-					<a href="" class="desk-item__title">Демонтаж стен, алмазная резка бетона, сверление отверстий, вырезка проемов</a>
-					<div class="desk-item__bottom">
-						<div class="desk-item__info">№231123   Дата размещения: 21.09.2015</div>
-						<div>Специализация: Кровельные материалы</div>
-						<a href="" class="desk-item__cat">Услуги</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Продажа материалов</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Еще одна категория</a>
-					</div>
-				</div>
-				<div class="desk-item offset_vertical_20">
-					<a href="">
-						<img src="s-img/desk-1.jpg" alt="" class="desk-item__image">
-					</a>
-					<a href="" class="desk-item__title">Демонтаж стен, алмазная резка бетона, сверление отверстий, вырезка проемов</a>
-					<div class="desk-item__bottom">
-						<div class="desk-item__info">№231123   Дата размещения: 21.09.2015</div>
-						<div>Специализация: Кровельные материалы</div>
-						<a href="" class="desk-item__cat">Услуги</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Продажа материалов</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Еще одна категория</a>
-					</div>
-				</div>
-				<div class="desk-item offset_vertical_20">
-					<a href="">
-						<img src="s-img/desk-1.jpg" alt="" class="desk-item__image">
-					</a>
-					<a href="" class="desk-item__title">Демонтаж стен, алмазная резка бетона, сверление отверстий, вырезка проемов</a>
-					<div class="desk-item__bottom">
-						<div class="desk-item__info">№231123   Дата размещения: 21.09.2015</div>
-						<div>Специализация: Кровельные материалы</div>
-						<a href="" class="desk-item__cat">Услуги</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Продажа материалов</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Еще одна категория</a>
-					</div>
-				</div>
-				<div class="desk-item offset_vertical_20">
-					<a href="">
-						<img src="s-img/desk-1.jpg" alt="" class="desk-item__image">
-					</a>
-					<a href="" class="desk-item__title">Демонтаж стен, алмазная резка бетона, сверление отверстий, вырезка проемов</a>
-					<div class="desk-item__bottom">
-						<div class="desk-item__info">№231123   Дата размещения: 21.09.2015</div>
-						<div>Специализация: Кровельные материалы</div>
-						<a href="" class="desk-item__cat">Услуги</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Продажа материалов</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Еще одна категория</a>
-					</div>
-				</div>
-				<div class="desk-item offset_vertical_20">
-					<a href="">
-						<img src="s-img/desk-1.jpg" alt="" class="desk-item__image">
-					</a>
-					<a href="" class="desk-item__title">Демонтаж стен, алмазная резка бетона, сверление отверстий, вырезка проемов</a>
-					<div class="desk-item__bottom">
-						<div class="desk-item__info">№231123   Дата размещения: 21.09.2015</div>
-						<div>Специализация: Кровельные материалы</div>
-						<a href="" class="desk-item__cat">Услуги</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Продажа материалов</a>
-						<span class="desk-item__sep"></span>
-						<a href="" class="desk-item__cat">Еще одна категория</a>
-					</div>
-				</div>
+				@endforeach
 
-				<div class="page-nav offset_vertical_60">
-					<a href="#" class="page-nav__item"><</a>
-					<a href="#" class="page-nav__item">1</a>
-					<a href="#" class="page-nav__item">2</a>
-					<a href="#" class="page-nav__item">3</a>
-					<a href="#" class="page-nav__item page-nav__item_active">4</a>
-					<a href="#" class="page-nav__item">5</a>
-					<a href="#" class="page-nav__item">></a>
-				</div>
+				@include('pagenav',['items'=>$offers])
+
 			</div>
 			<div class="container__col-4">
 				<div class="title">КАТЕГОРИИ</div>
 				<form class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare">
-					<label class="menu__item">
-						<input class="input_checkbox" type="checkbox">
-						<span></span>
-						Услуги
-					</label>
-					<label class="menu__item">
-						<input class="input_checkbox" type="checkbox">
-						<span></span>
-						Продажа материалов
-					</label>
-					<label class="menu__item">
-						<input class="input_checkbox" type="checkbox">
-						<span></span>
-						Продажа оборудования
-					</label>
-					<label class="menu__item">
-						<input class="input_checkbox" type="checkbox">
-						<span></span>
-						Еще одна категория
-					</label>
-					<label class="menu__item">
-						<input class="input_checkbox" type="checkbox">
-						<span></span>
-						И еще одна
-					</label>
-					<label class="menu__item">
-						<input class="input_checkbox" type="checkbox">
-						<span></span>
-						И снова категория
-					</label>
+					@foreach (App\DeskCategory::all() as $category)
+						<label class="menu__item">
+							<input class="input_checkbox" type="checkbox" name="category" value="{{$category->id}}">
+							<span></span>
+							{{$category->name}}
+						</label>
+					@endforeach
 					<button class="button button_100 button_cyan button_big">ПОКАЗАТЬ</button>
 				</form>
 				<img src="s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">

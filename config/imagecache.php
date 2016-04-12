@@ -60,6 +60,7 @@ return array(
         '240x200' => 'App\Filters\Filter240x200',
         '370x200' => 'App\Filters\Filter370x200',
         '765x400' => 'App\Filters\Filter765x400',
+        '160x140' => 'App\Filters\Filter160x140',
     ),
 
     /*
