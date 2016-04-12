@@ -46,6 +46,7 @@ Route::get('/news', function () {
 
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
+
 	Route::get('/office', 'User\CompanyController@index');
 	Route::resource('/office/company', 'User\CompanyController');
 	Route::resource('/office/building', 'User\BuildingController');
@@ -54,6 +55,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('image', 'User\ImageController', ['only' => 
 		['store', 'destroy']
 	]);
+
+	Route::group(['middleware' => 'role:admin'], function () {
+		Route::get('/admin', 'User\CompanyController@index');
+	});
+
 });
 
 
