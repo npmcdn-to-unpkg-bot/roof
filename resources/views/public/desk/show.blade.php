@@ -8,13 +8,33 @@
 		<div class="container__row">
 			<div class="container__col-8">
 				<div class="title">ОБЪЯВЛЕНИЯ</div>
-				<form action="{{ route('desk.index') }}" class="jus offset_vertical_20">
-					<input type="text" name="search" value="{{ $search ? $search : '' }}" style="width: 490px" placeholder="КЛЮЧЕВЫЕ СЛОВА" class="input jus__item">
-					<select name="" style="width: 200px" class="input_select input jus__item">
+				<form action="" class="jus offset_vertical_20">
+					<input type="text" size="65" placeholder="КЛЮЧЕВЫЕ СЛОВА" class="input jus__item">
+					<select name="" id="" class="input_select input jus__item">
 						<option value="">ВЫБИРИТЕ СТРАНУ</option>
 					</select>
 					<button class="jus__item button button_search"></button>
 				</form>
+				<div class="container__row desk-single">
+					<div class="container__col-6">
+						<img src="/s-img/desk-single.jpg" alt="" class="desk-single__image">
+						<div class="title-light">КОНТАКТНАЯ ИНФОРМАЦИЯ</div>
+						<div class="desk-single__person">Юрий</div>
+						<div class="desk-single__phone">+38 094 893-84-49</div>
+						<a href="#" class="desk-single__email">pochta@pochta.com</a>
+					</div>
+					<div class="container__col-6">
+						<div class="desk-single__title">Демонтаж стен, алмазная резка бетона, сверление отверстий, вырезка проемов</div>
+						<div class="desk-single__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro quia ratione distinctio quas ad eveniet reprehenderit tempora facilis provident! Maxime, sed, doloribus. Atque vitae natus explicabo illo similique hic repellendus accusamus voluptatibus animi facilis corporis placeat deserunt labore suscipit ullam rem, sit aliquid excepturi eligendi accusantium quibusdam perspiciatis enim. Exercitationem dolor suscipit, ut magnam eius velit qui reprehenderit aut! Amet nostrum facere perferendis culpa voluptas possimus corrupti molestias tempore, sint sit mollitia, totam minima harum ad maxime impedit. Cupiditate odio veniam harum neque delectus in blanditiis, doloribus exercitationem modi similique repellat non voluptas iste, atque dolorum, quibusdam. Error, odit veniam.</div>
+						<div class="desk-single__info">№231123   Дата размещения: 21.09.2015</div>
+						<div>Специализация: Кровельные материалы</div>
+						<a href="" class="desk-single__cat">Услуги</a>
+						<span class="desk-single__sep"></span>
+						<a href="" class="desk-single__cat">Продажа материалов</a>
+						<span class="desk-single__sep"></span>
+						<a href="" class="desk-single__cat">Еще одна категория</a>						
+					</div>
+				</div>
 				<div class="container__row offset_vertical_30">
 					<div class="container__col-6">
 						<a href="" class="desk-top">
@@ -35,25 +55,6 @@
 						</a>
 					</div>
 				</div>
-				@foreach ($offers as $offer)
-					<div class="desk-item offset_vertical_20 {{ $offer->framged ? 'desk-item_dark' : '' }}">
-						<a href="{{route('desk.show',$offer)}}">
-							<img src="/s-img/desk-1.jpg" alt="" class="desk-item__image">
-						</a>
-						<a href="{{route('desk.show',$offer)}}" class="desk-item__title">{{ $offer->title }}</a>
-						<div class="desk-item__bottom">
-							<div class="desk-item__info">№{{ $offer->id }}   Дата размещения: {{ $offer->created_at->format('d.m.Y') }}</div>
-							<div>Специализация: {{ $offer->specialisation }}</div>
-							@foreach ($offer->deskcategories as $category)
-								<a href="" class="desk-item__cat">{{ $category->name }}</a>
-								@if ( $category!==$offer->deskcategories->last() ) <span class="desk-item__sep"></span> @endif
-							@endforeach
-						</div>
-					</div>
-				@endforeach
-
-				@include('pagenav',['items'=>$offers])
-
 			</div>
 			<div class="container__col-4">
 				<div class="title">КАТЕГОРИИ</div>
