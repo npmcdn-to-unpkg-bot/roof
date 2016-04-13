@@ -47,17 +47,19 @@ Route::get('/news', function () {
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::get('/office', 'User\CompanyController@index');
-	Route::resource('/office/company', 'User\CompanyController');
-	Route::resource('/office/building', 'User\BuildingController');
-	Route::resource('/office/job', 'User\JobController');
-	Route::resource('/office/offer', 'User\OfferController');
+	Route::get('office', 'User\CompanyController@index');
+	Route::resource('office/company', 'User\CompanyController');
+	Route::resource('office/building', 'User\BuildingController');
+	Route::resource('office/job', 'User\JobController');
+	Route::resource('office/offer', 'User\OfferController');
 	Route::resource('image', 'User\ImageController', ['only' => 
 		['store', 'destroy']
 	]);
 
-	Route::group(['middleware' => 'role:admin'], function () {
-		Route::get('/admin', 'User\CompanyController@index');
+	Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function () {
+		Route::resource('company', 'Admin\CompanyController');
+		Route::resource('news', 'Admin\ArticleController');
+		Route::resource('sales', 'Admin\SaleController');
 	});
 
 });

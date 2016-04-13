@@ -10,7 +10,7 @@
 			<div>
 				<div class="title title_black">УПРАВЛЕНИЕ</div>
 				<div class="menu menu_blue menu_medium menu_vertical menu_rare">
-					@if (isset($company)) 
+					@if (Auth::user()->company) 
 					<a class="menu__item" href="{{ route('office.company.index') }}">Компания</a>
 					<a class="menu__item" href="#">Статьи</a>
 					<a class="menu__item" href="#">Сотрудники компании</a>
