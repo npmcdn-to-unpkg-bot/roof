@@ -148,6 +148,11 @@
         checkboxClass: 'icheckbox_minimal-blue',
         radioClass: 'iradio_minimal-blue'
       });
+
+      $('[data-remove]').click(function(){
+        $(this).parents($(this).attr('data-remove')).remove();
+      })
+
     });
 </script>
 

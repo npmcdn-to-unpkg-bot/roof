@@ -1,1 +1,1 @@
-<img src="/imagecache/small/{{ $item->{$field} }}" style="height: 30px;" alt="">
+@if ($item->{$field}) <img src="/imagecache/small/{{ $item->{$field} }}" style="height: 30px;" alt=""> @endif

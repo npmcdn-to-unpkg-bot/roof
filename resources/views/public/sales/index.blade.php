@@ -1,323 +1,102 @@
 @extends('layout')
 
 @section('content')
-<link rel="stylesheet" href="./temp/roofers.css">
-
-<div class="section">
-	<div class="container">
-
-		<div class="page_title">
-			Акции и скидки
-		</div>
-
-		<div class="row">
-
-			<div class="col-md-8">
-
-				<div class="news_mod">
-
-					<!-- LOOP -->
-
-					<div class="post_item">
-						<div class="row">
-							<div class="col-md-3 img_wrap">
-								
-								<a href="http://roofers.com.ua/single_special.html">
-									<img src="./temp/images" class="img-responsive">
-								</a>
-
-							</div>
-							<div class="col-md-9">
-
-								<div class="title">
-									<a href="http://roofers.com.ua/single_special.html">Распродажа от компании BRAAS</a>
-								</div>
-
-								<p class="short">
-									Супердиффузионная мембрана, Вентиляционная лента конька, Лента примыкания, Цементно-песчаная черепица Франкфурт …
-								</p>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="post_item">
-						<div class="row">
-							<div class="col-md-3 img_wrap">
-								
-								<a href="http://roofers.com.ua/single_special.html">
-									<img src="./temp/764b43dc6874777540311504a937dcce.jpg" class="img-responsive">
-								</a>
-
-							</div>
-							<div class="col-md-9">
-
-								<div class="title">
-									<a href="http://roofers.com.ua/single_special.html">Акции GAF Materials Corporation (GAFMC)</a>
-								</div>
-
-								<p class="short">Вниманию наших дилеров предлагается бессрочная Акция на сезонные остатки заказных позиций продукции GAF, серий “Люкс” и “Премиум”</p>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="post_item">
-						<div class="row">
-							<div class="col-md-3 img_wrap">
-								
-								<a href="http://roofers.com.ua/single_special.html">
-									<img src="./temp/Monterrey_0002.jpg" class="img-responsive">
-								</a>
-
-							</div>
-							<div class="col-md-9">
-
-								<div class="title">
-									<a href="http://roofers.com.ua/single_special.html">Акции Мастер Элит</a>
-								</div>
-
-								<p class="short">
-									Распродажа от Мастер Элит</p>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="post_item">
-						<div class="row">
-							<div class="col-md-3 img_wrap">
-								
-								<a href="http://roofers.com.ua/single_special.html">
-									<img src="./temp/images(1)" class="img-responsive">
-								</a>
-
-							</div>
-							<div class="col-md-9">
-
-								<div class="title">
-									<a href="http://roofers.com.ua/single_special.html">Акции TONDACH</a>
-								</div>
-
-								<p class="short">
-									Специальное предложение от «TONDACH» на чешскую продукцию, венгерскую и австрийскую продукцию …</p>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="post_item">
-						<div class="row">
-							<div class="col-md-3 img_wrap">
-								
-								<a href="http://roofers.com.ua/single_special.html">
-									<img src="./temp/single_thumb.png" class="img-responsive">
-								</a>
-
-							</div>
-							<div class="col-md-9">
-
-								<div class="title">
-									<a href="http://roofers.com.ua/single_special.html">Акции Балтийос Браста Украина</a>
-								</div>
-
-								<p class="short">ВНИМАНИЕ &nbsp;АКЦИЯ!!! Сезонная распродажа битумной черепицы:</p>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="post_item">
-						<div class="row">
-							<div class="col-md-3 img_wrap">
-								
-								<a href="http://roofers.com.ua/single_special.html">
-									<img src="./temp/single_thumb.png" class="img-responsive">
-								</a>
-
-							</div>
-							<div class="col-md-9">
-
-								<div class="title">
-									<a href="http://roofers.com.ua/single_special.html">Акции ДВС</a>
-								</div>
-
-								<p class="short">
-									Акционные цены на кровельные материалы в Одессе&nbsp;
-								</p>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="post_item">
-						<div class="row">
-							<div class="col-md-3 img_wrap">
-								
-								<a href="http://roofers.com.ua/single_special.html">
-									<img src="./temp/1406557427.jpg" class="img-responsive">
-								</a>
-
-							</div>
-							<div class="col-md-9">
-
-								<div class="title">
-									<a href="http://roofers.com.ua/single_special.html">Акции Кровельной компании «Маршалл»</a>
-								</div>
-
-								<p class="short">с 11.01.2016 г. &nbsp;Акция от кровельной компании "Маршалл". Композитная черепица GERARD по супер цене - от 13 евро (по курсу) за м.кв.</p>
-
-							</div>
-						</div>
-					</div>
-
-					
-					<!-- LOOP -->
-					
-				</div>	
-				
-			</div>
-
-			<div class="col-md-4">
-				<a href="http://roofers.com.ua/special.html">
-					<img src="./temp/banner_5.png" class="img-responsive">
-				</a>
-				<br>
-				<br>
-				<a href="http://roofers.com.ua/special.html">
-					<img src="./temp/banner_5.png" class="img-responsive">
-				</a>
-				<br>
-				<br>
-			</div>
-
-		</div>
-
+	<div class="container breadcrumbs">
+		<span class="breadcumbs__current">АКЦИИ И СКИДКИ</span>
 	</div>
-</div>
-
-
-<div class="section section-odd">
 	<div class="container">
+		<div class="container__row">
+			<div class="container__col-8">
+				@foreach ($sales as $sale)
+				<div class="market-news offset_bottom_30">
+					@if ($sale->image) <img src="/imagecache/240x200/{{$sale->image}}" alt="" class="market-news__image"> @endif
+					<a href="{{route('sales.show', $sale)}}" class="market-news__title">{{$sale->title}}</a>
+					<div class="market-news__text">{{$sale->entry}}</div>
+				</div>
+				@endforeach
 
-		<div class="board_mod">
-		
-			<div class="subtitle">Доска объявлений</div>
-		
-			<div class="row">
-		
-				<!-- LOOP -->
-		
-				<div class="col-md-2">
-		
-					<div class="post_item">
-					
-						<a href="http://roofers.com.ua/board_single.html">
-							<img src="./temp/board_1.png" class="img-responsive">
-						</a>
-		
-						<p class="title">
-							<a href="http://roofers.com.ua/board_single.html">Набор инструментов</a>
-						</p>    
-		
-						<p class="price">Цена: <strong>1 200 грн.</strong></p>
-		
-					</div>
-		
-				</div>
-		
-				<div class="col-md-2">
-		
-					<div class="post_item">
-					
-						<a href="http://roofers.com.ua/board_single.html">
-							<img src="./temp/board_2.png" class="img-responsive">
-						</a>
-		
-						<p class="title">
-							<a href="http://roofers.com.ua/board_single.html">Магнитная лента</a>
-						</p>    
-		
-						<p class="price">Цена: <strong>45 грн.</strong></p>
-		
-					</div>
-		
-				</div>
-		
-				<div class="col-md-2">
-		
-					<div class="post_item">
-					
-						<a href="http://roofers.com.ua/board_single.html">
-							<img src="./temp/board_3.png" class="img-responsive">
-						</a>
-		
-						<p class="title">
-							<a href="http://roofers.com.ua/board_single.html">Металлочерепица со скидкой!</a>
-						</p>    
-		
-					</div>
-		
-				</div>
-		
-				<div class="col-md-2">
-		
-					<div class="post_item">
-					
-						<a href="http://roofers.com.ua/board_single.html">
-							<img src="./temp/board_4.png" class="img-responsive">
-						</a>
-		
-						<p class="title">
-							<a href="http://roofers.com.ua/board_single.html">Бригада кровельщиков в Одессе</a>
-						</p>    
-		
-					</div>
-		
-				</div>
-		
-				<div class="col-md-2">
-		
-					<div class="post_item">
-					
-						<a href="http://roofers.com.ua/board_single.html">
-							<img src="./temp/board_5.png" class="img-responsive">
-						</a>
-		
-						<p class="title">
-							<a href="http://roofers.com.ua/board_single.html">Инструмент</a>
-						</p>    
-		
-						<p class="price">Цена: <strong>456 грн.</strong></p>
-		
-					</div>
-		
-				</div>
-		
-				<div class="col-md-2">
-		
-					<div class="post_item">
-					
-						<a href="http://roofers.com.ua/board_single.html">
-							<img src="./temp/board_6.png" class="img-responsive">
-						</a>
-		
-						<p class="title">
-							<a href="http://roofers.com.ua/board_single.html">Металочерепица</a>
-						</p>    
-		
-						<p class="price">Цена: <strong>3 456 грн.</strong></p>
-		
-					</div>
-		
-				</div>
-		
-				<!-- LOOP -->
-		
+				@include('pagenav',['items'=>$sales])
+
 			</div>
-		
+			<div class="container__col-4">
+				<div class="calendar">
+					<div class="calendar__title">
+						КАЛЕНАДРЬ
+						<span class="calendar__month">&lt; АПРЕЛЬ 2015 &gt;</span>
+					</div>
+					<table class="calendar__table">
+						<tbody><tr>
+							<td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td>
+						</tr>
+						<tr>
+							<td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td class="calendar__date_active">10</td><td>11</td>
+						</tr>
+						<tr>
+							<td>12</td><td>13</td><td>14</td><td class="calendar__date_active">15</td><td>16</td><td>17</td><td>18</td>
+						</tr>
+						<tr>
+							<td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td class="calendar__date_active">24</td><td>25</td>
+						</tr>
+						<tr>
+							<td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td>
+						</tr>
+					</tbody></table>
+				</div>
+				<img src="/s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">
+				<form class="question offset_vertical_55">
+					<div class="title">ПОСЛЕДНИЙ ОПРОС</div>
+					<div class="question__text">Какие зарубежные новинки "кровельной" моды могут стать популярными в нашей стране в ближайшем сезоне?</div>
+					<label class="question__label">
+						<input type="radio" name="question" checked="" class="question__option"><span class="question__radio"></span>Сланцевые кровли
+					</label>
+					<label class="question__label">
+						<input type="radio" name="question" class="question__option"><span class="question__radio"></span>Соломенные кровли
+					</label>
+					<label class="question__label">
+						<input type="radio" name="question" class="question__option"><span class="question__radio"></span>Цветная керамическая черепица
+					</label>
+					<a href="" class="question__all">Смотреть все опросы</a>
+					<button class="question__button button button_blue button_big">ГОЛОСОВАТЬ</button>
+				</form>
+				<img src="/s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">
+			</div>
 		</div>
-
 	</div>
-</div>
+	<div class="container-fluid container-fluid_light-gray padding_vertical_60">
+			<div class="container">
+				<div class="title">ДОСКА ОБЪЯВЛЕНИЙ</div>
+				<div class="container__row">
+					<a href="" class="container__col-2 objavlenie">
+						<img src="/s-img/obyavlenie-1.jpg" alt="" class="objavlenie__image">
+						<span class="objavlenie__text">Набор инструментов</span>
+						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
+					</a>
+					<a href="" class="container__col-2 objavlenie">
+						<img src="/s-img/obyavlenie-2.jpg" alt="" class="objavlenie__image">
+						<span class="objavlenie__text">Набор инструментов</span>
+						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
+					</a>
+					<a href="" class="container__col-2 objavlenie">
+						<img src="/s-img/obyavlenie-3.jpg" alt="" class="objavlenie__image">
+						<span class="objavlenie__text">Набор инструментов</span>
+						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
+					</a>
+					<a href="" class="container__col-2 objavlenie">
+						<img src="/s-img/obyavlenie-4.jpg" alt="" class="objavlenie__image">
+						<span class="objavlenie__text">Набор инструментов</span>
+						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
+					</a>
+					<a href="" class="container__col-2 objavlenie">
+						<img src="/s-img/obyavlenie-5.jpg" alt="" class="objavlenie__image">
+						<span class="objavlenie__text">Набор инструментов</span>
+						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
+					</a>
+					<a href="" class="container__col-2 objavlenie">
+						<img src="/s-img/obyavlenie-6.jpg" alt="" class="objavlenie__image">
+						<span class="objavlenie__text">Набор инструментов</span>
+						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
+					</a>
+				</div>
+			</div>
+		</div>
 @endsection

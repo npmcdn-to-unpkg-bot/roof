@@ -26,23 +26,22 @@ Route::get('/proposition/{id}', 'ThePublic\CompanyController@proposition');
 
 // Buildings
 
-Route::resource('buildings', 'ThePublic\BuildingController', [ 'only' =>
-	['index','show',]
-]);
+Route::resource('buildings', 'ThePublic\BuildingController', 
+	['only' => ['index','show',]] );
 
-Route::resource('desk', 'ThePublic\OfferController', [ 'only' =>
-	['index', 'show']
-]);
+Route::resource('desk', 'ThePublic\OfferController', 
+	['only' => ['index', 'show']] );
 
-Route::get('/sales', function () { 
-	return view('public.sales.index'); 
-});
+Route::resource('news', 'ThePublic\ArticleController', 
+	['only' => ['index', 'show']] );
+
+Route::resource('sales', 'ThePublic\SaleController', 
+	['only' => ['index', 'show']] );
+
 Route::get('/knowladge', function () { 
 	return view('public.knowladge.index'); 
 });
-Route::get('/news', function () { 
-	return view('public.news.index'); 
-});
+
 
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {

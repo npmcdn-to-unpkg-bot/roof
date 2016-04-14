@@ -56,6 +56,7 @@ return array(
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
         'full' => 'App\Filters\Full',
+        '85x85' => 'App\Filters\Filter85x85',
         '120x120' => 'App\Filters\Filter120x120',
         '240x200' => 'App\Filters\Filter240x200',
         '370x200' => 'App\Filters\Filter370x200',
