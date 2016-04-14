@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
 	]);
 
 	Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function () {
+		Route::get('', 'Admin\CompanyController@index');
 		Route::resource('company', 'Admin\CompanyController');
 		Route::resource('news', 'Admin\ArticleController');
 		Route::resource('sales', 'Admin\SaleController');
