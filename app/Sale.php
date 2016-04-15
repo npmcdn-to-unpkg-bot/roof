@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sale extends Model
 {
     public static $rules = [
-		'title' => 'required|min:35|max:100',
+		'title' => 'required|min:15|max:100',
 		'image' => 'required',
 		'entry' => 'required|min:120|max:380',
 		'content' => 'required|min:500',
@@ -15,8 +15,8 @@ class Sale extends Model
 
     public static $messages = [
 		'title.required' => 'Введите заголовок.',
-		'title.min' => '',
-		'title.max' => '',
+		'title.min' => 'Заголовок должен быть не меньше 15 символов',
+		'title.max' => 'Заголовок должен быть не больше 100 символов',
 		'image.required' => 'Загрузите картинку.',
 		'entry.required' => 'Заполните краткое содержание.',
 		'entry.min' => 'Краткое содержание должно быть не меньше 120 символов.',
