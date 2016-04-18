@@ -47,6 +47,10 @@ class CompanyController extends Controller
 
     public function fields (Company $company) {
         return [
+            'name' => 'name',
+            'type' => 'text',
+            'placeholder' => 'Введите название компании',
+            'value' => old() ? old('name') : $company->name
         ];
     }
 
