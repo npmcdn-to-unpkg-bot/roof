@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Auth;
+use Image;
+use Validator;
 use App\Company;
+use App\Specialisation;
+use App\Proposition;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -59,11 +63,55 @@ class CompanyController extends Controller
                 'label' => 'Логотип компании',
                 'value' => old() ? old('logo') : $company->logo
             ],[
-                'name' => 'name',
+                'name' => 'entry',
+                'type' => 'textarea',
+                'placeholder' => 'Введите краткое описание компании',
+                'label' => 'Краткое описание компании',
+                'value' => old() ? old('entry') : $company->entry
+            ],[
+                'name' => 'about',
+                'type' => 'ckeditor',
+                'label' => 'О компании',
+                'value' => old() ? old('about') : $company->about
+            ],[
+                'name' => 'services',
+                'type' => 'ckeditor',
+                'label' => 'Описание услуг компании',
+                'value' => old() ? old('services') : $company->services
+            ],[
+                'name' => 'association',
+                'type' => 'checkbox',
+                'label' => 'Член ассоциации',
+                'value' => old() ? old('association') : $company->association
+            ],[
+                'name' => 'privat',
+                'type' => 'checkbox',
+                'label' => 'Частный мастер',
+                'value' => old() ? old('privat') : $company->privat
+            ],[
+                'name' => 'email',
                 'type' => 'text',
-                'placeholder' => 'Введите название компании',
-                'label' => 'Название компании',
-                'value' => old() ? old('name') : $company->name
+                'placeholder' => 'Введите email компании',
+                'label' => 'Email компании',
+                'value' => old() ? old('email') : $company->email
+            ],[
+                'name' => 'phone',
+                'type' => 'text',
+                'placeholder' => 'Введите телефон компании',
+                'label' => 'Телефон компании',
+                'value' => old() ? old('phone') : $company->phone
+            ],[
+                'name' => 'specialisations',
+                'type' => 'taxonomy',
+                'label' => 'Специализации',
+                'values' => old() ? old('specialisations') : $company->specialisations->map(function ($specialisation) {return $specialisation->id;})->all(),
+                'taxonomy' => Specialisation::all()
+            ],[
+                'name' => 'propositions',
+                'type' => 'taxonomy',
+                'label' => 'Предложения',
+                'values' => old() ? old('propositions') : $company->propositions->map(function ($proposition) {return $proposition->id;})->all(),
+                'taxonomy' => Proposition::all()
             ]
         ];
     }
@@ -76,7 +124,7 @@ class CompanyController extends Controller
     public function index()
     {
 
-        $companies = Company::paginate(15);        
+        $companies = Company::orderBy('created_at', 'DESC')->paginate(15);        
 
         return view('admin.table', [
             'table' => $this->table,
@@ -118,7 +166,30 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('upload')) {
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $name = $request->file('upload')->getClientOriginalName();
+            $name = str_slug( str_replace ( $extension, '', $name ) );
+            $image = time() . '-' . $name . '.' . $extension;
+            Image::make($request
+                ->file('upload'))
+                ->resize(1600, 1024, function ($constraint) { $constraint->upsize(); })
+                ->save(storage_path('app/images/').$image);
+            $request->merge(['logo' => $image]);
+        }
+
+        $validator = Validator::make($request->all(), Company::$rules, Company::$messages);
+
+        if ($validator->fails())
+            return back()->withInput()->withErrors($validator);
+
+        $company = Company::firstOrNew(['id' => $request->id])
+            ->fill($request->only('name','email','logo','phone','entry','about','services','association','privat'));
+        $company->save();
+        $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
+        $company->propositions()->sync($request->propositions ? $request->propositions : []);
+
+        return redirect()->route('admin.company.index');
     }
 
     /**

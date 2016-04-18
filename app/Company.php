@@ -7,9 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
 
+    public static $rules = [
+        'name' => 'required|max:35',
+        'email' => 'required|email|max:255',
+        'phone' => 'required|numeric',
+        'logo' => 'required',
+        'entry' => 'max:255'
+    ];
+
+    public static $messages = [
+        'name.required' => 'Введите название компании.',
+        'name.max' => 'Название компании должно быть не больше 35 символов.',
+        'email.required' => 'Введите электронную почту компании.',
+        'email.email' => 'Введите корректную электронную почту компании.',
+        'email.max' => 'Электронная почта не должна быть больше 255 символов.',
+        'phone.required' => 'Введите телефон компании.',
+        'phone.numeric' => 'Телефон должен состоять из цифр.',
+        'logo.required' => 'Загрузите логотип.',
+        'entry.max' => 'Краткое описание не должно быть длинее 255 символов.'
+    ];
+
 	protected $table = 'companies';
 
-    protected $fillable = [ 'name', 'logo', 'address', 'email', 'phone', 'entry', 'about', 'services' ];
+    protected $fillable = [ 'name', 'logo', 'address', 'email', 'phone', 'entry', 'about', 'services', 'association', 'privat' ];
 
     protected $dates = ['created_at', 'updated_at', 'register'];
 
