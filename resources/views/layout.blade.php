@@ -22,7 +22,7 @@
 		<a href="/"><img src="/img/logo.png" alt="" class="logo logo_in-header container__col-left"></a>
 		<div class="container__col-right actions-menu">
 			<a href="#" style="background-color: #5575b6; background-image: url(/img/user-menu-1.png);" class="actions-menu__item"></a>
-			@if ( !Auth::user()->company )
+			@if ( !Auth::user() || !Auth::user()->company )
 			<a href="/office/company/create" style="background-color: #d98e64; background-image: url(/img/user-menu-2.png);" class="actions-menu__item">
 				ДОБАВИТЬ КОМПАНИЮ
 			</a>
