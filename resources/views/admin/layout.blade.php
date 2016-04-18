@@ -94,6 +94,20 @@
             <li><a href="{{route('admin.sales.create')}}"><i class="fa fa-plus"></i>Добавить акцию</a></li>
           </ul>
         </li>
+        <li class="treeview {{ Request::is('admin/polls*')?'active':'' }}">
+          <a href="#"><i class="fa fa-question"></i> <span>Опросы</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('admin.polls.index')}}"><i class="fa fa-list"></i>Список опросов</a></li>
+            <li><a href="{{route('admin.polls.create')}}"><i class="fa fa-plus"></i>Добавить опрос</a></li>
+          </ul>
+        </li>
+        <li class="treeview {{ Request::is('admin/banners*')?'active':'' }}">
+          <a href="#"><i class="fa fa-file-image-o"></i> <span>Банеры</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('admin.banners.index')}}"><i class="fa fa-list"></i>Список банеров</a></li>
+            <li><a href="{{route('admin.banners.create')}}"><i class="fa fa-plus"></i>Добавить банер</a></li>
+          </ul>
+        </li>
         <li class="treeview ">
           <a href="#"><i class="fa fa-user"></i> <span>Пользователи</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
@@ -130,6 +144,7 @@
 
 <!-- jQuery 2.2.0 -->
 <script src="/bower/AdminLTE/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<script src="/bower/AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="/bower/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
@@ -148,11 +163,7 @@
         checkboxClass: 'icheckbox_minimal-blue',
         radioClass: 'iradio_minimal-blue'
       });
-
-      $('[data-remove]').click(function(){
-        $(this).parents($(this).attr('data-remove')).remove();
-      })
-
+      $('.ui-sortable').sortable();
     });
 </script>
 

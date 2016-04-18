@@ -2297,4 +2297,19 @@ td.calendar__date_active {
 }
 
 
+/*progress*/
+.progress {
+	position: relative;
+	line-height: 24px;
+	color: black;
+	text-indent: 11px;
+}
+.progress__bar {
+	overflow: hidden;
+	position: absolute;
+	background-color: #88b2bf;
+	left: 0;
+	top: 0;
+	color: white;
+}
 /*# sourceMappingURL=all.css.map */

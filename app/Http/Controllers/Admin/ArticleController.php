@@ -31,31 +31,40 @@ class ArticleController extends Controller
         ],
     ];
 
-    protected $fields = [
-        [
-            'name'=>'title',
-            'type'=>'text',
-            'placeholder'=>'Введите заголовок статьи',
-            'label'=>'Заголовок'
-        ],[
-            'name'=>'image',
-            'type'=>'image',
-            'label'=>'Картинка'
-        ],[
-            'name'=>'entry',
-            'type'=>'textarea',
-            'placeholder'=>'Введите краткое содержание статьи',
-            'label'=>'Краткое содержание'
-        ],[
-            'name'=>'content',
-            'type'=>'ckeditor',
-            'label'=>'Текст статьи'
-        ],[
-            'name'=>'market',
-            'type'=>'checkbox',
-            'label'=>'Поместить новость в разделе "НОВОСТИ РЫНКА"'
-        ],
-    ];
+    protected function fields (Article $article) {
+
+        return [
+            [
+                'name'=>'title',
+                'type'=>'text',
+                'placeholder'=>'Введите заголовок статьи',
+                'label'=>'Заголовок',
+                'value'=>old() ? old('title') : $article->title
+            ],[
+                'name'=>'image',
+                'type'=>'image',
+                'label'=>'Картинка',
+                'value'=>old() ? old('image') : $article->image
+            ],[
+                'name'=>'entry',
+                'type'=>'textarea',
+                'placeholder'=>'Введите краткое содержание статьи',
+                'label'=>'Краткое содержание',
+                'value'=>old() ? old('entry') : $article->entry
+            ],[
+                'name'=>'content',
+                'type'=>'ckeditor',
+                'label'=>'Текст статьи',
+                'value'=>old() ? old('content') : $article->content
+            ],[
+                'name'=>'market',
+                'type'=>'checkbox',
+                'label'=>'Поместить новость в разделе "НОВОСТИ РЫНКА"',
+                'value'=>old() ? old('market') : $article->market
+            ],
+        ];
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -86,11 +95,13 @@ class ArticleController extends Controller
     public function create()
     {
 
+        $article = new Article;
+
         return view('admin.form',[
             'title' => 'Добавить новость',
             'action' => 'admin.news.store',
-            'fields' => $this->fields,
-            'item' => new Article
+            'fields' => $this->fields($article),
+            'item' => $article
         ]);
     }
 
@@ -143,11 +154,14 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
+
+        $article = Article::find($id);
+
         return view('admin.form',[
             'title' => 'Редактировать новость',
             'action' => 'admin.news.store',
-            'fields' => $this->fields,
-            'item' => Article::find($id)
+            'fields' => $this->fields($article),
+            'item' => $article
         ]);
     }
 

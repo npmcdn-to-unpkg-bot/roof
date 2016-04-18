@@ -68,7 +68,11 @@
 							</div>
 						</div>
 					@if ($i+1==count($companies)||$i%2==1) </div> @endif
-					@if ($i==5) <img src="/s-img/baner-1.jpg" alt="" class="sda offset_vertical_55"> @endif
+					@if ($i==5) 
+						@include('public.area.banner',[
+							'area' => App\Area::where('name', 'catalog.2')->with('banner')->first()
+						])
+					@endif
 				@endforeach
 				@include('pagenav',['items'=>$companies])
 				<div class="container__row offset_vertical_55">
@@ -98,7 +102,11 @@
 			</div>
 			<div class="container__col-4">
 				<a href="#" class="button button_orange button_huge">ДОБАВИТЬ КОМПАНИЮ</a>
-				<img src="/s-img/baner-2.jpg" alt="" class="offset_vertical_55 sda">
+				<div class="offset_vertical_55">
+					@include('public.area.banner',[
+						'area' => App\Area::where('name', 'catalog.1')->with('banner')->first()
+					])
+				</div>
 				<div class="forum-message offset_vertical_55">
 					<div class="title">ПОСЛЕДНЕЕ НА ФОРУМЕ</div>
 					<div class="forum-message__item">
@@ -155,21 +163,7 @@
 						</tr>
 					</tbody></table>
 				</div>
-				<form class="question offset_vertical_55">
-					<div class="title">ПОСЛЕДНИЙ ОПРОС</div>
-					<div class="question__text">Какие зарубежные новинки "кровельной" моды могут стать популярными в нашей стране в ближайшем сезоне?</div>
-					<label class="question__label">
-						<input type="radio" name="question" checked="" class="question__option"><span class="question__radio"></span>Сланцевые кровли
-					</label>
-					<label class="question__label">
-						<input type="radio" name="question" class="question__option"><span class="question__radio"></span>Соломенные кровли
-					</label>
-					<label class="question__label">
-						<input type="radio" name="question" class="question__option"><span class="question__radio"></span>Цветная керамическая черепица
-					</label>
-					<a href="" class="question__all">Смотреть все опросы</a>
-					<button class="question__button button button_blue button_big">ГОЛОСОВАТЬ</button>
-				</form>
+				<div class="offset_vertical_55">@include('public.polls.block')</div>
 			</div>
 		</div>
 	</div>

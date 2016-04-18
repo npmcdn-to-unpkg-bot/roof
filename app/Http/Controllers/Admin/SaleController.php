@@ -31,27 +31,36 @@ class SaleController extends Controller
         ],
     ];
 
-    protected $fields = [
-        [
-            'name'=>'title',
-            'type'=>'text',
-            'placeholder'=>'Введите заголовок',
-            'label'=>'Заголовок'
-        ],[
-            'name'=>'image',
-            'type'=>'image',
-            'label'=>'Картинка'
-        ],[
-            'name'=>'entry',
-            'type'=>'textarea',
-            'placeholder'=>'Введите краткое содержание',
-            'label'=>'Краткое содержание'
-        ],[
-            'name'=>'content',
-            'type'=>'ckeditor',
-            'label'=>'Текст статьи'
-        ]
-    ];
+    protected function fields (Sale $sale) {
+
+        return [
+            [
+                'name'=>'title',
+                'type'=>'text',
+                'placeholder'=>'Введите заголовок',
+                'label'=>'Заголовок',
+                'value'=>old() ? old('title') : $sale->title
+            ],[
+                'name'=>'image',
+                'type'=>'image',
+                'label'=>'Картинка',
+                'value'=>old() ? old('image') : $sale->image
+            ],[
+                'name'=>'entry',
+                'type'=>'textarea',
+                'placeholder'=>'Введите краткое содержание',
+                'label'=>'Краткое содержание',
+                'value'=>old() ? old('entry') : $sale->entry
+            ],[
+                'name'=>'content',
+                'type'=>'ckeditor',
+                'label'=>'Текст',
+                'value'=>old() ? old('content') : $sale->content
+            ],
+        ];
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -81,12 +90,13 @@ class SaleController extends Controller
      */
     public function create()
     {
+        $sale = new Sale;
 
         return view('admin.form',[
-            'title' => 'Добавить новость',
+            'title' => 'Добавить акцию',
             'action' => 'admin.sales.store',
-            'fields' => $this->fields,
-            'item' => new Sale
+            'fields' => $this->fields($sale),
+            'item' => $sale
         ]);
     }
 
@@ -139,11 +149,14 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
+
+        $sale = Sale::find($id);
+
         return view('admin.form',[
-            'title' => 'Редактировать новость',
+            'title' => 'Редактировать акцию',
             'action' => 'admin.sales.store',
-            'fields' => $this->fields,
-            'item' => Sale::find($id)
+            'fields' => $this->fields($sale),
+            'item' => $sale
         ]);
     }
 

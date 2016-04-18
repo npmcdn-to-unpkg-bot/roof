@@ -16,10 +16,10 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('title');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->text('entry');
             $table->text('content');
-            $table->boolean('market');
+            $table->boolean('market')->nullable();
             $table->integer('company_id')->index();
         });
     }

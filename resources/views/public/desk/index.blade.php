@@ -67,8 +67,16 @@
 					@endforeach
 					<button class="button button_100 button_cyan button_big">ПОКАЗАТЬ</button>
 				</form>
-				<img src="/s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">
-				<img src="/s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">
+				<div class="offset_vertical_55">
+					@include('public.area.banner',[
+						'area' => App\Area::where('name', 'desk.1')->with('banner')->first()
+					])
+				</div>
+				<div class="offset_vertical_55">
+					@include('public.area.banner',[
+						'area' => App\Area::where('name', 'desk.2')->with('banner')->first()
+					])
+				</div>
 			</div>
 		</div>
 	</div>

@@ -218,7 +218,11 @@
 					</div>
 				</div>
 			</div>
-			<img src="/s-img/baner-2.jpg" alt="" class="sda offset_vertical_60">
+			<div class="offset_vertical_55">
+				@include('public.area.banner',[
+					'area' => App\Area::where('name', 'catalog.show.1')->with('banner')->first()
+				])
+			</div>
 			<div class="company-blog offset_vertical_60">
 				<div class="title">БЛОГ КОМПАНИИ</div>
 				<div class="company-blog__item">

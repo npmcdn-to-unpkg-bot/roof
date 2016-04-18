@@ -35,5 +35,21 @@ class User extends Authenticatable
     public function roles () {
         return $this->belongsToMany('App\Role');
     }
+    
+    public function votes () {
+        return $this->belongsToMany('App\Vote');
+    }
+
+    public function hasPoll (Poll $poll) {
+        return $this->whereHas('votes.poll', function ($query) use ($poll) {
+            $query->where('id', $poll->id);
+        })->first();
+    }
+
+    public function hasRole ($role) {
+        return $this->whereHas('roles', function ($query) use ($role) {
+            $query->where('role', $role);
+        })->first();
+    }
 
 }

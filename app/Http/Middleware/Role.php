@@ -17,7 +17,7 @@ class Role
     public function handle($request, Closure $next, $role)
     {
 
-        if ( !Auth::user()->roles->contains('role', $role) )
+        if ( !Auth::user()->hasRole($role) )
             return redirect()->guest('login');
 
         return $next($request);

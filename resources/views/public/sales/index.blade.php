@@ -19,46 +19,14 @@
 
 			</div>
 			<div class="container__col-4">
-				<div class="calendar">
-					<div class="calendar__title">
-						КАЛЕНАДРЬ
-						<span class="calendar__month">&lt; АПРЕЛЬ 2015 &gt;</span>
-					</div>
-					<table class="calendar__table">
-						<tbody><tr>
-							<td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td>
-						</tr>
-						<tr>
-							<td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td class="calendar__date_active">10</td><td>11</td>
-						</tr>
-						<tr>
-							<td>12</td><td>13</td><td>14</td><td class="calendar__date_active">15</td><td>16</td><td>17</td><td>18</td>
-						</tr>
-						<tr>
-							<td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td class="calendar__date_active">24</td><td>25</td>
-						</tr>
-						<tr>
-							<td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td>
-						</tr>
-					</tbody></table>
+				@include('public.area.banner',[
+					'area' => App\Area::where('name', 'sales.1')->with('banner')->first()
+				])
+				<div class="offset_vertical_55">
+					@include('public.area.banner',[
+						'area' => App\Area::where('name', 'sales.2')->with('banner')->first()
+					])
 				</div>
-				<img src="/s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">
-				<form class="question offset_vertical_55">
-					<div class="title">ПОСЛЕДНИЙ ОПРОС</div>
-					<div class="question__text">Какие зарубежные новинки "кровельной" моды могут стать популярными в нашей стране в ближайшем сезоне?</div>
-					<label class="question__label">
-						<input type="radio" name="question" checked="" class="question__option"><span class="question__radio"></span>Сланцевые кровли
-					</label>
-					<label class="question__label">
-						<input type="radio" name="question" class="question__option"><span class="question__radio"></span>Соломенные кровли
-					</label>
-					<label class="question__label">
-						<input type="radio" name="question" class="question__option"><span class="question__radio"></span>Цветная керамическая черепица
-					</label>
-					<a href="" class="question__all">Смотреть все опросы</a>
-					<button class="question__button button button_blue button_big">ГОЛОСОВАТЬ</button>
-				</form>
-				<img src="/s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">
 			</div>
 		</div>
 	</div>

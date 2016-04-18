@@ -41,7 +41,11 @@
 						</tr>
 					</tbody></table>
 				</div>
-				<img src="/s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">
+				<div class="offset_vertical_55">
+					@include('public.area.banner',[
+						'area' => App\Area::where('name', 'news.show.1')->with('banner')->first()
+					])
+				</div>
 				<form class="question offset_vertical_55">
 					<div class="title">ПОСЛЕДНИЙ ОПРОС</div>
 					<div class="question__text">Какие зарубежные новинки "кровельной" моды могут стать популярными в нашей стране в ближайшем сезоне?</div>
@@ -57,7 +61,11 @@
 					<a href="" class="question__all">Смотреть все опросы</a>
 					<button class="question__button button button_blue button_big">ГОЛОСОВАТЬ</button>
 				</form>
-				<img src="/s-img/baner-3.jpg" alt="" class="sda offset_vertical_55">
+				<div class="offset_vertical_55">
+					@include('public.area.banner',[
+						'area' => App\Area::where('name', 'news.show.2')->with('banner')->first()
+					])
+				</div>
 			</div>
 		</div>
 	</div>

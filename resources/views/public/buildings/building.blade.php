@@ -59,7 +59,11 @@
 						{{ $building->information }}
 					</div>
 				@endif
-				<img src="/s-img/baner-2.jpg" class="offset_vertical_60" alt="">
+				<div class="offset_vertical_55">
+					@include('public.area.banner',[
+						'area' => App\Area::where('name', 'building.show.1')->with('banner')->first()
+					])
+				</div>
 			</div>
 		</div>
 	</div>

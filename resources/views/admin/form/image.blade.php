@@ -1,11 +1,11 @@
 <div class="form-group {{$errors->first($name)?'has-error':''}}">
   	<label class="control-label" for="{{$name}}">
   		{{$label}}
-		@if (old()&&old($name)||!old()&&$item->{$name})
+		@if ($value)
 			<div class="image">
-				<br><img src="/imagecache/small/{{ old()?old($name):$item->{$name} }}" alt="">
-				<input type="hidden" name="{{$name}}" value="{{ old()?old($name):$item->{$name} }}">
-				<button type="button" class="btn btn-danger btn-xs" data-remove=".image" data-toggle="tooltip" title="" data-original-title="Удалить">
+				<br><img src="/imagecache/small/{{ $value }}" alt="">
+				<input type="hidden" name="{{$name}}" value="{{ $value }}">
+				<button type="button" class="btn btn-danger btn-xs" onclick="$(this).parents('.image').remove()" data-toggle="tooltip" title="" data-original-title="Удалить">
 					<i class="fa fa-times"></i>
 				</button>
 			</div>

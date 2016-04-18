@@ -55,11 +55,15 @@ Route::group(['middleware' => 'auth'], function () {
 		['store', 'destroy']
 	]);
 
+	Route::post('vote', 'User\PollController@vote');
+
 	Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function () {
 		Route::get('', 'Admin\CompanyController@index');
 		Route::resource('company', 'Admin\CompanyController');
 		Route::resource('news', 'Admin\ArticleController');
 		Route::resource('sales', 'Admin\SaleController');
+		Route::resource('polls', 'Admin\PollController');
+		Route::resource('banners', 'Admin\BannerController');
 	});
 
 });

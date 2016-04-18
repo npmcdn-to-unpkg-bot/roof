@@ -10,6 +10,46 @@ use App\Http\Controllers\Controller;
 
 class CompanyController extends Controller
 {
+
+    protected $table = [
+        [
+            'field'=>'logo',
+            'type'=>'image',
+            'width'=>'40px',
+            'title'=>'Логотип'
+        ],[
+            'field'=>'name',
+            'type'=>'text',
+            'width'=>'auto',
+            'title'=>'Название компании'
+        ],[
+            'field'=>'user',
+            'type'=>'user',
+            'width'=>'10%',
+            'title'=>'Пользователь'
+        ],[
+            'field'=>'specialisations',
+            'type'=>'taxonomy',
+            'width'=>'20%',
+            'title'=>'Специализации'
+        ],[
+            'field'=>'propositions',
+            'type'=>'taxonomy',
+            'width'=>'20%',
+            'title'=>'Предложения'
+        ],[
+            'field'=>'id',
+            'type'=>'actions',
+            'width'=>'90px',
+            'title'=>''
+        ],
+    ];
+
+    public function fields (Company $company) {
+        return [
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,40 +57,6 @@ class CompanyController extends Controller
      */
     public function index()
     {
-
-        $table = [
-            [
-                'field'=>'logo',
-                'type'=>'image',
-                'width'=>'40px',
-                'title'=>'Логотип'
-            ],[
-                'field'=>'name',
-                'type'=>'text',
-                'width'=>'auto',
-                'title'=>'Название компании'
-            ],[
-                'field'=>'user',
-                'type'=>'user',
-                'width'=>'10%',
-                'title'=>'Пользователь'
-            ],[
-                'field'=>'specialisations',
-                'type'=>'taxonomy',
-                'width'=>'20%',
-                'title'=>'Специализации'
-            ],[
-                'field'=>'propositions',
-                'type'=>'taxonomy',
-                'width'=>'20%',
-                'title'=>'Предложения'
-            ],[
-                'field'=>'id',
-                'type'=>'actions',
-                'width'=>'90px',
-                'title'=>''
-            ],
-        ];
 
         $companies = Company::paginate(15);        
 
@@ -67,6 +73,8 @@ class CompanyController extends Controller
 
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -74,7 +82,14 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        $company = new Company;
+
+        return view('admin.form',[
+            'title' => 'Добавить компанию',
+            'action' => 'admin.company.store',
+            'fields' => $this->fields($company),
+            'item' => $company
+        ]);
     }
 
     /**
@@ -107,7 +122,14 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::find($id);
+
+        return view('admin.form',[
+            'title' => 'Добавить компанию',
+            'action' => 'admin.company.store',
+            'fields' => $this->fields($company),
+            'item' => $company
+        ]);
     }
 
     /**
