@@ -16,6 +16,8 @@
 					<a class="menu__item" href="#">Сотрудники компании</a>
 					<a class="menu__item" href="{{ route('office.building.index') }}">Стройки</a>
 					<a class="menu__item" href="{{ route('office.job.index') }}">Вакансии</a>
+					@else
+					<a class="menu__item" href="{{ route('office.company.create') }}">Добавить компанию</a>
 					@endif
 					<a href="{{ route('office.offer.index') }}" class="menu__item">Объявления</a>
 					<a class="menu__item" href="/logout">Выход</a>
