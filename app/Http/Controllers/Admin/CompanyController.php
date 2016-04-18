@@ -61,7 +61,7 @@ class CompanyController extends Controller
         $companies = Company::paginate(15);        
 
         return view('admin.table', [
-            'table' => $table,
+            'table' => $this->table,
             'items' => $companies,
             'title' => 'Компании',
             'links' => [
