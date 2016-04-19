@@ -31,41 +31,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid container-fluid_light-gray padding_vertical_60">
-			<div class="container">
-				<div class="title">ДОСКА ОБЪЯВЛЕНИЙ</div>
-				<div class="container__row">
-					<a href="" class="container__col-2 objavlenie">
-						<img src="/s-img/obyavlenie-1.jpg" alt="" class="objavlenie__image">
-						<span class="objavlenie__text">Набор инструментов</span>
-						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-					</a>
-					<a href="" class="container__col-2 objavlenie">
-						<img src="/s-img/obyavlenie-2.jpg" alt="" class="objavlenie__image">
-						<span class="objavlenie__text">Набор инструментов</span>
-						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-					</a>
-					<a href="" class="container__col-2 objavlenie">
-						<img src="/s-img/obyavlenie-3.jpg" alt="" class="objavlenie__image">
-						<span class="objavlenie__text">Набор инструментов</span>
-						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-					</a>
-					<a href="" class="container__col-2 objavlenie">
-						<img src="/s-img/obyavlenie-4.jpg" alt="" class="objavlenie__image">
-						<span class="objavlenie__text">Набор инструментов</span>
-						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-					</a>
-					<a href="" class="container__col-2 objavlenie">
-						<img src="/s-img/obyavlenie-5.jpg" alt="" class="objavlenie__image">
-						<span class="objavlenie__text">Набор инструментов</span>
-						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-					</a>
-					<a href="" class="container__col-2 objavlenie">
-						<img src="/s-img/obyavlenie-6.jpg" alt="" class="objavlenie__image">
-						<span class="objavlenie__text">Набор инструментов</span>
-						<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-					</a>
-				</div>
-			</div>
-		</div>
+	@include('public.desk.block',['offers'=>App\Offer::take(5)->get()])
 @endsection
