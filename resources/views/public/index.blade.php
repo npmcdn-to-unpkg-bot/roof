@@ -7,74 +7,24 @@
 				<div class="container__col-8">
 					<div class="title">КАТАЛОГ КОМПАНИЙ</div>
 					<div class="container__row">
-						<div class="container__col-6 catalog-company">
-							<img src="/s-img/company-logo-1.jpg" alt="" class="catalog-company__image">
-							<div class="catalog-company__title">Токадо</div>
-							<div class="catalog-company__post-date">Дата размещения: 21.09.2015</div>
-							<div class="catalog-company__activity">Специализация: Кровельные материалы</div>
-							<a href="" class="catalog-company__link">О компании</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Прайсы</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Блог</a>
-						</div>
-						<div class="container__col-6 catalog-company">
-							<img src="/s-img/company-logo-2.jpg" alt="" class="catalog-company__image">
-							<div class="catalog-company__title">Zambelli Украина</div>
-							<div class="catalog-company__post-date">Дата размещения: 21.09.2015</div>
-							<div class="catalog-company__activity">Специализация: Водосточные системы</div>
-							<a href="" class="catalog-company__link">О компании</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Прайсы</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Блог</a>
-						</div>
-						<div class="container__col-6 catalog-company">
-							<img src="/s-img/company-logo-3.jpg" alt="" class="catalog-company__image">
-							<div class="catalog-company__title">Velux</div>
-							<div class="catalog-company__post-date">Дата размещения: 21.09.2015</div>
-							<div class="catalog-company__activity">Специализация: Мансардные окна</div>
-							<a href="" class="catalog-company__link">О компании</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Прайсы</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Блог</a>
-						</div>
-						<div class="container__col-6 catalog-company">
-							<img src="/s-img/company-logo-4.jpg" alt="" class="catalog-company__image">
-							<div class="catalog-company__title">Rockwool	</div>
-							<div class="catalog-company__post-date">Дата размещения: 21.09.2015</div>
-							<div class="catalog-company__activity">Специализация: Изоляционные решения</div>
-							<a href="" class="catalog-company__link">О компании</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Прайсы</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Блог</a>
-						</div>
-						<div class="container__col-6 catalog-company">
-							<img src="/s-img/company-logo-5.jpg" alt="" class="catalog-company__image">
-							<div class="catalog-company__title">MDM</div>
-							<div class="catalog-company__post-date">Дата размещения: 21.09.2015</div>
-							<div class="catalog-company__activity">Специализация: Кровельные мембраны</div>
-							<a href="" class="catalog-company__link">О компании</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Прайсы</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Блог</a>
-						</div>
-						<div class="container__col-6 catalog-company">
-							<img src="/s-img/company-logo-6.jpg" alt="" class="catalog-company__image">
-							<div class="catalog-company__title">СТАЛЕКС</div>
-							<div class="catalog-company__post-date">Дата размещения: 21.09.2015</div>
-							<div class="catalog-company__activity">Специализация: Металл и конструкции</div>
-							<a href="" class="catalog-company__link">О компании</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Прайсы</a>
-							<span class="catalog-company__separator"></span>
-							<a href="" class="catalog-company__link">Блог</a>
-						</div>
+						@foreach (App\Company::take(6)->with('specialisations')->get() as $i => $company)
+							<div class="container__col-6 catalog-company">
+								<img src="/s-img/company-logo-1.jpg" alt="" class="catalog-company__image">
+								<div class="catalog-company__title">{{$company->name}}</div>
+								<div class="catalog-company__post-date">Дата размещения: {{$company->created_at->format('d.m.Y')}}</div>
+								<div class="catalog-company__activity">
+									@if ($company->specialisations->first()) Специализация: {{str_limit($company->specialisations->first()->name,25)}}
+									@else Без специализации
+									@endif
+								</div>
+								<a href="{{route('catalog.show',$company)}}#about" class="catalog-company__link">О компании</a>
+								<span class="catalog-company__separator"></span>
+								<a href="{{route('catalog.show',$company)}}#prices" class="catalog-company__link">Прайсы</a>
+								<span class="catalog-company__separator"></span>
+								<a href="{{route('catalog.show',$company)}}#blog" class="catalog-company__link">Блог</a>
+							</div>
+						@endforeach
 					</div>
-
 				</div>
 				<div class="container__col-4">
 					<img src="/s-img/tenders.jpg" alt="">

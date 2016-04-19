@@ -19,6 +19,7 @@ class CreateSalesTable extends Migration
             $table->string('image');
             $table->text('entry');
             $table->text('content');
+            $table->boolean('sales');
             $table->integer('company_id')->index();
         });
     }

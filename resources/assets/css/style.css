@@ -1033,7 +1033,8 @@ td.calendar__date_active {
 	color: #0a3955;
 	text-decoration: underline;
 	text-transform: uppercase;
-	line-height: 56px;
+	margin-top: 16px;
+	margin-bottom: 16px;
 	display: block;
 	font-family: "Roboto Condensed";
 }
@@ -1506,6 +1507,7 @@ td.calendar__date_active {
 .company-blog__title {
 	font-weight: bold;
 	text-decoration: underline;
+	text-transform: uppercase;
 	color: black;
 	font-size: 18px;
 }
@@ -1668,6 +1670,9 @@ td.calendar__date_active {
 	margin-left: 130px;
 }
 .company-sale__title {
+	color: black;
+	text-decoration: none;
+	display: block;
 	font-weight: bold;
 	font-size: 18px;
 }
@@ -1922,4 +1927,10 @@ td.calendar__date_active {
 	left: 0;
 	top: 0;
 	color: white;
+}
+
+.clearfix:after {
+	content:'';
+	display: block;
+	clear: both;
 }

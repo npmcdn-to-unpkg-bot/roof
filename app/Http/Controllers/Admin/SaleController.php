@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Validator;
 use Image;
+use App\Company;
 use App\Sale;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -56,7 +57,20 @@ class SaleController extends Controller
                 'type'=>'ckeditor',
                 'label'=>'Текст',
                 'value'=>old() ? old('content') : $sale->content
-            ],
+            ],[
+                'name'=>'sales',
+                'type'=>'checkbox',
+                'label'=>'Поместить новость в разделе "АКЦИИ И СКИДКИ"',
+                'value'=>old() ? old('sales') : $sale->sales
+            ],[
+                'name'=>'company_id',
+                'type'=>'select',
+                'label'=>'Комания',
+                'value'=>old() 
+                    ? old('company') 
+                    : ($sale->company ? $sale->company->id : ''),
+                'options'=>Company::lists('name','id')
+            ]
         ];
 
     }
@@ -124,7 +138,7 @@ class SaleController extends Controller
             return back()->withInput()->withErrors($validator);
 
         Sale::firstOrNew(['id' => $request->id])
-            ->fill($request->only('title','image','entry','content','market'))
+            ->fill($request->only('title','image','entry','content','market','company_id'))
             ->save();
 
         return redirect()->route('admin.sales.index');
@@ -150,7 +164,7 @@ class SaleController extends Controller
     public function edit($id)
     {
 
-        $sale = Sale::find($id);
+        $sale = Sale::with('company')->find($id);
 
         return view('admin.form',[
             'title' => 'Редактировать акцию',

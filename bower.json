@@ -22,6 +22,7 @@
     "ckeditor": "^4.5.8",
     "AdminLTE": "admin-lte#^2.3.3",
     "bootstrap": "^3.3.6",
-    "blueimp-file-upload": "fileupload#^9.12.3"
+    "blueimp-file-upload": "fileupload#^9.12.3",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.37"
   }
 }

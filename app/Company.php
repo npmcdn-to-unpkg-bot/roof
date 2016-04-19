@@ -31,7 +31,7 @@ class Company extends Model
 
     protected $fillable = [ 'name', 'logo', 'address', 'email', 'phone', 'entry', 'about', 'services', 'association', 'privat' ];
 
-    protected $dates = ['created_at', 'updated_at', 'register'];
+    protected $dates = ['created_at', 'updated_at'];
 
     public function user () {
     	return $this->belongsTo('App\User');
@@ -43,6 +43,14 @@ class Company extends Model
 
     public function jobs () {
         return $this->hasMany('App\Job');
+    }
+
+    public function articles () {
+        return $this->hasMany('App\Article');
+    }
+
+    public function sales () {
+        return $this->hasMany('App\Sale');
     }
 
     public function propositions () {

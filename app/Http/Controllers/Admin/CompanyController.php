@@ -102,16 +102,16 @@ class CompanyController extends Controller
                 'value' => old() ? old('phone') : $company->phone
             ],[
                 'name' => 'specialisations',
-                'type' => 'taxonomy',
+                'type' => 'select_multiple',
                 'label' => 'Специализации',
-                'values' => old() ? old('specialisations') : $company->specialisations->map(function ($specialisation) {return $specialisation->id;})->all(),
-                'taxonomy' => Specialisation::all()
+                'values' => old() ? (array)old('specialisations') : $company->specialisations->lists('id')->all(),
+                'options' => Specialisation::lists('name','id')
             ],[
                 'name' => 'propositions',
-                'type' => 'taxonomy',
+                'type' => 'select_multiple',
                 'label' => 'Предложения',
-                'values' => old() ? old('propositions') : $company->propositions->map(function ($proposition) {return $proposition->id;})->all(),
-                'taxonomy' => Proposition::all()
+                'values' => old() ? (array)old('propositions') : $company->propositions->lists('id')->all(),
+                'options' => Proposition::lists('name','id')
             ]
         ];
     }

@@ -23,6 +23,10 @@ class Article extends Model
 		'content.min' => 'Текст статьи должен быть не меньше 500 символов.',
     ];
 
-    protected $fillable = ['title','image','entry','content','market'];
+    protected $fillable = ['title','image','entry','content','market','company_id'];
+
+    public function company () {
+    	return $this->belongsTo('App\Company');
+    }
 
 }

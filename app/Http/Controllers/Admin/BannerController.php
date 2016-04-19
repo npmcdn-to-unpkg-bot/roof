@@ -52,10 +52,12 @@ class BannerController extends Controller
                 'value'=>old() ? old('href') : $banner->href
             ],[
                 'name'=>'areas',
-                'type'=>'taxonomy',
+                'type'=>'select_multiple',
                 'label'=>'Область вывода',
-                'values'=> old() ? old('areas') : $banner->areas->map(function ($area) {return $area->id;})->all(),
-                'taxonomy'=>Area::all()
+                'values'=> old() 
+                    ? (array)old('areas')
+                    : $banner->areas->lists('id')->all(),
+                'options'=>Area::lists('name','id')
             ]
         ];
     }

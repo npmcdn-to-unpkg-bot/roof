@@ -6,19 +6,14 @@
   <title>roofer.com.ua</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="/bower/AdminLTE/bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/bower/AdminLTE/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. -->
   <link rel="stylesheet" href="/bower/AdminLTE/dist/css/skins/skin-blue.min.css">
-  <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="/bower/AdminLTE/plugins/iCheck/all.css">
-
+  <link rel="stylesheet" href="/bower/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+  <link rel="stylesheet" href="/bower/AdminLTE/plugins/select2/select2.min.css">  
+  <link rel="stylesheet" href="/bower/AdminLTE/dist/css/AdminLTE.min.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -78,6 +73,13 @@
           <ul class="treeview-menu">
             <li><a href="{{route('admin.company.index')}}"><i class="fa fa-list"></i>Список компаний</a></li>
             <li><a href="{{route('admin.company.create')}}"><i class="fa fa-plus"></i>Добавить компанию</a></li>
+          </ul>
+        </li>
+        <li class="treeview {{ Request::is('admin/building*')?'active':'' }}">
+          <a href="#"><i class="fa fa-building"></i> <span>Стройки</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('admin.building.index')}}"><i class="fa fa-list"></i>Список строек</a></li>
+            <li><a href="{{route('admin.building.create')}}"><i class="fa fa-plus"></i>Добавить стройку</a></li>
           </ul>
         </li>
         <li class="treeview {{ Request::is('admin/news*')?'active':'' }}">
@@ -142,28 +144,34 @@
 
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 2.2.0 -->
 <script src="/bower/AdminLTE/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <script src="/bower/AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
 <script src="/bower/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
 <script src="/bower/AdminLTE/dist/js/app.min.js"></script>
-
 <script src="/bower/AdminLTE/plugins/fastclick/fastclick.min.js"></script>
-
 <script src="/bower/AdminLTE/plugins/ckeditor/ckeditor.js"></script>
-
-<!-- iCheck 1.0.1 -->
 <script src="/bower/AdminLTE/plugins/iCheck/icheck.min.js"></script>
+<script src="/bower/moment/min/moment-with-locales.min.js"></script>
+<script src="/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/bower/dropzone/dist/min/dropzone.min.js" ></script>
+<script src="/bower/AdminLTE/plugins/select2/select2.full.min.js"></script>
+<script src="/bower/AdminLTE/plugins/select2/i18n/ru.js"></script>
+
 
 <script>
     $(function() {
+      
       $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
         checkboxClass: 'icheckbox_minimal-blue',
         radioClass: 'iradio_minimal-blue'
       });
-      $('.ui-sortable').sortable();
+      
+      $('.sortable').sortable();
+
+      $(".select2").select2({
+        language: 'ru'
+      });
+
     });
 </script>
 

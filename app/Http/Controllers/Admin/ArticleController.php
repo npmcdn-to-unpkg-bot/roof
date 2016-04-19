@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Validator;
 use Image;
+use App\Company;
 use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -61,7 +62,15 @@ class ArticleController extends Controller
                 'type'=>'checkbox',
                 'label'=>'Поместить новость в разделе "НОВОСТИ РЫНКА"',
                 'value'=>old() ? old('market') : $article->market
-            ],
+            ],[
+                'name'=>'company_id',
+                'type'=>'select',
+                'label'=>'Комания',
+                'value'=>old() 
+                    ? old('company') 
+                    : ($article->company ? $article->company->id : ''),
+                'options'=>Company::lists('name','id')
+            ]
         ];
         
     }
@@ -129,7 +138,7 @@ class ArticleController extends Controller
             return back()->withInput()->withErrors($validator);
 
         Article::firstOrNew(['id' => $request->id])
-            ->fill($request->only('title','image','entry','content','market'))
+            ->fill($request->only('title','image','entry','content','market','company_id'))
             ->save();
 
         return redirect()->route('admin.news.index');

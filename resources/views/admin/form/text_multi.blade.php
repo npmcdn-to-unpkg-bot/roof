@@ -1,6 +1,6 @@
 <div class="form-group {{$errors->first($name)?'has-error':''}}">
 	<label class="control-label">{{$label}}</label>
-	<div class="ui-sortable" id="{{$name}}">
+	<div class="sortable" id="{{$name}}">
 		@foreach ($values as $value)
 			<div class="form-group input-group {{$name}}">
 			    <span class="input-group-addon"><i class="fa fa-sort"></i></span>

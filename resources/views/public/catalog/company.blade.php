@@ -4,14 +4,14 @@
 <div class="container offset_vertical_60">
 	<div class="container__row">
 		<div class="container__col-8">
-			<div class="company-cart company-cart_page company-cart_white">
-				<img src="/s-img/company.jpg" alt="" class="company-cart__logo">
-				<div class="company-cart__name">Компания ФУЧС, ООО</div>
-				<div class="company-cart__description">Монтажные работы, кровельные работы, инжиниринг, промышленный альпинизм</div>
+			<div class="company-cart clearfix company-cart_page company-cart_white">
+				<img src="/imagecache/160x140/{{$company->logo}}" alt="" class="company-cart__logo">
+				<div class="company-cart__name">{{$company->name}}</div>
+				<div class="company-cart__description">{{$company->entry}}</div>
 				<div class="company-cart__address">Украина, г. Одесса</div>
-				<div class="company-cart__post-date">Дата регистрации: 01.01.2001</div>
+				<div class="company-cart__post-date">Дата регистрации: {{$company->created_at->format('d.m.Y')}}</div>
 				<div class="company-cart__right-top">
-					<img src="/img/user-menu-1.png" alt="" class="company-cart__member-label">
+					@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label"> @endif
 					<div class="company-cart__rating">
 						рейтинг <div class="company-cart__rating_value">9.8</div>
 					</div>			
@@ -25,70 +25,26 @@
 					<a href="#prices" class="jus__item tabs__nav">ПРАЙСЫ</a>
 					<a href="#sales" class="jus__item tabs__nav">АКЦИИ</a>
 				</div>
-				<div id="description" class="tabs__tab tabs__tab_active"></div>
+				<div id="description" class="tabs__tab tabs__tab_active">
+					{!!$company->about!!}
+				</div>
 				<div id="portfolio" class="tabs__tab">
-					<div class="container__row offset_vertical_40">
-						<div class="container__col-4 building building_small">
-							<img src="/s-img/portfolio-1.jpg" alt="" class="building__image">
-							<a href="" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-							<span class="building__type">Церковь</span>
-							<a href="#" class="building__company">ООО "ЗАРС"</a>
-							<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-							<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
+					@foreach ($company->buildings as $i => $building)
+						@if ($i%3==0)<div class="container__row offset_vertical_40"> @endif
+							<div class="container__col-4 building building_small">
+								<img src="/s-img/portfolio-1.jpg" alt="" class="building__image">
+								<a href="" class="building__name">{{$building->name}}</a>
+								<span class="building__type">{{$building->type}}</span>
+								<span class="building__address">Украина, Киевская обл., г. Бровары</span>
+								<span class="building__period">
+									{{$building->quarter('start')}} Кв-л {{$building->start->year}} г. 
+									— {{$building->quarter('end')}} Кв-л {{$building->start->year}} г.</span>
+						@if ($i%3==2||$i==count($company->buildings)) </div> @endif
 						</div>
-						<div class="container__col-4 building building_small">
-							<img src="/s-img/portfolio-1.jpg" alt="" class="building__image">
-							<a href="" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-							<span class="building__type">Церковь</span>
-							<a href="#" class="building__company">ООО "ЗАРС"</a>
-							<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-							<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-						</div>
-						<div class="container__col-4 building building_small">
-							<img src="/s-img/portfolio-1.jpg" alt="" class="building__image">
-							<a href="" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-							<span class="building__type">Церковь</span>
-							<a href="#" class="building__company">ООО "ЗАРС"</a>
-							<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-							<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-						</div>
-					</div>
-					<div class="container__row offset_vertical_40">
-						<div class="container__col-4 building building_small">
-							<img src="/s-img/portfolio-1.jpg" alt="" class="building__image">
-							<a href="" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-							<span class="building__type">Церковь</span>
-							<a href="#" class="building__company">ООО "ЗАРС"</a>
-							<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-							<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-						</div>
-						<div class="container__col-4 building building_small">
-							<img src="/s-img/portfolio-1.jpg" alt="" class="building__image">
-							<a href="" class="building__name">ДЕСЯТИННАЯ ЦЕРКОВЬ</a>
-							<span class="building__type">Церковь</span>
-							<a href="#" class="building__company">ООО "ЗАРС"</a>
-							<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-							<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
-						</div>
-					</div>
+					@endforeach
 				</div>
 				<div id="services" class="tabs__tab">
-					<div class="company-service offset_vertical_30">
-						<div class="company-service__title">Кровля. Монтаж и ремонт скатных крыш.</div>
-						<p>Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года.</p>
-					</div>
-					<div class="company-service offset_vertical_30">
-						<div class="company-service__title">Кровля. Монтаж и ремонт скатных крыш.</div>
-						<p>Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года.</p>
-					</div>
-					<div class="company-service offset_vertical_30">
-						<div class="company-service__title">Кровля. Монтаж и ремонт скатных крыш.</div>
-						<p>Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года.</p>
-					</div>
-					<div class="company-service offset_vertical_30">
-						<div class="company-service__title">Кровля. Монтаж и ремонт скатных крыш.</div>
-						<p>Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года.</p>
-					</div>
+					{{$company->services}}
 				</div>
 				<div id="prices" class="tabs__tab">
 					<a href="" class="file-link">
@@ -112,34 +68,15 @@
 				</div>
 				<div id="sales" class="tabs__tab">
 					<div class="company-sale">
-						<div class="company-sale__item">
-							<img src="/s-img/akcii-1.jpg" alt="" class="company-sale__image">
-							<div class="company-sale__text">
-								<div class="company-sale__title">Заголовок акции</div>
-								<p>Теперь у вас есть удивительная озможность стать не только зрителем, но и непосредственным Теперь у вас есть удивительная озможность стать не только зрителем, но и непосредственным участником.  но и непосредственным Теперь у вас есть </p>
+						@foreach ($company->sales as $sale)
+							<div class="company-sale__item">
+								<img src="/imagecache/120x85/{{$sale->image}}" alt="" class="company-sale__image">
+								<div class="company-sale__text">
+									<a href="{{route('sales.show',$sale)}}" class="company-sale__title">{{$sale->title}}</a>
+									<p>{{$sale->entry}}</p>
+								</div>
 							</div>
-						</div>
-						<div class="company-sale__item">
-							<img src="/s-img/akcii-1.jpg" alt="" class="company-sale__image">
-							<div class="company-sale__text">
-								<div class="company-sale__title">Заголовок акции</div>
-								<p>Теперь у вас есть удивительная озможность стать не только зрителем, но и непосредственным Теперь у вас есть удивительная озможность стать не только зрителем, но и непосредственным участником.  но и непосредственным Теперь у вас есть </p>
-							</div>
-						</div>
-						<div class="company-sale__item">
-							<img src="/s-img/akcii-1.jpg" alt="" class="company-sale__image">
-							<div class="company-sale__text">
-								<div class="company-sale__title">Заголовок акции</div>
-								<p>Теперь у вас есть удивительная озможность стать не только зрителем, но и непосредственным Теперь у вас есть удивительная озможность стать не только зрителем, но и непосредственным участником.  но и непосредственным Теперь у вас есть </p>
-							</div>
-						</div>
-						<div class="company-sale__item">
-							<img src="/s-img/akcii-1.jpg" alt="" class="company-sale__image">
-							<div class="company-sale__text">
-								<div class="company-sale__title">Заголовок акции</div>
-								<p>Теперь у вас есть удивительная озможность стать не только зрителем, но и непосредственным Теперь у вас есть удивительная озможность стать не только зрителем, но и непосредственным участником.  но и непосредственным Теперь у вас есть </p>
-							</div>
-						</div>
+						@endforeach
 					</div>
 				</div>
 			</div>
@@ -225,18 +162,12 @@
 			</div>
 			<div class="company-blog offset_vertical_60">
 				<div class="title">БЛОГ КОМПАНИИ</div>
-				<div class="company-blog__item">
-					<a href="" class="company-blog__title">ЗАГОЛОВОК ЗАПИСИ</a>
-					<p>Теперь у вас есть удивительная возможность стать не только зрителем, но и непосредственным участником этого волшебного действия.  стать не только зрителем, но и непосредственным участником этого волшебного действия.</p>
-				</div>
-				<div class="company-blog__item">
-					<a href="" class="company-blog__title">ЗАГОЛОВОК ЗАПИСИ</a>
-					<p>Теперь у вас есть удивительная возможность стать не только зрителем, но и непосредственным участником этого волшебного действия.  стать не только зрителем, но и непосредственным участником этого волшебного действия.</p>
-				</div>
-				<div class="company-blog__item">
-					<a href="" class="company-blog__title">ЗАГОЛОВОК ЗАПИСИ</a>
-					<p>Теперь у вас есть удивительная возможность стать не только зрителем, но и непосредственным участником этого волшебного действия.  стать не только зрителем, но и непосредственным участником этого волшебного действия.</p>
-				</div>
+				@foreach ($company->articles as $article)
+					<div class="company-blog__item">
+						<a href="" class="company-blog__title">{{$article->title}}</a>
+						<p>{{$article->entry}}</p>
+					</div>
+				@endforeach
 			</div>
 		</div>
 	</div>
