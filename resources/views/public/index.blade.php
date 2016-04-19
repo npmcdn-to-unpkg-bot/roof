@@ -40,7 +40,7 @@
 								<div class="buildings-block__tab-content">
 									<div class="buildings-block__nav-tab buildings-block__nav-tab_job">Вакансии</div>
 									@foreach (App\Job::take(5)->get() as $job)
-										<a href="{{route('jobs.show',$job)}}" class="buildings-block__title">{{$job->name}}</a>
+										<a href="#" class="buildings-block__title">{{$job->name}}</a>
 									@endforeach
 								</div>
 							</div>
