@@ -69,9 +69,7 @@
 						</div>
 					@if ($i+1==count($companies)||$i%2==1) </div> @endif
 					@if ($i==5) 
-						@include('public.area.banner',[
-							'area' => App\Area::where('name', 'catalog.2')->with('banner')->first()
-						])
+						@include('public.area.banner',['area' => 'catalog.2'])
 					@endif
 				@endforeach
 				@include('pagenav',['items'=>$companies])
@@ -103,105 +101,21 @@
 			<div class="container__col-4">
 				<a href="#" class="button button_orange button_huge">ДОБАВИТЬ КОМПАНИЮ</a>
 				<div class="offset_vertical_55">
-					@include('public.area.banner',[
-						'area' => App\Area::where('name', 'catalog.1')->with('banner')->first()
-					])
+					@include('public.area.banner',['area' => 'catalog.1'])
 				</div>
-				<div class="forum-message offset_vertical_55">
-					<div class="title">ПОСЛЕДНЕЕ НА ФОРУМЕ</div>
-					<div class="forum-message__item">
-						<img src="/img/no-name-user.jpg" alt="" class="forum-message__avatar">
-						<a href="#" class="forum-message__name">good_times</a><span class="forum-message_post-date">5 мин. назад</span>
-						<div class="forum-message__text">Как строить стропильную крышу?</div>
-						<a href="#" class="forum-message__theme">ВОПРОСЫ</a>
-					</div>
-					<div class="forum-message__item">
-						<img src="/s-img/user-1.jpg" alt="" class="forum-message__avatar">
-						<a href="#" class="forum-message__name">preZident</a><span class="forum-message_post-date">6 мин. назад</span>
-						<div class="forum-message__text">Ребята, какой вариант крыши тут можно придумать?</div>
-						<a href="#" class="forum-message__theme">Необычные архитектурные формы крыш</a>
-					</div>
-					<div class="forum-message__item">
-						<img src="/img/no-name-user.jpg" alt="" class="forum-message__avatar">
-						<a href="#" class="forum-message__name">Smitters</a><span class="forum-message_post-date">9 мин. назад</span>
-						<div class="forum-message__text">Я бы увеличил сечение конькового прогона</div>
-						<a href="#" class="forum-message__theme">СОВЕТЫ</a>
-					</div>
-					<div class="forum-message__item">
-						<img src="/s-img/user-2.jpg" alt="" class="forum-message__avatar">
-						<a href="#" class="forum-message__name">Barbos</a><span class="forum-message_post-date">11 мин. назад</span>
-						<div class="forum-message__text">Интересует диагностика кровли</div>
-						<a href="#" class="forum-message__theme">Диагностика кровли. Стоимость.</a>
-					</div>
-					<div class="forum-message__item">
-						<img src="/img/no-name-user.jpg" alt="" class="forum-message__avatar">
-						<a href="#" class="forum-message__name">malfoy</a><span class="forum-message_post-date">20 мин. назад</span>
-						<div class="forum-message__text">Здравствуйте! Коллеги, подскажите, пожалуйста, каким образом мне решить мою проблему. Фото крыши прилагаю. Заранее благодарен всем за ответы.</div>
-						<a href="#" class="forum-message__theme">Нужна помощь</a>
-					</div>
+				<div class="offset_vertical_55">
+					@include('public.forum.block')
 				</div>
-				<div class="calendar offset_vertical_55">
-					<div class="calendar__title">
-						КАЛЕНАДРЬ
-						<span class="calendar__month">&lt; АПРЕЛЬ 2015 &gt;</span>
-					</div>
-					<table class="calendar__table">
-						<tbody><tr>
-							<td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td>
-						</tr>
-						<tr>
-							<td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td class="calendar__date_active">10</td><td>11</td>
-						</tr>
-						<tr>
-							<td>12</td><td>13</td><td>14</td><td class="calendar__date_active">15</td><td>16</td><td>17</td><td>18</td>
-						</tr>
-						<tr>
-							<td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td class="calendar__date_active">24</td><td>25</td>
-						</tr>
-						<tr>
-							<td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td>
-						</tr>
-					</tbody></table>
+				<div class="offset_vertical_55">
+					@include('public.calendar.block')
 				</div>
-				<div class="offset_vertical_55">@include('public.polls.block')</div>
+				<div class="offset_vertical_55">
+					@include('public.polls.block')
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid container-fluid_light-gray padding_vertical_60">
-		<div class="container">
-			<div class="title">ДОСКА ОБЪЯВЛЕНИЙ</div>
-			<div class="container__row">
-				<a href="" class="container__col-2 objavlenie">
-					<img src="/s-img/obyavlenie-1.jpg" alt="" class="objavlenie__image">
-					<span class="objavlenie__text">Набор инструментов</span>
-					<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-				</a>
-				<a href="" class="container__col-2 objavlenie">
-					<img src="/s-img/obyavlenie-2.jpg" alt="" class="objavlenie__image">
-					<span class="objavlenie__text">Набор инструментов</span>
-					<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-				</a>
-				<a href="" class="container__col-2 objavlenie">
-					<img src="/s-img/obyavlenie-3.jpg" alt="" class="objavlenie__image">
-					<span class="objavlenie__text">Набор инструментов</span>
-					<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-				</a>
-				<a href="" class="container__col-2 objavlenie">
-					<img src="/s-img/obyavlenie-4.jpg" alt="" class="objavlenie__image">
-					<span class="objavlenie__text">Набор инструментов</span>
-					<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-				</a>
-				<a href="" class="container__col-2 objavlenie">
-					<img src="/s-img/obyavlenie-5.jpg" alt="" class="objavlenie__image">
-					<span class="objavlenie__text">Набор инструментов</span>
-					<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-				</a>
-				<a href="" class="container__col-2 objavlenie">
-					<img src="/s-img/obyavlenie-6.jpg" alt="" class="objavlenie__image">
-					<span class="objavlenie__text">Набор инструментов</span>
-					<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">1 200 грн.</span>
-				</a>
-			</div>
-		</div>
-	</div>
+	@include('public.desk.block',[
+		'offers' => App\Offer::take(5)->get()
+	])
 @endsection

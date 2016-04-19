@@ -60,9 +60,7 @@
 					</div>
 				@endif
 				<div class="offset_vertical_55">
-					@include('public.area.banner',[
-						'area' => App\Area::where('name', 'building.show.1')->with('banner')->first()
-					])
+					@include('public.area.banner',['area' => 'building.show.1'])
 				</div>
 			</div>
 		</div>

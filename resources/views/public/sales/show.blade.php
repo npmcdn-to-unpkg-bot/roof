@@ -17,13 +17,9 @@
 				</div>
 			</div>
 			<div class="container__col-4">
-				@include('public.area.banner',[
-					'area' => App\Area::where('name', 'sales.show.1')->with('banner')->first()
-				])
+				@include('public.area.banner',['area' => 'sales.show.1'])
 				<div class="offset_vertical_55">
-					@include('public.area.banner',[
-						'area' => App\Area::where('name', 'sales.show.2')->with('banner')->first()
-					])
+					@include('public.area.banner',['area' => 'sales.show.2'])
 				</div>
 			</div>
 		</div>

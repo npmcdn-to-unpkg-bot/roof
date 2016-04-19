@@ -42,9 +42,7 @@
 					</tbody></table>
 				</div>
 				<div class="offset_vertical_55">
-					@include('public.area.banner',[
-						'area' => App\Area::where('name', 'news.show.1')->with('banner')->first()
-					])
+					@include('public.area.banner',['area' => 'news.show.1'])
 				</div>
 				<form class="question offset_vertical_55">
 					<div class="title">ПОСЛЕДНИЙ ОПРОС</div>
@@ -62,9 +60,7 @@
 					<button class="question__button button button_blue button_big">ГОЛОСОВАТЬ</button>
 				</form>
 				<div class="offset_vertical_55">
-					@include('public.area.banner',[
-						'area' => App\Area::where('name', 'news.show.2')->with('banner')->first()
-					])
+					@include('public.area.banner',['area' => 'news.show.2'])
 				</div>
 			</div>
 		</div>

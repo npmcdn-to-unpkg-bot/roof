@@ -69,14 +69,10 @@
 					<button class="button button_100 button_cyan button_big">ПОКАЗАТЬ</button>
 				</form>
 				<div class="offset_vertical_55">
-					@include('public.area.banner',[
-						'area' => App\Area::where('name', 'desk.show.1')->with('banner')->first()
-					])
+					@include('public.area.banner',['area' =>'desk.show.1'])
 				</div>
 				<div class="offset_vertical_55">
-					@include('public.area.banner',[
-						'area' => App\Area::where('name', 'desk.show.2')->with('banner')->first()
-					])
+					@include('public.area.banner',['area' => 'desk.show.2'])
 				</div>
 			</div>
 		</div>

@@ -67,4 +67,12 @@ class Building extends Model
 		);
 	}
 
+	public function calendar () {
+		return $this->quarter('start').' Кв-л '
+				.$this->start->year.' г. '
+				.'— '
+				.$this->quarter('end').' Кв-л '
+				.$this->start->year.' г.';
+	}
+
 }

@@ -23,14 +23,10 @@
 
 			</div>
 			<div class="container__col-4">
-				@include('public.area.banner',[
-					'area' => App\Area::where('name', 'news.1')->with('banner')->first()
-				])
+				@include('public.area.banner',['area' => 'news.1'])
 				<div class="offset_vertical_55">@include('public.polls.block')</div>
 				<div class="offset_vertical_55">
-					@include('public.area.banner',[
-						'area' => App\Area::where('name', 'news.2')->with('banner')->first()
-					])
+					@include('public.area.banner',['area' => 'news.2'])
 				</div>
 			</div>
 		</div>

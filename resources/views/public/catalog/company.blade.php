@@ -36,9 +36,7 @@
 								<a href="" class="building__name">{{$building->name}}</a>
 								<span class="building__type">{{$building->type}}</span>
 								<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-								<span class="building__period">
-									{{$building->quarter('start')}} Кв-л {{$building->start->year}} г. 
-									— {{$building->quarter('end')}} Кв-л {{$building->start->year}} г.</span>
+								<span class="building__period">{{$building->calendar()}}</span>
 						@if ($i%3==2||$i==count($company->buildings)) </div> @endif
 						</div>
 					@endforeach
@@ -156,9 +154,7 @@
 				</div>
 			</div>
 			<div class="offset_vertical_55">
-				@include('public.area.banner',[
-					'area' => App\Area::where('name', 'catalog.show.1')->with('banner')->first()
-				])
+				@include('public.area.banner',['area' => 'catalog.show.1'])
 			</div>
 			<div class="company-blog offset_vertical_60">
 				<div class="title">БЛОГ КОМПАНИИ</div>
