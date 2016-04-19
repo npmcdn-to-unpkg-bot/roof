@@ -57,25 +57,5 @@
 		@endforeach
 	</div>
 	@include('pagenav',['items'=>$buildings])
-	<div class="container-fluid container-fluid_light-gray padding_vertical_40">
-		<div class="container">
-			<div class="title">НОВОСТИ РЫНКА</div>
-			<div class="container__row market-news">
-				<div class="container__col-4 market-news__item">
-					<img src="s-img/news-2.jpg" alt="" class="market-news__image">
-					<div class="market-news__title">Положение кровельного рынка Великобритании</div>
-					<div class="market-news__text">Рост кровельного рынка Великобритании оценивается примерно на 4,5 % в 2015 году, после периода низкой производительности со снижением в 2014</div>
-				</div>
-				<div class="container__col-4 market-news__item">
-					<div class="market-news__title">Положение кровельного рынка Великобритании</div>
-					<div class="market-news__text">Рост кровельного рынка Великобритании оценивается примерно на 4,5 % в 2015 году, после периода низкой производительности со снижением в 2014</div>
-				</div>
-				<div class="container__col-4 market-news__item">
-					<img src="s-img/news-2.jpg" alt="" class="market-news__image">
-					<div class="market-news__title">Положение кровельного рынка Великобритании</div>
-					<div class="market-news__text">Рост кровельного рынка Великобритании оценивается примерно на 4,5 % в 2015 году, после периода низкой производительности со снижением в 2014</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	@include('public.news.block2',['articles'=>App\Article::where('market',1)->take(3)->get()])
 @endsection

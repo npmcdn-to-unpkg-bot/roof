@@ -19,20 +19,19 @@
 					<div class="container__col-6">
 						<img src="/s-img/desk-single.jpg" alt="" class="desk-single__image">
 						<div class="title-light">КОНТАКТНАЯ ИНФОРМАЦИЯ</div>
-						<div class="desk-single__person">Юрий</div>
-						<div class="desk-single__phone">+38 094 893-84-49</div>
-						<a href="#" class="desk-single__email">pochta@pochta.com</a>
+						@if($offer->name)<div class="desk-single__person">{{$offer->name}}</div>@endif
+						@if($offer->phone)<div class="desk-single__phone">{{$offer->phone}}</div>@endif
+						@if($offer->email)<a href="#" class="desk-single__email">{{$offer->email}}</a>@endif
 					</div>
 					<div class="container__col-6">
-						<div class="desk-single__title">Демонтаж стен, алмазная резка бетона, сверление отверстий, вырезка проемов</div>
+						<div class="desk-single__title">{{$offer->title}}</div>
 						<div class="desk-single__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro quia ratione distinctio quas ad eveniet reprehenderit tempora facilis provident! Maxime, sed, doloribus. Atque vitae natus explicabo illo similique hic repellendus accusamus voluptatibus animi facilis corporis placeat deserunt labore suscipit ullam rem, sit aliquid excepturi eligendi accusantium quibusdam perspiciatis enim. Exercitationem dolor suscipit, ut magnam eius velit qui reprehenderit aut! Amet nostrum facere perferendis culpa voluptas possimus corrupti molestias tempore, sint sit mollitia, totam minima harum ad maxime impedit. Cupiditate odio veniam harum neque delectus in blanditiis, doloribus exercitationem modi similique repellat non voluptas iste, atque dolorum, quibusdam. Error, odit veniam.</div>
-						<div class="desk-single__info">№231123   Дата размещения: 21.09.2015</div>
-						<div>Специализация: Кровельные материалы</div>
-						<a href="" class="desk-single__cat">Услуги</a>
-						<span class="desk-single__sep"></span>
-						<a href="" class="desk-single__cat">Продажа материалов</a>
-						<span class="desk-single__sep"></span>
-						<a href="" class="desk-single__cat">Еще одна категория</a>						
+						<div class="desk-single__info">№{{$offer->id}}   Дата размещения: {{$offer->created_at->format('d.m.Y')}}</div>
+						<div>Специализация: {{$offer->name}}</div>
+						@foreach($offer->deskcategories as $category)
+						<a href="" class="desk-single__cat">{{$category->name}}</a>
+						@if($offer->deskcategories->last()!==$category)<span class="desk-single__sep"></span>@endif
+						@endforeach
 					</div>
 				</div>
 				<div class="container__row offset_vertical_30">
@@ -77,25 +76,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid container-fluid_light-gray padding_vertical_40">
-		<div class="container">
-			<div class="title">НОВОСТИ РЫНКА</div>
-			<div class="container__row market-news">
-				<div class="container__col-4 market-news__item">
-					<img src="/s-img/news-2.jpg" alt="" class="market-news__image">
-					<div class="market-news__title">Положение кровельного рынка Великобритании</div>
-					<div class="market-news__text">Рост кровельного рынка Великобритании оценивается примерно на 4,5 % в 2015 году, после периода низкой производительности со снижением в 2014</div>
-				</div>
-				<div class="container__col-4 market-news__item">
-					<div class="market-news__title">Положение кровельного рынка Великобритании</div>
-					<div class="market-news__text">Рост кровельного рынка Великобритании оценивается примерно на 4,5 % в 2015 году, после периода низкой производительности со снижением в 2014</div>
-				</div>
-				<div class="container__col-4 market-news__item">
-					<img src="/s-img/news-2.jpg" alt="" class="market-news__image">
-					<div class="market-news__title">Положение кровельного рынка Великобритании</div>
-					<div class="market-news__text">Рост кровельного рынка Великобритании оценивается примерно на 4,5 % в 2015 году, после периода низкой производительности со снижением в 2014</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	@include('public.news.block2',['articles'=>App\Article::where('market',1)->take(3)->get()])
 @endsection
