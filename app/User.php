@@ -47,7 +47,7 @@ class User extends Authenticatable
     }
 
     public function hasRole ($role) {
-        return $this->roles->search($role);
+        return $this->roles()->where('role', $role)->first();
     }
 
 }
