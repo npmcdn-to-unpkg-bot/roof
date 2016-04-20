@@ -5,7 +5,7 @@ namespace App\Http\ViewComposers;
 use Illuminate\View\View;
 use App\Article;
 
-class NewsBlock
+class NewsBlock2
 {
     /**
      * Bind data to the view.
@@ -14,7 +14,7 @@ class NewsBlock
      * @return void
      */
 	public function compose (View $view) {
-        $articles = Article::where('market',1)->take(4)->get();
+        $articles = Article::where('market',1)->take(5)->get();
         return $view->with('articles', $articles);
     }
 }
