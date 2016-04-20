@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Validator;
 use Storage;
 use Illuminate\Http\Request;
+use App\Company;
 use App\Building;
 use App\Image;
 use App\Http\Requests;
@@ -77,6 +78,14 @@ class BuildingController extends Controller
                 'format' => 'MM YYYY',
                 'label' => 'Дата окончания',
                 'value' => old() ? old('end') : $building->end->format('m Y')
+            ],[
+                'name'=>'company_id',
+                'type'=>'select',
+                'label'=>'Комания',
+                'value'=>old() 
+                    ? old('company_id') 
+                    : ($building->company ? $building->company->id : ''),
+                'options'=>Company::lists('name','id')
             ]
         ];
     }
@@ -146,7 +155,7 @@ class BuildingController extends Controller
 
 
         $building = Building::firstOrNew(['id' => $request->id])
-            ->fill($request->only('name','type','information','published','start','end'));
+            ->fill($request->only('name','type','information','published','start','end','company_id'));
         $building->save();
 
         $building->images()->whereNotIn('image', $request->images)->delete();

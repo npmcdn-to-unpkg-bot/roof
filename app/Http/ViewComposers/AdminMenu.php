@@ -21,17 +21,6 @@ class AdminMenu
         if (Request::is('user*'))
             $menu = [
                 [
-                    'name' => 'Компания',
-                    'icon' => 'fa-bank',
-                    'active' => Request::is('user/company*')?'active':'',
-                    'children' => [
-                        [
-                            'name' => $user->company ? $user->company->name : 'Добавить компанию',
-                            'icon' => 'fa-plus',
-                            'href' => url('user'),
-                        ],
-                    ],
-                ],[
                     'name' => 'Объявления',
                     'icon' => 'fa-file-image-o',
                     'active' => Request::is('user/offers*')?'active':'',
@@ -44,6 +33,17 @@ class AdminMenu
                             'name' => 'Добавить объявление',
                             'icon' => 'fa-plus',
                             'href' => route('user.offers.create'),
+                        ],
+                    ],
+                ],[
+                    'name' => 'Компания',
+                    'icon' => 'fa-bank',
+                    'active' => Request::is('user/company*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => $user->company ? $user->company->name : 'Добавить компанию',
+                            'icon' => 'fa-plus',
+                            'href' => url('user'),
                         ],
                     ],
                 ],

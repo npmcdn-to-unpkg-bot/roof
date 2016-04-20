@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Image;
 use Validator;
+use App\User;
 use App\Company;
 use App\Specialisation;
 use App\Proposition;
@@ -112,6 +113,14 @@ class CompanyController extends Controller
                 'label' => 'Предложения',
                 'values' => old() ? (array)old('propositions') : $company->propositions->lists('id')->all(),
                 'options' => Proposition::lists('name','id')
+            ],[
+                'name'=>'user_id',
+                'type'=>'select',
+                'label'=>'Пользователь',
+                'value'=>old() 
+                    ? old('user_id') 
+                    : ($company->user ? $company->user->id : ''),
+                'options'=>User::lists('email','id')
             ]
         ];
     }
@@ -184,7 +193,7 @@ class CompanyController extends Controller
             return back()->withInput()->withErrors($validator);
 
         $company = Company::firstOrNew(['id' => $request->id])
-            ->fill($request->only('name','email','logo','phone','entry','about','services','association','privat'));
+            ->fill($request->only('name','email','logo','phone','entry','about','services','association','privat','user_id'));
         $company->save();
         $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
         $company->propositions()->sync($request->propositions ? $request->propositions : []);

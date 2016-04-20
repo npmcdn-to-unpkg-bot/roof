@@ -19,7 +19,7 @@ class Role
 
         if ( !Auth::user()->hasRole($role) )
             return redirect()->guest('login');
-
+        
         return $next($request);
     }
 }
