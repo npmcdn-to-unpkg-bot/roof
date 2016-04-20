@@ -8,7 +8,7 @@ class Company extends Model
 {
 
     public static $rules = [
-        'name' => 'required|max:35',
+        'name' => 'required|max:255',
         'email' => 'required|email|max:255',
         'phone' => 'required',
         'logo' => 'required',
@@ -17,7 +17,7 @@ class Company extends Model
 
     public static $messages = [
         'name.required' => 'Введите название компании.',
-        'name.max' => 'Название компании должно быть не больше 35 символов.',
+        'name.max' => 'Название компании должно быть не больше 255 символов.',
         'email.required' => 'Введите электронную почту компании.',
         'email.email' => 'Введите корректную электронную почту компании.',
         'email.max' => 'Электронная почта не должна быть больше 255 символов.',

@@ -10,7 +10,7 @@ class Offer extends Model
 	protected $fillable = ['title','image','price','specialisation','name','email','phone','framed','information','user_id'];
 
 	public static $rules = [
-        'title' => 'required|min:10',
+        'title' => 'required|min:10|max:255',
         'price' => 'required',
         'image' => 'required',
         'information' => 'required|min:50',
@@ -23,6 +23,7 @@ class Offer extends Model
     public static $messages = [
         'title.required' => 'Введите заголовк объявления.',
         'title.min' => 'Заголовок должен быть не меньше 10 символов.',
+        'title.max' => 'Заголовок должен быть не больше 255 символов.',
         'price.required' => 'Введите цену.',
         'image.required' => 'Загрузите картинку.',
         'information.required' => 'Это поле обязательно для заполнения.',
