@@ -10,30 +10,31 @@ class Offer extends Model
 	protected $fillable = ['title','image','price','specialisation','name','email','phone','framed','information','user_id'];
 
 	public static $rules = [
-        'title' => 'required|min:10|max:55',
+        'title' => 'required|min:10',
         'price' => 'required',
         'image' => 'required',
-        'information' => 'max:1024',
+        'information' => 'required|min:50',
         'specialisation' => 'required|min:3|max:35',
-        'name' => 'max:35',
-        'email' => 'email|max:255',
-        'phone' => 'numeric',
+        'name' => 'required|max:35',
+        'email' => 'required|email|max:255',
+        'phone' => 'required',
     ];
 
     public static $messages = [
         'title.required' => 'Введите заголовк объявления.',
         'title.min' => 'Заголовок должен быть не меньше 10 символов.',
-        'title.max' => 'Заголовок должен быть не больше 55 символов.',
         'price.required' => 'Введите цену.',
         'image.required' => 'Загрузите картинку.',
-        'information.max' => 'Текст должен быть не больше 1024 символов.',
+        'information.required' => 'Это поле обязательно для заполнения.',
+        'information.min' => 'Текст должен быть не меньше 50 символов.',
         'specialisation.required' => 'Введите специализацию.',
         'specialisation.min' => 'Текст специализации должен быть не меньше 3 символов.',
         'specialisation.max' => 'Текст специализации должен быть не больше 35 символов.',
+        'name.required' => 'Введите имя',
         'name.max' => 'Имя должно быть не длинее 35 символов',
         'email.email' => 'Введите корректный email.',
         'email.max' => 'Email должен быть не длинее 255 символов.',
-        'phone.numeric' => 'Телефон должен состоять из цифр.',
+        'phone.required' => 'Введите телефон.',
     ];
 
     public function deskcategories () {
