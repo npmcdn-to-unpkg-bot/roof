@@ -3,9 +3,9 @@
 namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
-use App\Company;
+use App\Offer;
 
-class PublicAssociationComposer
+class DeskBlock
 {
     /**
      * Bind data to the view.
@@ -14,9 +14,8 @@ class PublicAssociationComposer
      * @return void
      */
 	public function compose (View $view) {
-        $association = Company::where('association', 1)->get();
-        return $view
-	        ->with('association', $association);
+        $offers = Offer::take(5)->get();
+        return $view->with('offers', $offers);
     }
 }
 

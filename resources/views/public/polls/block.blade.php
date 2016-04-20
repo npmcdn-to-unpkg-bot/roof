@@ -1,9 +1,8 @@
-<?php $poll = App\Poll::with('votes')->first() ?>
 @if ($poll)
 	<div class="question">
 		<div class="title">ПОСЛЕДНИЙ ОПРОС</div>
 		<div class="question__text">{{ $poll->question }}</div>
-		@if ( Auth::user()->hasPoll($poll) )
+		@if ( Auth::user()&&Auth::user()->hasPoll($poll) )
 				@foreach ($poll->votes as $vote)
 					<div class="question__label">
 						<div class="progress">

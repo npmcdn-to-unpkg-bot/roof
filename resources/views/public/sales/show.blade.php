@@ -24,5 +24,5 @@
 			</div>
 		</div>
 	</div>
-	@include('public.desk.block',['offers'=>App\Offer::take(5)->get()])
+	@include('public.desk.block')
 @endsection

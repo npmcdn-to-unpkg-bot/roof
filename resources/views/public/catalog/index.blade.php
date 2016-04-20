@@ -100,22 +100,12 @@
 			</div>
 			<div class="container__col-4">
 				<a href="#" class="button button_orange button_huge">ДОБАВИТЬ КОМПАНИЮ</a>
-				<div class="offset_vertical_55">
-					@include('public.area.banner',['area' => 'catalog.1'])
-				</div>
-				<div class="offset_vertical_55">
-					@include('public.forum.block')
-				</div>
-				<div class="offset_vertical_55">
-					@include('public.calendar.block')
-				</div>
-				<div class="offset_vertical_55">
-					@include('public.polls.block')
-				</div>
+				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'catalog.1'])</div>
+				<div class="offset_vertical_55">@include('public.forum.block')</div>
+				<div class="offset_vertical_55">@include('public.calendar.block')</div>
+				<div class="offset_vertical_55">@include('public.polls.block')</div>
 			</div>
 		</div>
 	</div>
-	@include('public.desk.block',[
-		'offers' => App\Offer::take(5)->get()
-	])
+	@include('public.desk.block')
 @endsection

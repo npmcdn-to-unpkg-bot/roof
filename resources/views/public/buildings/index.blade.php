@@ -57,5 +57,5 @@
 		@endforeach
 	</div>
 	@include('pagenav',['items'=>$buildings])
-	@include('public.news.block2',['articles'=>App\Article::where('market',1)->take(3)->get()])
+	@include('public.news.block2')
 @endsection

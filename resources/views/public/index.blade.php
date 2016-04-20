@@ -56,9 +56,7 @@
 	<div class="container">
 		<div class="container__row">
 			<div class="container__col-4">
-				@include('public.news.block',[
-					'articles'=>App\Article::where('market',1)->take(4)->get()
-				])
+				@include('public.news.block')
 			</div>
 			<div class="container__col-8">
 				<div class="knowladge-slider knowladge-slider_offset-bottom">
@@ -123,5 +121,5 @@
 			</div>
 		</div>
 	</div>
-	@include('public.desk.block',['offers'=>App\Offer::take(5)->get()])
+	@include('public.desk.block')
 @endsection

@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('sales', 'Admin\SaleController');
 		Route::resource('polls', 'Admin\PollController');
 		Route::resource('banners', 'Admin\BannerController');
+		Route::resource('offers', 'Admin\OfferController');
 	});
 
 });
