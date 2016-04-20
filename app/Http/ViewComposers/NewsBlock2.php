@@ -14,7 +14,7 @@ class NewsBlock2
      * @return void
      */
 	public function compose (View $view) {
-        $articles = Article::where('market',1)->take(5)->get();
+        $articles = Article::where('market',1)->take(3)->get();
         return $view->with('articles', $articles);
     }
 }
