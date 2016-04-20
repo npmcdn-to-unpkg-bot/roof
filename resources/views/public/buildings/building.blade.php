@@ -65,5 +65,5 @@
 			</div>
 		</div>
 	</div>
-	@include('public.building.block')
+	@include('public.buildings.block')
 @endsection
