@@ -47,9 +47,7 @@ class User extends Authenticatable
     }
 
     public function hasRole ($role) {
-        return $this->whereHas('roles', function ($query) use ($role) {
-            $query->where('role', $role);
-        })->first();
+        return $this->roles->search($role);
     }
 
 }
