@@ -3,15 +3,89 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
-use Auth;
-use Image;
-use Validator;
 use App\Offer;
+use Validator;
+use Image;
+use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class OfferController extends Controller
 {
+
+    protected $table = [
+        [
+            'field'=>'image',
+            'type'=>'image',
+            'width'=>'40px',
+            'title'=>'Картинка'
+        ],[
+            'field'=>'title',
+            'type'=>'text',
+            'width'=>'auto',
+            'title'=>'Заголовок'
+        ],[
+            'field'=>'id',
+            'type'=>'actions',
+            'width'=>'90px',
+            'title'=>''
+        ],
+    ];
+
+    protected function fields (Offer $offer) {
+
+        return [
+            [
+                'name'=>'title',
+                'type'=>'text',
+                'placeholder'=>'Введите заголовок объявления',
+                'label'=>'Заголовок',
+                'value'=>old() ? old('title') : $offer->title
+            ],[
+                'name'=>'image',
+                'type'=>'image',
+                'label'=>'Картинка',
+                'value'=>old() ? old('image') : $offer->image
+            ],[
+                'name'=>'price',
+                'type'=>'text',
+                'placeholder'=>'Введите цену',
+                'label'=>'Цена',
+                'value'=>old() ? old('price') : $offer->price
+            ],[
+                'name'=>'information',
+                'type'=>'textarea',
+                'placeholder'=>'Введите текст',
+                'label'=>'Текст объявления',
+                'value'=>old() ? old('information') : $offer->information
+            ],[
+                'name'=>'specialisation',
+                'type'=>'text',
+                'placeholder'=>'Введите специализацию',
+                'label'=>'Специализация',
+                'value'=>old() ? old('specialisation') : $offer->specialisation
+            ],[
+                'name'=>'name',
+                'type'=>'text',
+                'placeholder'=>'Введите имя',
+                'label'=>'Имя',
+                'value'=>old() ? old('name') : $offer->name
+            ],[
+                'name'=>'email',
+                'type'=>'text',
+                'placeholder'=>'Введите email',
+                'label'=>'Email',
+                'value'=>old() ? old('email') : $offer->email
+            ],[
+                'name'=>'phone',
+                'type'=>'text',
+                'placeholder'=>'Введите телефон',
+                'label'=>'Телефон',
+                'value'=>old() ? old('phone') : $offer->phone
+            ]
+        ];
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +93,18 @@ class OfferController extends Controller
      */
     public function index()
     {
-        return view('user.desk.index', [
-            'offers' => Auth::user()->offers
+
+        $offers = Auth::user()->offers()->paginate(15);
+
+        return view('admin.table', [
+            'table' => $this->table,
+            'items' => $offers,
+            'title' => 'Объявления',
+            'links' => [
+                'show' => 'user.offers.show',
+                'edit' => 'user.offers.edit',
+                'delete' => 'user.offers.destroy'
+            ]
         ]);
     }
 
@@ -31,9 +115,14 @@ class OfferController extends Controller
      */
     public function create()
     {
-        return view('user.desk.form', [
-            'title' => 'Новое объявление',
-            'offer' => new Offer
+
+        $offer = new Offer;
+
+        return view('admin.form',[
+            'title' => 'Добавить объявление',
+            'action' => 'user.offers.store',
+            'fields' => $this->fields($offer),
+            'item' => $offer
         ]);
     }
 
@@ -44,8 +133,7 @@ class OfferController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
-
+    {
         if ($request->hasFile('upload')) {
             $image = time().'-'
                 .$request->file('upload')->getClientOriginalName();
@@ -56,51 +144,20 @@ class OfferController extends Controller
             $request->merge(['image' => $image]);
         }
 
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|min:10|max:55',
-            'price' => 'required',
-            'image' => 'required',
-            'information' => 'max:1024',
-            'specialisation' => 'required|min:3|max:35',
-            'name' => 'max:35',
-            'email' => 'email|max:255',
-            'phone' => 'numeric',
-        ],[
-            'title.required' => 'Введите заголовк объявления.',
-            'title.min' => 'Заголовок должен быть не меньше 10 символов.',
-            'title.max' => 'Заголовок должен быть не больше 55 символов.',
-            'price.required' => 'Введите цену.',
-            'image.required' => 'Загрузите картинку.',
-            'information.max' => 'Текст должен быть не больше 1024 символов.',
-            'specialisation.required' => 'Введите специализацию.',
-            'specialisation.min' => 'Текст специализации должен быть не меньше 3 символов.',
-            'specialisation.max' => 'Текст специализации должен быть не больше 35 символов.',
-            'name.max' => 'Имя должно быть не длинее 35 символов',
-            'email.email' => 'Введите корректный email.',
-            'email.max' => 'Email должен быть не длинее 255 символов.',
-            'phone.numeric' => 'Телефон должен состоять из цифр.',
-        ]);
+        $validator = Validator::make(
+            $request->all(), 
+            Offer::$rules, 
+            Offer::$messages
+        );
 
-
-        if ($validator->fails())
+        if ($validator->fails()) 
             return back()->withInput()->withErrors($validator);
 
-        $user = Auth::user();
-        $offer = $user->offers->keyBy('id')->get($request->id, new Offer);
+        Auth::user()->offers()->firstOrNew(['id' => $request->id])
+            ->fill($request->only('title','image','price','specialisation','name','email','phone','information'))
+            ->save();
 
-        $offer->user_id = $user->id;
-        $offer->title = $request->title;
-        $offer->price = $request->price;
-        $offer->image = $request->image;
-        $offer->information = $request->information;
-        $offer->specialisation = $request->specialisation;
-        $offer->name = $request->name;
-        $offer->email = $request->email;
-        $offer->phone = $request->phone;
-        $offer->save();
-        $offer->deskcategories()->sync($request->deskcategories ? $request->deskcategories : []);
-
-        return redirect()->route('office.offer.index');
+        return redirect()->route('user.offers.index');
     }
 
     /**
@@ -122,9 +179,15 @@ class OfferController extends Controller
      */
     public function edit($id)
     {
-        return view('user.desk.form', [
-            'title' => 'Новое объявление',
-            'offer' => Auth::user()->offers->keyBy('id')->get($id, new Offer)
+
+        $offer = Auth::user()->offers()->where('id', $id)->first();
+        if (!$offer) return redirect()->route('user.offer.create');
+
+        return view('admin.form',[
+            'title' => 'Редактировать объявление',
+            'action' => 'user.offers.store',
+            'fields' => $this->fields($offer),
+            'item' => $offer
         ]);
     }
 
@@ -148,6 +211,7 @@ class OfferController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Auth::user()->offers()->where('id', $id)->delete();
+        return back();
     }
 }

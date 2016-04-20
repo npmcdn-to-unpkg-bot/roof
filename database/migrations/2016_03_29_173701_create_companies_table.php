@@ -22,8 +22,8 @@ class CreateCompaniesTable extends Migration
             $table->string('address');
             $table->string('email');            
             $table->string('phone');
-            $table->boolean('privat');
-            $table->boolean('association');
+            $table->boolean('privat')->nullable();
+            $table->boolean('association')->nullable();
             $table->text('entry');
             $table->text('about');
             $table->text('services');

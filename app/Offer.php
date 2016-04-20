@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Offer extends Model
 {
 
-	protected $fillable = ['title','image','price','specialisation','name','email','phone','framed'];
+	protected $fillable = ['title','image','price','specialisation','name','email','phone','framed','information','user_id'];
 
 	public static $rules = [
         'title' => 'required|min:10|max:55',

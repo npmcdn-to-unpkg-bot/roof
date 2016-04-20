@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				@foreach ($offers as $offer)
-					<div class="desk-item offset_vertical_20 {{ $offer->framged ? 'desk-item_dark' : '' }}">
+					<div class="desk-item offset_vertical_20 {{ $offer->framed ? 'desk-item_dark' : '' }}">
 						<a href="{{route('desk.show',$offer)}}">
 							<img src="/imagecache/160x140/{{$offer->image}}" alt="" class="desk-item__image">
 						</a>

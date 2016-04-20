@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Offer;
+use App\User;
+use Image;
 use Validator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -36,7 +38,7 @@ class OfferController extends Controller
             [
                 'name'=>'title',
                 'type'=>'text',
-                'placeholder'=>'Введите заголовок статьи',
+                'placeholder'=>'Введите заголовок объявления',
                 'label'=>'Заголовок',
                 'value'=>old() ? old('title') : $offer->title
             ],[
@@ -47,9 +49,15 @@ class OfferController extends Controller
             ],[
                 'name'=>'price',
                 'type'=>'text',
-                'placeholder'=>'Цена',
-                'label'=>'Краткое содержание',
+                'placeholder'=>'Введите цену',
+                'label'=>'Цена',
                 'value'=>old() ? old('price') : $offer->price
+            ],[
+                'name'=>'information',
+                'type'=>'textarea',
+                'placeholder'=>'Введите текст',
+                'label'=>'Текст объявления',
+                'value'=>old() ? old('information') : $offer->information
             ],[
                 'name'=>'specialisation',
                 'type'=>'text',
@@ -79,7 +87,15 @@ class OfferController extends Controller
                 'type'=>'checkbox',
                 'label'=>'Выделить рамкой',
                 'value'=>old() ? old('framed') : $offer->framed
-            ],
+            ],[
+                'name'=>'user_id',
+                'type'=>'select',
+                'label'=>'Пользователь',
+                'value'=>old() 
+                    ? old('user_id') 
+                    : ($offer->user ? $offer->user->id : ''),
+                'options'=>User::lists('email','id')
+            ]
         ];
         
     }
@@ -113,13 +129,13 @@ class OfferController extends Controller
     public function create()
     {
 
-        $article = new Article;
+        $offer = new Offer;
 
         return view('admin.form',[
             'title' => 'Добавить новость',
             'action' => 'admin.news.store',
-            'fields' => $this->fields($article),
-            'item' => $article
+            'fields' => $this->fields($offer),
+            'item' => $offer
         ]);
     }
 
@@ -151,7 +167,7 @@ class OfferController extends Controller
             return back()->withInput()->withErrors($validator);
 
         Offer::firstOrNew(['id' => $request->id])
-            ->fill($request->only('title','image','price','specialisation','name','email','phone','framed'))
+            ->fill($request->only('title','image','price','specialisation','name','email','phone','framed','information'))
             ->save();
 
         return redirect()->route('admin.offers.index');

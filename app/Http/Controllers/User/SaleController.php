@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Validator;
 use Image;
+use Auth;
 use App\Company;
 use App\Sale;
 use App\Http\Requests;
@@ -57,19 +58,6 @@ class SaleController extends Controller
                 'type'=>'ckeditor',
                 'label'=>'Текст',
                 'value'=>old() ? old('content') : $sale->content
-            ],[
-                'name'=>'sales',
-                'type'=>'checkbox',
-                'label'=>'Поместить новость в разделе "АКЦИИ И СКИДКИ"',
-                'value'=>old() ? old('sales') : $sale->sales
-            ],[
-                'name'=>'company_id',
-                'type'=>'select',
-                'label'=>'Комания',
-                'value'=>old() 
-                    ? old('company_id') 
-                    : ($sale->company ? $sale->company->id : ''),
-                'options'=>Company::lists('name','id')
             ]
         ];
 
@@ -83,16 +71,16 @@ class SaleController extends Controller
     public function index()
     {
 
-        $sales = Sale::paginate(15);
+        $sales = Auth::user()->company->sales()->paginate(15);
 
         return view('admin.table', [
             'table' => $this->table,
             'items' => $sales,
             'title' => 'Новости',
             'links' => [
-                'show' => 'admin.sales.show',
-                'edit' => 'admin.sales.edit',
-                'delete' => 'admin.sales.destroy'
+                'show' => 'user.sales.show',
+                'edit' => 'user.sales.edit',
+                'delete' => 'user.sales.destroy'
             ]
         ]);
     }
@@ -108,7 +96,7 @@ class SaleController extends Controller
 
         return view('admin.form',[
             'title' => 'Добавить акцию',
-            'action' => 'admin.sales.store',
+            'action' => 'user.sales.store',
             'fields' => $this->fields($sale),
             'item' => $sale
         ]);
@@ -136,12 +124,12 @@ class SaleController extends Controller
 
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
-
-        Sale::firstOrNew(['id' => $request->id])
-            ->fill($request->only('title','image','entry','content','sales','company_id'))
+        $company = Auth::user()->company;
+        $company->sales()->firstOrNew(['id' => $request->id])
+            ->fill($request->only('title','image','entry','content'))
             ->save();
 
-        return redirect()->route('admin.sales.index');
+        return redirect()->route('user.sales.index');
     }
 
     /**
@@ -163,12 +151,13 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
-
-        $sale = Sale::with('company')->find($id);
+        $company = Auth::user()->company;
+        $sale = $company->sales()->where('id',$id)->first();
+        if (!$sale) return redirect()->route('user.sales.create');
 
         return view('admin.form',[
             'title' => 'Редактировать акцию',
-            'action' => 'admin.sales.store',
+            'action' => 'user.sales.store',
             'fields' => $this->fields($sale),
             'item' => $sale
         ]);
@@ -194,7 +183,7 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        Sale::find($id)->delete();
+        Auth::user()->company->sales()->where('id',$id)->delete();
         return back();
     }
 }

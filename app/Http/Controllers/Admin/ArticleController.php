@@ -67,7 +67,7 @@ class ArticleController extends Controller
                 'type'=>'select',
                 'label'=>'Комания',
                 'value'=>old() 
-                    ? old('company') 
+                    ? old('company_id') 
                     : ($article->company ? $article->company->id : ''),
                 'options'=>Company::lists('name','id')
             ]

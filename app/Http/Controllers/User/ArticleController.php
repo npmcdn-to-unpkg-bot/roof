@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Validator;
 use Image;
+use Auth;
 use App\Company;
-use App\Sale;
+use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class SaleController extends Controller
+class ArticleController extends Controller
 {
 
     protected $table = [
@@ -32,49 +33,35 @@ class SaleController extends Controller
         ],
     ];
 
-    protected function fields (Sale $sale) {
+    protected function fields (Article $article) {
 
         return [
             [
                 'name'=>'title',
                 'type'=>'text',
-                'placeholder'=>'Введите заголовок',
+                'placeholder'=>'Введите заголовок статьи',
                 'label'=>'Заголовок',
-                'value'=>old() ? old('title') : $sale->title
+                'value'=>old() ? old('title') : $article->title
             ],[
                 'name'=>'image',
                 'type'=>'image',
                 'label'=>'Картинка',
-                'value'=>old() ? old('image') : $sale->image
+                'value'=>old() ? old('image') : $article->image
             ],[
                 'name'=>'entry',
                 'type'=>'textarea',
-                'placeholder'=>'Введите краткое содержание',
+                'placeholder'=>'Введите краткое содержание статьи',
                 'label'=>'Краткое содержание',
-                'value'=>old() ? old('entry') : $sale->entry
+                'value'=>old() ? old('entry') : $article->entry
             ],[
                 'name'=>'content',
                 'type'=>'ckeditor',
-                'label'=>'Текст',
-                'value'=>old() ? old('content') : $sale->content
-            ],[
-                'name'=>'sales',
-                'type'=>'checkbox',
-                'label'=>'Поместить новость в разделе "АКЦИИ И СКИДКИ"',
-                'value'=>old() ? old('sales') : $sale->sales
-            ],[
-                'name'=>'company_id',
-                'type'=>'select',
-                'label'=>'Комания',
-                'value'=>old() 
-                    ? old('company_id') 
-                    : ($sale->company ? $sale->company->id : ''),
-                'options'=>Company::lists('name','id')
+                'label'=>'Текст статьи',
+                'value'=>old() ? old('content') : $article->content
             ]
         ];
-
+        
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -83,16 +70,16 @@ class SaleController extends Controller
     public function index()
     {
 
-        $sales = Sale::paginate(15);
+        $articles = Auth::user()->company->articles()->paginate(15);
 
         return view('admin.table', [
             'table' => $this->table,
-            'items' => $sales,
+            'items' => $articles,
             'title' => 'Новости',
             'links' => [
-                'show' => 'admin.sales.show',
-                'edit' => 'admin.sales.edit',
-                'delete' => 'admin.sales.destroy'
+                'show' => 'user.news.show',
+                'edit' => 'user.news.edit',
+                'delete' => 'user.news.destroy'
             ]
         ]);
     }
@@ -104,13 +91,14 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $sale = new Sale;
+
+        $article = new Article;
 
         return view('admin.form',[
-            'title' => 'Добавить акцию',
-            'action' => 'admin.sales.store',
-            'fields' => $this->fields($sale),
-            'item' => $sale
+            'title' => 'Добавить новость',
+            'action' => 'user.news.store',
+            'fields' => $this->fields($article),
+            'item' => $article
         ]);
     }
 
@@ -132,16 +120,16 @@ class SaleController extends Controller
             $request->merge(['image' => $image]);
         }
 
-        $validator = Validator::make($request->all(), Sale::$rules, Sale::$messages);
+        $validator = Validator::make($request->all(), Article::$rules, Article::$messages);
 
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        Sale::firstOrNew(['id' => $request->id])
-            ->fill($request->only('title','image','entry','content','sales','company_id'))
+        Auth::user()->company->articles()->firstOrNew(['id' => $request->id])
+            ->fill($request->only('title','image','entry','content'))
             ->save();
 
-        return redirect()->route('admin.sales.index');
+        return redirect()->route('user.news.index');
     }
 
     /**
@@ -164,13 +152,14 @@ class SaleController extends Controller
     public function edit($id)
     {
 
-        $sale = Sale::with('company')->find($id);
+        $article = Auth::user()->company->articles()->where('id', $id)->first();
+        if (!$article) return redirect()->route('user.news.create');
 
         return view('admin.form',[
-            'title' => 'Редактировать акцию',
-            'action' => 'admin.sales.store',
-            'fields' => $this->fields($sale),
-            'item' => $sale
+            'title' => 'Редактировать новость',
+            'action' => 'user.news.store',
+            'fields' => $this->fields($article),
+            'item' => $article
         ]);
     }
 
@@ -194,7 +183,7 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        Sale::find($id)->delete();
+        Auth::user()->company->articles()->where('id', $id)->delete();
         return back();
     }
 }

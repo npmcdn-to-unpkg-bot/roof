@@ -23,7 +23,7 @@ class CreateOffersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->boolean('framed');
+            $table->boolean('framed')->nullable();
             $table->text('information');
         });
     }

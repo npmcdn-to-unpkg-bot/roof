@@ -22,7 +22,7 @@ class CreateBuildingsTable extends Migration
             $table->text('information');
             $table->date('start')->useCurrent();
             $table->date('end')->useCurrent();
-            $table->boolean('published');
+            $table->boolean('published')->nullable();
             $table->integer('company_id')->index();
             $table->integer('country_id')->index();
             $table->integer('region_id')->index();
