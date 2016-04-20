@@ -19,7 +19,7 @@ class AdminMenu
         $user = Auth::user();
 
         if (Request::is('user*'))
-                        $menu = [
+            $menu = [
                 [
                     'name' => 'Компания',
                     'icon' => 'fa-bank',
@@ -32,6 +32,26 @@ class AdminMenu
                         ],
                     ],
                 ],[
+                    'name' => 'Объявления',
+                    'icon' => 'fa-file-image-o',
+                    'active' => Request::is('user/offers*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список объявлений',
+                            'icon' => 'fa-list',
+                            'href' => route('user.offers.index'),
+                        ],[
+                            'name' => 'Добавить объявление',
+                            'icon' => 'fa-plus',
+                            'href' => route('user.offers.create'),
+                        ],
+                    ],
+                ],
+            ];
+
+        if (Request::is('user*')&&Auth::user()->company)
+            $menu = array_merge($menu,[
+                [
                     'name' => 'Стройки',
                     'icon' => 'fa-building',
                     'active' => Request::is('user/building*')?'active':'',
@@ -76,23 +96,8 @@ class AdminMenu
                             'href' => route('user.sales.create'),
                         ],
                     ],
-                ],[
-                    'name' => 'Объявления',
-                    'icon' => 'fa-file-image-o',
-                    'active' => Request::is('user/offers*')?'active':'',
-                    'children' => [
-                        [
-                            'name' => 'Список объявлений',
-                            'icon' => 'fa-list',
-                            'href' => route('user.offers.index'),
-                        ],[
-                            'name' => 'Добавить объявление',
-                            'icon' => 'fa-plus',
-                            'href' => route('user.offers.create'),
-                        ],
-                    ],
-                ],
-            ];
+                ]
+            ]);
 
         if (Request::is('admin*'))
             $menu = [
