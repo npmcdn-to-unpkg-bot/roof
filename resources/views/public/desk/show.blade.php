@@ -17,7 +17,7 @@
 				</form>
 				<div class="container__row desk-single">
 					<div class="container__col-6">
-						<img src="/s-img/desk-single.jpg" alt="" class="desk-single__image">
+						<img src="/imagecache/370x200/{{$offer->image}}" alt="" class="desk-single__image">
 						<div class="title-light">КОНТАКТНАЯ ИНФОРМАЦИЯ</div>
 						@if($offer->name)<div class="desk-single__person">{{$offer->name}}</div>@endif
 						@if($offer->phone)<div class="desk-single__phone">{{$offer->phone}}</div>@endif
