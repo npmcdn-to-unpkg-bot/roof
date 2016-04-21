@@ -14,8 +14,12 @@
 
     <!-- Main content -->
     <section class="content">
-
   <form action="{{route($action)}}" method="POST" enctype="multipart/form-data">
+    @if ($errors->first())
+      <div class="form-group has-error">
+          <span class="help-block">Проверьте правильность заполнения формы</span>
+      </div>
+    @endif
     {!! csrf_field() !!}
     @if ($item->id) <input type="hidden" name="id" value="{{$item->id}}"> @endif
     <div class="box">
