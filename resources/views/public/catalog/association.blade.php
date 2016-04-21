@@ -11,7 +11,7 @@
 							<img src="/imagecache/small/{{ $company->logo }}" alt="" class="company-cart__logo">
 							<a href="{{ route('catalog.show', $company) }}" class="company-cart__name">{{ $company->name }}</a>
 							<div class="company-cart__description">{{ $company->entry }}</div>
-							<div class="container__row company-cart__left-bottom">
+							<div class="container__row company-cart__bottom">
 								<div class="container__col-6">
 									<div class="company-cart__address">{{ $company->address }}</div>
 									<div class="company-cart__post-date">
