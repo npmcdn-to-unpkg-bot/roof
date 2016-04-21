@@ -193,6 +193,21 @@ class AdminMenu
                         ],
                     ],
                 ],[
+                    'name' => 'События',
+                    'icon' => 'fa-calendar',
+                    'active' => Request::is('admin/events*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список событий',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.events.index'),
+                        ],[
+                            'name' => 'Добавить событие',
+                            'icon' => 'fa-plus',
+                            'href' => route('admin.events.create'),
+                        ],
+                    ],
+                ],[
                     'name' => 'Банеры',
                     'icon' => 'fa-file-image-o',
                     'active' => Request::is('admin/banners*')?'active':'',

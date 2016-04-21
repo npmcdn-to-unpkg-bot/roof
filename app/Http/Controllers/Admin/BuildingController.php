@@ -47,7 +47,7 @@ class BuildingController extends Controller
                 'label' => 'Фотографии',
                 'quantity' => 5,
                 'values' => old() 
-                    ? old('images') 
+                    ? (array)old('images') 
                     : $building->images->map(function($image){return $image->image;})->all()
             ],[
                 'name' => 'type',

@@ -1,23 +1,19 @@
 <div class="calendar">
 	<div class="calendar__title">
 		КАЛЕНАДРЬ
-		<span class="calendar__month">< АПРЕЛЬ 2015 ></span>
+		<span class="calendar__month">< {{trans('month.'.$current->month)}} {{$current->year}} ></span>
 	</div>
 	<table class="calendar__table">
-		<tr>
-			<td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td>
-		</tr>
-		<tr>
-			<td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td class="calendar__date_active">10</td><td>11</td>
-		</tr>
-		<tr>
-			<td>12</td><td>13</td><td>14</td><td class="calendar__date_active">15</td><td>16</td><td>17</td><td>18</td>
-		</tr>
-		<tr>
-			<td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td class="calendar__date_active">24</td><td>25</td>
-		</tr>
-		<tr>
-			<td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td>
-		</tr>
+		@for ( $i=$start;$i<=$end;$i->addDay() )
+			@if ($i->dayOfWeek == 1) <tr> @endif
+				@if ($i->month == $current->month) 
+					<td>
+						{{$i->day}}
+					</td>
+				@else 
+					<td></td>
+				@endif
+			@if ($i->dayOfWeek == 0) </tr> @endif
+		@endfor
 	</table>
 </div>

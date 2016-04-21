@@ -223,7 +223,7 @@ class OfferController extends Controller
      */
     public function destroy($id)
     {
-        Article::find($id)->delete();
+        Offer::find($id)->delete();
 
         return back();
     }
