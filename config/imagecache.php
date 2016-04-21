@@ -64,6 +64,7 @@ return array(
         '160x140' => 'App\Filters\Filter160x140',
         '120x85' => 'App\Filters\Filter120x85',
         '175x200' => 'App\Filters\Filter175x200',
+        '175x120' => 'App\Filters\Filter175x120',
     ),
 
     /*
