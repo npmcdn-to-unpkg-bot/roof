@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Building extends Model
 {
     
-	protected $fillable = ['id','name','type','information','published','start','end','company_id'];
+	protected $fillable = ['id','name','type','information','published','start','end','company_id','company_name'];
 
 	public static $rules = [
         'name' => 'required|min:3|max:255',

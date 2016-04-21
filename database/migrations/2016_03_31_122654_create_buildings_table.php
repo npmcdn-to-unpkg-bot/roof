@@ -22,11 +22,11 @@ class CreateBuildingsTable extends Migration
             $table->text('information');
             $table->date('start');
             $table->date('end');
+            $table->string('company_name');
+            $table->string('address');
             $table->boolean('published')->nullable();
-            $table->integer('company_id')->index();
-            $table->integer('country_id')->index();
-            $table->integer('region_id')->index();
             $table->integer('city_id')->index();
+            $table->integer('company_id')->index();
         });
 
         Schema::create('building_image', function (Blueprint $table) {

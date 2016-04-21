@@ -86,7 +86,13 @@ class BuildingController extends Controller
                     ? old('company_id') 
                     : ($building->company ? $building->company->id : ''),
                 'options'=>Company::lists('name','id')
-            ]
+            ],[
+                'name' => 'company_name',
+                'type' => 'text',
+                'placeholder' => 'Введите название компании',
+                'label' => 'Название компании (если нет на сайте)',
+                'value' => old() ? old('company_name') : $building->company_name
+            ],
         ];
     }
 
@@ -155,7 +161,7 @@ class BuildingController extends Controller
 
 
         $building = Building::firstOrNew(['id' => $request->id])
-            ->fill($request->only('name','type','information','published','start','end','company_id'));
+            ->fill($request->only('name','type','information','published','start','end','company_id','company_name'));
         $building->save();
 
         $building->images()->whereNotIn('image', $request->images)->delete();

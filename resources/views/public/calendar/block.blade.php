@@ -16,4 +16,5 @@
 			@if ($i->dayOfWeek == 0) </tr> @endif
 		@endfor
 	</table>
+		<?php print_r($events) ?>
 </div>

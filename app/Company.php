@@ -28,7 +28,7 @@ class Company extends Model
 
 	protected $table = 'companies';
 
-    protected $fillable = [ 'name', 'logo', 'address', 'email', 'phone', 'entry', 'about', 'services', 'association', 'privat' , 'user_id' ];
+    protected $fillable = [ 'name', 'logo', 'address', 'email', 'phone', 'entry', 'about', 'services', 'association', 'privat', 'address', 'user_id' ];
 
     protected $dates = ['created_at', 'updated_at'];
 

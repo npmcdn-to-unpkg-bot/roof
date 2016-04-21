@@ -57,6 +57,12 @@ class CompanyController extends Controller
                 'label' => 'Телефон компании',
                 'value' => old() ? old('phone') : $company->phone
             ],[
+                'name' => 'address',
+                'type' => 'text',
+                'placeholder' => 'Введите адрес компании',
+                'label' => 'Адрес компании',
+                'value' => old() ? old('address') : $company->address
+            ],[
                 'name' => 'specialisations',
                 'type' => 'select_multiple',
                 'label' => 'Специализации',
@@ -120,7 +126,7 @@ class CompanyController extends Controller
             return back()->withInput()->withErrors($validator);
 
         $company = Auth::user()->company()->firstOrNew(['id' => $request->id])
-            ->fill($request->only('name','email','logo','phone','entry','about','services'));
+            ->fill($request->only('name','email','logo','phone','entry','about','address','services'));
         $company->save();
         $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
         $company->propositions()->sync($request->propositions ? $request->propositions : []);
