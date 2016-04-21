@@ -16,7 +16,7 @@ class Offer extends Model
         'information' => 'required|min:50',
         'specialisation' => 'required|min:3|max:35',
         'name' => 'required|max:35',
-        'email' => 'required|email|max:255',
+        'email' => 'email|max:255',
         'phone' => 'required',
     ];
 
