@@ -14,7 +14,7 @@ class DeskBlock
      * @return void
      */
 	public function compose (View $view) {
-        $offers = Offer::take(5)->get();
+        $offers = Offer::take(6)->get();
         return $view->with('offers', $offers);
     }
 }
