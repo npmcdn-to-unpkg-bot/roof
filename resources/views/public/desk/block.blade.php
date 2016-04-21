@@ -4,7 +4,7 @@
 		<div class="container__row">
 			@foreach ($offers as $offer)
 			<a href="{{route('desk.show',$offer)}}" class="container__col-2 objavlenie">
-				<img src="/imagecache/175x200/{{$offer->image}}" alt="" class="objavlenie__image">
+				<img src="/imagecache/175x120/{{$offer->image}}" alt="" class="objavlenie__image">
 				<span class="objavlenie__text">{{$offer->title}}</span>
 				<span class="objavlenie__label">Цена: </span><span class="objavlenie__price">{{$offer->price}} грн.</span>
 			</a>
