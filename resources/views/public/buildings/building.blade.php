@@ -51,7 +51,7 @@
 			<div class="container__col-4">
 				<div class="building__type">{{ $building->type }}</div>
 				@if ($building->company)<a href="{{ route ( 'catalog.show', $building->company ) }}" class="building__company">{{ $building->company->name }}</a>
-				@else <span class="building__company">{{$building->company_name}}</span>
+				@elseif ($building->company_name) <span class="building__company">{{$building->company_name}}</span>
 				@endif
 				<div class="building__address">Украина, Киевская обл., г. Бровары</div>
 				<div class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</div>
