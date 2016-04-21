@@ -9,8 +9,13 @@ use App\Http\Controllers\Controller;
  
 class PollController extends Controller 
 { 
+
+	public function index () {
+		return back();
+	}
+
     public function vote (Request $request) { 
-      Auth::user()->votes()->attach($request->vote); 
-      return back(); 
+    	Auth::user()->votes()->attach($request->vote); 
+	    return back(); 
     } 
 } 

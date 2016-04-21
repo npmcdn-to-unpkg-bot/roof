@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::resource('image', 'User\ImageController');
 	Route::post('vote', 'User\PollController@vote');
+	Route::get('vote', 'User\PollController@index');
 
 	Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function () {
 		Route::get('', 'Admin\CompanyController@index');

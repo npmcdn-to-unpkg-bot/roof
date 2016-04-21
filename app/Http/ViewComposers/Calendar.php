@@ -4,6 +4,8 @@ namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
 use Carbon\Carbon;
+use App\Event;
+
 class Calendar
 {
     /**
@@ -19,6 +21,8 @@ class Calendar
 			: Carbon::now();
 		$start = $current->copy()->startOfMonth()->startOfWeek();
 		$end = $current->copy()->endOfMonth()->endOfWeek();
+		// $events = Event::where(['start','<='])
+
         return $view
         	->with('current', $current)
         	->with('start',$start)
