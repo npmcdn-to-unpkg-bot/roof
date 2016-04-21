@@ -3,18 +3,18 @@
 		<div class="title">ПОСЛЕДНИЙ ОПРОС</div>
 		<div class="question__text">{{ $poll->question }}</div>
 		@if ( Auth::user()&&Auth::user()->hasPoll($poll) )
-				@foreach ($poll->votes as $vote)
-					<div class="question__label">
-						<div class="progress">
-							<div class="progress__bar" style="width: {{$vote->progress()}}%">
-								{{$vote->progress()}}%
-							</div>
+			@foreach ($poll->votes as $vote)
+				<div class="question__label">
+					<div class="progress">
+						<div class="progress__bar" style="width: {{$vote->progress()}}%">
 							{{$vote->progress()}}%
 						</div>
-						{{$vote->answer}}
+						{{$vote->progress()}}%
 					</div>
-				@endforeach
-				<a href="" class="question__all">Смотреть все опросы</a>
+					{{$vote->answer}}
+				</div>
+			@endforeach
+			<a href="" class="question__all">Смотреть все опросы</a>
 		@else
 			<form action="/vote" method="POST">
 			    {!! csrf_field() !!}
