@@ -10,25 +10,24 @@ class Building extends Model
 	protected $fillable = ['id','name','type','information','published','start','end','company_id'];
 
 	public static $rules = [
-        'name' => 'required|min:3|max:33',
-        'type' => 'required|min:3|max:33',
+        'name' => 'required|min:3|max:255',
+        'type' => 'required|min:3|max:255',
         'images' => 'required',
-        'information' => 'required|min:50|max:1024',
+        'information' => 'required|min:50',
         'start' => 'required|date_format:"m Y"',
         'end' => 'required|date_format:"m Y"',
     ];
 
     public static $messages = [
         'name.required' => 'Введите название объекта',
-        'name.max' => 'Название должно быть не больше 33 символов',
+        'name.max' => 'Название должно быть не больше 255 символов',
         'name.min' => 'Название должно быть не меньше 3 символов',
         'type.required' => 'Введите тип обхекта',
-        'type.max' => 'Тип объекта должен быть не больше 33 символов',
+        'type.max' => 'Тип объекта должен быть не больше 255 символов',
         'type.min' => 'Тип объекта должен быть не меньше 3 символов',
         'images.required' => 'Загрузите изображения',
         'information.required' => 'Введите инофрмация об объекте',
         'information.min' => 'Описание должно быть не менее 50 символов',
-        'information.max' => 'Описание должно быть не более 255 символов',
         'start.required'=> 'Это поле обязательно.',
         'end.required'=> 'Это поле обязательно.',
     ];
