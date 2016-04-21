@@ -41,9 +41,7 @@ class User extends Authenticatable
     }
 
     public function hasPoll (Poll $poll) {
-        return $this->whereHas('votes.poll', function ($query) use ($poll) {
-            $query->where('id', $poll->id);
-        })->first();
+        return $this->votes()->where('poll_id',$poll->id)->first();
     }
 
     public function hasRole ($role) {

@@ -23,7 +23,7 @@ class Vote extends Model
     }
 
     public function progress () {
-        return round($this->count()*$this->poll->count()*100);
+        return round($this->count()/$this->poll->count()*100);
     }
 
     public static $rules = [
