@@ -43,7 +43,7 @@
 					<img src="/imagecache/370x200/{{ $building->images->first()->image }}" alt="" class="building__image">
 					<a href="{{ route('buildings.show', $building) }}" class="building__name">{{ $building->name }}</a>
 					<span class="building__type">{{ $building->type }}</span>
-					<a href="{{ route('catalog.show', $building->company) }}" class="building__company">{{ $building->company->name }}</a>
+					@if ($building->company) <a href="{{ route('catalog.show', $building->company) }}" class="building__company">{{ $building->company->name }}</a> @endif
 					<span class="building__address">Украина, Киевская обл., г. Бровары</span>
 					<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
 					@if ( !$building->jobs->isEmpty() )

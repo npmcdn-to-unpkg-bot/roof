@@ -18,7 +18,13 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->text('information');
-            $table->data('information');
+            $table->date('start');
+            $table->date('end');
+            $table->string('founder');
+            $table->string('address');
+            $table->float('lat');
+            $table->float('lng');
+            $table->string('website');
         });
     }
 

@@ -20,8 +20,8 @@ class CreateBuildingsTable extends Migration
             $table->float('lat');
             $table->float('lng');
             $table->text('information');
-            $table->date('start')->useCurrent();
-            $table->date('end')->useCurrent();
+            $table->date('start');
+            $table->date('end');
             $table->boolean('published')->nullable();
             $table->integer('company_id')->index();
             $table->integer('country_id')->index();
