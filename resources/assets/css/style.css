@@ -1306,11 +1306,11 @@ td.calendar__date_active {
 }
 
 .company-cart__address {
-	font-size: 18px;
+	
 }
 
 .company-cart__post-date {
-	font-size: 14px;
+	font-size: 12px;
 	color: #88b2bf;
 }
 
@@ -1376,7 +1376,6 @@ td.calendar__date_active {
 }
 
 .company-cart_big {
-	font-size: 18px;
 	padding: 24px;
 	height: 220px;
 }
