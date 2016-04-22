@@ -11,11 +11,8 @@
 	@endif
 </div>
 <script>
-	document.addEventListener("DOMContentLoaded", 
-	function () {
-		$('#date_{{$name}}').datetimepicker({
-		    locale: 'ru',
-	        format: '{{$format}}'
-	    });
-	});
+	$('#date_{{$name}}').datetimepicker({
+	    locale: 'ru',
+        format: '{{$format}}'
+    });
 </script>

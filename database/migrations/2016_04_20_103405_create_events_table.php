@@ -21,10 +21,11 @@ class CreateEventsTable extends Migration
             $table->date('start');
             $table->date('end');
             $table->string('founder');
-            $table->string('address');
-            $table->float('lat');
-            $table->float('lng');
             $table->string('website');
+            $table->decimal('lat',7,5);
+            $table->decimal('lng',7,5);
+            $table->string('address');
+            $table->integer('city_id')->index();
         });
     }
 

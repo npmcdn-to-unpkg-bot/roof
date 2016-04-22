@@ -54,7 +54,7 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        return view('public.catalog.company',[
+        return view('public.catalog.show',[
             'company' => Company::with('buildings','articles','sales')->find($id)
         ]);
     }

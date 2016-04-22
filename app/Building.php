@@ -7,7 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Building extends Model
 {
     
-	protected $fillable = ['id','name','type','information','published','start','end','company_id','company_name'];
+	protected $fillable = [
+		'id',
+		'name',
+		'type',
+		'information',
+		'published',
+		'start',
+		'end',
+		'company_id',
+		'company_name',
+		'lat',
+		'lng',
+		'city_id',
+		'address'
+	];
 
 	public static $rules = [
         'name' => 'required|min:3|max:255',
@@ -34,12 +48,22 @@ class Building extends Model
 
 	protected $dates = ['created_at', 'updated_at', 'start', 'end'];
 
+	public function address () {
+		if ($this->city){
+			return $this->city->country->name.', г. '
+			.$this->city->name.', '
+			.$this->address;
+		}else{
+			return false;
+		}
+	}
+
 	public function jobs () {
 		return $this->hasMany('App\Job');
 	}
 
 	public function images () {
-		return $this->belongsToMany('App\Image');
+		return $this->belongsToMany('App\Image')->orderBy('order');
 	}
 
 	public function company () {

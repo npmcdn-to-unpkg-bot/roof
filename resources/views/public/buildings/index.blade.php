@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('public.layout')
 
 @section('content')
 	<div class="container breadcrumbs">
@@ -40,14 +40,14 @@
 		@foreach ($buildings as $i => $building)
 			@if ($i%3==0) <div class="container__row offset_vertical_60"> @endif
 				<div class="container__col-4 building">
-					<img src="/imagecache/370x200/{{ $building->images->first()->image }}" alt="" class="building__image">
+					<img src="/imagecache/370x200/{{ $building->images->first()->name }}" alt="" class="building__image">
 					<a href="{{ route('buildings.show', $building) }}" class="building__name">{{ $building->name }}</a>
 					<span class="building__type">{{ $building->type }}</span>
 					@if ($building->company) <a href="{{ route('catalog.show', $building->company) }}" class="building__company">{{ $building->company->name }}</a> 
 					@elseif ($building->company_name) <span class="building__company">{{$building->company_name}}</span>
 					@endif
-					<span class="building__address">Украина, Киевская обл., г. Бровары</span>
-					<span class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</span>
+					<span class="building__address">{{$building->address()}}</span>
+					<span class="building__period">{{$building->calendar()}}</span>
 					@if ( !$building->jobs->isEmpty() )
 						<div class="building__title">Вакансии на объекте</div>
 						<div class="building__job-list">
@@ -58,6 +58,6 @@
 			@if ($i+1==count($buildings)||$i%3==2) </div> @endif
 		@endforeach
 	</div>
-	@include('pagenav',['items'=>$buildings])
+	@include('public.pagenav',['items'=>$buildings])
 	@include('public.news.block2')
 @endsection

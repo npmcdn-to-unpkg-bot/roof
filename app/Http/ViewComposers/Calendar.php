@@ -22,14 +22,9 @@ class Calendar
 		$start = $current->copy()->startOfMonth()->startOfWeek();
 		$end = $current->copy()->endOfMonth()->endOfWeek();
 		$events = Event::where([
-				['start','<',$current->copy()->endOfMonth()],
-				['start','>',$current->copy()->startOfMonth()]
-			])
-			->orWhere([
-				['end','<',$current->copy()->endOfMonth()],
-				['end','>',$current->copy()->startOfMonth()]
-			])
-			->get();
+				['end','>=',$current->copy()->startOfMonth()],
+				['start','<=',$current->copy()->endOfMonth()],
+			])->get();
 
         return $view
         	->with('current', $current)

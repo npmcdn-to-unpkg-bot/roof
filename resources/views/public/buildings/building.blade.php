@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('public.layout')
 
 @section('content')
 	<div class="container breadcrumbs">
@@ -8,7 +8,7 @@
 		<div class="title offset_vertical_20">{{ $building->name }}</div>
 		<div class="container__row">
 			<div class="container__col-8">
-				<img src="/imagecache/765x400/{{ $building->images->first()->image }}" alt="" class="building__image">
+				<img src="/imagecache/765x400/{{ $building->images->first()->name }}" alt="" class="building__image">
 				@if ( !$building->jobs->isEmpty() )
 				<div class="building__title offset_vertical_20">ВАКАНСИИ НА ОБЪЕКТЕ</div>
 					@foreach ($building->jobs as $job)
@@ -53,8 +53,8 @@
 				@if ($building->company)<a href="{{ route ( 'catalog.show', $building->company ) }}" class="building__company">{{ $building->company->name }}</a>
 				@elseif ($building->company_name) <span class="building__company">{{$building->company_name}}</span>
 				@endif
-				<div class="building__address">Украина, Киевская обл., г. Бровары</div>
-				<div class="building__period">I Кв-л 2015 г. — III Кв-л 2016 г.</div>
+				<div class="building__address">{{$building->address()}}</div>
+				<div class="building__period">{{$building->calendar()}}</div>
 				@if ($building->information)
 					<div class="building__info">
 						<div class="building__title">ИНФОРМАЦИЯ</div>

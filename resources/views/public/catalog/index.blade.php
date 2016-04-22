@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('public.layout')
 
 @section('content')
 	<div class="container offset_vertical_40 page-tabs">
@@ -53,7 +53,7 @@
 								<a href="{{ route('catalog.show', $company) }}" class="company-cart__name">{{$company->name}}</a>
 								<div class="company-cart__description">{{$company->entry}}</div>
 								<div class="company-cart__bottom">
-									<div class="company-cart__address">{{$company->address}}</div>
+									<div class="company-cart__address">{{$company->address()}}</div>
 									<div class="company-cart__post-date">
 										Дата регистрации: 
 										{{ $company->created_at->format('m.d.Y') }}
@@ -72,7 +72,7 @@
 						@include('public.area.banner',['area' => 'catalog.2'])
 					@endif
 				@endforeach
-				@include('pagenav',['items'=>$companies])
+				@include('public.pagenav',['items'=>$companies])
 				<div class="container__row offset_vertical_55">
 					<div class="container__col-6">
 						<div class="sale" style="background-image: url(/s-img/sale-1.jpg);">

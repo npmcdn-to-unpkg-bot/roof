@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Validator;
-use Image;
+use Storage;
 use Auth;
 use App\Company;
 use App\Article;
@@ -43,10 +43,13 @@ class ArticleController extends Controller
                 'label'=>'Заголовок',
                 'value'=>old() ? old('title') : $article->title
             ],[
-                'name'=>'image',
-                'type'=>'image',
-                'label'=>'Картинка',
-                'value'=>old() ? old('image') : $article->image
+                'name' => 'image',
+                'type' => 'images',
+                'label' => 'Картинка',
+                'quantity' => 1,
+                'values' => old() 
+                    ? (array)old('image') 
+                    : (array)$article->image
             ],[
                 'name'=>'entry',
                 'type'=>'textarea',
@@ -110,22 +113,21 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('upload')) {
-            $image = time().'-'
-                .$request->file('upload')->getClientOriginalName();
-            Image::make($request
-                ->file('upload'))
-                ->fit(1600, 1024, function ($constraint) { $constraint->upsize(); })
-                ->save(storage_path('app/images/').$image);
-            $request->merge(['image' => $image]);
-        }
-
         $validator = Validator::make($request->all(), Article::$rules, Article::$messages);
-
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        Auth::user()->company->articles()->firstOrNew(['id' => $request->id])
+        $article = Auth::user()
+            ->company
+            ->articles()
+            ->firstOrNew(['id' => $request->id]);
+
+        if (Storage::exists('temp/'.$request->image)) 
+            Storage::move('temp/'.$request->image,'images/'.$request->image);
+        if ($article->image&&$article->image!==$request->image) 
+            Storage::delete('images/'.$article->image);
+
+        $article
             ->fill($request->only('title','image','entry','content'))
             ->save();
 

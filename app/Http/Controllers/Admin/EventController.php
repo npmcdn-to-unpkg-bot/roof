@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Image;
 use App\Event;
+use App\Country;
+use App\City;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -50,10 +52,13 @@ class EventController extends Controller
                 'label'=>'Название события',
                 'value'=>old() ? old('name') : $event->name
             ],[
-                'name'=>'image',
-                'type'=>'image',
-                'label'=>'Картинка',
-                'value'=>old() ? old('image') : $event->image
+                'name' => 'image',
+                'type' => 'images',
+                'label' => 'Картинка',
+                'quantity' => 1,
+                'values' => old() 
+                    ? (array)old('image') 
+                    : (array)$event->image
             ],[
                 'name'=>'information',
                 'type'=>'ckeditor',
@@ -89,6 +94,22 @@ class EventController extends Controller
                 'format' => 'DD.MM.YYYY',
                 'label' => 'Дата окончания',
                 'value' => old() ? old('end') : $event->end->format('d.m.Y')
+            ],[
+                'type' => 'address',
+                'label' => 'Адрес',
+                'countries' => Country::all(),
+                'cities' => City::all(),
+                'lat' => old() ? old('lat') : $event->lat,
+                'lng' => old() ? old('lng') : $event->lng,
+                'country' => old() 
+                    ? old('country_id') 
+                    : ($event->city ? $event->city->country->id : ''),
+                'city' => old() 
+                    ? old('city_id') 
+                    : ($event->city ? $event->city->id : ''),
+                'address' => old() 
+                    ? old('address') 
+                    : $event->address
             ],
         ];
         
@@ -143,17 +164,6 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-
-        if ($request->hasFile('upload')) {
-            $image = time().'-'
-                .$request->file('upload')->getClientOriginalName();
-            Image::make($request
-                ->file('upload'))
-                ->fit(1600, 1024, function ($constraint) { $constraint->upsize(); })
-                ->save(storage_path('app/images/').$image);
-            $request->merge(['image' => $image]);
-        }
-
         $validator = Event::validator($request->all());
         if ($validator->fails()) 
             return back()->withInput()->withErrors($validator);
@@ -162,10 +172,17 @@ class EventController extends Controller
             'start' => Carbon::parse($request->start),
             'end' => Carbon::parse($request->end),
         ]);
+        
+        $event = Event::firstOrNew(['id' => $request->id]);
 
-        $event = Event::firstOrNew(['id' => $request->id])
-            ->fill($request->only('name','image','information','start','end','founder','address','website'));
-        $event->save();
+        if (Storage::exists('temp/'.$request->image)) 
+            Storage::move('temp/'.$request->image,'images/'.$request->image);
+        if ($event->image&&$event->image!==$request->image) 
+            Storage::delete('images/'.$event->image);
+
+        $event
+            ->fill($request->only('name','image','information','start','end','founder','address','lat','lng','city_id','website'))
+            ->save();
 
         return redirect()->route('admin.events.index');
 

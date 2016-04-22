@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('public.layout')
 
 @section('content')
 <link rel="stylesheet" href="./temp/roofers.css">

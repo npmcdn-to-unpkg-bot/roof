@@ -19,8 +19,6 @@ class CreateCompaniesTable extends Migration
             $table->string('slug');
             $table->string('name');
             $table->string('logo');
-            $table->string('address');
-            $table->integer('city_id')->index();
             $table->string('email');            
             $table->string('phone');
             $table->boolean('privat')->nullable();
@@ -28,6 +26,10 @@ class CreateCompaniesTable extends Migration
             $table->text('entry');
             $table->text('about');
             $table->text('services');
+            $table->decimal('lat',7,5);
+            $table->decimal('lng',7,5);
+            $table->string('address');
+            $table->integer('city_id')->index();
         });
     }
 

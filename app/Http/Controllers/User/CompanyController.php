@@ -4,9 +4,11 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Auth;
-use Image;
+use Storage;
 use Validator;
 use App\Company;
+use App\Country;
+use App\City;
 use App\Specialisation;
 use App\Proposition;
 use App\Http\Requests;
@@ -25,9 +27,12 @@ class CompanyController extends Controller
                 'value' => old() ? old('name') : $company->name
             ],[
                 'name' => 'logo',
-                'type' => 'image',
-                'label' => 'Логотип компании',
-                'value' => old() ? old('logo') : $company->logo
+                'type' => 'images',
+                'label' => 'Логотип',
+                'quantity' => 1,
+                'values' => old() 
+                    ? (array)old('logo') 
+                    : (array)$company->logo
             ],[
                 'name' => 'entry',
                 'type' => 'textarea',
@@ -57,11 +62,21 @@ class CompanyController extends Controller
                 'label' => 'Телефон компании',
                 'value' => old() ? old('phone') : $company->phone
             ],[
-                'name' => 'address',
-                'type' => 'text',
-                'placeholder' => 'Введите адрес компании',
-                'label' => 'Адрес компании',
-                'value' => old() ? old('address') : $company->address
+                'type' => 'address',
+                'label' => 'Адрес',
+                'countries' => Country::all(),
+                'cities' => City::all(),
+                'lat' => old() ? old('lat') : $company->lat,
+                'lng' => old() ? old('lng') : $company->lng,
+                'country' => old() 
+                    ? old('country_id') 
+                    : ($company->city ? $company->city->country->id : ''),
+                'city' => old() 
+                    ? old('city_id') 
+                    : ($company->city ? $company->city->id : ''),
+                'address' => old() 
+                    ? old('address') 
+                    : $company->address
             ],[
                 'name' => 'specialisations',
                 'type' => 'select_multiple',
@@ -108,26 +123,22 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('upload')) {
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $name = $request->file('upload')->getClientOriginalName();
-            $name = str_slug( str_replace ( $extension, '', $name ) );
-            $image = time() . '-' . $name . '.' . $extension;
-            Image::make($request
-                ->file('upload'))
-                ->resize(1600, 1024, function ($constraint) { $constraint->upsize(); })
-                ->save(storage_path('app/images/').$image);
-            $request->merge(['logo' => $image]);
-        }
-
         $validator = Validator::make($request->all(), Company::$rules, Company::$messages);
-
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        $company = Auth::user()->company()->firstOrNew(['id' => $request->id])
-            ->fill($request->only('name','email','logo','phone','entry','about','address','services'));
-        $company->save();
+        $company = Auth::user()
+            ->company()
+            ->firstOrNew(['id' => $request->id]);
+
+        if (Storage::exists('temp/'.$request->logo)) 
+            Storage::move('temp/'.$request->logo,'images/'.$request->logo);
+        if ($company->logo&&$company->logo!==$request->logo) 
+            Storage::delete('images/'.$company->logo);
+
+        $company
+            ->fill($request->only('name','email','logo','phone','entry','about','address','lat','lng','city_id','services'))
+            ->save();
         $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
         $company->propositions()->sync($request->propositions ? $request->propositions : []);
 

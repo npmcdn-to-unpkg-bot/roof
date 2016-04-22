@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Validator;
-use Image;
+use Storage;
 use Auth;
 use App\Company;
 use App\Sale;
@@ -43,10 +43,13 @@ class SaleController extends Controller
                 'label'=>'Заголовок',
                 'value'=>old() ? old('title') : $sale->title
             ],[
-                'name'=>'image',
-                'type'=>'image',
-                'label'=>'Картинка',
-                'value'=>old() ? old('image') : $sale->image
+                'name' => 'image',
+                'type' => 'images',
+                'label' => 'Картинка',
+                'quantity' => 1,
+                'values' => old() 
+                    ? (array)old('image') 
+                    : (array)$sale->image
             ],[
                 'name'=>'entry',
                 'type'=>'textarea',
@@ -110,22 +113,22 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('upload')) {
-            $image = time().'-'
-                .$request->file('upload')->getClientOriginalName();
-            Image::make($request
-                ->file('upload'))
-                ->fit(1600, 1024, function ($constraint) { $constraint->upsize(); })
-                ->save(storage_path('app/images/').$image);
-            $request->merge(['image' => $image]);
-        }
-
         $validator = Validator::make($request->all(), Sale::$rules, Sale::$messages);
-
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
-        $company = Auth::user()->company;
-        $company->sales()->firstOrNew(['id' => $request->id])
+
+        
+        $sale = Auth::user()
+            ->company
+            ->sales()
+            ->firstOrNew(['id' => $request->id]);
+
+        if (Storage::exists('temp/'.$request->image)) 
+            Storage::move('temp/'.$request->image,'images/'.$request->image);
+        if ($sale->image&&$sale->image!==$request->image) 
+            Storage::delete('images/'.$sale->image);
+
+        $sale
             ->fill($request->only('title','image','entry','content'))
             ->save();
 

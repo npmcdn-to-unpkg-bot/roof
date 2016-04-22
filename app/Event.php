@@ -8,7 +8,30 @@ use Validator;
 
 class Event extends Model
 {
-    protected $fillable = ['id','name','image','information','start','end','founder','address','lat','lng','website'];
+    protected $fillable = [
+    	'id',
+    	'name',
+    	'image',
+    	'information',
+    	'start',
+    	'end',
+    	'founder',
+    	'lat',
+    	'lng',
+    	'city_id',
+    	'address',
+    	'website'
+    ];
+
+	public function address () {
+		if ($this->city){
+			return $this->city->country->name.', г. '
+			.$this->city->name.', '
+			.$this->address;
+		}else{
+			return false;
+		}
+	}
 
 	protected $dates = ['created_at', 'updated_at', 'start', 'end'];
 

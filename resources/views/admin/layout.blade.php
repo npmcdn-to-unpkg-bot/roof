@@ -14,6 +14,23 @@
 	<link rel="stylesheet" href="/bower/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 	<link rel="stylesheet" href="/bower/AdminLTE/plugins/select2/select2.min.css">  
 	<link rel="stylesheet" href="/bower/AdminLTE/dist/css/AdminLTE.min.css">
+
+	<script src="/bower/AdminLTE/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+	<script src="/bower/AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
+	<script src="/bower/jQuery addressPicker ByGiro/demo/js/bootstrap-typeahead.js"></script>
+	<script src="/bower/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/bower/AdminLTE/dist/js/app.min.js"></script>
+	<script src="/bower/AdminLTE/plugins/fastclick/fastclick.min.js"></script>
+	<script src="/bower/AdminLTE/plugins/ckeditor/ckeditor.js"></script>
+	<script src="/bower/AdminLTE/plugins/iCheck/icheck.min.js"></script>
+	<script src="/bower/moment/min/moment-with-locales.min.js"></script>
+	<script src="/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="/bower/dropzone/dist/min/dropzone.min.js" ></script>
+	<script src="/bower/AdminLTE/plugins/select2/select2.full.min.js"></script>
+	<script src="/bower/AdminLTE/plugins/select2/i18n/ru.js"></script>
+	<script src="http://maps.google.ru/maps/api/js?sensor=false&language=ru"></script>
+	<script src="/bower/jQuery addressPicker ByGiro/dist/jquery.addressPickerByGiro.js"></script>
+
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -54,32 +71,10 @@
 		</footer>
 
 	</div>
-	<script src="/bower/AdminLTE/plugins/jQuery/jQuery-2.2.0.min.js"></script>
-	<script src="/bower/AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
-	<script src="/bower/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/bower/AdminLTE/dist/js/app.min.js"></script>
-	<script src="/bower/AdminLTE/plugins/fastclick/fastclick.min.js"></script>
-	<script src="/bower/AdminLTE/plugins/ckeditor/ckeditor.js"></script>
-	<script src="/bower/AdminLTE/plugins/iCheck/icheck.min.js"></script>
-	<script src="/bower/moment/min/moment-with-locales.min.js"></script>
-	<script src="/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="/bower/dropzone/dist/min/dropzone.min.js" ></script>
-	<script src="/bower/AdminLTE/plugins/select2/select2.full.min.js"></script>
-	<script src="/bower/AdminLTE/plugins/select2/i18n/ru.js"></script>
 	<script>
-		$(function() {
-
-			$('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-				checkboxClass: 'icheckbox_minimal-blue',
-				radioClass: 'iradio_minimal-blue'
-			});
-
-			$('.sortable').sortable();
-
-			$(".select2").select2({
-				language: 'ru'
-			});
-
+		$('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+			checkboxClass: 'icheckbox_minimal-blue',
+			radioClass: 'iradio_minimal-blue'
 		});
 	</script>
 </body>

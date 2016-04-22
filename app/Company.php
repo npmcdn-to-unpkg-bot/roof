@@ -9,7 +9,7 @@ class Company extends Model
 
     public static $rules = [
         'name' => 'required|max:255',
-        'email' => 'required|email|max:255',
+        'email' => 'required|max:255',
         'phone' => 'required',
         'logo' => 'required',
         'entry' => 'max:255'
@@ -28,12 +28,42 @@ class Company extends Model
 
 	protected $table = 'companies';
 
-    protected $fillable = [ 'name', 'logo', 'address', 'email', 'phone', 'entry', 'about', 'services', 'association', 'privat', 'address', 'user_id' ];
+    protected $fillable = [
+        'name',
+        'logo',
+        'email',
+        'phone',
+        'entry',
+        'about',
+        'services',
+        'association',
+        'privat',
+        'address',
+        'user_id',
+        'lat',
+        'lng',
+        'city_id',
+        'address'
+    ];
 
-    protected $dates = ['created_at', 'updated_at'];
+    protected $dates = ['created_at','updated_at'];
+
+    public function address () {
+        if ($this->city) {
+            $address = $this->city->country->name.', г. '.$this->city->name;
+        };
+        if (!empty($this->address)) {
+            $address.=', '.$this->address;
+        };
+        return $address;
+    }
 
     public function user () {
     	return $this->belongsTo('App\User');
+    }
+
+    public function city () {
+        return $this->belongsTo('App\City');
     }
 
     public function buildings () {

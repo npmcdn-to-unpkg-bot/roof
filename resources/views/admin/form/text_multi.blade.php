@@ -1,4 +1,4 @@
-<div class="form-group {{$errors->first($name)?'has-error':''}}">
+<div class="form-group {{$errors->first($name)?'has-error':''}} clearfix">
 	<label class="control-label">{{$label}}</label>
 	<div class="sortable" id="{{$name}}">
 		@foreach ($values as $value)
@@ -17,8 +17,6 @@
 </div>
 
 <script>
-	document.addEventListener("DOMContentLoaded", 
-	function () {
-		{{$name}} = $('.{{$name}}').last().clone();
-	});
+	{{$name}} = $('.{{$name}}').last().clone();
+	$('#{{$name}}').sortable();
 </script>

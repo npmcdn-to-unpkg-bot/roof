@@ -7,6 +7,8 @@ use Validator;
 use Storage;
 use Illuminate\Http\Request;
 use App\Company;
+use App\Country;
+use App\City;
 use App\Building;
 use App\Image;
 use App\Http\Requests;
@@ -34,6 +36,10 @@ class BuildingController extends Controller
     ];
 
     public function fields (Building $building) {
+        $companies = Company::lists('name','id')->put($building->company_name, $building->company_name);
+        if (old()&&!Company::find(old('company'))) {
+            $companies->put(old('company'), old('company'));
+        }
         return [
             [
                 'name' => 'name',
@@ -43,12 +49,12 @@ class BuildingController extends Controller
                 'value' => old() ? old('name') : $building->name
             ],[
                 'name' => 'images',
-                'type' => 'gallery',
+                'type' => 'images',
                 'label' => 'Фотографии',
                 'quantity' => 5,
                 'values' => old() 
                     ? (array)old('images') 
-                    : $building->images->map(function($image){return $image->image;})->all()
+                    : $building->images()->lists('name')
             ],[
                 'name' => 'type',
                 'type' => 'text',
@@ -79,20 +85,31 @@ class BuildingController extends Controller
                 'label' => 'Дата окончания',
                 'value' => old() ? old('end') : $building->end->format('m Y')
             ],[
-                'name'=>'company_id',
+                'type' => 'address',
+                'label' => 'Адрес',
+                'countries' => Country::all(),
+                'cities' => City::all(),
+                'lat' => old() ? old('lat') : $building->lat,
+                'lng' => old() ? old('lng') : $building->lng,
+                'country' => old() 
+                    ? old('country_id') 
+                    : ($building->city ? $building->city->country->id : ''),
+                'city' => old() 
+                    ? old('city_id') 
+                    : ($building->city ? $building->city->id : ''),
+                'address' => old() 
+                    ? old('address') 
+                    : $building->address
+            ],[
+                'name'=>'company',
                 'type'=>'select',
                 'label'=>'Комания',
+                'settings' => 'tags: true,',
                 'value'=>old() 
-                    ? old('company_id') 
-                    : ($building->company ? $building->company->id : ''),
-                'options'=>Company::lists('name','id')
-            ],[
-                'name' => 'company_name',
-                'type' => 'text',
-                'placeholder' => 'Введите название компании',
-                'label' => 'Название компании (если нет на сайте)',
-                'value' => old() ? old('company_name') : $building->company_name
-            ],
+                    ? old('company') 
+                    : ($building->company ? $building->company->id : $building->company_name),
+                'options'=>$companies
+            ]
         ];
     }
 
@@ -161,18 +178,37 @@ class BuildingController extends Controller
 
 
         $building = Building::firstOrNew(['id' => $request->id])
-            ->fill($request->only('name','type','information','published','start','end','company_id','company_name'));
+            ->fill($request->only('name','type','information','published','start','end','lat','lng','address','city_id'));
+
+        if (Company::find($request->company)) {
+            $building->company_id = $request->company;
+            $building->company_name = '';
+        } else {
+            $building->company_id = 0;
+            $building->company_name = $request->company;
+        }
         $building->save();
 
-        $building->images()->whereNotIn('image', $request->images)->delete();
+        $oldimages = $building
+            ->images()
+            ->whereNotIn('name', $request->images)
+            ->get();
+        foreach ($oldimages as $image) {
+            Storage::delete('images/'.$image->name);
+            $image->delete();
+        }
         $images=collect();
-        foreach ($request->images as $image) {
-            if ( Storage::exists('temp/'.$image) ) 
-                Storage::move('temp/'.$image,'images/'.$image);
-            $images->push(Image::firstOrCreate(['image'=>$image]));
+        foreach ($request->images as $order => $name) {
+            if ( Storage::exists('temp/'.$name) ) 
+                Storage::move('temp/'.$name,'images/'.$name);
+            $image = Image::firstOrNew(['name'=>$name]);
+            $image
+                ->fill(['order'=>$order])
+                ->save();
+            $images->push($image);
         }
 
-        $building->images()->sync($images->map(function($image){return $image->id;})->all());
+        $building->images()->sync($images->pluck('id')->all());
 
         return redirect()->route('admin.building.index');
     }

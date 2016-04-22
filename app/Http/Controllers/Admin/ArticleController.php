@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Validator;
-use Image;
+use Storage;
 use App\Company;
 use App\Article;
 use App\Http\Requests;
@@ -42,10 +42,13 @@ class ArticleController extends Controller
                 'label'=>'Заголовок',
                 'value'=>old() ? old('title') : $article->title
             ],[
-                'name'=>'image',
-                'type'=>'image',
-                'label'=>'Картинка',
-                'value'=>old() ? old('image') : $article->image
+                'name' => 'image',
+                'type' => 'images',
+                'label' => 'Картинка',
+                'quantity' => 1,
+                'values' => old() 
+                    ? (array)old('image') 
+                    : (array)$article->image
             ],[
                 'name'=>'entry',
                 'type'=>'textarea',
@@ -65,6 +68,7 @@ class ArticleController extends Controller
             ],[
                 'name'=>'company_id',
                 'type'=>'select',
+                'settings'=>'',
                 'label'=>'Комания',
                 'value'=>old() 
                     ? old('company_id') 
@@ -122,24 +126,19 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('upload')) {
-            $image = time().'-'
-                .$request->file('upload')->getClientOriginalName();
-            Image::make($request
-                ->file('upload'))
-                ->fit(1600, 1024, function ($constraint) { $constraint->upsize(); })
-                ->save(storage_path('app/images/').$image);
-            $request->merge(['image' => $image]);
-        }
-
         $validator = Validator::make($request->all(), Article::$rules, Article::$messages);
-
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        Article::firstOrNew(['id' => $request->id])
-            ->fill($request->only('title','image','entry','content','market','company_id'))
-            ->save();
+        $article = Article::firstOrNew(['id' => $request->id]);
+
+        if (Storage::exists('temp/'.$request->image)) 
+            Storage::move('temp/'.$request->image,'images/'.$request->image);
+        if ($article->image&&$article->image!==$request->image) 
+            Storage::delete('images/'.$company->image);
+
+        $article->fill($request->only('title','image','entry','content','market','company_id'));
+        $article->save();
 
         return redirect()->route('admin.news.index');
     }

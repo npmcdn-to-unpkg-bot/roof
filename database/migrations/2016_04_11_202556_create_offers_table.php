@@ -25,6 +25,10 @@ class CreateOffersTable extends Migration
             $table->string('phone');
             $table->boolean('framed')->nullable();
             $table->text('information');
+            $table->decimal('lat',7,5);
+            $table->decimal('lng',7,5);
+            $table->string('address');
+            $table->integer('city_id')->index();
         });
     }
 

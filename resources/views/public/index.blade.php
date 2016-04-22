@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('public.layout')
 
 @section('content')
 	<div class="container-fluid container-fluid_light-gray">

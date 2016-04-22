@@ -17,7 +17,9 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        $buildings = Building::with('company','jobs')->orderBy('created_at', 'desc')->paginate(9);
+        $buildings = Building::with('company','jobs','images')
+            ->orderBy('created_at', 'desc')
+            ->paginate(9);
         return view('public.buildings.index', [
             'buildings' => $buildings
         ]);

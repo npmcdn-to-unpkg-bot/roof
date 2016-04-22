@@ -17,16 +17,16 @@ class CreateBuildingsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('type');
-            $table->float('lat');
-            $table->float('lng');
             $table->text('information');
             $table->date('start');
             $table->date('end');
-            $table->string('company_name');
-            $table->string('address');
             $table->boolean('published')->nullable();
-            $table->integer('city_id')->index();
             $table->integer('company_id')->index();
+            $table->string('company_name');
+            $table->decimal('lat',7,5);
+            $table->decimal('lng',7,5);
+            $table->string('address');
+            $table->integer('city_id')->index();
         });
 
         Schema::create('building_image', function (Blueprint $table) {

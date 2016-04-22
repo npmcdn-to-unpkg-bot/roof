@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Banner;
 use App\Area;
 use Validator;
-use Image;
+use Storage;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -40,10 +40,13 @@ class BannerController extends Controller
     protected function fields (Banner $banner)  {
         return [
             [
-                'name'=>'image',
-                'type'=>'image',
-                'label'=>'Банер',
-                'value'=>old() ? old('image') : $banner->image
+                'name' => 'image',
+                'type' => 'images',
+                'label' => 'Картинка',
+                'quantity' => 1,
+                'values' => old() 
+                    ? (array)old('image') 
+                    : (array)$banner->image
             ],[
                 'name'=>'href',
                 'type'=>'text',
@@ -110,38 +113,27 @@ class BannerController extends Controller
     public function store(Request $request)
     {
 
-        if ($request->hasFile('upload')) {
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $name = $request->file('upload')->getClientOriginalName();
-            $name = str_slug( str_replace ( $extension, '', $name ) );
-            $image = time() . '-' . $name . '.' . $extension;
-            Image::make($request
-                ->file('upload'))
-                ->resize(1600, 1024, function ($constraint) { $constraint->upsize(); })
-                ->save(storage_path('app/images/').$image);
-            $request->merge(['image' => $image]);
-        }        
-
         $validator = Validator::make($request->all(), Banner::$rules, Banner::$messages);
-
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
         
-        $banner = Banner::firstOrNew(['id' => $request->id])
-            ->fill($request->only('image','href'));
-        $banner->save();
+        $banner = Banner::firstOrNew(['id' => $request->id]);
 
-        Area::where([
-            'banner_id' => $banner->id,
-        ])->update([
-            'banner_id' => '0',
-        ]);
+        if (Storage::exists('temp/'.$request->image)) 
+            Storage::move('temp/'.$request->image,'images/'.$request->image);
+        if ($banner->image&&$banner->image!==$request->image) 
+            Storage::delete('images/'.$banner->image);
+
+        $banner
+            ->fill($request->only('image','href'))
+            ->save();
+
+        Area::where(['banner_id' => $banner->id])
+            ->update(['banner_id' => '0']);
 
         Area::whereIn('id', $request->areas)
-        ->update([
-            'banner_id' => $banner->id,
-        ]);
+            ->update(['banner_id' => $banner->id]);
 
         return redirect()->route('admin.banners.index');
     }

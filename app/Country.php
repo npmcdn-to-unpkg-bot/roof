@@ -7,17 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
 	protected $table = 'countries';
-    
-    public function companies () {
-    	return $this->hasMany('App\Company');
-    }
 
-    public function buildings () {
-    	return $this->hasMany('App\Building');
-    }
+	protected $fillable = ['id','name'];
 
-    public function regions () {
-    	return $this->hasMany('App\Region');
+    public function cities () {
+    	return $this->hasMany('App\City');
     }
 
 }

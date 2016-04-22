@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Offer;
 use App\User;
-use Image;
+use Storage;
 use Validator;
+use App\Country;
+use App\City;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -42,10 +44,13 @@ class OfferController extends Controller
                 'label'=>'Заголовок',
                 'value'=>old() ? old('title') : $offer->title
             ],[
-                'name'=>'image',
-                'type'=>'image',
-                'label'=>'Картинка',
-                'value'=>old() ? old('image') : $offer->image
+                'name' => 'image',
+                'type' => 'images',
+                'label' => 'Картинка',
+                'quantity' => 1,
+                'values' => old() 
+                    ? (array)old('image') 
+                    : (array)$offer->image
             ],[
                 'name'=>'price',
                 'type'=>'text',
@@ -83,6 +88,22 @@ class OfferController extends Controller
                 'label'=>'Телефон',
                 'value'=>old() ? old('phone') : $offer->phone
             ],[
+                'type' => 'address',
+                'label' => 'Адрес',
+                'countries' => Country::all(),
+                'cities' => City::all(),
+                'lat' => old() ? old('lat') : $offer->lat,
+                'lng' => old() ? old('lng') : $offer->lng,
+                'country' => old() 
+                    ? old('country_id') 
+                    : ($offer->city ? $offer->city->country->id : ''),
+                'city' => old() 
+                    ? old('city_id') 
+                    : ($offer->city ? $offer->city->id : ''),
+                'address' => old() 
+                    ? old('address') 
+                    : $offer->address
+            ],[
                 'name'=>'framed',
                 'type'=>'checkbox',
                 'label'=>'Выделить рамкой',
@@ -90,6 +111,7 @@ class OfferController extends Controller
             ],[
                 'name'=>'user_id',
                 'type'=>'select',
+                'settings'=>'',
                 'label'=>'Пользователь',
                 'value'=>old() 
                     ? old('user_id') 
@@ -147,27 +169,19 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('upload')) {
-            $image = time().'-'
-                .$request->file('upload')->getClientOriginalName();
-            Image::make($request
-                ->file('upload'))
-                ->fit(1600, 1024, function ($constraint) { $constraint->upsize(); })
-                ->save(storage_path('app/images/').$image);
-            $request->merge(['image' => $image]);
-        }
-
-        $validator = Validator::make(
-            $request->all(), 
-            Offer::$rules, 
-            Offer::$messages
-        );
-
+        $validator = Validator::make($request->all(), Offer::$rules, Offer::$messages);
         if ($validator->fails()) 
             return back()->withInput()->withErrors($validator);
 
-        Offer::firstOrNew(['id' => $request->id])
-            ->fill($request->only('title','image','price','specialisation','name','email','phone','framed','information'))
+        $offer = Offer::firstOrNew(['id' => $request->id]);
+        
+        if (Storage::exists('temp/'.$request->image)) 
+            Storage::move('temp/'.$request->image,'images/'.$request->image);
+        if ($offer->image&&$offer->image!==$request->image) 
+            Storage::delete('images/'.$offer->image);
+
+        $offer
+            ->fill($request->only('title','image','price','specialisation','name','email','phone','framed','information','lat','lng','address','city_id'))
             ->save();
 
         return redirect()->route('admin.offers.index');

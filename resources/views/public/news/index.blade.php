@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('public.layout')
 
 @section('content')
 	<div class="container breadcrumbs">
@@ -19,7 +19,7 @@
 				</div>
 				@endforeach
 
-				@include('pagenav',['items'=>$articles])
+				@include('public.pagenav',['items'=>$articles])
 
 			</div>
 			<div class="container__col-4">

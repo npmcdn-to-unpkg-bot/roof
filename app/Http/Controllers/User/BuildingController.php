@@ -8,6 +8,8 @@ use Storage;
 use Auth;
 use Illuminate\Http\Request;
 use App\Building;
+use App\Country;
+use App\City;
 use App\Image;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -43,12 +45,12 @@ class BuildingController extends Controller
                 'value' => old() ? old('name') : $building->name
             ],[
                 'name' => 'images',
-                'type' => 'gallery',
+                'type' => 'images',
                 'label' => 'Фотографии',
                 'quantity' => 5,
                 'values' => old() 
-                    ? old('images') 
-                    : $building->images->map(function($image){return $image->image;})->all()
+                    ? (array)old('images') 
+                    : $building->images()->lists('name')
             ],[
                 'name' => 'type',
                 'type' => 'text',
@@ -78,7 +80,23 @@ class BuildingController extends Controller
                 'format' => 'MM YYYY',
                 'label' => 'Дата окончания',
                 'value' => old() ? old('end') : $building->end->format('m Y')
-            ]
+            ],[
+                'type' => 'address',
+                'label' => 'Адрес',
+                'countries' => Country::all(),
+                'cities' => City::all(),
+                'lat' => old() ? old('lat') : $building->lat,
+                'lng' => old() ? old('lng') : $building->lng,
+                'country' => old() 
+                    ? old('country_id') 
+                    : ($building->city ? $building->city->country->id : ''),
+                'city' => old() 
+                    ? old('city_id') 
+                    : ($building->city ? $building->city->id : ''),
+                'address' => old() 
+                    ? old('address') 
+                    : $building->address
+            ],
         ];
     }
 
@@ -145,21 +163,34 @@ class BuildingController extends Controller
             'end' => Carbon::createFromFormat('m Y', $request->end),
         ]);
 
-        $company = Auth::user()->company;
+        $building = Auth::user()
+            ->company
+            ->buildings()
+            ->firstOrNew(['id' => $request->id]);
+        $building
+            ->fill($request->only('name','type','information','published','start','end','lat','lng','address','city_id'));
+            ->save();
 
-        $building = $company->buildings()->firstOrNew(['id' => $request->id])
-            ->fill($request->only('name','type','information','published','start','end'));
-        $building->save();
-
-        $building->images()->whereNotIn('image', $request->images)->delete();
+        $oldimages = $building
+            ->images()
+            ->whereNotIn('name', $request->images)
+            ->get();
+        foreach ($oldimages as $image) {
+            Storage::delete('images/'.$image->name);
+            $image->delete();
+        }
         $images=collect();
-        foreach ($request->images as $image) {
-            if ( Storage::exists('temp/'.$image) ) 
-                Storage::move('temp/'.$image,'images/'.$image);
-            $images->push(Image::firstOrCreate(['image'=>$image]));
+        foreach ($request->images as $order => $name) {
+            if ( Storage::exists('temp/'.$name) ) 
+                Storage::move('temp/'.$name,'images/'.$name);
+            $image = Image::firstOrNew(['name'=>$name]);
+            $image
+                ->fill(['order'=>$order])
+                ->save();
+            $images->push($image);
         }
 
-        $building->images()->sync($images->map(function($image){return $image->id;})->all());
+        $building->images()->sync($images->pluck('id')->all());
 
         return redirect()->route('user.building.index');
     }

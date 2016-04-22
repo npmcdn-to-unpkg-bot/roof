@@ -7,7 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class Offer extends Model
 {
 
-	protected $fillable = ['title','image','price','specialisation','name','email','phone','framed','information','user_id'];
+	protected $fillable = [
+        'title',
+        'image',
+        'price',
+        'specialisation',
+        'name',
+        'email',
+        'phone',
+        'framed',
+        'information',
+        'user_id',
+        'lat',
+        'lng',
+        'city_id',
+        'address'
+    ];
 
 	public static $rules = [
         'title' => 'required|min:10|max:255',
@@ -16,7 +31,7 @@ class Offer extends Model
         'information' => 'required|min:50',
         'specialisation' => 'required|min:3|max:35',
         'name' => 'required|max:35',
-        'email' => 'email|max:255',
+        'email' => 'max:255',
         'phone' => 'required',
     ];
 
@@ -37,6 +52,16 @@ class Offer extends Model
         'email.max' => 'Email должен быть не длинее 255 символов.',
         'phone.required' => 'Введите телефон.',
     ];
+
+    public function address () {
+        if ($this->city){
+            return $this->city->country->name.', г. '
+            .$this->city->name.', '
+            .$this->address;
+        }else{
+            return false;
+        }
+    }
 
     public function deskcategories () {
     	return $this->belongsToMany('App\DeskCategory');
