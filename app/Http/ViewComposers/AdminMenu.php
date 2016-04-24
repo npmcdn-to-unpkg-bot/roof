@@ -178,6 +178,21 @@ class AdminMenu
                         ],
                     ],
                 ],[
+                    'name' => 'Библиотека',
+                    'icon' => 'fa-book',
+                    'active' => Request::is('admin/library*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список записей',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.library.index'),
+                        ],[
+                            'name' => 'Добавить запись',
+                            'icon' => 'fa-plus',
+                            'href' => route('admin.library.create'),
+                        ],
+                    ],
+                ],[
                     'name' => 'Опросы',
                     'icon' => 'fa-question',
                     'active' => Request::is('admin/polls*')?'active':'',
