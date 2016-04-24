@@ -28,9 +28,9 @@
 						<div class="desk-single__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro quia ratione distinctio quas ad eveniet reprehenderit tempora facilis provident! Maxime, sed, doloribus. Atque vitae natus explicabo illo similique hic repellendus accusamus voluptatibus animi facilis corporis placeat deserunt labore suscipit ullam rem, sit aliquid excepturi eligendi accusantium quibusdam perspiciatis enim. Exercitationem dolor suscipit, ut magnam eius velit qui reprehenderit aut! Amet nostrum facere perferendis culpa voluptas possimus corrupti molestias tempore, sint sit mollitia, totam minima harum ad maxime impedit. Cupiditate odio veniam harum neque delectus in blanditiis, doloribus exercitationem modi similique repellat non voluptas iste, atque dolorum, quibusdam. Error, odit veniam.</div>
 						<div class="desk-single__info">№{{$offer->id}}   Дата размещения: {{$offer->created_at->format('d.m.Y')}}</div>
 						<div>Специализация: {{$offer->name}}</div>
-						@foreach($offer->deskcategories as $category)
+						@foreach($offer->categories as $category)
 						<a href="" class="desk-single__cat">{{$category->name}}</a>
-						@if($offer->deskcategories->last()!==$category)<span class="desk-single__sep"></span>@endif
+						@if($offer->categories->last()!==$category)<span class="desk-single__sep"></span>@endif
 						@endforeach
 					</div>
 				</div>
@@ -58,7 +58,7 @@
 			<div class="container__col-4">
 				<div class="title">КАТЕГОРИИ</div>
 				<form class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare">
-					@foreach (App\DeskCategory::all() as $category)
+					@foreach (App\Category::all() as $category)
 						<label class="menu__item">
 							<input class="input_checkbox" type="checkbox" name="category" value="{{$category->id}}">
 							<span></span>

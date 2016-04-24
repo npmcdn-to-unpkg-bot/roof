@@ -12,14 +12,14 @@ class CreateOfferCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('desk_categories', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
         });
-        Schema::create('desk_category_offer', function (Blueprint $table) {
+        Schema::create('category_offer', function (Blueprint $table) {
             $table->integer('offer_id')->index();
-            $table->integer('desk_category_id')->index();
+            $table->integer('category_id')->index();
         });   
     }
 
@@ -30,7 +30,7 @@ class CreateOfferCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('desk_categories');
-        Schema::drop('desk_category_offer');
+        Schema::drop('categories');
+        Schema::drop('category_offer');
     }
 }

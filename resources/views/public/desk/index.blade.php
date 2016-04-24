@@ -44,9 +44,9 @@
 						<div class="desk-item__bottom">
 							<div class="desk-item__info">№{{ $offer->id }}   Дата размещения: {{ $offer->created_at->format('d.m.Y') }}</div>
 							<div>Специализация: {{ $offer->specialisation }}</div>
-							@foreach ($offer->deskcategories as $category)
+							@foreach ($offer->categories as $category)
 								<a href="" class="desk-item__cat">{{ $category->name }}</a>
-								@if ( $category!==$offer->deskcategories->last() ) <span class="desk-item__sep"></span> @endif
+								@if ( $category!==$offer->categories->last() ) <span class="desk-item__sep"></span> @endif
 							@endforeach
 						</div>
 					</div>
@@ -58,7 +58,7 @@
 			<div class="container__col-4">
 				<div class="title">КАТЕГОРИИ</div>
 				<form class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare">
-					@foreach (App\DeskCategory::all() as $category)
+					@foreach (App\Category::all() as $category)
 						<label class="menu__item">
 							<input class="input_checkbox" type="checkbox" name="category" value="{{$category->id}}">
 							<span></span>

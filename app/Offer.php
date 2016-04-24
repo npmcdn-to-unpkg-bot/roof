@@ -63,8 +63,8 @@ class Offer extends Model
         }
     }
 
-    public function deskcategories () {
-    	return $this->belongsToMany('App\DeskCategory');
+    public function categories () {
+    	return $this->belongsToMany('App\Category');
     }
 
     public function user () {

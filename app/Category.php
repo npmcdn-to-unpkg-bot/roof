@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DeskCategory extends Model
+class Category extends Model
 {
-    protected $table = 'desk_categories';
+    protected $table = 'categories';
 
     public function offers () {
     	return $this->belongsToMany('App\Offer');
