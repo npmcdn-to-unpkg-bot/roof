@@ -8,7 +8,7 @@
 				<img src="/imagecache/160x140/{{$company->logo}}" alt="" class="company-cart__logo">
 				<div class="company-cart__name">{{$company->name}}</div>
 				<div class="company-cart__description">{{$company->entry}}</div>
-				<div class="company-cart__address">{{$company->address()}}</div>
+				<div class="company-cart__address">{{$company->printAddress()}}</div>
 				<div class="company-cart__post-date">Дата регистрации: {{$company->created_at->format('d.m.Y')}}</div>
 				<div class="company-cart__right-top">
 					@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label"> @endif
@@ -31,12 +31,12 @@
 				<div id="portfolio" class="tabs__tab">
 					@foreach ($company->buildings as $i => $building)
 						@if ($i%3==0)<div class="container__row offset_vertical_40"> @endif
-							<div class="container__col-4 building building_small">
+							<div class="container__col-4 building">
 								<img src="/s-img/portfolio-1.jpg" alt="" class="building__image">
 								<a href="" class="building__name">{{$building->name}}</a>
-								<span class="building__type">{{$building->type}}</span>
-								<span class="building__address">{{$building->address()}}</span>
-								<span class="building__period">{{$building->calendar()}}</span>
+								<span class="field field_small field_type">{{$building->type}}</span>
+								<span class="field field_small field_address">{{$building->printAddress()}}</span>
+								<span class="field field_small field_period">{{$building->calendar()}}</span>
 						@if ($i%3==2||$i==count($company->buildings)) </div> @endif
 						</div>
 					@endforeach

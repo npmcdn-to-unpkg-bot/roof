@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ThePublic;
 
 
 use App\Building;
+use App\Job;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -20,8 +21,11 @@ class BuildingController extends Controller
         $buildings = Building::with('company','jobs','images')
             ->orderBy('created_at', 'desc')
             ->paginate(9);
+        $jobs = Job::orderBy('created_at', 'desc')
+            ->paginate(20);
         return view('public.buildings.index', [
-            'buildings' => $buildings
+            'buildings' => $buildings,
+            'jobs' => $jobs
         ]);
     }
 

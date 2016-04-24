@@ -13,7 +13,7 @@
 							<div class="company-cart__description">{{ $company->entry }}</div>
 							<div class="container__row company-cart__bottom">
 								<div class="container__col-6">
-									<div class="company-cart__address">{{ $company->address() }}</div>
+									<div class="company-cart__address">{{ $company->printAddress() }}</div>
 									<div class="company-cart__post-date">
 										Дата регистрации:
 										{{ $company->created_at->format('m.d.Y') }}

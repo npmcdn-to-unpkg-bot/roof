@@ -133,6 +133,21 @@ class AdminMenu
                         ],
                     ],
                 ],[
+                    'name' => 'Вакансии',
+                    'icon' => 'fa-wrench',
+                    'active' => Request::is('admin/jobs*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список вакансий',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.jobs.index'),
+                        ],[
+                            'name' => 'Добавить вакансию',
+                            'icon' => 'fa-plus',
+                            'href' => route('admin.jobs.create'),
+                        ],
+                    ],
+                ],[
                     'name' => 'Новости',
                     'icon' => 'fa-newspaper-o',
                     'active' => Request::is('admin/news*')?'active':'',

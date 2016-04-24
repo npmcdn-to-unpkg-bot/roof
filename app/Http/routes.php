@@ -21,8 +21,8 @@ Route::resource('buildings', 'ThePublic\BuildingController');
 Route::resource('desk', 'ThePublic\OfferController');
 Route::resource('news', 'ThePublic\ArticleController');
 Route::resource('sales', 'ThePublic\SaleController');
-Route::get('/knowladge', function () { 	return view('public.knowladge.index'); });
-
+Route::resource('events', 'ThePublic\EventController');
+Route::get('/knowladge', function () { return view('public.knowladge.index'); });
 
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('', 'User\CompanyController@edit');
 		Route::resource('company', 'User\CompanyController');
 		Route::resource('building', 'User\BuildingController');
-		Route::resource('jobs', 'User\JobsController');
+		Route::resource('jobs', 'User\JobController');
 		Route::resource('news', 'User\ArticleController');
 		Route::resource('sales', 'User\SaleController');
 		Route::resource('offers', 'User\OfferController');
@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('', 'Admin\CompanyController@index');
 		Route::resource('company', 'Admin\CompanyController');
 		Route::resource('building', 'Admin\BuildingController');
-		Route::resource('jobs', 'Admin\JobsController');
+		Route::resource('jobs', 'Admin\JobController');
 		Route::resource('news', 'Admin\ArticleController');
 		Route::resource('sales', 'Admin\SaleController');
 		Route::resource('polls', 'Admin\PollController');

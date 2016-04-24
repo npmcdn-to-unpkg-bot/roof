@@ -14,23 +14,43 @@ class Calendar
      * @param  View  $view
      * @return void
      */
-	public function compose (View $view) {
+	public function compose (View $view){
 		$data = $view->getData();
+        $class = isset($data['class'])
+            ? $data['class']
+            : false;
 		$current = isset($data['current']) 
 			? Carbon::parse($data['current'])
 			: Carbon::now();
-		$start = $current->copy()->startOfMonth()->startOfWeek();
-		$end = $current->copy()->endOfMonth()->endOfWeek();
-		$events = Event::where([
-				['end','>=',$current->copy()->startOfMonth()],
-				['start','<=',$current->copy()->endOfMonth()],
-			])->get();
+        $startOfMonth = $current->copy()->startOfMonth();
+        $endOfMonth = $current->copy()->endOfMonth();
+		$startCalendar = $startOfMonth->copy()->startOfWeek();
+		$endCalendar = $endOfMonth->copy()->endOfWeek();
+
+        $events = collect();
+        for ($i=$startOfMonth->day;$i<=$endOfMonth->day;$i++) {
+            $events->put($i,collect());
+        }
+
+        $eventsQuery = Event::where([
+                ['end','>=',$startOfMonth],
+                ['start','<=',$endOfMonth],
+            ])->get();
+
+        foreach ($eventsQuery as $event) {
+            $start = max($event->start, $startOfMonth);
+            $end = min($event->end, $endOfMonth);
+            for($i=$start->day;$i<=$end->day;$i++) {
+                $events[$i]->push($event);
+            }
+        }
 
         return $view
         	->with('current', $current)
-        	->with('start',$start)
-        	->with('end',$end)
-        	->with('events',$events);
+        	->with('start',$startCalendar)
+        	->with('end',$endCalendar)
+        	->with('events',$events)
+            ->with('class',$class);
     }
 }
 

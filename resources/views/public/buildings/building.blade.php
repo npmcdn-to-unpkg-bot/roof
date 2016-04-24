@@ -10,7 +10,7 @@
 			<div class="container__col-8">
 				<img src="/imagecache/765x400/{{ $building->images->first()->name }}" alt="" class="building__image">
 				@if ( !$building->jobs->isEmpty() )
-				<div class="building__title offset_vertical_20">ВАКАНСИИ НА ОБЪЕКТЕ</div>
+				<div class="small-title offset_vertical_20">ВАКАНСИИ НА ОБЪЕКТЕ</div>
 					@foreach ($building->jobs as $job)
 						<div class="job">
 							<div class="job__title">{{ $job->name }}</div>
@@ -49,15 +49,15 @@
 				@endif
 			</div>
 			<div class="container__col-4">
-				<div class="building__type">{{ $building->type }}</div>
-				@if ($building->company)<a href="{{ route ( 'catalog.show', $building->company ) }}" class="building__company">{{ $building->company->name }}</a>
-				@elseif ($building->company_name) <span class="building__company">{{$building->company_name}}</span>
+				<div class="field field_type">{{ $building->type }}</div>
+				@if ($building->company)<a href="{{ route ( 'catalog.show', $building->company ) }}" class="field field_company">{{ $building->company->name }}</a>
+				@elseif ($building->company_name) <span class="field field_company">{{$building->company_name}}</span>
 				@endif
-				<div class="building__address">{{$building->address()}}</div>
-				<div class="building__period">{{$building->calendar()}}</div>
+				<div class="field field_address">{{$building->printAddress()}}</div>
+				<div class="field field_period">{{$building->calendar()}}</div>
 				@if ($building->information)
-					<div class="building__info">
-						<div class="building__title">ИНФОРМАЦИЯ</div>
+					<div class="field field_info">
+						<div class="small-title">ИНФОРМАЦИЯ</div>
 						{{ $building->information }}
 					</div>
 				@endif

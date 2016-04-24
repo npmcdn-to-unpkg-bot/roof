@@ -23,7 +23,7 @@ class Event extends Model
     	'website'
     ];
 
-	public function address () {
+	public function printAddress () {
 		if ($this->city){
 			return $this->city->country->name.', г. '
 			.$this->city->name.', '
@@ -31,6 +31,10 @@ class Event extends Model
 		}else{
 			return false;
 		}
+	}
+
+	public function city () {
+		return $this->belongsTo('App\City');
 	}
 
 	protected $dates = ['created_at', 'updated_at', 'start', 'end'];
@@ -43,7 +47,6 @@ class Event extends Model
 				'information' => 'required',
 				'founder' => 'required',
 				'website' => 'required',
-				'address' => 'required',
 				'start' => 'required|date_format:"d.m.Y"',
 				'end' => 'required|date_format:"d.m.Y"|after:'.Carbon::parse($fields['start'])->subDay()->format('d.m.Y'),
 			],[
@@ -53,7 +56,6 @@ class Event extends Model
 				'information.required' => 'Инофрмация о событии обязательное поле.',
 				'founder.required' => 'Название оргазинатора обязательное поле.',
 				'website.required' => 'Сайт обязательное поле.',
-				'address.required' => 'Адрес обязательное поле.',
 				'start.required' => 'Начало события обязательное поле.',
 				'start.date_format' => 'Неверный формат даты, выберите дату из календаря.',
 				'end.required' => 'Конец события обязательное поле',

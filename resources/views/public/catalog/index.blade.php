@@ -53,7 +53,7 @@
 								<a href="{{ route('catalog.show', $company) }}" class="company-cart__name">{{$company->name}}</a>
 								<div class="company-cart__description">{{$company->entry}}</div>
 								<div class="company-cart__bottom">
-									<div class="company-cart__address">{{$company->address()}}</div>
+									<div class="company-cart__address">{{$company->printAddress()}}</div>
 									<div class="company-cart__post-date">
 										Дата регистрации: 
 										{{ $company->created_at->format('m.d.Y') }}
@@ -102,7 +102,7 @@
 				<a href="#" class="button button_orange button_huge">ДОБАВИТЬ КОМПАНИЮ</a>
 				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'catalog.1'])</div>
 				<div class="offset_vertical_55">@include('public.forum.block')</div>
-				<div class="offset_vertical_55">@include('public.calendar.block')</div>
+				<div class="offset_vertical_55">@include('public.events.block')</div>
 				<div class="offset_vertical_55">@include('public.polls.block')</div>
 			</div>
 		</div>

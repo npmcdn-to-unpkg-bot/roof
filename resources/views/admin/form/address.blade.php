@@ -33,13 +33,17 @@
 initAddressPicker();
 
 function initAddressPicker(){
-	var position = {lat: {{$lat}}, lng: {{$lng}} };
+	var position;
+	@if ($lat&&$lng)
+	position = {lat: {{$lat}}, lng: {{$lng}} };
+	@endif
 
 	var map = new google.maps.Map(document.getElementById('map'),{
 		zoom: 14,
         center: position,
         scrollwheel: false,
-        mapTypeId: "roadmap"
+        mapTypeId: "roadmap",
+		disableDefaultUI: true,
 	})
 
 	var marker = new google.maps.Marker({
@@ -65,18 +69,23 @@ function initAddressPicker(){
 	});
 	$('#city').select2({language: 'ru'}).on('change', function () {
 		map.setZoom(10);
-		geocode(country.options[country.selectedIndex].text+' '+city.options[city.selectedIndex].text+' '+address.value);
+		geocode();
 	});
 	address.addEventListener('change', function () {
 		map.setZoom(14);
-		geocode(country.options[country.selectedIndex].text+' '+city.options[city.selectedIndex].text+' '+address.value);
+		geocode();
 	});
 	button.addEventListener('click', function () {
 		map.setZoom(14);
-		geocode(country.options[country.selectedIndex].text+' '+city.options[city.selectedIndex].text+' '+address.value);
+		geocode();
 	});
+	if(position===undefined){
+		geocode();
+	}
 
 	function geocode(request) {
+		request = request ||
+			country.options[country.selectedIndex].text+' '+city.options[city.selectedIndex].text+' '+address.value;
 		geocoder.geocode({'address': request}, function(results, status) {
 			if (status === google.maps.GeocoderStatus.OK) {
 				map.setCenter(results[0].geometry.location);
@@ -93,7 +102,6 @@ function initAddressPicker(){
         document.getElementById('lng').value = marker.position.lng();
 	}
 
-	@if ($lat==0 && $lng==0)geocode(country.options[country.selectedIndex].text+' '+city.options[city.selectedIndex].text+' '+address.value);@endif
 
 }
 </script>

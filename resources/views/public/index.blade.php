@@ -83,7 +83,7 @@
 				</div>
 				<div class="container__row">
 					<div class="container__col-6">
-						@include('public.calendar.block')
+						@include('public.events.block')
 					</div>
 					<div class="container__col-6">
 						@include('public.polls.block')

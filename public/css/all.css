@@ -1054,10 +1054,13 @@ a {
 	float: right;
 }
 
+.calendar__table{
+	width: 100%;
+}
+
 .calendar__table td {
 	border: 1px solid #b6c6cc;
 	height: 53px;
-	width: 53px;
 	color: #88b2bf;
 	font-size: 20px;
 	font-family: "Roboto Condensed";
@@ -1065,12 +1068,57 @@ a {
 	vertical-align: top;
 	padding: 5px 9px 2px 9px;
 	box-sizing: border-box;
-	cursor: pointer;
+	position: relative;
 }
 
 td.calendar__date_active {
 	background-color: #d98e64;
 	color: white;
+}
+
+.calendar_big td {
+	height: 93px;
+}
+
+.calendar_big .calendar__title {
+	line-height: 93px;
+}
+
+.calendar__events:before {
+	content:'...';
+	font-size: 12px;
+	display: block;
+	transition: .5s;
+	height: 14px;
+}
+.calendar__event_single,
+.calendar__events {
+    position: absolute;
+    bottom: 0;
+    z-index: 999;
+    background-color: #D98E64;
+    right: 2px;
+    height: 14px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition:.5s;
+    cursor: pointer;
+}
+
+:hover>.calendar__events {
+	height: 50px;
+}
+:hover>.calendar__events:before {
+	height: 0;
+}
+
+
+.calendar__event {
+	text-decoration: none;
+	font-size: 12px;
+	text-transform: lowercase;
+	color: white;
+	display: block;
 }
 
 /*question*/
@@ -1431,62 +1479,9 @@ td.calendar__date_active {
 	display: block;
 	font-family: "Roboto Condensed";
 }
-.building__info,
-.building__company,
-.building__address,
-.building__period,
-.building__type {
-	font-size: 16px;
-	padding-left: 33px;
-	display: block;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	line-height: 20px;
-	background-repeat: no-repeat;
-	background-position: left top 6px;
-}
-
-.building__type {
-	background-image: url(../img/building-icon-1.png);
-}
-
-.building__company {
-	background-image: url(../img/building-icon-2.png);
-	color: #0a3955;
-}
-
-.building__address {
-	background-image: url(../img/building-icon-3.png);
-}
-
-.building__period {
-	background-image: url(../img/building-icon-4.png);
-}
-
-.building__info {
-	background-image: url(../img/building-icon-5.png);
-}
-
-.building__title {
-	margin-top: 10px;
-	font-weight: bold;
-	color: #88b2bf;
-	font-size: 16px;
-	line-height: 24px;
-	text-transform: uppercase;
-	display: block;
-}
 
 .building__job-list {
 	line-height: 24px;
-}
-
-.building_small .building__info,
-.building_small .building__company,
-.building_small .building__address,
-.building_small .building__period,
-.building_small .building__type {
-	font-size: 14px;
 }
 
 /*job*/
@@ -2320,9 +2315,60 @@ td.calendar__date_active {
 	color: white;
 }
 
+/*clearfix*/
+
 .clearfix:after {
 	content:'';
 	display: block;
 	clear: both;
+}
+
+/*small-title*/
+
+.small-title {
+	font-weight: bold;
+	color: #88b2bf;
+	font-size: 16px;
+	line-height: 24px;
+	text-transform: uppercase;
+	display: block;
+}
+
+/*field*/
+
+.field{
+	font-size: 16px;
+	padding-left: 33px;
+	display: block;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	line-height: 20px;
+	background-repeat: no-repeat;
+	background-position: left top 6px;
+}
+
+.field_type {
+	background-image: url(../img/building-icon-1.png);
+}
+
+.field_company {
+	background-image: url(../img/building-icon-2.png);
+	color: #0a3955;
+}
+
+.field_address {
+	background-image: url(../img/building-icon-3.png);
+}
+
+.field_period {
+	background-image: url(../img/building-icon-4.png);
+}
+
+.field_info {
+	background-image: url(../img/building-icon-5.png);
+}
+
+.field_small{
+	font-size: 14px;
 }
 /*# sourceMappingURL=all.css.map */

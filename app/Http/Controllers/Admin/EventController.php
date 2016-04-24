@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Image;
+use Storage;
 use App\Event;
 use App\Country;
 use App\City;
@@ -76,12 +76,6 @@ class EventController extends Controller
                 'placeholder'=>'Введите ссылку на вебсайт',
                 'label'=>'Сайт события',
                 'value'=>old() ? old('website') : $event->website
-            ],[
-                'name'=>'address',
-                'type'=>'text',
-                'placeholder'=>'Введите адрес события',
-                'label'=>'Место события',
-                'value'=>old() ? old('address') : $event->address
             ],[
                 'name' => 'start',
                 'type' => 'datepicker',

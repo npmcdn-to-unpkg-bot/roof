@@ -53,7 +53,7 @@ class Offer extends Model
         'phone.required' => 'Введите телефон.',
     ];
 
-    public function address () {
+    public function printAddress () {
         if ($this->city){
             return $this->city->country->name.', г. '
             .$this->city->name.', '

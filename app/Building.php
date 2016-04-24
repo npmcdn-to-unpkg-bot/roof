@@ -48,7 +48,7 @@ class Building extends Model
 
 	protected $dates = ['created_at', 'updated_at', 'start', 'end'];
 
-	public function address () {
+	public function printAddress () {
 		if ($this->city){
 			return $this->city->country->name.', г. '
 			.$this->city->name.', '

@@ -31,7 +31,7 @@
 		<div class="container">
 			<div class="container__col-right menu menu_horizontal menu_uppercase menu_white">
 				<a href="#" class="menu__item">ОБ АССОЦИАЦИИ</a>
-				<a href="#" class="menu__item">КАЛЕНДАРЬ</a>
+				<a href="{{route('events.index')}}" class="menu__item">КАЛЕНДАРЬ</a>
 				<a href="#" class="menu__item">ОПРОСЫ</a>
 				<a href="#" class="menu__item">КОНТАКТЫ</a>
 			</div>

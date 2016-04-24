@@ -48,27 +48,33 @@ $(document).ready(function(){
 		$(this).parents('.buildings-block__tab').addClass('buildings-block__tab_active');
 	});
 	$('.job__toggle').click(function(){
-		var job = $(this).parents('.job'); 
-		job.toggleClass('job_expand');
-		job.find('.job__preview').slideToggle();
-		job.find('.job__full').slideToggle();
+		var block = $(this).parents('.job'); 
+		block.toggleClass('job_expand');
+		block.find('.job__preview').slideToggle();
+		block.find('.job__full').slideToggle();
 	});
 	$('.tabs__nav').click(function(e){
 		e.preventDefault();
-		var tabs=$(this).parents('.tabs');
-		tabs.find('.tabs__nav_active').removeClass('tabs__nav_active');
-		tabs.find('.tabs__tab_active').removeClass('tabs__tab_active');
+		var block=$(this).parents('.tabs');
+		block.find('.tabs__nav_active').removeClass('tabs__nav_active');
+		block.find('.tabs__tab_active').removeClass('tabs__tab_active');
 		$(this).addClass('tabs__nav_active');
 		$($(this).attr('href')).addClass('tabs__tab_active');
 	});
 
 	$('.page-tabs__nav').click(function(e){
 		e.preventDefault();
-		var tabs=$(this).parents('.page-tabs');
-		tabs.find('.page-tabs__nav_active').removeClass('page-tabs__nav_active');
-		tabs.find('.page-tabs__tab_active').removeClass('page-tabs__tab_active');
+		var block=$(this).parents('.page-tabs');
+		block.find('.page-tabs__nav_active').removeClass('page-tabs__nav_active');
+		block.find('.page-tabs__tab_active').removeClass('page-tabs__tab_active');
 		$(this).addClass('page-tabs__nav_active');
 		$($(this).attr('href')).addClass('page-tabs__tab_active');
+	});
+
+	$('.buildings-map__hide').click(function(e){
+		e.preventDefault()
+		var block=$(this).parents('.buildings-map');
+		block.find('.buildings-map__map').slideToggle();
 	});
 
 	$('.slider').flexslider({
@@ -78,45 +84,5 @@ $(document).ready(function(){
 	    itemWidth: 510,
 	    itemMargin: 20,
 	  });
-
-	Dropzone.autoDiscover = false;
-	ImageField = new Dropzone('.dropzone', {
-		url: '/image',
-		addRemoveLinks : true,
-		dictDefaultMessage: 'Выберите фотографии, или перетащите мышью',
-		dictRemoveFile: 'Удалить',
-		dictMaxFilesExceeded: 'Превышено максимальное количество фотографий',
-		headers: { 'X-CSRF-Token': $('[name="_token"]').val()}
-	});
-
-	ImageField.on( 'success', function (file, response) {
-		file.serverName = response;
-		$('.dropzone').append('<input type="hidden" name="images[]" class="dropzone__image-id" value='+response+'>');
-	});
-
-	ImageField.on('addedfile', function (file) {
-		$('.dz-size').remove();
-	});
-
-	ImageField.on('removedfile', function (file) {
-		$('.dropzone__image-id[value="'+file.serverName+'"]').remove();
-		$.ajax({
-		    url: '/image/'+file.serverName,
-		    type: 'post',
-		    data: {_method: 'delete'},
-		    headers: { 'X-CSRF-Token': $('[name="_token"]').val()},
-		    error: function (response) {
-		    	console.log(response.responseText)
-		    }
-		});
-	});
-
-	ImageField.files = ImageField.options.old;
-	$.each(ImageField.files, function (index, file) {
-		ImageField.emit("addedfile", file);
-		ImageField.emit("thumbnail", file, "/imagecache/120x120/"+file.serverName);
-		ImageField.emit("complete", file);
-		$('.dropzone').append('<input type="hidden" name="images[]" class="dropzone__image-id" value='+file.serverName+'>');
-	});
 
 });
