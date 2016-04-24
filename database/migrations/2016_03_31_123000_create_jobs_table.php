@@ -23,6 +23,7 @@ class CreateJobsTable extends Migration
             $table->text('information');
             $table->string('phone');
             $table->string('email');
+            $table->boolean('seasonality')->nullable();
             $table->integer('building_id')->index();
             $table->integer('company_id')->index();
         });
