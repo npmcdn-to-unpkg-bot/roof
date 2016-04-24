@@ -725,6 +725,7 @@ td.calendar__date_active {
 
 
 .calendar__event {
+	width: 90%;
 	text-decoration: none;
 	font-size: 12px;
 	text-transform: lowercase;
