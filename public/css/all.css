@@ -1103,6 +1103,7 @@ td.calendar__date_active {
     overflow: hidden;
     transition:.5s;
     cursor: pointer;
+    width: 90%;
 }
 
 :hover>.calendar__events {
@@ -1114,14 +1115,12 @@ td.calendar__date_active {
 
 
 .calendar__event {
-	width: 90%;
-	height: 14px;
-	overflow: hidden;
 	text-decoration: none;
 	font-size: 12px;
 	text-transform: lowercase;
 	color: white;
 	display: block;
+    white-space: nowrap;
 }
 
 /*question*/
