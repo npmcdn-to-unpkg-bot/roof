@@ -22,7 +22,8 @@ Route::resource('desk', 'ThePublic\OfferController');
 Route::resource('news', 'ThePublic\ArticleController');
 Route::resource('sales', 'ThePublic\SaleController');
 Route::resource('events', 'ThePublic\EventController');
-Route::get('/knowladge', function () { return view('public.knowladge.index'); });
+Route::resource('library', 'ThePublic\LibraryController');
+Route::get('/library/category/{id}', 'ThePublic\LibraryController@category');
 
 Route::get('/autocomplete/country', 'ThePublic\Autocomplete@country');
 Route::get('/autocomplete/city', 'ThePublic\Autocomplete@city');
