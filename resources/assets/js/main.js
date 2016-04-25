@@ -85,4 +85,6 @@ $(document).ready(function(){
 	    itemMargin: 20,
 	  });
 
+	$('.masonry').masonry();
+
 });

@@ -17,7 +17,6 @@
 
 	<script src="/bower/AdminLTE/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 	<script src="/bower/AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
-	<script src="/bower/jQuery addressPicker ByGiro/demo/js/bootstrap-typeahead.js"></script>
 	<script src="/bower/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/bower/AdminLTE/dist/js/app.min.js"></script>
 	<script src="/bower/AdminLTE/plugins/fastclick/fastclick.min.js"></script>
@@ -29,7 +28,6 @@
 	<script src="/bower/AdminLTE/plugins/select2/select2.full.min.js"></script>
 	<script src="/bower/AdminLTE/plugins/select2/i18n/ru.js"></script>
 	<script src="http://maps.google.ru/maps/api/js?sensor=false&language=ru"></script>
-	<script src="/bower/jQuery addressPicker ByGiro/dist/jquery.addressPickerByGiro.js"></script>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

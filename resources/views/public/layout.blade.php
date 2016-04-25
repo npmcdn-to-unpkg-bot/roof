@@ -104,6 +104,7 @@
 	<script src="/bower/ckeditor/ckeditor.js"></script>
 	<script src="/bower/flexslider/jquery.flexslider-min.js"></script>
 	<script src="/bower/dropzone/dist/min/dropzone.min.js" ></script>
+	<script src="/bower/masonry/dist/masonry.pkgd.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 	<script src="/js/all.js"></script>
 </body>

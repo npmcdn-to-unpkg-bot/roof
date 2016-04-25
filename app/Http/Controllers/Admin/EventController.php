@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Storage;
-use App\Event;
 use App\Country;
 use App\City;
+use App\Event;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -91,16 +91,14 @@ class EventController extends Controller
             ],[
                 'type' => 'address',
                 'label' => 'Адрес',
-                'countries' => Country::all(),
-                'cities' => City::all(),
                 'lat' => old() ? old('lat') : $event->lat,
                 'lng' => old() ? old('lng') : $event->lng,
                 'country' => old() 
-                    ? old('country_id') 
-                    : ($event->city ? $event->city->country->id : ''),
+                    ? Country::firstOrNew(['id'=>old('country_id')])
+                    : ($event->city ? $event->city->country : new Country),
                 'city' => old() 
-                    ? old('city_id') 
-                    : ($event->city ? $event->city->id : ''),
+                    ? City::firstOrNew(['id'=>old('city_id')])
+                    : ($event->city ? $event->city : new Country),
                 'address' => old() 
                     ? old('address') 
                     : $event->address

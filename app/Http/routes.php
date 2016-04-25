@@ -24,6 +24,9 @@ Route::resource('sales', 'ThePublic\SaleController');
 Route::resource('events', 'ThePublic\EventController');
 Route::get('/knowladge', function () { return view('public.knowladge.index'); });
 
+Route::get('/autocomplete/country', 'ThePublic\Autocomplete@country');
+Route::get('/autocomplete/city', 'ThePublic\Autocomplete@city');
+
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
 

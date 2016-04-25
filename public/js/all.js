@@ -85,5 +85,7 @@ $(document).ready(function(){
 	    itemMargin: 20,
 	  });
 
+	$('.masonry').masonry();
+
 });
 //# sourceMappingURL=all.js.map

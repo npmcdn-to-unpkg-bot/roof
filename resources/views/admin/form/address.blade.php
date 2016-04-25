@@ -1,22 +1,10 @@
 <div class="form-inline form-group">
 	<label class="control-label">{{$label}}</label><br>
-	<select name="country_id" class="form-control" id="country">
-		@foreach($countries as $option)
-			<option 
-				value="{{$option->id}}" 
-				{{$country==$option->id?'selected':''}}>
-			{{$option->name}}
-			</option>
-		@endforeach
+	<select name="country_id" style="width: 150px" class="form-control" id="country">
+		<option value="{{$country->id}}" selected>{{$country->name}}</option>
 	</select>
-	<select name="city_id" class="form-control" id="city">
-		@foreach($cities as $option)
-			<option 
-				value="{{$option->id}}" 
-				{{$city==$option->id?'selected':''}}>
-			{{$option->name}}
-			</option>
-		@endforeach
+	<select name="city_id" style="width: 150px" class="form-control" id="city">
+		<option value="{{$city->id}}" selected>{{$city->name}}</option>
 	</select>
 	<input type="text" style="width: 350px" class="form-control inputAddress" name="address" id="address" value="{{$address}}" placeholder="Улица, Дом">
 	<a id="geocode" class="btn btn-success"><i class="fa fa-search"></i></a>
@@ -33,7 +21,46 @@
 initAddressPicker();
 
 function initAddressPicker(){
-	var position;
+
+	var country = document.getElementById('country');
+	var city = document.getElementById('city');
+	var address = document.getElementById('address');
+	var button = document.getElementById('geocode');
+
+	$('#country').select2({
+		minimumInputLength: 1,
+		ajax: {
+			url: "/autocomplete/country",
+			delay: 250,
+			cache: true
+		},
+        language: 'ru'
+	}).on('change', function () { 
+	    $('#country').select2('close'); 
+	    map.setZoom(5); 
+	    geocode(country.options[country.selectedIndex].text); 
+  	});
+
+	$('#city').select2({
+		minimumInputLength: 1,
+		ajax: {
+			url: "/autocomplete/city",
+			delay: 250,
+			data: function (params) { 
+				return {
+					term: params.term,
+					country: country.value
+				};
+			},
+			cache: true
+		},
+		language: 'ru'
+	}).on('change', function () {
+		map.setZoom(10);
+		geocode();
+	});
+
+  	var position;
 	@if ($lat&&$lng)
 	position = {lat: {{$lat}}, lng: {{$lng}} };
 	@endif
@@ -57,20 +84,6 @@ function initAddressPicker(){
 
 	var geocoder = new google.maps.Geocoder();
 
-	var country = document.getElementById('country');
-	var city = document.getElementById('city');
-	var address = document.getElementById('address');
-	var button = document.getElementById('geocode');
-
-	$('#country').select2({language: 'ru'}).on('change', function () {
-		$('#country').select2('close');
-		map.setZoom(5);
-		geocode(country.options[country.selectedIndex].text);
-	});
-	$('#city').select2({language: 'ru'}).on('change', function () {
-		map.setZoom(10);
-		geocode();
-	});
 	address.addEventListener('change', function () {
 		map.setZoom(14);
 		geocode();
