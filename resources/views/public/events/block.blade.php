@@ -1,6 +1,6 @@
 <div class="calendar {{$class}}">
 	<div class="calendar__title">
-		КАЛЕНАДРЬ
+		КАЛЕНДАРЬ
 		<span class="calendar__month">< {{trans('month.'.$current->month)}} {{$current->year}} ></span>
 	</div>
 	<table class="calendar__table">

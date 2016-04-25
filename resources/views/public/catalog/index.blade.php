@@ -38,7 +38,7 @@
 	</div>
 	<div class="container text_center">
 		<form action="{{ route('catalog.index') }}">
-			<input type="text" name="search" value="{{ isset($search) ? $search : '' }}" placeholder="КЛЮЧИВОЕ СЛОВО" size="40" class="input">
+			<input type="text" name="search" value="{{ isset($search) ? $search : '' }}" placeholder="КЛЮЧЕВОЕ СЛОВО" size="40" class="input">
 			<button class="button button_search"></button>
 		</form>
 	</div>
@@ -99,11 +99,13 @@
 				</div>
 			</div>
 			<div class="container__col-4">
-				<a href="#" class="button button_orange button_huge">ДОБАВИТЬ КОМПАНИЮ</a>
-				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'catalog.1'])</div>
-				<div class="offset_vertical_55">@include('public.forum.block')</div>
-				<div class="offset_vertical_55">@include('public.events.block')</div>
-				<div class="offset_vertical_55">@include('public.polls.block')</div>
+				@if (!(Auth::user()&&Auth::user()->company))
+					<a href="{{route('user.index')}}" class="button button_orange button_huge offset_bottom_60">ДОБАВИТЬ КОМПАНИЮ</a>
+				@endif
+				<div class="offset_bottom_60">@include('public.area.banner',['area' => 'catalog.1'])</div>
+				<div class="offset_bottom_60">@include('public.forum.block')</div>
+				<div class="offset_bottom_60">@include('public.events.block')</div>
+				<div class="offset_bottom_60">@include('public.polls.block')</div>
 			</div>
 		</div>
 	</div>

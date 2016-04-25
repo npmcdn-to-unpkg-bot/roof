@@ -11,7 +11,7 @@
 				<form action="{{ route('desk.index') }}" class="jus offset_vertical_20">
 					<input type="text" name="search" value="{{ $search ? $search : '' }}" style="width: 490px" placeholder="КЛЮЧЕВЫЕ СЛОВА" class="input jus__item">
 					<select name="" style="width: 200px" class="input_select input jus__item">
-						<option value="">ВЫБИРИТЕ СТРАНУ</option>
+						<option value="">ВЫБЕРИТЕ СТРАНУ</option>
 					</select>
 					<button class="jus__item button button_search"></button>
 				</form>

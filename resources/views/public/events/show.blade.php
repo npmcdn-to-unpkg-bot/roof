@@ -5,7 +5,7 @@
 		<a href="{{route('events.index')}}" class="breadcrumbs__path">КАЛЕНДАРЬ</a>
 		<span class="breadcumbs__current">{{$event->name}}</span>
 	</div>
-	<div class="container">
+	<div class="container offset_bottom_60">
 		<div class="container__row">
 			<div class="container__col-8">
 				<div class="title">{{$event->name}}</div>

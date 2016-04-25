@@ -96,7 +96,7 @@ class JobController extends Controller
                 'name'=>'building_id',
                 'type'=>'select',
                 'settings'=>'',
-                'label'=>'Комания',
+                'label'=>'Стройка',
                 'value'=>old() 
                     ? old('building_id') 
                     : ($job->company ? $job->company->id : ''),
@@ -105,7 +105,7 @@ class JobController extends Controller
                 'name'=>'company_id',
                 'type'=>'select',
                 'settings'=>'',
-                'label'=>'Комания',
+                'label'=>'Компания',
                 'value'=>old() 
                     ? old('company_id') 
                     : ($job->company ? $job->company->id : ''),

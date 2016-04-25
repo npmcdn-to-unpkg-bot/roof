@@ -71,12 +71,12 @@
 		<div class="container">
 			<div class="container__row">
 				<div class="container__col-2 menu menu_vertical menu_uppercase menu_gray">
-					<a href="#" class="menu__item">Каталог компаний</a>
-					<a href="#" class="menu__item">Стройки и вакансии</a>
-					<a href="#" class="menu__item">Доска объявлений</a>
-					<a href="#" class="menu__item">Акции и скидки</a>
-					<a href="#" class="menu__item">База знаний</a>
-					<a href="#" class="menu__item">Новости</a>					
+					<a href="{{ route('catalog.index') }}" class="menu__item">Каталог компаний</a>
+					<a href="{{ route('buildings.index') }}" class="menu__item">Стройки и вакансии</a>
+					<a href="{{ route('desk.index') }}" class="menu__item">Доска объявлений</a>
+					<a href="{{ route('sales.index') }}" class="menu__item">Акции и скидки</a>
+					<a href="{{ route('library.index') }}" class="menu__item">База знаний</a>
+					<a href="{{ route('news.index') }}" class="menu__item">Новости</a>					
 				</div>
 				<div class="container__col-8 text_center">
 					<a href="/"><img src="/img/logo-gray.png" alt="" class="logo logo_in-footer logo_gray"></a>
@@ -90,7 +90,7 @@
 				</div>
 				<div class="container__col-2 text_right menu menu_vertical menu_uppercase menu_gray">
 					<a href="#" class="menu__item">ОБ АССОЦИАЦИИ</a>
-					<a href="#" class="menu__item">КАЛЕНДАРЬ</a>
+					<a href="{{route('events.index')}}" class="menu__item">КАЛЕНДАРЬ</a>
 					<a href="#" class="menu__item">ОПРОСЫ</a>
 					<a href="#" class="menu__item">КОНТАКТЫ</a>					
 				</div>
