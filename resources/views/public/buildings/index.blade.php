@@ -28,7 +28,7 @@
 										return $v->lng==0;
 									})->avg('lng')}},
 						},
-						zoom: 5,
+						zoom: 6,
 						scrollwheel: false
 					});
 
