@@ -109,16 +109,14 @@ class CompanyController extends Controller
             ],[
                 'type' => 'address',
                 'label' => 'Адрес',
-                'countries' => Country::all(),
-                'cities' => City::all(),
                 'lat' => old() ? old('lat') : $company->lat,
                 'lng' => old() ? old('lng') : $company->lng,
                 'country' => old() 
-                    ? old('country_id') 
-                    : ($company->city ? $company->city->country->id : ''),
+                    ? Country::firstOrNew(['id'=>old('country_id')])
+                    : ($company->city ? $company->city->country : new Country),
                 'city' => old() 
-                    ? old('city_id') 
-                    : ($company->city ? $company->city->id : ''),
+                    ? City::firstOrNew(['id'=>old('city_id')])
+                    : ($company->city ? $company->city : new Country),
                 'address' => old() 
                     ? old('address') 
                     : $company->address

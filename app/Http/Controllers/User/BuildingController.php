@@ -83,16 +83,14 @@ class BuildingController extends Controller
             ],[
                 'type' => 'address',
                 'label' => 'Адрес',
-                'countries' => Country::all(),
-                'cities' => City::all(),
                 'lat' => old() ? old('lat') : $building->lat,
                 'lng' => old() ? old('lng') : $building->lng,
                 'country' => old() 
-                    ? old('country_id') 
-                    : ($building->city ? $building->city->country->id : ''),
+                    ? Country::firstOrNew(['id'=>old('country_id')])
+                    : ($building->city ? $building->city->country : new Country),
                 'city' => old() 
-                    ? old('city_id') 
-                    : ($building->city ? $building->city->id : ''),
+                    ? City::firstOrNew(['id'=>old('city_id')])
+                    : ($building->city ? $building->city : new Country),
                 'address' => old() 
                     ? old('address') 
                     : $building->address

@@ -90,16 +90,14 @@ class OfferController extends Controller
             ],[
                 'type' => 'address',
                 'label' => 'Адрес',
-                'countries' => Country::all(),
-                'cities' => City::all(),
                 'lat' => old() ? old('lat') : $offer->lat,
                 'lng' => old() ? old('lng') : $offer->lng,
                 'country' => old() 
-                    ? old('country_id') 
-                    : ($offer->city ? $offer->city->country->id : ''),
+                    ? Country::firstOrNew(['id'=>old('country_id')])
+                    : ($offer->city ? $offer->city->country : new Country),
                 'city' => old() 
-                    ? old('city_id') 
-                    : ($offer->city ? $offer->city->id : ''),
+                    ? City::firstOrNew(['id'=>old('city_id')])
+                    : ($offer->city ? $offer->city : new Country),
                 'address' => old() 
                     ? old('address') 
                     : $offer->address
