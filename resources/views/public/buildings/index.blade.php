@@ -32,12 +32,12 @@
 						scrollwheel: false
 					});
 
-					@foreach ($buildings->reject(function($v){return $v->lng==0;}) as $building)
-							var marker_{{$building->id}} = new google.maps.Marker({
-								position: {lat: {{$building->lat}}, lng: {{$building->lng}}},
-								map: map,
-								title: '{{$building->name}}'
-							});
+					@foreach ($buildings->reject(function($v){return $v->lng==0&&$v->lat==0;}) as $building)
+						var marker_{{$building->id}} = new google.maps.Marker({
+							position: {lat: {{$building->lat}}, lng: {{$building->lng}}},
+							map: map,
+							title: '<?php echo addslashes($building->name) ?>'
+						});
 					@endforeach
 				});
 			</script>
