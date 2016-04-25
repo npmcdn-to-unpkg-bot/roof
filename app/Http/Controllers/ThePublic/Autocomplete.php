@@ -26,7 +26,7 @@ class Autocomplete extends Controller
             'results' =>\App\City::take(5)
                 ->where('name','like',$request->term.'%')
                 ->where('country_id',$request->country)
-                ->select('name as text', 'id')
+                ->selectRaw('CONCAT(name," ",region," ",state) as text, id')
                 ->get()
         ],
         200,[],JSON_UNESCAPED_UNICODE);

@@ -3,7 +3,7 @@
 	<select name="country_id" style="width: 150px" class="form-control" id="country">
 		<option value="{{$country->id}}" selected>{{$country->name}}</option>
 	</select>
-	<select name="city_id" style="width: 150px" class="form-control" id="city">
+	<select name="city_id" style="width: 250px" class="form-control" id="city">
 		<option value="{{$city->id}}" selected>{{$city->name}}</option>
 	</select>
 	<input type="text" style="width: 350px" class="form-control inputAddress" name="address" id="address" value="{{$address}}" placeholder="Улица, Дом">
