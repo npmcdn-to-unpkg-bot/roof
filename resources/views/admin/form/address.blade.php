@@ -61,9 +61,7 @@ function initAddressPicker(){
 	});
 
   	var position;
-	@if ($lat&&$lng)
-	position = {lat: {{$lat}}, lng: {{$lng}} };
-	@endif
+	position = {lat: {{$lat ? $lat : 0}}, lng: {{$lng ? $lng : 0}} };
 
 	var map = new google.maps.Map(document.getElementById('map'),{
 		zoom: 14,
@@ -92,9 +90,6 @@ function initAddressPicker(){
 		map.setZoom(14);
 		geocode();
 	});
-	if(position===undefined){
-		geocode();
-	}
 
 	function geocode(request) {
 		request = request ||
