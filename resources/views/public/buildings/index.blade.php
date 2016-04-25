@@ -15,6 +15,32 @@
 				<a href="#" class="buildings-map__hide">Скрыть карту</a>
 			</div>
 			<div class="buildings-map__map" id="buildings-map__map"></div>
+			<script>
+				document.addEventListener("DOMContentLoaded",function(){
+					var map = new google.maps.Map(document.getElementById('buildings-map__map'), {
+						center: {
+							lat: {{$buildings
+									->reject(function($v){
+										return $v->lat==0;
+									})->avg('lat')}},
+							lng: {{$buildings
+									->reject(function($v){
+										return $v->lng==0;
+									})->avg('lng')}},
+						},
+						zoom: 5,
+						scrollwheel: false
+					});
+
+					@foreach ($buildings->reject(function($v){return $v->lng==0;}) as $building)
+							var marker_{{$building->id}} = new google.maps.Marker({
+								position: {lat: {{$building->lat}}, lng: {{$building->lng}}},
+								map: map,
+								title: '{{$building->name}}'
+							});
+					@endforeach
+				});
+			</script>
 		</div>
 		<div class="container offset_vertical_60">
 			<div class="title">ФИЛЬТР ОБЪЕКТОВ</div>

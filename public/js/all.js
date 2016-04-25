@@ -7,35 +7,6 @@ if (document.getElementById('buildings-block__map')){
 	});
 }
 
-if (document.getElementById('buildings-map__map')){
-	var BuildingsMap__Map = new google.maps.Map(document.getElementById('buildings-map__map'), {
-		center: {lat: 50.2, lng: 30.42},
-		zoom: 7,
-		disableDefaultUI: true,
-		scrollwheel: false
-	});
-	var marker_1 = new google.maps.Marker({
-		position: {lat: 50.4, lng: 30.12},
-		map: BuildingsMap__Map,
-		title: 'Hello World!'
-	});
-	var marker_2 = new google.maps.Marker({
-		position: {lat: 50.3, lng: 30.52},
-		map: BuildingsMap__Map,
-		title: 'Hello World!'
-	});
-	var marker_3 = new google.maps.Marker({
-		position: {lat: 49.9, lng: 30.32},
-		map: BuildingsMap__Map,
-		title: 'Hello World!'
-	});
-	var marker_4 = new google.maps.Marker({
-		position: {lat: 49.5, lng: 30.22},
-		map: BuildingsMap__Map,
-		title: 'Hello World!'
-	});
-}
-
 $(document).ready(function(){
 
 	$('.removable__remove').click(function(e){
@@ -47,12 +18,14 @@ $(document).ready(function(){
 		$(this).parents('.buildings-block').find('.buildings-block__tab_active').removeClass('buildings-block__tab_active');
 		$(this).parents('.buildings-block__tab').addClass('buildings-block__tab_active');
 	});
+
 	$('.job__toggle').click(function(){
 		var block = $(this).parents('.job'); 
 		block.toggleClass('job_expand');
 		block.find('.job__preview').slideToggle();
 		block.find('.job__full').slideToggle();
 	});
+	
 	$('.tabs__nav').click(function(e){
 		e.preventDefault();
 		var block=$(this).parents('.tabs');
