@@ -3,24 +3,24 @@
 namespace App\Http\Controllers\ThePublic;
 
 use Illuminate\Http\Request;
-use App\Models\Library\Post;
-use App\Models\Library\Category;
+use App\Models\Education\Post;
+use App\Models\Education\Category;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class LibraryController extends Controller
+class EducationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $posts = Post::paginate(20);
         $categories = Category::all();
 
-        return view('public.library.index',[
+        return view('public.education.index',[
             'categories' => $categories,
             'posts' => $posts
         ]);
@@ -34,7 +34,7 @@ class LibraryController extends Controller
      */
     public function show($id)
     {
-        return view('public.library.show', [
+        return view('public.education.show', [
             'post' => Post::find($id)
         ]);
     }
@@ -43,9 +43,10 @@ class LibraryController extends Controller
         $posts = Category::find($id)->posts()->paginate(20);
         $categories = Category::all();
 
-        return view('public.library.index',[
+        return view('public.education.index',[
             'categories' => $categories,
             'posts' => $posts
         ]);
     }
+
 }

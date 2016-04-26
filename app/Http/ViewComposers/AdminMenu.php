@@ -193,6 +193,21 @@ class AdminMenu
                         ],
                     ],
                 ],[
+                    'name' => 'Обучение',
+                    'icon' => 'fa-book',
+                    'active' => Request::is('admin/education*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список записей',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.education.index'),
+                        ],[
+                            'name' => 'Добавить запись',
+                            'icon' => 'fa-plus',
+                            'href' => route('admin.education.create'),
+                        ],
+                    ],
+                ],[
                     'name' => 'Опросы',
                     'icon' => 'fa-question',
                     'active' => Request::is('admin/polls*')?'active':'',

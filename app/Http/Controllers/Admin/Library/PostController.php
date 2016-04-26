@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Library;
 
 use Illuminate\Http\Request;
-use App\Post;
-use App\Library;
+use App\Models\Library\Post;
+use App\Models\Library\Category;
 use Storage;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class LibraryController extends Controller
+class PostController extends Controller
 {
 
     protected $table = [
@@ -60,11 +60,11 @@ class LibraryController extends Controller
                 'label'=>'Текст записи',
                 'value'=>old() ? old('content') : $post->content
             ],[
-                'name' => 'library',
+                'name' => 'categories',
                 'type' => 'select_multiple',
                 'label' => 'Разделы',
-                'values' => old() ? (array)old('library') : $post->libraries->lists('id')->all(),
-                'options' => Library::lists('name','id')
+                'values' => old() ? (array)old('categories') : $post->categories->lists('id')->all(),
+                'options' => Category::lists('name','id')
             ],
         ];
         
@@ -130,7 +130,7 @@ class LibraryController extends Controller
 
         $post->fill($request->only('title','image','entry','content'));
         $post->save();
-        $post->libraries()->sync($request->library);
+        $post->categories()->sync((array)$request->categories);
 
         return redirect()->route('admin.library.index');
     }

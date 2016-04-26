@@ -23,13 +23,16 @@ Route::resource('news', 'ThePublic\ArticleController');
 Route::resource('sales', 'ThePublic\SaleController');
 Route::resource('events', 'ThePublic\EventController');
 Route::resource('library', 'ThePublic\LibraryController');
-Route::get('/library/category/{id}', 'ThePublic\LibraryController@category');
+Route::get('library/category/{id}', 'ThePublic\LibraryController@category');
 
 Route::get('/autocomplete/country', 'ThePublic\Autocomplete@country');
 Route::get('/autocomplete/city', 'ThePublic\Autocomplete@city');
 
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
+
+	Route::resource('education', 'ThePublic\EducationController');
+	Route::get('education/category/{id}', 'ThePublic\EducationControlle@category');
 
 	Route::group(['prefix' => 'user'], function () {
 		Route::get('', 'User\CompanyController@edit');
@@ -56,7 +59,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('banners', 'Admin\BannerController');
 		Route::resource('offers', 'Admin\OfferController');
 		Route::resource('events', 'Admin\EventController');
-		Route::resource('library', 'Admin\LibraryController');
+		Route::resource('library', 'Admin\Library\PostController');
+		Route::resource('education', 'Admin\Education\PostController');
 	});
 
 

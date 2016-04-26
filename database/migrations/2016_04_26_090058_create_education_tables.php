@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLibraryTable extends Migration
+class CreateEducationTables extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateLibraryTable extends Migration
      */
     public function up()
     {
-        Schema::create('library_posts', function (Blueprint $table) {
+        Schema::create('education_posts', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('image');
@@ -20,11 +20,11 @@ class CreateLibraryTable extends Migration
             $table->text('entry');
             $table->text('content');
         });
-        Schema::create('library_categories', function (Blueprint $table) {
+        Schema::create('education_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
         });
-        Schema::create('library_category_post', function (Blueprint $table) {
+        Schema::create('education_category_post', function (Blueprint $table) {
             $table->integer('category_id')->index();
             $table->integer('post_id')->index();
         });
@@ -37,8 +37,8 @@ class CreateLibraryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('library_posts');
-        Schema::drop('library_categories');
-        Schema::drop('library_category_post');
+        Schema::drop('education_posts');
+        Schema::drop('education_categories');
+        Schema::drop('education_category_post');
     }
 }
