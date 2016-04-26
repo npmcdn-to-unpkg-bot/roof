@@ -9,7 +9,7 @@
 <div class="container offset_vertical_40">
 	<div class="library">
 		<span class="library__label">Рубрики</span>
-		@foreach ($categories as $category)
+		@foreach (App\Models\Education\Category::all() as $category)
 			<a class="library__item {{Request::is('education/category/'.$category->id)?'library__item_active':''}}" href="{{url('education/category',$category)}}">{{$category->name}}</a>
 		@endforeach
 	</div>

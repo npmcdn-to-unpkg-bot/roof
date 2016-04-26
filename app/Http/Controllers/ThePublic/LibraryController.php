@@ -18,10 +18,8 @@ class LibraryController extends Controller
     public function index(Request $request)
     {
         $posts = Post::paginate(20);
-        $categories = Category::all();
 
         return view('public.library.index',[
-            'categories' => $categories,
             'posts' => $posts
         ]);
     }
@@ -41,10 +39,8 @@ class LibraryController extends Controller
 
     public function category($id) {
         $posts = Category::find($id)->posts()->paginate(20);
-        $categories = Category::all();
 
         return view('public.library.index',[
-            'categories' => $categories,
             'posts' => $posts
         ]);
     }

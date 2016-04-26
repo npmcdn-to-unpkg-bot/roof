@@ -18,10 +18,8 @@ class EducationController extends Controller
     public function index()
     {
         $posts = Post::paginate(20);
-        $categories = Category::all();
 
         return view('public.education.index',[
-            'categories' => $categories,
             'posts' => $posts
         ]);
     }
@@ -41,10 +39,8 @@ class EducationController extends Controller
 
     public function category($id) {
         $posts = Category::find($id)->posts()->paginate(20);
-        $categories = Category::all();
 
         return view('public.education.index',[
-            'categories' => $categories,
             'posts' => $posts
         ]);
     }

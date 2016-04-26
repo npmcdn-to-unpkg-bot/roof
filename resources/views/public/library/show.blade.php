@@ -18,12 +18,18 @@
 			</div>
 			<div class="post-page__libraries">
 				@foreach ($post->categories as $category)
-					<a class="post-page__library" href="/library/category/{{$category->id}}">{{$category->name}}</a>
+					<a class="post-page__library" href="{{url('library/category',$category->id)}}">{{$category->name}}</a>
 					{{$post->categories->last()!=$category?'|':''}}
 				@endforeach
 			</div>
 		</div>
 		<div class="container__col-4">
+			<div class="title">РАЗДЕЛЫ</div>
+			<div class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare">
+				@foreach(App\Models\Library\Category::all() as $category)
+					<a href="{{url('library/category',$category->id)}}" class="menu__item">{{$category->name}}</a>
+				@endforeach
+			</div>
 			<div class="offset_bottom_60">@include('public.area.banner',['area' => 'library.show.1'])</div>
 			<div class="offset_bottom_60">@include('public.area.banner',['area' => 'library.show.2'])</div>
 		</div>
