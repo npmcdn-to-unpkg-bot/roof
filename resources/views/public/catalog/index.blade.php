@@ -100,7 +100,7 @@
 			</div>
 			<div class="container__col-4">
 				@if (!(Auth::user()&&Auth::user()->company))
-					<a href="{{route('user.index')}}" class="button button_orange button_huge offset_bottom_60">ДОБАВИТЬ КОМПАНИЮ</a>
+					<a href="{{url('user')}}" class="button button_orange button_huge offset_bottom_60">ДОБАВИТЬ КОМПАНИЮ</a>
 				@endif
 				<div class="offset_bottom_60">@include('public.area.banner',['area' => 'catalog.1'])</div>
 				<div class="offset_bottom_60">@include('public.forum.block')</div>
