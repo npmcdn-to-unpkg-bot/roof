@@ -29,14 +29,12 @@ Route::group(['prefix' => 'knowladge'],function(){
 			return view('public.knowladge.index');
 		}]);
 
-	Route::group(['prefix' => 'library'], function () {
-		Route::resource('', 'ThePublic\LibraryController');
-		Route::get('category/{id}', 'ThePublic\LibraryController@category');
-	});
+	Route::resource('library', 'ThePublic\LibraryController');
+	Route::get('library/category/{id}', 'ThePublic\LibraryController@category');
 	
-	Route::group(['middleware' => 'auth', 'prefix' => 'education'], function () {
-		Route::resource('', 'ThePublic\EducationController');
-		Route::get('category/{id}', 'ThePublic\EducationControlle@category');
+	Route::group(['middleware' => 'auth'], function () {
+		Route::resource('education', 'ThePublic\EducationController');
+		Route::get('education/category/{id}', 'ThePublic\EducationControlle@category');
 	});
 
 });
