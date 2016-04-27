@@ -19,7 +19,7 @@ class EducationController extends Controller
     {
         $posts = Post::paginate(20);
 
-        return view('public.education.index',[
+        return view('public.knowladge.education.index',[
             'posts' => $posts
         ]);
     }
@@ -32,7 +32,7 @@ class EducationController extends Controller
      */
     public function show($id)
     {
-        return view('public.education.show', [
+        return view('public.knowladge.education.show', [
             'post' => Post::find($id)
         ]);
     }
@@ -40,7 +40,7 @@ class EducationController extends Controller
     public function category($id) {
         $posts = Category::find($id)->posts()->paginate(20);
 
-        return view('public.education.index',[
+        return view('public.knowladge.education.index',[
             'posts' => $posts
         ]);
     }

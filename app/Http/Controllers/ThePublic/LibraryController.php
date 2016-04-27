@@ -19,7 +19,7 @@ class LibraryController extends Controller
     {
         $posts = Post::paginate(20);
 
-        return view('public.library.index',[
+        return view('public.knowladge.library.index',[
             'posts' => $posts
         ]);
     }
@@ -32,7 +32,7 @@ class LibraryController extends Controller
      */
     public function show($id)
     {
-        return view('public.library.show', [
+        return view('public.knowladge.library.show', [
             'post' => Post::find($id)
         ]);
     }
@@ -40,7 +40,7 @@ class LibraryController extends Controller
     public function category($id) {
         $posts = Category::find($id)->posts()->paginate(20);
 
-        return view('public.library.index',[
+        return view('public.knowladge.library.index',[
             'posts' => $posts
         ]);
     }

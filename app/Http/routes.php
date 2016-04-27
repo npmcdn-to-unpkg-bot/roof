@@ -22,17 +22,31 @@ Route::resource('desk', 'ThePublic\OfferController');
 Route::resource('news', 'ThePublic\ArticleController');
 Route::resource('sales', 'ThePublic\SaleController');
 Route::resource('events', 'ThePublic\EventController');
-Route::resource('library', 'ThePublic\LibraryController');
-Route::get('library/category/{id}', 'ThePublic\LibraryController@category');
+
+Route::group(['prefix' => 'knowladge'],function(){
+
+	Route::get('', ['as' => 'knowladge.index', function () {
+			return view('public.knowladge.index');
+		}]);
+
+	Route::group(['prefix' => 'library'], function () {
+		Route::resource('', 'ThePublic\LibraryController');
+		Route::get('category/{id}', 'ThePublic\LibraryController@category');
+	});
+	
+	Route::group(['middleware' => 'auth', 'prefix' => 'education'], function () {
+		Route::resource('', 'ThePublic\EducationController');
+		Route::get('category/{id}', 'ThePublic\EducationControlle@category');
+	});
+
+});
+
 
 Route::get('/autocomplete/country', 'ThePublic\Autocomplete@country');
 Route::get('/autocomplete/city', 'ThePublic\Autocomplete@city');
 
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
-
-	Route::resource('education', 'ThePublic\EducationController');
-	Route::get('education/category/{id}', 'ThePublic\EducationControlle@category');
 
 	Route::group(['prefix' => 'user'], function () {
 		Route::get('', 'User\CompanyController@edit');
