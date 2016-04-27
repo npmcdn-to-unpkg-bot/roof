@@ -30,7 +30,6 @@
 								<a class="post__library" href="{{url('library/category',$category)}}">{{$category->name}}</a>@if ($post->categories->last()!=$category), @endif
 							@endforeach
 						</div>
-			{{$i}}
 					</div>
 				</div>
 			</div>
