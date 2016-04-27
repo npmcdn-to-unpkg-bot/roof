@@ -33,7 +33,7 @@
 					</div>
 				</div>
 			</div>
-			@if ($i==2) <div class="container__col-4 offset_bottom_45">@include('public.area.banner',['area' => 'education.index.1'])</div> @endif
+			@if ($i==1) <div class="container__col-4 offset_bottom_45">@include('public.area.banner',['area' => 'education.index.1'])</div> @endif
 		@endforeach
 		@if ($posts->count() < 3) <div class="container__col-4 offset_bottom_45">@include('public.area.banner',['area' => 'education.index.1'])</div> @endif
 	</div>
