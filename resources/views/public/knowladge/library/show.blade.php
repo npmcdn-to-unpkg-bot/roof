@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container breadcrumbs">
-	<a href="#" class="breadcrumbs__path">БАЗА ЗНАНИЙ</a>
-	<a href="#" class="breadcrumbs__path">БИБЛИОТЕКА</a>
+	<a href="{{route('knowladge.index')}}" class="breadcrumbs__path">БАЗА ЗНАНИЙ</a>
+	<a href="{{route('knowladge.library.index')}}" class="breadcrumbs__path">БИБЛИОТЕКА</a>
 	<span class="breadcumbs__current">{{$post->title}}</span>
 </div>
 
@@ -18,7 +18,7 @@
 			</div>
 			<div class="post-page__libraries">
 				@foreach ($post->categories as $category)
-					<a class="post-page__library" href="{{url('library/category',$category->id)}}">{{$category->name}}</a>
+					<a class="post-page__library" href="{{url('knowladge/library/category',$category->id)}}">{{$category->name}}</a>
 					{{$post->categories->last()!=$category?'|':''}}
 				@endforeach
 			</div>
