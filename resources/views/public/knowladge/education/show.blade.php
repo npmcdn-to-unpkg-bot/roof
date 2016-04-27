@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container breadcrumbs">
-	<a href="#" class="breadcrumbs__path">БАЗА ЗНАНИЙ</a>
-	<a href="{{route('education.index')}}" class="breadcrumbs__path">ОБУЧЕНИЕ</a>
+	<a href="{{route('knowladge.index')}}" class="breadcrumbs__path">БАЗА ЗНАНИЙ</a>
+	<a href="{{route('knowladge.education.index')}}" class="breadcrumbs__path">ОБУЧЕНИЕ</a>
 	<span class="breadcumbs__current">{{$post->title}}</span>
 </div>
 
