@@ -1477,6 +1477,13 @@ td.calendar__date_active {
 	position: relative;
 }
 
+.slider ul,
+.slider li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 .flex-next,
 .flex-prev {
 	position: absolute;
