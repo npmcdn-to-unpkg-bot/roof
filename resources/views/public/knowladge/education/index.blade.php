@@ -10,7 +10,7 @@
 	<div class="library">
 		<span class="library__label">Рубрики</span>
 		@foreach (App\Models\Education\Category::all() as $category)
-			<a class="library__item {{Request::is('education/category/'.$category->id)?'library__item_active':''}}" href="{{url('education/category',$category)}}">{{$category->name}}</a>
+			<a class="library__item {{Request::is('knowladge/education/category/'.$category->id)?'library__item_active':''}}" href="{{url('knowladge/education/category',$category)}}">{{$category->name}}</a>
 		@endforeach
 	</div>
 </div>
@@ -21,13 +21,13 @@
 			<div class="container__col-4 post offset_bottom_45">
 				<img src="/imagecache/width360/{{$post->image}}" class="post__image">
 				<div class="post__content">
-					<a href="{{route('education.show', $post)}}" class="post__title">{{$post->title}}</a>
+					<a href="{{route('knowladge.education.show', $post)}}" class="post__title">{{$post->title}}</a>
 					<div class="post__entry">{{$post->entry}}</div>
 					<div class="post__bottom clearfix">
 						<div class="post__created-at">{{$post->created_at->format('d.m.Y')}}</div>
 						<div class="post__libraries post__library">
 							@foreach ($post->categories as $category)
-								<a class="post__library" href="{{url('education/category',$category)}}">{{$category->name}}</a>@if ($post->categories->last()!=$category), @endif
+								<a class="post__library" href="{{url('knowladge/education/category',$category)}}">{{$category->name}}</a>@if ($post->categories->last()!=$category), @endif
 							@endforeach
 						</div>
 					</div>

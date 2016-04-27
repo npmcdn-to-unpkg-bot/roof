@@ -27,7 +27,7 @@
 			<div class="title">РАЗДЕЛЫ</div>
 			<div class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare">
 				@foreach(App\Models\Education\Category::all() as $category)
-					<a href="{{url('education/category',$category->id)}}" class="menu__item">{{$category->name}}</a>
+					<a href="{{url('knowladge/education/category',$category->id)}}" class="menu__item">{{$category->name}}</a>
 				@endforeach
 			</div>
 			<div class="offset_bottom_60">@include('public.area.banner',['area' => 'knowladge.education.show.1'])</div>
