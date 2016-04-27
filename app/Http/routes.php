@@ -46,6 +46,7 @@ Route::get('/autocomplete/city', 'ThePublic\Autocomplete@city');
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
 
+
 	Route::group(['prefix' => 'user'], function () {
 		Route::get('', 'User\CompanyController@edit');
 		Route::resource('company', 'User\CompanyController');
@@ -59,6 +60,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('image', 'User\ImageController');
 	Route::post('vote', 'User\PollController@vote');
 	Route::get('vote', 'User\PollController@index');
+
+	Route::group(['middleware' => 'role:admin'],function () {
+    	Route::controller('filemanager', 'FilemanagerLaravelController');
+	});
 
 	Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function () {
 		Route::get('', 'Admin\CompanyController@index');
