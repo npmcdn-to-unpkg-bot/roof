@@ -22,6 +22,7 @@
     "ckeditor": "^4.5.8",
     "AdminLTE": "admin-lte#^2.3.3",
     "eonasdan-bootstrap-datetimepicker": "^4.17.37",
-    "masonry": "^4.0.0"
+    "masonry": "^4.0.0",
+    "imagesloaded": "^4.1.0"
   }
 }

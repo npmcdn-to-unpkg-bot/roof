@@ -59,7 +59,7 @@ $(document).ready(function(){
 	  });
 
 	$('.masonry').imagesLoaded(function(){
-		$('.masonry').masonry();	
-	})
+		$('.masonry').masonry();
+	});
 
 });
