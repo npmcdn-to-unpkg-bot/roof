@@ -7,7 +7,7 @@
 	<span class="breadcumbs__current">{{$post->title}}</span>
 </div>
 
-<div class="container">
+<div class="container offset_bottom_60">
 	<div class="container__row">
 		<div class="container__col-8 post-page">
 			<div class="post-page__created-at">Дата размещение: {{$post->created_at->format('d.m.Y')}}</div>
