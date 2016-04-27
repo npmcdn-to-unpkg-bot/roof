@@ -4,7 +4,7 @@ html {
 	background:#FFF;
 	font-family: "PT Sans", sans-serif;
 	font-size: 14px}
-body,div,dl,dt,dd,ul,ol,li,pre,code,form,fieldset,legend,input,textarea,blockquote,th,td {
+body,div,pre,code,form,fieldset,legend,input,textarea,blockquote,th,td {
 	margin:0;
 	padding:0
 }
