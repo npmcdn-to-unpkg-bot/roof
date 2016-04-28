@@ -19,6 +19,39 @@ $(document).ready(function(){
 		$(this).parents('.buildings-block__tab').addClass('buildings-block__tab_active');
 	});
 
+	$('.calendar-block__date_active').click(function(){
+		$(this)
+			.siblings('.calendar-block__date_active')
+			.find('.calendar-block__events')
+			.slideUp();
+		$(this)
+			.find('.calendar-block__events')
+			.slideToggle();
+	});
+
+	$('.calendar__day').click(function(){
+		$(this)
+			.parents('.calendar__date_active')
+			.siblings('.calendar__date_active')
+			.find('.calendar__events')
+			.slideUp();
+		$(this)
+			.parents('.calendar__date_active')
+			.find('.calendar__events')
+			.slideToggle();
+	});
+	$('.calendar__carret').click(function(){
+		$(this)
+			.parents('.calendar__date_active')
+			.siblings('.calendar__date_active')
+			.find('.calendar__events')
+			.slideUp();
+		$(this)
+			.parents('.calendar__date_active')
+			.find('.calendar__events')
+			.slideToggle();
+	});
+
 	$('.job__toggle').click(function(){
 		var block = $(this).parents('.job'); 
 		block.toggleClass('job_expand');
