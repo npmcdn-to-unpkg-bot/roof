@@ -22,6 +22,7 @@ Route::resource('desk', 'ThePublic\OfferController');
 Route::resource('news', 'ThePublic\ArticleController');
 Route::resource('sales', 'ThePublic\SaleController');
 Route::resource('events', 'ThePublic\EventController');
+Route::get('events/calendar/{date}', 'ThePublic\EventController@calendar');
 
 Route::group(['prefix' => 'knowladge'],function(){
 

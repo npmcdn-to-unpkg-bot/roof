@@ -9,7 +9,15 @@
 			<div class="container__col-8">
 				<div class="calendar {{$class}}">
 					<div class="calendar__title">
-						<span class="calendar__month">< {{trans('month.'.$current->month)}} {{$current->year}} ></span>
+						<span class="calendar__month">
+						@if ($prev)
+						<a href="{{url('events/calendar',$current->copy()->subMonth()->format('d-m-Y'))}}" class="calendar__next"><</a>
+						@endif
+						{{trans('month.'.$current->month)}} {{$current->year}}
+						@if ($next)
+						<a href="{{url('events/calendar',$current->copy()->addMonth()->format('d-m-Y'))}}" class="calendar__prev">></a>
+						@endif
+						</span>
 					</div>
 					<table class="calendar__table">
 						@for ( $i=$start;$i<=$end;$i->addDay() )

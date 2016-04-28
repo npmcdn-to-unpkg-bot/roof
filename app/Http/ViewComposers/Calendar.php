@@ -45,12 +45,17 @@ class Calendar
             }
         }
 
+        $next = Event::where([['end','>=',$endOfMonth]])->count();
+        $prev = Event::where([['start','<=',$startOfMonth]])->count();
+
         return $view
         	->with('current', $current)
         	->with('start',$startCalendar)
         	->with('end',$endCalendar)
         	->with('events',$events)
-            ->with('class',$class);
+            ->with('class',$class)
+            ->with('next',$next)
+            ->with('prev',$prev);
     }
 }
 

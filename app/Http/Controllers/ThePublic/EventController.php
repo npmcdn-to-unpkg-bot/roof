@@ -19,6 +19,13 @@ class EventController extends Controller
         return view('public.events.index');
     }
 
+    public function calendar($date)
+    {
+        return view('public.events.index',[
+            'current'=>$date
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *

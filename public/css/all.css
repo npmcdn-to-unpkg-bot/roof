@@ -1137,10 +1137,16 @@ a {
 	font-family: "Roboto Condensed";
 	font-weight: 300;
 	background-color: #d98e64;
-  line-height: 61px;
+	line-height: 61px;
 	box-sizing: border-box;
 	padding: 0 18px;
-  text-align: center;
+	text-align: center;
+}
+
+.calendar__next,
+.calendar__prev {
+	color: white;
+	text-decoration: none;
 }
 
 .calendar__table{
@@ -1245,6 +1251,11 @@ td.calendar__date_active .calendar__day{
 	box-sizing: border-box;
 	padding: 0 18px;
 	text-transform: uppercase;
+}
+
+.calendar-block__calendar{
+	color: white;
+	text-decoration: none;
 }
 
 .calendar-block__month {

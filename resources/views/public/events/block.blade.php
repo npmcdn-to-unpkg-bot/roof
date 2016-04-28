@@ -1,7 +1,7 @@
 <div class="calendar-block {{$class}}">
 	<div class="calendar-block__title">
-		КАЛЕНДАРЬ
-		<span class="calendar-block__month">< {{trans('month.'.$current->month)}} {{$current->year}} ></span>
+		<a class="calendar-block_calendar" href="{{route('events.index')}}">КАЛЕНДАРЬ</a>
+		<span class="calendar-block__month">{{trans('month.'.$current->month)}} {{$current->year}}</span>
 	</div>
 	<table class="calendar-block__table">
 		@for ( $i=$start;$i<=$end;$i->addDay() )
