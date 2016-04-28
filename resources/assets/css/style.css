@@ -823,8 +823,11 @@ td.calendar__date_active .calendar__day{
 	padding-bottom: 13px;
 	margin-left: 3px;
 	margin-right: 3px;
-	border-bottom:1px solid #6fc0d1;
 	text-align: center;
+}
+
+.calendar__event:not(:last-child){
+	border-bottom:1px solid #6fc0d1;
 }
 
 .calendar__first {
