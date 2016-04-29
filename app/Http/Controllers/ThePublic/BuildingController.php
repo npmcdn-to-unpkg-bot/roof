@@ -38,7 +38,7 @@ class BuildingController extends Controller
      */
     public function show($id)
     {
-        return view('public.buildings.building', [
+        return view('public.buildings.show', [
             'building' => Building::with('company', 'jobs')->find($id)
         ]);
     }
