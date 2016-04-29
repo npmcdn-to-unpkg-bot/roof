@@ -5,10 +5,10 @@ namespace App\Filters;
 use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
 
-class Filter175x120 implements FilterInterface
+class Fit120x85 implements FilterInterface
 {
     public function applyFilter(Image $image)
     {
-        return $image->fit(175,120);
+        return $image->fit(120,85);
     }
 }

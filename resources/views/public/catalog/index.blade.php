@@ -49,7 +49,7 @@
 					@if ($i%2==0) <div class="container__row {{ $i!==0?'offset_vertical_55':''}}"> @endif
 						<div class="container__col-6">
 							<div class="company-cart company-cart_heihgt_220 company-cart_gray">
-								<img src="/imagecache/small/{{$company->logo}}" alt="" class="company-cart__logo">
+								<a href="{{ route('catalog.show', $company) }}"><img src="/imagecache/small/{{$company->logo}}" alt="" class="company-cart__logo"></a>
 								<a href="{{ route('catalog.show', $company) }}" class="company-cart__name">{{$company->name}}</a>
 								<div class="company-cart__description">{{$company->entry}}</div>
 								<div class="company-cart__bottom">

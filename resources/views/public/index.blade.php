@@ -30,7 +30,7 @@
 							<div class="buildings-block__tab buildings-block__tab_active">
 								<div class="buildings-block__tab-content">
 									<div class="buildings-block__nav-tab">Строительство</div>
-									@foreach (App\Building::take(5)->get() as $building)
+									@foreach (App\Models\Building\Building::take(5)->get() as $building)
 										<a href="{{route('buildings.show',$building)}}" class="buildings-block__title">{{$building->name}}</a>
 										<div class="buildings-block__calendar">Календарный план: {{$building->calendar()}}</div>
 									@endforeach
@@ -39,7 +39,7 @@
 							<div class="buildings-block__tab">
 								<div class="buildings-block__tab-content">
 									<div class="buildings-block__nav-tab buildings-block__nav-tab_job">Вакансии</div>
-									@foreach (App\Job::take(5)->get() as $job)
+									@foreach (App\Models\Building\Job::take(5)->get() as $job)
 										<a href="#" class="buildings-block__title">{{$job->name}}</a>
 									@endforeach
 								</div>

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Buidling;
 
 use Carbon\Carbon;
 use Validator;
 use Storage;
 use Auth;
 use Illuminate\Http\Request;
-use App\Building;
+use App\Models\Building\Building;
 use App\Country;
 use App\City;
 use App\Image;

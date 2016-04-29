@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Building;
 
 use Carbon\Carbon;
 use Validator;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Company;
 use App\Country;
 use App\City;
-use App\Building;
+use App\Models\Building\Building;
 use App\Image;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

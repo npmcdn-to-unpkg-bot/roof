@@ -65,11 +65,11 @@ class Company extends Model
     }
 
     public function buildings () {
-        return $this->hasMany('App\Building');
+        return $this->hasMany('App\Models\Building\Building');
     }
 
     public function jobs () {
-        return $this->hasMany('App\Job');
+        return $this->hasMany('App\Models\Building\Job');
     }
 
     public function articles () {

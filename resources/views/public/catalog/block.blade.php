@@ -2,8 +2,8 @@
 <div class="container__row">
 	@foreach ($companies as $i => $company)
 		<div class="container__col-6 catalog-company">
-			<img src="/imagecache/85x85/{{$company->logo}}" alt="" class="catalog-company__image">
-			<div class="catalog-company__title">{{$company->name}}</div>
+			<a href="{{route('catalog.show',$company)}}"><img src="/imagecache/85x85/{{$company->logo}}" alt="" class="catalog-company__image"></a>
+			<a href="{{route('catalog.show',$company)}}" class="catalog-company__title">{{$company->name}}</a>
 			<div class="catalog-company__post-date">Дата размещения: {{$company->created_at->format('d.m.Y')}}</div>
 			<div class="catalog-company__activity">
 				@if ($company->specialisations->first()) Специализация: {{str_limit($company->specialisations->first()->name,25)}}

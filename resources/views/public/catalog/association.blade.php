@@ -8,7 +8,7 @@
 				@foreach ($association as $company)
 					<li>
 						<div class="company-cart company-cart_white company-cart_big">
-							<img src="/imagecache/small/{{ $company->logo }}" alt="" class="company-cart__logo">
+							<a href="{{route('catalog.show',$company)}}"><img src="/imagecache/small/{{ $company->logo }}" alt="" class="company-cart__logo"></a>
 							<a href="{{ route('catalog.show', $company) }}" class="company-cart__name">{{ $company->name }}</a>
 							<div class="company-cart__description">{{ $company->entry }}</div>
 							<div class="container__row company-cart__bottom">

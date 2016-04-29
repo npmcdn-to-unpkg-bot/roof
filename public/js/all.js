@@ -52,8 +52,8 @@ $(document).ready(function(){
 			.slideToggle();
 	});
 
-	$('.job__toggle').click(function(){
-		var block = $(this).parents('.job'); 
+	$('.job').click(function(){
+		var block = $(this);
 		block.toggleClass('job_expand');
 		block.find('.job__preview').slideToggle();
 		block.find('.job__full').slideToggle();

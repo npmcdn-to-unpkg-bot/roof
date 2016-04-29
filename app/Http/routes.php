@@ -14,6 +14,8 @@
 
 Route::get('/', function () {	return view('public.index'); });
 
+Route::get('fit/{width}/{height}/{name}', 'ThePublic\ImageController@fit');
+
 Route::resource('catalog', 'ThePublic\CompanyController');
 Route::get('/specialisation/{id}', 'ThePublic\CompanyController@specialisation');
 Route::get('/proposition/{id}', 'ThePublic\CompanyController@proposition');
@@ -69,8 +71,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function () {
 		Route::get('', 'Admin\CompanyController@index');
 		Route::resource('company', 'Admin\CompanyController');
-		Route::resource('building', 'Admin\BuildingController');
-		Route::resource('jobs', 'Admin\JobController');
+		Route::resource('building', 'Admin\Building\BuildingController');
+		Route::resource('jobs', 'Admin\Building\JobController');
 		Route::resource('news', 'Admin\ArticleController');
 		Route::resource('sales', 'Admin\SaleController');
 		Route::resource('polls', 'Admin\PollController');

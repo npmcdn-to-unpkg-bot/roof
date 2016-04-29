@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Building;
 
 use Illuminate\Http\Request;
-use App\Job;
 use App\Company;
-use App\Building;
+use App\Models\Building\Job;
+use App\Models\Building\Building;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -93,14 +93,11 @@ class JobController extends Controller
                 'label'=>'Сезонная работа.',
                 'value'=>old() ? old('seasonality') : $job->seasonality
             ],[
-                'name'=>'building_id',
-                'type'=>'select',
-                'settings'=>'',
-                'label'=>'Стройка',
-                'value'=>old() 
-                    ? old('building_id') 
-                    : ($job->company ? $job->company->id : ''),
-                'options'=>Building::lists('name','id')
+                'name' => 'buildings',
+                'type' => 'select_multiple',
+                'label' => 'Стройки',
+                'values' => old() ? (array)old('buildings') : $job->buildings->lists('id')->all(),
+                'options' => Building::lists('name','id')
             ],[
                 'name'=>'company_id',
                 'type'=>'select',
@@ -166,9 +163,10 @@ class JobController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        $job = Job::firstOrNew(['id' => $request->id])
-            ->fill($request->only('name','pay','requirements','duties','conditions','information','email','phone','seasonality','building_id','company_id'))
-            ->save();
+        $job = Job::firstOrNew(['id' => $request->id]);
+        $job->fill($request->only('name','pay','requirements','duties','conditions','information','email','phone','seasonality','company_id'));
+        $job->save();
+        $job->buildings()->sync((array)$request->buildings);
 
         return redirect()->route('admin.jobs.index');
     }

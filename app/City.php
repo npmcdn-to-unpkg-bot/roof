@@ -14,7 +14,7 @@ class City extends Model
     }
 
     public function buildings () {
-    	return $this->hasMany('App\Building');
+    	return $this->hasMany('App\Models\Building\Building');
     }
 
     public function events () {

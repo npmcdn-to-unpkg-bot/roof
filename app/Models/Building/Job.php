@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Building;
 
 use Validator;
 use Illuminate\Database\Eloquent\Model;
@@ -18,7 +18,6 @@ class Job extends Model
 		'email',
 		'phone',
 		'seasonality',
-		'building_id',
 		'company_id',
 	];
 
@@ -26,8 +25,8 @@ class Job extends Model
     	return $this->belongsTo('App\Company');
     }
 
-    public function building () {
-    	return $this->belongsTo('App\Building');
+    public function buildings () {
+    	return $this->belongsToMany('App\Models\Building\Building');
     }
 
     public static function validator ($fields) {

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\ThePublic;
 
 
-use App\Building;
-use App\Job;
+use App\Models\Building\Building;
+use App\Models\Building\Job;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

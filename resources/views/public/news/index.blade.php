@@ -11,8 +11,8 @@
 
 				@foreach ($articles as $article)
 				<div class="market-news offset_vertical_30">
-					@if ($article->image) <img src="/imagecache/85x85/{{$article->image}}" alt="" class="market-news__image"> @endif
-					<div class="market-news__title">{{$article->title}}</div>
+					@if ($article->image) <a href="{{route('news.show', $article)}}"><img src="/imagecache/85x85/{{$article->image}}" alt="" class="market-news__image"></a> @endif
+					<a href="{{route('news.show', $article)}}" class="market-news__title">{{$article->title}}</a>
 					<div class="market-news__createdat">{{$article->created_at->format('d.m.Y')}}</div>
 					<div class="market-news__text">{{$article->entry}}</div>
 					<a href="{{route('news.show', $article)}}" class="market-news__more">Читать подробнее</a>

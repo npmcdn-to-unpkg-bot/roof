@@ -805,6 +805,8 @@ a {
 	line-height: 18px;
 	font-weight: bold;
 	color: black;
+	text-decoration: none;
+	display: block;
 	margin-left: 95px;
 	padding-bottom: 5px;
 	border-bottom: 1px solid #88b2bf;
@@ -910,6 +912,7 @@ a {
 	font-size: 18px;
 	color: black;
 	padding-top: 10px;
+	display: block;
 }
 
 .buildings-block__calendar {

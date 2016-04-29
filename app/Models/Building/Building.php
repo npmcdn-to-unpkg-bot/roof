@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Building;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -59,7 +59,7 @@ class Building extends Model
 	}
 
 	public function jobs () {
-		return $this->hasMany('App\Job');
+		return $this->belongsToMany('App\Models\Building\Job');
 	}
 
 	public function images () {

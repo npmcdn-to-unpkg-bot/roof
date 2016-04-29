@@ -67,7 +67,7 @@
 			@foreach ($buildings as $i => $building)
 				@if ($i%3==0) <div class="container__row offset_vertical_60"> @endif
 					<div class="container__col-4 building">
-						<img src="/imagecache/370x200/{{ $building->images->first()->name }}" alt="" class="building__image">
+						<a href="{{ route('buildings.show', $building) }}"><img src="/imagecache/370x200/{{ $building->images->first()->name }}" alt="" class="building__image"></a>
 						<a href="{{ route('buildings.show', $building) }}" class="building__name">{{ $building->name }}</a>
 						<span class="field field_type">{{ $building->type }}</span>
 						@if ($building->company) <a href="{{ route('catalog.show', $building->company) }}" class="field field_company">{{ $building->company->name }}</a> 

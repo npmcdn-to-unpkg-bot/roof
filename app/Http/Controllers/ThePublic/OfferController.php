@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ThePublic;
 
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
 use App\Offer;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -20,10 +21,10 @@ class OfferController extends Controller
 
         $offers = Offer::orderBy('created_at', 'desc');
         if ($request->search) $offers = $offers->where('title', 'LIKE', '%'.$request->search.'%');
+        if ($request->created_at) $offers = $offers->where('created_at', '>=', Carbon::now()->subWeek($request->created_at));
         $offers = $offers->paginate(10);
         return view('public.desk.index',[
-            'offers' => $offers,
-            'search' => $request->search
+            'offers' => $offers
         ]); 
     }
 

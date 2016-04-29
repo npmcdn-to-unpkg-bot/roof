@@ -416,6 +416,8 @@ a {
 	line-height: 18px;
 	font-weight: bold;
 	color: black;
+	text-decoration: none;
+	display: block;
 	margin-left: 95px;
 	padding-bottom: 5px;
 	border-bottom: 1px solid #88b2bf;
@@ -521,6 +523,7 @@ a {
 	font-size: 18px;
 	color: black;
 	padding-top: 10px;
+	display: block;
 }
 
 .buildings-block__calendar {
@@ -604,9 +607,8 @@ a {
 .market-news__text {
 }
 
-.market-news__text p {
-	margin: 10px 0;
-	text-indent: 40px;
+.market-news__text img{
+	max-width: 100%;
 }
 
 .market-news__item {
@@ -2154,6 +2156,10 @@ td.calendar-block__date_active {
 }
 
 
+.field_info img {
+	max-width: 100%;
+}
+
 /*post*/
 .post {
 }
@@ -2250,6 +2256,11 @@ td.calendar-block__date_active {
 .post-page__content {
 
 }
+
+.post-page__content img {
+	max-width: 100%;
+}
+
 .post-page__libraries {
 	float: right;
 }
