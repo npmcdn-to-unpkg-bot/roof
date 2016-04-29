@@ -9,6 +9,13 @@
 		<div class="container__row">
 			<div class="container__col-8">
 				<img src="/width/765/{{ $building->images->first()->name }}" alt="" class="building__image">
+				<div class="building__gallery slider offset_vertical_30">
+					<ul class="slides">
+						@foreach ($building->images as $image)
+							<li><a href="/width/765/{{ $building->images->shift()->name }}" class="building__gallery-image"><img src="/fit/170/120/{{$image->name}}" alt=""></a></li>
+						@endforeach
+					</ul>
+				</div>
 				@if ( !$building->jobs->isEmpty() )
 				<div class="small-title offset_vertical_20">ВАКАНСИИ НА ОБЪЕКТЕ</div>
 					@foreach ($building->jobs as $job)

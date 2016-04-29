@@ -3,7 +3,7 @@
 		<div class="title title_white text_center">
 			КОМПАНИИ-ЧЛЕНЫ АССОЦИАЦИИ КРОВЕЛЬЩИКОВ УКРАИНЫ
 		</div>
-		<div class="slider flexslider company-cart-slider slider_white offset_vertical_30">
+		<div class="slider company-cart-slider slider_white offset_vertical_30">
 			<ul class="slides">
 				@foreach ($association as $company)
 					<li>

@@ -83,13 +83,30 @@ $(document).ready(function(){
 		block.find('.buildings-map__map').slideToggle();
 	});
 
-	$('.slider').flexslider({
+	$('.building__gallery-image').click(function(e){
+		e.preventDefault();
+		var block=$(this).parents('.building');
+		block
+			.find('.building__image')
+			.attr('src',this.href)
+	});
+
+	$('.company-cart-slider').flexslider({
 	    animation: "slide",
 	    animationLoop: false,
 	    controlNav: false,
 	    itemWidth: 510,
 	    itemMargin: 20,
-	  });
+	});
+
+	$('.building__gallery').flexslider({
+		animation: "slide",
+		animationLoop: false,
+		controlNav: false,
+		itemWidth: 167,
+		itemMargin: 10
+	});
+
 
 	$('.masonry').imagesLoaded(function(){
 		$('.masonry').masonry();
