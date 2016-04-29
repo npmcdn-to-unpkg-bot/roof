@@ -55,18 +55,6 @@ return array(
         'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
-        'full' => 'App\Filters\Full',
-        '85x85' => 'App\Filters\Fit85x85',
-        '120x120' => 'App\Filters\Fit120x120',
-        '240x200' => 'App\Filters\Fit240x200',
-        '370x200' => 'App\Filters\Fit370x200',
-        '765x400' => 'App\Filters\Fit765x400',
-        '160x140' => 'App\Filters\Fit160x140',
-        '120x85' => 'App\Filters\Fit120x85',
-        '175x200' => 'App\Filters\Fit175x200',
-        '175x120' => 'App\Filters\Fit175x120',
-        'resize85x85' => 'App\Filters\Resize85x85',
-        'width360' => 'App\Filters\Resize360xNull'
     ),
 
     /*

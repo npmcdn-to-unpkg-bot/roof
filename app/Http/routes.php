@@ -15,6 +15,10 @@
 Route::get('/', function () {	return view('public.index'); });
 
 Route::get('fit/{width}/{height}/{name}', 'ThePublic\ImageController@fit');
+Route::get('resize/{width}/{height}/{name}', 'ThePublic\ImageController@resize');
+Route::get('width/{width}/{name}', 'ThePublic\ImageController@width');
+Route::get('height/{height}/{name}', 'ThePublic\ImageController@height');
+Route::get('full/{name}', 'ThePublic\ImageController@full');
 
 Route::resource('catalog', 'ThePublic\CompanyController');
 Route::get('/specialisation/{id}', 'ThePublic\CompanyController@specialisation');

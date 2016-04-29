@@ -19,7 +19,7 @@
 	<div class="container__row masonry">
 		@foreach ($posts as $i => $post)
 			<div class="container__col-4 post offset_bottom_45">
-				<img src="/imagecache/width360/{{$post->image}}" class="post__image">
+				<img src="/width/360/{{$post->image}}" class="post__image">
 				<div class="post__content">
 					<a href="{{route('knowladge.education.show', $post)}}" class="post__title">{{$post->title}}</a>
 					<div class="post__entry">{{$post->entry}}</div>

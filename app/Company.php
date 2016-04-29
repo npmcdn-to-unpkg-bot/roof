@@ -49,8 +49,8 @@ class Company extends Model
     protected $dates = ['created_at','updated_at'];
 
     public function printAddress () {
+        $address = $this->city->country->name.', г. '.$this->city->name;
         if (!empty($this->address)) {
-            $address = $this->city->country->name.', г. '.$this->city->name;
             $address.=', '.$this->address;
         };
         return $address;

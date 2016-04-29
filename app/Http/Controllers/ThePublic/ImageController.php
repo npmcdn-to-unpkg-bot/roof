@@ -10,12 +10,18 @@ use App\Http\Controllers\Controller;
 class ImageController extends Controller
 {
 
-	protected $paths = [ 'app/images/', 'app/temp/'	];
+	protected function paths () {
+		return [ 
+			storage_path('app/images'),
+			storage_path('app/temp')
+		];
+	}
 
 	protected $lifetime = 12000;
 
 	protected function getImagePath($filename) {
-        foreach ($this->paths as $path) {
+
+        foreach ($this->paths() as $path) {
             // don't allow '..' in filenames
             $image_path = $path.'/'.str_replace('..', '', $filename);
             if (file_exists($image_path) && is_file($image_path)) {
@@ -30,18 +36,88 @@ class ImageController extends Controller
 
     public function fit ($width, $height, $name) {
 
-    	$path = $this->getPath($name);
+    	$path = $this->getImagePath($name);
 
 		$source = Image::cache( function($image) use ($width,$height,$path) {
 
-    		$image->make($path)
-	    		->fit($width,$height, function($constraint) {
+    		$image->make($path);
+	    	$image->fit($width,$height, function($constraint) {
 		   			$constraint->upsize();
 		   		});
 
 		}, $this->lifetime);
 
 		$image = Image::make($source);
+
     	return $image->response();
     }
+
+    public function resize ($width, $height, $name) {
+
+    	$path = $this->getImagePath($name);
+
+		$source = Image::cache( function($image) use ($width,$height,$path) {
+
+	        $image->make($path);
+	        $image->resize($width,$height,function ($constraint) {
+			    $constraint->aspectRatio();
+			    $constraint->upsize();
+			});
+			$image->resizeCanvas($width, $height, 'center', false, 'ffffff');
+
+		}, $this->lifetime);
+
+		$image = Image::make($source);
+		
+    	return $image->response();
+    }
+
+
+    public function width ($width, $name) {
+
+    	$path = $this->getImagePath($name);
+
+		$source = Image::cache( function($image) use ($width,$path) {
+
+			$image->make($path);
+	        $image->resize($width,null,function ($constraint) {
+			    $constraint->aspectRatio();
+			    $constraint->upsize();
+			});
+
+		}, $this->lifetime);
+
+		$image = Image::make($source);
+		
+    	return $image->response();
+    }
+
+    public function height ($height, $name) {
+
+    	$path = $this->getImagePath($name);
+
+		$source = Image::cache( function($image) use ($height,$path) {
+
+			$image->make($path);
+	        $image->resize(null,$height,function ($constraint) {
+			    $constraint->aspectRatio();
+			    $constraint->upsize();
+			});
+
+		}, $this->lifetime);
+
+		$image = Image::make($source);
+		
+    	return $image->response();
+    }
+
+    public function full ($name) {
+
+    	$path = $this->getImagePath($name);
+
+		$image = Image::make($path);
+		
+    	return $image->response();
+    }
+
 }

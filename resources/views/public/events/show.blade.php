@@ -9,7 +9,7 @@
 		<div class="container__row">
 			<div class="container__col-8">
 				<div class="title">{{$event->name}}</div>
-				<div class="offset_vertical_30"><img src="/imagecache/765x400/{{$event->image}}" alt=""></div>
+				<div class="offset_vertical_30"><img src="/width/765/{{$event->image}}" alt=""></div>
 				<div class="container__row">
 					<div class="container__col-6">
 						<div class="field field_info">

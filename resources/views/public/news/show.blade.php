@@ -12,7 +12,7 @@
 				<div class="market-news">
 					<div class="market-news__createdat">{{$article->created_at->format('d.m.Y')}}</div>
 					<div class="offset_vertical_20">
-						@if ($article->image) <img src="/imagecache/medium/{{$article->image}}" alt="" class="market-news__image"> @endif
+						@if ($article->image) <img src="/width/240/{{$article->image}}" alt="" class="market-news__image"> @endif
 						<div class="market-news__text">{!! $article->content !!}</div>
 					</div>
 				</div>

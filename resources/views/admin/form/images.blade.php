@@ -76,7 +76,7 @@
 	];
 	$.each(myDropzone.files, function (index, file) {
 		myDropzone.emit("addedfile", file);
-		myDropzone.emit("thumbnail", file, "/imagecache/120x120/"+file.serverName);
+		myDropzone.emit("thumbnail", file, "/fit/120/120/"+file.serverName);
 		myDropzone.emit("complete", file);
 		myDropzone.emit("success", file, file.serverName);
 	});

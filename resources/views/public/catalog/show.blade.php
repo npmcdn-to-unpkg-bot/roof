@@ -5,7 +5,7 @@
 	<div class="container__row">
 		<div class="container__col-8">
 			<div class="company-cart clearfix company-cart_page company-cart_white">
-				<img src="/imagecache/160x140/{{$company->logo}}" alt="" class="company-cart__logo">
+				<img src="/fit/160/140/{{$company->logo}}" alt="" class="company-cart__logo">
 				<div class="company-cart__name">{{$company->name}}</div>
 				<div class="company-cart__description">{{$company->entry}}</div>
 				<div class="company-cart__address">{{$company->printAddress()}}</div>
@@ -68,7 +68,7 @@
 					<div class="company-sale">
 						@foreach ($company->sales as $sale)
 							<div class="company-sale__item">
-								<img src="/imagecache/120x85/{{$sale->image}}" alt="" class="company-sale__image">
+								<img src="/fit/120/85/{{$sale->image}}" alt="" class="company-sale__image">
 								<div class="company-sale__text">
 									<a href="{{route('sales.show',$sale)}}" class="company-sale__title">{{$sale->title}}</a>
 									<p>{{$sale->entry}}</p>

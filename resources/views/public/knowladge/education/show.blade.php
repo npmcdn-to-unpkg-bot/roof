@@ -13,7 +13,7 @@
 			<div class="post-page__created-at">Дата размещение: {{$post->created_at->format('d.m.Y')}}</div>
 			<div class="offset_bottom_30 title">{{$post->title}}</div>
 			<div class="post-page__content">
-				<img class="post-page__image" src="/imagecache/full/{{$post->image}}" alt="">
+				<img class="post-page__image" src="/full/{{$post->image}}" alt="">
 				{!!$post->content!!}
 			</div>
 			<div class="post-page__libraries">

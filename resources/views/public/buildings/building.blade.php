@@ -8,7 +8,7 @@
 		<div class="title offset_vertical_20">{{ $building->name }}</div>
 		<div class="container__row">
 			<div class="container__col-8">
-				<img src="/imagecache/765x400/{{ $building->images->first()->name }}" alt="" class="building__image">
+				<img src="/width/765/{{ $building->images->first()->name }}" alt="" class="building__image">
 				@if ( !$building->jobs->isEmpty() )
 				<div class="small-title offset_vertical_20">ВАКАНСИИ НА ОБЪЕКТЕ</div>
 					@foreach ($building->jobs as $job)

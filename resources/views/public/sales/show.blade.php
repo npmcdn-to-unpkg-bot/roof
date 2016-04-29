@@ -11,7 +11,7 @@
 				<div class="title">{{$sale->title}}</div>
 				<div class="market-news">
 					<div class="offset_vertical_20">
-						@if ($sale->image) <img src="/imagecache/medium/{{$sale->image}}" alt="" class="market-news__image"> @endif
+						@if ($sale->image) <img src="/width/240/{{$sale->image}}" alt="" class="market-news__image"> @endif
 						<div class="market-news__text">{!! $sale->content !!}</div>
 					</div>
 				</div>
