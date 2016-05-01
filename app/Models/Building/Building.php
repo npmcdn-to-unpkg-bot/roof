@@ -54,9 +54,8 @@ class Building extends Model
 			return $this->city->country->name.', г. '
 			.$this->city->name.', '
 			.$this->address;
-		}else{
-			return false;
 		}
+		return false;
 	}
 
 	public function jobs () {
