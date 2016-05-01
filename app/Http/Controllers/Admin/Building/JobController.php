@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Building;
 
 use Illuminate\Http\Request;
-use App\Company;
+use App\Models\Catalog\Company;
 use App\Models\Building\Job;
 use App\Models\Building\Building;
 use App\Http\Requests;

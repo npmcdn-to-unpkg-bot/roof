@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User\Buidling;
 
 use Carbon\Carbon;
-use Validator;
 use Storage;
 use Auth;
 use Illuminate\Http\Request;
@@ -113,9 +112,9 @@ class BuildingController extends Controller
             'items' => $buildings,
             'title' => 'Стройки',
             'links' => [
-                'show' => 'user.building.show',
-                'edit' => 'user.building.edit',
-                'delete' => 'user.building.destroy'
+                'show' => 'user.buildings.show',
+                'edit' => 'user.buildings.edit',
+                'delete' => 'user.buildings.destroy'
             ]
         ]);
 
@@ -137,7 +136,7 @@ class BuildingController extends Controller
 
         return view('admin.form',[
             'title' => 'Добавить компанию',
-            'action' => 'user.building.store',
+            'action' => 'user.buildings.store',
             'fields' => $this->fields($building),
             'item' => $building
         ]);
@@ -152,7 +151,7 @@ class BuildingController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), Building::$rules, Building::$messages);
+        $validator = Building::validator($request->all());
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
@@ -190,7 +189,7 @@ class BuildingController extends Controller
 
         $building->images()->sync($images->pluck('id')->all());
 
-        return redirect()->route('user.building.index');
+        return redirect()->route('user.buildings.index');
     }
 
     /**
@@ -214,11 +213,11 @@ class BuildingController extends Controller
     {
         $building = Auth::user()->company->buildings()->where('id', $id)->first();
 
-        if (!$building) return redirect()->route('user.building.create');
+        if (!$building) return redirect()->route('user.buildings.create');
 
         return view('admin.form',[
             'title' => 'Добавить компанию',
-            'action' => 'user.building.store',
+            'action' => 'user.buildings.store',
             'fields' => $this->fields($building),
             'item' => $building
         ]);

@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::group(['prefix' => 'user'], function () {
 		Route::get('', 'User\CompanyController@edit');
 		Route::resource('company', 'User\CompanyController');
-		Route::resource('building', 'User\BuildingController');
+		Route::resource('buildings', 'User\BuildingController');
 		Route::resource('jobs', 'User\JobController');
 		Route::resource('news', 'User\ArticleController');
 		Route::resource('sales', 'User\SaleController');
@@ -73,9 +73,9 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 
 	Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function () {
-		Route::get('', 'Admin\CompanyController@index');
-		Route::resource('company', 'Admin\CompanyController');
-		Route::resource('building', 'Admin\Building\BuildingController');
+		Route::get('', 'Admin\Catalog\CompanyController@index');
+		Route::resource('company', 'Admin\Catalog\CompanyController');
+		Route::resource('buildings', 'Admin\Building\BuildingController');
 		Route::resource('jobs', 'Admin\Building\JobController');
 		Route::resource('news', 'Admin\ArticleController');
 		Route::resource('sales', 'Admin\SaleController');

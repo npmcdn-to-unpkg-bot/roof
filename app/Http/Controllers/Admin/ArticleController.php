@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Validator;
 use Storage;
-use App\Company;
+use App\Models\Catalog\Company;
 use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

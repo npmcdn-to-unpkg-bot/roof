@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\ThePublic;
 
-use App\Company;
-use App\Specialisation;
-use App\Proposition;
+use App\Models\Catalog\Company;
+use App\Models\Catalog\Specialisation;
+use App\Models\Catalog\Proposition;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

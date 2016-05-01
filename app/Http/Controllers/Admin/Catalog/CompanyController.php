@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Catalog;
 
 use Illuminate\Http\Request;
 use Auth;
 use Storage;
-use Validator;
 use App\User;
-use App\Company;
+use App\Models\Catalog\Company;
 use App\Country;
 use App\City;
-use App\Specialisation;
-use App\Proposition;
+use App\Models\Catalog\Specialisation;
+use App\Models\Catalog\Proposition;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -196,7 +195,7 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), Company::$rules, Company::$messages);
+        $validator = Company::validator($request->all());
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 

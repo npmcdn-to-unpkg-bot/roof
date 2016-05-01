@@ -10,7 +10,7 @@ class City extends Model
     protected $fillable = ['id','name'];
 
     public function companies () {
-    	return $this->hasMany('App\Company');
+    	return $this->hasMany('App\Models\Catalog\Company');
     }
 
     public function buildings () {

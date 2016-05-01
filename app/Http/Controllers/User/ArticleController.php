@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Storage;
 use Auth;
-use App\Company;
+use App\Models\Catalog\Company;
 use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

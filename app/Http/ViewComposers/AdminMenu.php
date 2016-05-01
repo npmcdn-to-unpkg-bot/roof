@@ -54,16 +54,16 @@ class AdminMenu
                 [
                     'name' => 'Стройки',
                     'icon' => 'fa-building',
-                    'active' => Request::is('user/building*')?'active':'',
+                    'active' => Request::is('user/buildings*')?'active':'',
                     'children' => [
                         [
                             'name' => 'Список строек',
                             'icon' => 'fa-list',
-                            'href' => route('user.building.index'),
+                            'href' => route('user.buildings.index'),
                         ],[
                             'name' => 'Добавить стройку',
                             'icon' => 'fa-plus',
-                            'href' => route('user.building.create'),
+                            'href' => route('user.buildings.create'),
                         ],
                     ],
                 ],[
@@ -120,16 +120,16 @@ class AdminMenu
                 ],[
                     'name' => 'Стройки',
                     'icon' => 'fa-building',
-                    'active' => Request::is('admin/building*')?'active':'',
+                    'active' => Request::is('admin/buildings*')?'active':'',
                     'children' => [
                         [
                             'name' => 'Список строек',
                             'icon' => 'fa-list',
-                            'href' => route('admin.building.index'),
+                            'href' => route('admin.buildings.index'),
                         ],[
                             'name' => 'Добавить стройку',
                             'icon' => 'fa-plus',
-                            'href' => route('admin.building.create'),
+                            'href' => route('admin.buildings.create'),
                         ],
                     ],
                 ],[

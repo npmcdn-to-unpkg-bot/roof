@@ -28,6 +28,6 @@ class Sale extends Model
     protected $fillable = ['title','image','entry','content','company_id'];
 
     public function company () {
-    	return $this->belongsTo('App\Company');
+    	return $this->belongsTo('App\Models\Catalog\Company');
     }
 }

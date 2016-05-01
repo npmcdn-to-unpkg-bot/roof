@@ -6,7 +6,7 @@
 			<div class="container__row">
 				<div class="container__col-8">
 					@include('public.catalog.block',[
-						'companies'=>App\Company::take(6)->with('specialisations')->get()
+						'companies'=>App\Models\Catalog\Company::take(6)->with('specialisations')->get()
 					])
 				</div>
 				<div class="container__col-4">

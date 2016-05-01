@@ -8,7 +8,7 @@
 			<a href="#propositions" class="page-tabs__nav">ТИП ПРЕДЛОЖЕНИЯ</a>
 		</div>
 		<div id="specialisations" class="page-tabs__tab page-tabs__tab_active container__row offset_vertical_20 taxonomy">
-			@foreach ($specialisations=App\Specialisation::all() as $i => $specialisation)
+			@foreach ($specialisations=App\Models\Catalog\Specialisation::all() as $i => $specialisation)
 				@if ($i%6==0) <div class="container__col-4"> @endif
 					<a href="/specialisation/{{ $specialisation->id }}" class="taxonomy__item">{{ $specialisation->name }} 
 						<span class="taxonomy__count">({{ $specialisation->companies->count() }})</span>
@@ -17,7 +17,7 @@
 			@endforeach
 		</div>
 		<div id="propositions" class="page-tabs__tab container__row offset_vertical_20 taxonomy">
-			@foreach ($propositions=App\Proposition::all() as $i => $proposition)
+			@foreach ($propositions=App\Models\Catalog\Proposition::all() as $i => $proposition)
 				@if ($i%6==0) <div class="container__col-4"> @endif
 					<a href="/proposition/{{ $proposition->id }}" class="taxonomy__item">{{ $proposition->name }} 
 						<span class="taxonomy__count">({{ $proposition->companies->count() }})</span>

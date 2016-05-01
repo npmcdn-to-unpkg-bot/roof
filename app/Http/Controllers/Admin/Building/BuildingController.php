@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin\Building;
 
 use Carbon\Carbon;
-use Validator;
 use Storage;
 use Illuminate\Http\Request;
-use App\Company;
+use App\Models\Catalog\Company;
 use App\Country;
 use App\City;
 use App\Models\Building\Building;
@@ -37,7 +36,7 @@ class BuildingController extends Controller
 
     public function fields (Building $building) {
         $companies = Company::lists('name','id')->put($building->company_name, $building->company_name);
-        if (old()&&!Company::find(old('company'))) {
+        if (old()&&!Company::find(old('company'))&&old('company')!=0) {
             $companies->put(old('company'), old('company'));
         }
         return [
@@ -126,9 +125,9 @@ class BuildingController extends Controller
             'items' => $buildings,
             'title' => 'Стройки',
             'links' => [
-                'show' => 'admin.building.show',
-                'edit' => 'admin.building.edit',
-                'delete' => 'admin.building.destroy'
+                'show' => 'admin.buildings.show',
+                'edit' => 'admin.buildings.edit',
+                'delete' => 'admin.buildings.destroy'
             ]
         ]);
 
@@ -150,7 +149,7 @@ class BuildingController extends Controller
 
         return view('admin.form',[
             'title' => 'Добавить компанию',
-            'action' => 'admin.building.store',
+            'action' => 'admin.buildings.store',
             'fields' => $this->fields($building),
             'item' => $building
         ]);
@@ -165,7 +164,7 @@ class BuildingController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), Building::$rules, Building::$messages);
+        $validator = Building::validator($request->all());
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
@@ -208,7 +207,7 @@ class BuildingController extends Controller
 
         $building->images()->sync($images->pluck('id')->all());
 
-        return redirect()->route('admin.building.index');
+        return redirect()->route('admin.buildings.index');
     }
 
     /**
@@ -234,7 +233,7 @@ class BuildingController extends Controller
 
         return view('admin.form',[
             'title' => 'Добавить компанию',
-            'action' => 'admin.building.store',
+            'action' => 'admin.buildings.store',
             'fields' => $this->fields($building),
             'item' => $building
         ]);

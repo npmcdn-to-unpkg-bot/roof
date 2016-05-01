@@ -3,7 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
-use App\Company;
+use App\Models\Catalog\Company;
 
 class AssociationBlock
 {

@@ -25,7 +25,7 @@ class User extends Authenticatable
     ];
 
     public function company () {
-        return $this->hasOne('App\Company');
+        return $this->hasOne('App\Models\Catalog\Company');
     }
 
     public function offers () {
