@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="title">НОВОСТИ РЫНКА</div>
 		<div class="container__row market-news">
-		@foreach($articles as $article)
+		@foreach(App\Article::take(3)->get() as $article)
 			<a href="{{route('news.show',$article)}}" class="container__col-4 market-news__item">
 				<img src="/fit/85/85/{{$article->image}}" alt="" class="market-news__image">
 				<div class="market-news__title">{{$article->title}}</div>
