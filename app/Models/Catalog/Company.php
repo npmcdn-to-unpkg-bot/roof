@@ -74,12 +74,25 @@ class Company extends Model
         return $this->hasMany('App\Models\Building\Job');
     }
 
-    public function articles () {
-        return $this->hasMany('App\Article');
+    public function posts () {
+        return $this->hasMany('App\Models\Catalog\Post');
     }
 
     public function sales () {
-        return $this->hasMany('App\Sale');
+        return $this->hasMany('App\Models\Catalog\Sale');
+    }
+
+    public function members () {
+        return $this->hasMany('App\Models\Catalog\Member');
+    }
+
+    public function prices () {
+        return $this->hasMany('App\Models\Catalog\Price');
+    }
+
+
+    public function examples () {
+        return $this->hasMany('App\Models\Catalog\Example');
     }
 
     public function propositions () {

@@ -49,13 +49,13 @@
 					<span class="sr-only">Toggle navigation</span>
 				</a>
 				<div class="navbar-custom-menu">
-					@include('admin.user')
+					@include('admin.parts.user')
 				</div>
 			</nav>
 		</header>
 		<aside class="main-sidebar">
 			<section class="sidebar">
-				@include('admin.menu')
+				@include('admin.parts.menu')
 			</section>
 		</aside>
 

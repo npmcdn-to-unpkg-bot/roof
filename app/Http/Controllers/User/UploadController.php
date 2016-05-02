@@ -9,7 +9,7 @@ use Storage;
 use Validator;
 use Image;
 
-class ImageController extends Controller
+class UploadController extends Controller
 {
 
     /**
@@ -20,16 +20,12 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'file' => 'image',
         ],[
             'file.image' => 'Формат картинки должен быть jpeg, png, bmp, gif, или svg',
         ]);
-
-        if ($validator->fails())
-            return response()->json( $validator->errors()->first(), 400);
-
+        
         $extension = $request->file('file')->getClientOriginalExtension();
         $name = $request->file('file')->getClientOriginalName();
         $name = str_slug( str_replace ( $extension, '', $name ) );

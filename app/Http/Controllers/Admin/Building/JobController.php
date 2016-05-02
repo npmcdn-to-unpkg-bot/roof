@@ -120,16 +120,45 @@ class JobController extends Controller
     {
 
         $jobs = Job::paginate(15);
-
-        return view('admin.table', [
-            'table' => $this->table,
+        $th = [
+                [
+                    'title'=>'Название вакансии',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'Компания',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'Стройки',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'',
+                    'width'=>'90px',
+                ],
+        ];
+        $table=collect()->push($th);
+        foreach ($jobs as $job){
+            $table->push([
+                [
+                    'field'=>$job->name,
+                    'type'=>'text',
+                ],[
+                    'field'=>$job->company ? $job->company->name : '',
+                    'type'=>'text',
+                ],[
+                    'field'=> $job->buildings,
+                    'type'=>'taxonomy',
+                ],[
+                    'edit' => route('admin.jobs.edit', $job),
+                    'delete' => route('admin.jobs.destroy', $job),
+                    'type'=>'actions',
+                ],
+            ]);
+        }
+        return view('admin.universal.index', [
+            'table' => $table,
             'items' => $jobs,
             'title' => 'Вакансии',
-            'links' => [
-                'show' => 'admin.jobs.show',
-                'edit' => 'admin.jobs.edit',
-                'delete' => 'admin.jobs.destroy'
-            ]
+            'pagination' => $jobs->render()
         ]);
     }
 
@@ -143,9 +172,9 @@ class JobController extends Controller
 
         $job = new Job;
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить новость',
-            'action' => 'admin.jobs.store',
+            'action' => route('admin.jobs.store'),
             'fields' => $this->fields($job),
             'item' => $job
         ]);
@@ -193,9 +222,9 @@ class JobController extends Controller
 
         $job = Job::find($id);
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Редактировать вакансию',
-            'action' => 'admin.jobs.store',
+            'action' => route('admin.jobs.store'),
             'fields' => $this->fields($job),
             'item' => $job
         ]);

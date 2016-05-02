@@ -1,1 +1,0 @@
-{{ $item->{$field}->format('d.m.Y') }}

@@ -67,18 +67,18 @@ class AdminMenu
                         ],
                     ],
                 ],[
-                    'name' => 'Новости',
+                    'name' => 'Блог',
                     'icon' => 'fa-newspaper-o',
-                    'active' => Request::is('user/news*')?'active':'',
+                    'active' => Request::is('user/blog*')?'active':'',
                     'children' => [
                         [
                             'name' => 'Список новостей',
                             'icon' => 'fa-list',
-                            'href' => route('user.news.index'),
+                            'href' => route('user.blog.index'),
                         ],[
                             'name' => 'Добавить новость',
                             'icon' => 'fa-plus',
-                            'href' => route('user.news.create'),
+                            'href' => route('user.blog.create'),
                         ],
                     ],
                 ],[

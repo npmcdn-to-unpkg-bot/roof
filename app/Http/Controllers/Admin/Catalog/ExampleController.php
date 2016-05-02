@@ -4,24 +4,24 @@ namespace App\Http\Controllers\Admin\Catalog;
 
 use Illuminate\Http\Request;
 
+use Storage;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Storage;
-use App\Models\Catalog\Sale;
+use App\Models\Catalog\Example;
 use App\Models\Catalog\Company;
 
-class SaleController extends Controller
+class ExampleController extends Controller
 {
 
-    protected function fields (Sale $sale) {
+    protected function fields (Example $example) {
 
         return [
             [
                 'name'=>'title',
                 'type'=>'text',
-                'placeholder'=>'Введите заголовок акции',
-                'label'=>'Заголовок',
-                'value'=>old() ? old('title') : $sale->title
+                'placeholder'=>'Введите название примера работы.',
+                'label'=>'Название примера работы',
+                'value'=>old() ? old('title') : $example->title
             ],[
                 'name' => 'image',
                 'type' => 'images',
@@ -29,18 +29,12 @@ class SaleController extends Controller
                 'quantity' => 1,
                 'values' => old() 
                     ? (array)old('image') 
-                    : (array)$sale->image
-            ],[
-                'name'=>'entry',
-                'type'=>'textarea',
-                'placeholder'=>'Введите краткое содержание акции',
-                'label'=>'Краткое содержание',
-                'value'=>old() ? old('entry') : $sale->entry
+                    : (array)$example->image
             ],[
                 'name'=>'content',
                 'type'=>'ckeditor',
-                'label'=>'Текст акции',
-                'value'=>old() ? old('content') : $sale->content
+                'label'=>'Описание',
+                'value'=>old() ? old('content') : $example->content
             ],[
                 'name'=>'company_id',
                 'type'=>'select',
@@ -48,7 +42,7 @@ class SaleController extends Controller
                 'label'=>'Комания',
                 'value'=>old() 
                     ? old('company_id') 
-                    : ($sale->company ? $sale->company->id : ''),
+                    : ($example->company ? $example->company->id : ''),
                 'options'=>Company::lists('name','id')
             ]
         ];
@@ -62,8 +56,9 @@ class SaleController extends Controller
      */
     public function index($company)
     {
-        $sales = Company::find($company)->sales()->paginate(15);
+        $examples = Company::find($company)->examples()->paginate(15);
         $company = Company::find($company);
+        
         $th = [
             [
                 'title'=>'Картинка',
@@ -77,28 +72,28 @@ class SaleController extends Controller
             ]
         ];
         $table=collect()->push($th);
-        foreach ($sales as $sale) {
+        foreach ($examples as $example) {
             $table->push([
                 [
                     'type'=>'image',
-                    'field'=>$sale->image,
+                    'field'=>$example->image,
                 ],[
                     'type'=>'text',
-                    'field'=>$sale->title,
+                    'field'=>$example->title,
                 ],[
                     'type'=>'actions',
-                    'edit' => route('admin.company.{company}.sales.edit',['company'=>$company,'sales'=>$sales]),
-                    'delete' => route('admin.company.{company}.sales.destroy',['company'=>$company,'sales'=>$sales]),
+                    'edit' => route('admin.company.{company}.examples.edit',['company'=>$company,'examples'=>$examples]),
+                    'delete' => route('admin.company.{company}.examples.destroy',['company'=>$company,'examples'=>$examples]),
                 ],
             ]);
         }
 
         return view('admin.catalog.index', [
             'table' => $table,
-            'title' => 'Акции',
+            'title' => 'Портфолио',
             'company' => $company,
-            'add' => route('admin.company.{company}.sales.create',$company),
-            'pagination' => $sales->render()
+            'add' => route('admin.company.{company}.examples.create',$company),
+            'pagination' => $examples->render()
         ]);
     }
     /**
@@ -108,15 +103,14 @@ class SaleController extends Controller
      */
     public function create($company)
     {
-        $sale = new Sale(['company_id'=>$company]);
+        $example = new Example(['company_id'=>$company]);
         $company = Company::find($company);
-
         return view('admin.catalog.edit',[
-            'title' => 'Добавить акцию',
-            'action' => route('admin.company.{company}.sales.store',$company),
+            'title' => 'Добавить пример в портфолио',
+            'action' => route('admin.company.{company}.examples.store',$company),
             'company' => $company,
-            'fields' => $this->fields($sale),
-            'item' => $sale
+            'fields' => $this->fields($example),
+            'item' => $example
         ]);
     }
 
@@ -128,21 +122,21 @@ class SaleController extends Controller
      */
     public function store(Request $request, $company)
     {
-        $validator = Sale::validator($request->all());
+        $validator = Example::validator($request->all());
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        $sale = Sale::firstOrNew(['id' => $request->id]);
+        $example = Example::firstOrNew(['id' => $request->id]);
 
         if (Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
-        if ($sale->image&&$sale->image!==$request->image) 
+        if ($example->image&&$example->image!==$request->image) 
             Storage::delete('images/'.$company->image);
 
-        $sale->fill($request->only('title','image','entry','content','company_id'));
-        $sale->save();
+        $example->fill($request->only('title','image','content','company_id'));
+        $example->save();
 
-        return redirect()->route('admin.company.{company}.sales.index', $company);
+        return redirect()->route('admin.company.{company}.examples.index', $company);
     }
 
     /**
@@ -164,14 +158,14 @@ class SaleController extends Controller
      */
     public function edit($company, $id)
     {
-        $sale = Sale::find($id);
+        $example = Example::find($id);
         $company = Company::find($company);
-
-        return view('admin.universal.edit',[
-            'title' => 'Редактировать акцию',
-            'action' => route('admin.company.{company}.sales.store',$company),
-            'fields' => $this->fields($sale),
-            'item' => $sale
+        return view('admin.catalog.edit',[
+            'title' => 'Редактировать пример в портфолио',
+            'action' => route('admin.company.{company}.examples.store',$company),
+            'company' => $company,
+            'fields' => $this->fields($example),
+            'item' => $example
         ]);
     }
 
@@ -195,7 +189,7 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        Sale::find($id)->delete();
+        Example::find($id)->delete();
         return back();
     }
 }

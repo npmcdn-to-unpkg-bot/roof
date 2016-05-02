@@ -41,7 +41,7 @@
 	myDropzone = new Dropzone('.dropzone', {
 		previewTemplate: '<div class="dz-preview dz-file-preview">\n<div class="dz-image"><img data-dz-thumbnail /></div>\n<div class="dz-details">\n<div class="dz-filename"><span data-dz-name></span></div>\n</div>\n<div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>\n<div class="dz-error-message"><span data-dz-errormessage></span></div>\n</div>',
 		maxFiles: {{$quantity}},
-		url: '{{url('image')}}',
+		url: '{{url('upload')}}',
 		previewsContainer: '.dz-previews',
 		clickable: '.dz-previews',
 		addRemoveLinks : true,
@@ -62,7 +62,7 @@
 		myDropzone.setupEventListeners();
 		$(".dz-hidden-input").attr("disabled",false);
 		$.ajax({
-		    url: '/image/'+file.serverName,
+		    url: '/upload/'+file.serverName,
 		    type: 'post',
 		    data: {_method: 'delete'},
 		    headers: { 'X-CSRF-Token': '{{csrf_token()}}' },

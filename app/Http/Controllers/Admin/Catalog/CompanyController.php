@@ -17,40 +17,6 @@ use App\Http\Controllers\Controller;
 class CompanyController extends Controller
 {
 
-    protected $table = [
-        [
-            'field'=>'logo',
-            'type'=>'image',
-            'width'=>'40px',
-            'title'=>'Логотип'
-        ],[
-            'field'=>'name',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Название компании'
-        ],[
-            'field'=>'user',
-            'type'=>'user',
-            'width'=>'10%',
-            'title'=>'Пользователь'
-        ],[
-            'field'=>'specialisations',
-            'type'=>'taxonomy',
-            'width'=>'20%',
-            'title'=>'Специализации'
-        ],[
-            'field'=>'propositions',
-            'type'=>'taxonomy',
-            'width'=>'20%',
-            'title'=>'Предложения'
-        ],[
-            'field'=>'id',
-            'type'=>'actions',
-            'width'=>'90px',
-            'title'=>''
-        ],
-    ];
-
     public function fields (Company $company) {
         return [
             [
@@ -154,15 +120,57 @@ class CompanyController extends Controller
 
         $companies = Company::orderBy('created_at', 'DESC')->paginate(15);        
 
-        return view('admin.table', [
-            'table' => $this->table,
-            'items' => $companies,
+        $th=[
+                [
+                    'title'=>'Логотип',
+                    'width'=>'40px',
+                ],[
+                    'title'=>'Название компании',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'Пользователь',
+                    'width'=>'10%',
+                ],[
+                    'title'=>'Специализации',
+                    'width'=>'20%',
+                ],[
+                    'title'=>'Предложения',
+                    'width'=>'20%',
+                ],[
+                    'title'=>'',
+                    'width'=>'90px',
+                ]
+            ];
+        $table=collect()->push($th);
+        foreach ($companies as $company) {
+            $table->push([
+                [
+                    'type'=>'image',
+                    'field'=>$company->logo,
+                ],[
+                    'type'=>'text',
+                    'field'=>$company->name,
+                ],[
+                    'type'=>'user',
+                    'field'=>$company->user,
+                ],[
+                    'type'=>'taxonomy',
+                    'field'=>$company->specialisations,
+                ],[
+                    'type'=>'taxonomy',
+                    'field'=>$company->propositions,
+                ],[
+                    'type'=>'actions',
+                    'edit' => route('admin.company.edit', $company),
+                    'delete' => route('admin.company.destroy', $company)
+                ],
+            ]);
+        }
+
+        return view('admin.universal.index', [
             'title' => 'Компании',
-            'links' => [
-                'show' => 'admin.company.show',
-                'edit' => 'admin.company.edit',
-                'delete' => 'admin.company.destroy'
-            ]
+            'table' => $table,
+            'pagination' => $companies->render(),
         ]);
 
     }
@@ -178,9 +186,9 @@ class CompanyController extends Controller
     {
         $company = new Company;
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить компанию',
-            'action' => 'admin.company.store',
+            'action' => route('admin.company.store'),
             'fields' => $this->fields($company),
             'item' => $company
         ]);
@@ -236,9 +244,10 @@ class CompanyController extends Controller
     {
         $company = Company::find($id);
 
-        return view('admin.form',[
-            'title' => 'Добавить компанию',
-            'action' => 'admin.company.store',
+        return view('admin.catalog.edit',[
+            'title' => 'Редактировать компанию',
+            'action' => route('admin.company.store'),
+            'company' => $company,
             'fields' => $this->fields($company),
             'item' => $company
         ]);

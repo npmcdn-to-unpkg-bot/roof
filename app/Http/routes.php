@@ -21,8 +21,9 @@ Route::get('height/{height}/{name}', 'ThePublic\ImageController@height');
 Route::get('full/{name}', 'ThePublic\ImageController@full');
 
 Route::resource('catalog', 'ThePublic\CompanyController');
-Route::get('/specialisation/{id}', 'ThePublic\CompanyController@specialisation');
-Route::get('/proposition/{id}', 'ThePublic\CompanyController@proposition');
+Route::get('specialisation/{id}', 'ThePublic\CompanyController@specialisation');
+Route::get('proposition/{id}', 'ThePublic\CompanyController@proposition');
+Route::get('price/{name}', 'ThePublic\CompanyController@price');
 Route::resource('buildings', 'ThePublic\BuildingController');
 Route::resource('desk', 'ThePublic\OfferController');
 Route::resource('news', 'ThePublic\ArticleController');
@@ -41,7 +42,7 @@ Route::group(['prefix' => 'knowladge'],function(){
 	
 	Route::group(['middleware' => 'auth'], function () {
 		Route::resource('education', 'ThePublic\EducationController');
-		Route::get('education/category/{id}', 'ThePublic\EducationControlle@category');
+		Route::get('education/category/{id}', 'ThePublic\EducationController@category');
 	});
 
 });
@@ -59,12 +60,12 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('company', 'User\CompanyController');
 		Route::resource('buildings', 'User\BuildingController');
 		Route::resource('jobs', 'User\JobController');
-		Route::resource('news', 'User\ArticleController');
+		Route::resource('blog', 'User\PostController');
 		Route::resource('sales', 'User\SaleController');
 		Route::resource('offers', 'User\OfferController');
 	});
 	
-	Route::resource('image', 'User\ImageController');
+	Route::resource('upload', 'User\UploadController');
 	Route::post('vote', 'User\PollController@vote');
 	Route::get('vote', 'User\PollController@index');
 
@@ -75,6 +76,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function () {
 		Route::get('', 'Admin\Catalog\CompanyController@index');
 		Route::resource('company', 'Admin\Catalog\CompanyController');
+		Route::resource('company/{company}/examples', 'Admin\Catalog\ExampleController');
+		Route::resource('company/{company}/staff', 'Admin\Catalog\MemberController');
+		Route::resource('company/{company}/sales', 'Admin\Catalog\SaleController');
+		Route::resource('company/{company}/blog', 'Admin\Catalog\PostController');
+		Route::resource('company/{company}/prices', 'Admin\Catalog\PriceController');
 		Route::resource('buildings', 'Admin\Building\BuildingController');
 		Route::resource('jobs', 'Admin\Building\JobController');
 		Route::resource('news', 'Admin\ArticleController');

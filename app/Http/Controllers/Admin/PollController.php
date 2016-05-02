@@ -13,20 +13,6 @@ use App\Http\Controllers\Controller;
 class PollController extends Controller
 {
 
-    protected $table = [
-        [
-            'field'=>'question',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Заголовок'
-        ],[
-            'field'=>'id',
-            'type'=>'actions',
-            'width'=>'90px',
-            'title'=>''
-        ],
-    ];
-
     protected function fields (Poll $poll) {
 
         $votes = [];
@@ -72,16 +58,33 @@ class PollController extends Controller
     public function index()
     {
         $polls = Poll::paginate(15);
-
-        return view('admin.table', [
-            'table' => $this->table,
+        $th = [
+            [
+                'title'=>'Вопрос',
+                'width'=>'auto',
+            ],[
+                'title'=>'',
+                'width'=>'90px',
+            ],
+        ];
+        $table=collect()->push($th);
+        foreach ($polls as $poll){
+            $table->push([
+                [
+                    'field'=>$poll->question,
+                    'type'=>'text',
+                ],[
+                    'edit' => route('admin.polls.edit', $poll),
+                    'delete' => route('admin.polls.destroy', $poll),
+                    'type'=>'actions',
+                ],
+            ]);
+        }
+        return view('admin.universal.index', [
+            'table' => $table,
             'items' => $polls,
             'title' => 'Опросы',
-            'links' => [
-                'show' => 'admin.polls.show',
-                'edit' => 'admin.polls.edit',
-                'delete' => 'admin.polls.destroy'
-            ]
+            'pagination' => $polls->render()
         ]);
     }
 
@@ -95,9 +98,9 @@ class PollController extends Controller
 
         $poll = new Poll;
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить опрос',
-            'action' => 'admin.polls.store',
+            'action' => route('admin.polls.store'),
             'fields' => $this->fields($poll),
             'item' => $poll
         ]);
@@ -171,9 +174,9 @@ class PollController extends Controller
 
     $poll = Poll::with('votes')->find($id);
 
-    return view('admin.form',[
+    return view('admin.universal.edit',[
             'title' => 'Редактировать опрос',
-            'action' => 'admin.polls.store',
+            'action' => route('admin.polls.store'),
             'fields' => $this->fields($poll),
             'item' => $poll
         ]);

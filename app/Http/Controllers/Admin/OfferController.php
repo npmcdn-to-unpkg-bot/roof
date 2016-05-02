@@ -15,25 +15,6 @@ use App\Http\Controllers\Controller;
 class OfferController extends Controller
 {
 
-    protected $table = [
-        [
-            'field'=>'image',
-            'type'=>'image',
-            'width'=>'40px',
-            'title'=>'Картинка'
-        ],[
-            'field'=>'title',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Заголовок'
-        ],[
-            'field'=>'id',
-            'type'=>'actions',
-            'width'=>'90px',
-            'title'=>''
-        ],
-    ];
-
     protected function fields (Offer $offer) {
 
         return [
@@ -128,16 +109,39 @@ class OfferController extends Controller
     {
 
         $offers = Offer::paginate(15);
-
-        return view('admin.table', [
-            'table' => $this->table,
+        $th = [
+            [
+                'title'=>'Картинка',
+                'width'=>'40px',
+            ],[
+                'title'=>'Заголовок',
+                'width'=>'auto',
+            ],[
+                'title'=>'',
+                'width'=>'90px',
+            ],
+        ];
+        $table=collect()->push($th);
+        foreach ($offers as $offer){
+            $table->push([
+                [
+                    'field'=>$offer->image,
+                    'type'=>'image',
+                ],[
+                    'field'=>$offer->title,
+                    'type'=>'text',
+                ],[
+                    'edit' => route('admin.offers.edit', $offer),
+                    'delete' => route('admin.offers.destroy', $offer),
+                    'type'=>'actions',
+                ],
+            ]);
+        }
+        return view('admin.universal.index', [
+            'table' => $table,
             'items' => $offers,
             'title' => 'Объявления',
-            'links' => [
-                'show' => 'admin.offers.show',
-                'edit' => 'admin.offers.edit',
-                'delete' => 'admin.offers.destroy'
-            ]
+            'pagination' => $offers->render()
         ]);
     }
 
@@ -151,9 +155,9 @@ class OfferController extends Controller
 
         $offer = new Offer;
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить новость',
-            'action' => 'admin.news.store',
+            'action' => route('admin.offers.store'),
             'fields' => $this->fields($offer),
             'item' => $offer
         ]);
@@ -173,8 +177,9 @@ class OfferController extends Controller
 
         $offer = Offer::firstOrNew(['id' => $request->id]);
         
-        if (Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
+        
         if ($offer->image&&$offer->image!==$request->image) 
             Storage::delete('images/'.$offer->image);
 
@@ -207,9 +212,9 @@ class OfferController extends Controller
 
         $offer = Offer::find($id);
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Редактировать объявление',
-            'action' => 'admin.offers.store',
+            'action' => route('admin.offers.store'),
             'fields' => $this->fields($offer),
             'item' => $offer
         ]);

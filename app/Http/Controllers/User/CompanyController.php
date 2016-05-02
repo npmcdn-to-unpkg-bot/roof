@@ -128,8 +128,9 @@ class CompanyController extends Controller
             ->company()
             ->firstOrNew(['id' => $request->id]);
 
-        if (Storage::exists('temp/'.$request->logo)) 
+        if ($request->image&&Storage::exists('temp/'.$request->logo)) 
             Storage::move('temp/'.$request->logo,'images/'.$request->logo);
+        
         if ($company->logo&&$company->logo!==$request->logo) 
             Storage::delete('images/'.$company->logo);
 
@@ -164,9 +165,9 @@ class CompanyController extends Controller
         $user = Auth::user();
         $company = $user->company ? $user->company : new Company;
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => $user->company ? 'Редактировать компанию' : 'Добавить компанию',
-            'action' => 'user.company.store',
+            'action' => route('user.company.store'),
             'fields' => $this->fields($company),
             'item' => $company
         ]);

@@ -19,8 +19,6 @@ class CreateArticlesTable extends Migration
             $table->string('image')->nullable();
             $table->text('entry');
             $table->text('content');
-            $table->boolean('market')->nullable();
-            $table->integer('company_id')->index();
         });
     }
 

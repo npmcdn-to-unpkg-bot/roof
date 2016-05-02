@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Validator;
 use Storage;
 use App\Models\Catalog\Company;
 use App\Article;
@@ -12,25 +11,6 @@ use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
-
-    protected $table = [
-        [
-            'field'=>'image',
-            'type'=>'image',
-            'width'=>'40px',
-            'title'=>'Картинка'
-        ],[
-            'field'=>'title',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Заголовок'
-        ],[
-            'field'=>'id',
-            'type'=>'actions',
-            'width'=>'90px',
-            'title'=>''
-        ],
-    ];
 
     protected function fields (Article $article) {
 
@@ -60,20 +40,6 @@ class ArticleController extends Controller
                 'type'=>'ckeditor',
                 'label'=>'Текст статьи',
                 'value'=>old() ? old('content') : $article->content
-            ],[
-                'name'=>'market',
-                'type'=>'checkbox',
-                'label'=>'Поместить новость в разделе "НОВОСТИ РЫНКА"',
-                'value'=>old() ? old('market') : $article->market
-            ],[
-                'name'=>'company_id',
-                'type'=>'select',
-                'settings'=>'',
-                'label'=>'Комания',
-                'value'=>old() 
-                    ? old('company_id') 
-                    : ($article->company ? $article->company->id : ''),
-                'options'=>Company::lists('name','id')
             ]
         ];
         
@@ -87,16 +53,40 @@ class ArticleController extends Controller
     {
 
         $articles = Article::paginate(15);
+        $th = [
+                [
+                    'title'=>'Картинка',
+                    'width'=>'40px',
+                ],[
+                    'title'=>'Заголовок',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'',
+                    'width'=>'90px',
+                ],
+        ];
+        $table=collect()->push($th);
+        foreach ($articles as $article){
+            $table->push([
+                [
+                    'field'=>$article->image,
+                    'type'=>'image',
+                ],[
+                    'field'=>$article->title,
+                    'type'=>'text',
+                ],[
+                    'edit' => route('admin.news.edit', $article),
+                    'delete' => route('admin.news.destroy', $article),
+                    'type'=>'actions',
+                ],
+            ]);
+        }
 
-        return view('admin.table', [
-            'table' => $this->table,
+        return view('admin.universal.index', [
+            'table' => $table,
             'items' => $articles,
             'title' => 'Новости',
-            'links' => [
-                'show' => 'admin.news.show',
-                'edit' => 'admin.news.edit',
-                'delete' => 'admin.news.destroy'
-            ]
+            'pagination' => $articles->render()
         ]);
     }
 
@@ -110,9 +100,9 @@ class ArticleController extends Controller
 
         $article = new Article;
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить новость',
-            'action' => 'admin.news.store',
+            'action' => route('admin.news.store'),
             'fields' => $this->fields($article),
             'item' => $article
         ]);
@@ -126,18 +116,19 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), Article::$rules, Article::$messages);
+        $validator = Article::validator($request->all());
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
         $article = Article::firstOrNew(['id' => $request->id]);
 
-        if (Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
-        if ($article->image&&$article->image!==$request->image) 
-            Storage::delete('images/'.$company->image);
 
-        $article->fill($request->only('title','image','entry','content','market','company_id'));
+        if ($article->image&&$article->image!==$request->image) 
+            Storage::delete('images/'.$article->image);
+
+        $article->fill($request->only('title','image','entry','content'));
         $article->save();
 
         return redirect()->route('admin.news.index');
@@ -165,9 +156,9 @@ class ArticleController extends Controller
 
         $article = Article::find($id);
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Редактировать новость',
-            'action' => 'admin.news.store',
+            'action' => route('admin.news.store'),
             'fields' => $this->fields($article),
             'item' => $article
         ]);

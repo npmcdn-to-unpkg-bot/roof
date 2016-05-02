@@ -1,1 +1,0 @@
-@if ($item->{$field}) <img src="/height/30/{{ $item->{$field} }}" alt=""> @endif

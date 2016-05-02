@@ -13,30 +13,6 @@ use App\Http\Controllers\Controller;
 class BannerController extends Controller
 {
 
-    protected $table = [
-        [
-            'field'=>'id',
-            'type'=>'text',
-            'width'=>'80px',
-            'title'=>'id'
-        ],[
-            'field'=>'image',
-            'type'=>'image',
-            'width'=>'auto',
-            'title'=>'Банер'
-        ],[
-            'field'=>'href',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Ссылка'
-        ],[
-            'field'=>'id',
-            'type'=>'actions',
-            'width'=>'90px',
-            'title'=>''
-        ],
-    ];
-
     protected function fields (Banner $banner)  {
         return [
             [
@@ -73,16 +49,45 @@ class BannerController extends Controller
     public function index()
     {
         $banners = Banner::paginate(15);
-
-        return view('admin.table', [
-            'table' => $this->table,
+        $th = [
+                [
+                    'title'=>'id',
+                    'width'=>'80px',
+                ],[
+                    'title'=>'Банер',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'Ссылка',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'',
+                    'width'=>'90px',
+                ],
+        ];
+        $table=collect()->push($th);
+        foreach ($banners as $banner){
+            $table->push([
+                [
+                    'field'=>$banner->id,
+                    'type'=>'text',
+                ],[
+                    'field'=>$banner->image,
+                    'type'=>'image',
+                ],[
+                    'field'=>$banner->href,
+                    'type'=>'text',
+                ],[
+                    'edit' => route('admin.banners.edit', $banner),
+                    'delete' => route('admin.banners.destroy', $banner),
+                    'type'=>'actions',
+                ],
+            ]);
+        }
+        return view('admin.universal.index', [
+            'table' => $table,
             'items' => $banners,
             'title' => 'Опросы',
-            'links' => [
-                'show' => 'admin.banners.show',
-                'edit' => 'admin.banners.edit',
-                'delete' => 'admin.banners.destroy'
-            ]
+            'pagination' => $banners->render()
         ]);
     }
 
@@ -96,9 +101,9 @@ class BannerController extends Controller
 
         $banner = new Banner;
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить банер',
-            'action' => 'admin.banners.store',
+            'action' => route('admin.banners.store'),
             'fields' => $this->fields($banner),
             'item' => $banner
         ]);
@@ -120,7 +125,7 @@ class BannerController extends Controller
         
         $banner = Banner::firstOrNew(['id' => $request->id]);
 
-        if (Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
         if ($banner->image&&$banner->image!==$request->image) 
             Storage::delete('images/'.$banner->image);
@@ -160,9 +165,9 @@ class BannerController extends Controller
 
         $banner = Banner::find($id);
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Редактировать банер',
-            'action' => 'admin.banners.store',
+            'action' => route('admin.banners.store'),
             'fields' => $this->fields($banner),
             'item' => $banner
         ]);

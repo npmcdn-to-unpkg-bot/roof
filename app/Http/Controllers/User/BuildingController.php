@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Buidling;
+namespace App\Http\Controllers\User;
 
 use Carbon\Carbon;
 use Storage;
@@ -107,15 +107,39 @@ class BuildingController extends Controller
 
         $buildings = Auth::user()->company->buildings()->orderBy('created_at', 'DESC')->paginate(15);        
 
-        return view('admin.table', [
-            'table' => $this->table,
+        $th = [
+                [
+                    'title'=>'Название стройки',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'Тип строения',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'',
+                    'width'=>'90px',
+                ],
+        ];
+        $table=collect()->push($th);
+        foreach ($buildings as $building){
+            $table->push([
+                [
+                    'field'=>$building->name,
+                    'type'=>'text',
+                ],[
+                    'field'=>$building->type,
+                    'type'=>'text',
+                ],[
+                    'edit' => route('user.buildings.edit', $building),
+                    'delete' => route('user.buildings.destroy', $building),
+                    'type'=>'actions',
+                ],
+            ]);
+        }
+        return view('admin.universal.index', [
+            'table' => $table,
             'items' => $buildings,
             'title' => 'Стройки',
-            'links' => [
-                'show' => 'user.buildings.show',
-                'edit' => 'user.buildings.edit',
-                'delete' => 'user.buildings.destroy'
-            ]
+            'pagination' => $buildings->render()
         ]);
 
     }
@@ -134,9 +158,9 @@ class BuildingController extends Controller
             'end'=>date("Y-m-d H:i:s"),
         ]);
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить компанию',
-            'action' => 'user.buildings.store',
+            'action' => route('user.buildings.store'),
             'fields' => $this->fields($building),
             'item' => $building
         ]);
@@ -165,7 +189,7 @@ class BuildingController extends Controller
             ->buildings()
             ->firstOrNew(['id' => $request->id]);
         $building
-            ->fill($request->only('name','type','information','published','start','end','lat','lng','address','city_id'));
+            ->fill($request->only('name','type','information','published','start','end','lat','lng','address','city_id'))
             ->save();
 
         $oldimages = $building
@@ -215,9 +239,9 @@ class BuildingController extends Controller
 
         if (!$building) return redirect()->route('user.buildings.create');
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить компанию',
-            'action' => 'user.buildings.store',
+            'action' => route('user.buildings.store'),
             'fields' => $this->fields($building),
             'item' => $building
         ]);

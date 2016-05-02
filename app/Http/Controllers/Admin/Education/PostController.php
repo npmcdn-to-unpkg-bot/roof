@@ -12,25 +12,6 @@ use App\Http\Controllers\Controller;
 class PostController extends Controller
 {
 
-    protected $table = [
-        [
-            'field'=>'image',
-            'type'=>'image',
-            'width'=>'40px',
-            'title'=>'Картинка'
-        ],[
-            'field'=>'title',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Заголовок'
-        ],[
-            'field'=>'id',
-            'type'=>'actions',
-            'width'=>'90px',
-            'title'=>''
-        ],
-    ];
-
     protected function fields (Post $post) {
 
         return [
@@ -78,16 +59,39 @@ class PostController extends Controller
     {
 
         $posts = Post::paginate(15);
-
-        return view('admin.table', [
-            'table' => $this->table,
+        $th = [
+                [
+                    'title'=>'Картинка',
+                    'width'=>'40px',
+                ],[
+                    'title'=>'Заголовок',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'',
+                    'width'=>'90px',
+                ],
+        ];
+        $table=collect()->push($th);
+        foreach ($posts as $post){
+            $table->push([
+                [
+                    'field'=>$post->image,
+                    'type'=>'image',
+                ],[
+                    'field'=>$post->title,
+                    'type'=>'text',
+                ],[
+                    'edit' => route('admin.education.edit', $post),
+                    'delete' => route('admin.education.destroy', $post),
+                    'type'=>'actions',
+                ],
+            ]);
+        }
+        return view('admin.universal.index', [
+            'table' => $table,
             'items' => $posts,
-            'title' => 'Записи',
-            'links' => [
-                'show' => 'admin.education.show',
-                'edit' => 'admin.education.edit',
-                'delete' => 'admin.education.destroy'
-            ]
+            'title' => 'Записи в обучении',
+            'pagination' => $posts->render()
         ]);
     }
 
@@ -101,7 +105,7 @@ class PostController extends Controller
 
         $post = new Post;
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить запись',
             'action' => 'admin.education.store',
             'fields' => $this->fields($post),
@@ -157,7 +161,7 @@ class PostController extends Controller
 
         $post = Post::find($id);
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Редактировать новость',
             'action' => 'admin.education.store',
             'fields' => $this->fields($post),

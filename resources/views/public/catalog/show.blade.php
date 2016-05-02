@@ -29,40 +29,25 @@
 					{!!$company->about!!}
 				</div>
 				<div id="portfolio" class="tabs__tab">
-					@foreach ($company->buildings as $i => $building)
+					@foreach ($company->examples as $i => $example)
 						@if ($i%3==0)<div class="container__row offset_vertical_40"> @endif
 							<div class="container__col-4 building">
-								<img src="/s-img/portfolio-1.jpg" alt="" class="building__image">
-								<a href="" class="building__name">{{$building->name}}</a>
-								<span class="field field_small field_type">{{$building->type}}</span>
-								<span class="field field_small field_address">{{$building->printAddress()}}</span>
-								<span class="field field_small field_period">{{$building->calendar()}}</span>
-						@if ($i%3==2||$i==count($company->buildings)) </div> @endif
-						</div>
+								<img src="/fit/240/145/{{$example->image}}" alt="" class="building__image">
+								<a href="#" class="building__name">{{$example->title}}</a>
+							</div>
+						@if ($i%3==2||$i+1==count($company->examples)) </div> @endif
 					@endforeach
 				</div>
 				<div id="services" class="tabs__tab">
-					{{$company->services}}
+					{!!$company->services!!}
 				</div>
 				<div id="prices" class="tabs__tab">
-					<a href="" class="file-link">
-						<img src="/img/zip.png" alt="" class="file-link__image"> Название прайса может быть довольно длинным или даже очень длинным. Или же очень-очень длинным
+					@foreach($company->prices as $price)
+					<a href="/price/{{$price->name}}" class="file-link">
+						<img src="/img/{{$price->type}}.png" alt="" class="file-link__image">
+						{{$price->title}}
 					</a>
-					<a href="" class="file-link">
-						<img src="/img/pdf.png" alt="" class="file-link__image"> Название прайса может быть довольно длинным или даже очень длинным. Или же очень-очень длинным
-					</a>
-					<a href="" class="file-link">
-						<img src="/img/doc.png" alt="" class="file-link__image"> Название прайса может быть довольно длинным или даже очень длинным. Или же очень-очень длинным
-					</a>
-					<a href="" class="file-link">
-						<img src="/img/zip.png" alt="" class="file-link__image"> Название прайса может быть довольно длинным или даже очень длинным. Или же очень-очень длинным
-					</a>
-					<a href="" class="file-link">
-						<img src="/img/zip.png" alt="" class="file-link__image"> Название прайса может быть довольно длинным или даже очень длинным. Или же очень-очень длинным
-					</a>
-					<a href="" class="file-link">
-						<img src="/img/zip.png" alt="" class="file-link__image"> Название прайса может быть довольно длинным или даже очень длинным. Или же очень-очень длинным
-					</a>
+					@endforeach
 				</div>
 				<div id="sales" class="tabs__tab">
 					<div class="company-sale">
@@ -129,42 +114,34 @@
 			</div>
 		</div>
 		<div class="container__col-4">
-			<div class="staff">
-				<div class="title">СОТРУДНИКИ</div>
-				<div>
-					<div class="staff__item">
-						<img src="/s-img/staff-1.jpg" alt="" class="staff__image">
-						<div class="staff__name">Константин <br> Константинов</div>
-						<div class="staff__job">Руководитель отдела продаж</div>
-					</div>
+			@if ($company->members->first())
+				<div class="staff offset_bottom_60">
+					<div class="title">СОТРУДНИКИ</div>
+					@foreach ($company->members as $member)
+						<div>
+							<div class="staff__item">
+								<img src="/fit/120/120/{{$member->image}}" alt="" class="staff__image">
+								<div class="staff__name">{{$member->name}}</div>
+								<div class="staff__job">{{$member->job}}</div>
+							</div>
+						</div>
+					@endforeach
 				</div>
-				<div>
-					<div class="staff__item">
-						<img src="/s-img/staff-1.jpg" alt="" class="staff__image">
-						<div class="staff__name">Константин <br> Константинов</div>
-						<div class="staff__job">Руководитель отдела продаж</div>
-					</div>
-				</div>
-				<div>
-					<div class="staff__item">
-						<img src="/s-img/staff-1.jpg" alt="" class="staff__image">
-						<div class="staff__name">Константин <br> Константинов</div>
-						<div class="staff__job">Руководитель отдела продаж</div>
-					</div>
-				</div>
-			</div>
-			<div class="offset_vertical_55">
+			@endif
+			<div class="offset_bottom_60">
 				@include('public.area.banner',['area' => 'catalog.show.1'])
 			</div>
-			<div class="company-blog offset_vertical_60">
-				<div class="title">БЛОГ КОМПАНИИ</div>
-				@foreach ($company->articles as $article)
-					<div class="company-blog__item">
-						<a href="" class="company-blog__title">{{$article->title}}</a>
-						<p>{{$article->entry}}</p>
-					</div>
-				@endforeach
-			</div>
+			@if ($company->posts->first())
+				<div class="company-blog offset_bottom_60">
+					<div class="title">БЛОГ КОМПАНИИ</div>
+					@foreach ($company->posts as $post)
+						<div class="company-blog__item">
+							<a href="" class="company-blog__title">{{$post->title}}</a>
+							<p>{{$post->entry}}</p>
+						</div>
+					@endforeach
+				</div>
+			@endif
 		</div>
 	</div>
 </div>

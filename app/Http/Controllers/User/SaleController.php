@@ -76,15 +76,39 @@ class SaleController extends Controller
 
         $sales = Auth::user()->company->sales()->paginate(15);
 
-        return view('admin.table', [
-            'table' => $this->table,
-            'items' => $sales,
-            'title' => 'Новости',
-            'links' => [
-                'show' => 'user.sales.show',
-                'edit' => 'user.sales.edit',
-                'delete' => 'user.sales.destroy'
+        $th = [
+            [
+                'title'=>'Картинка',
+                'width'=>'40px',
+            ],[
+                'title'=>'Заголовок',
+                'width'=>'auto',
+            ],[
+                'title'=>'',
+                'width'=>'90px',
             ]
+        ];
+        $table = collect()->push($th);
+        foreach ($sales as $sale) {
+            $table->push([
+                [
+                    'type'=>'image',
+                    'field'=>$sale->image,
+                ],[
+                    'type'=>'text',
+                    'field'=>$sale->title,
+                ],[
+                    'type'=>'actions',
+                    'edit' => route('user.sales.edit',$sale),
+                    'delete' => route('user.sales.destroy',$sale),
+                ]
+            ]);
+        }
+
+        return view('admin.universal.index', [
+            'title' => 'Акции и скидки',
+            'table' => $table,
+            'pagination' => $sales->render(),
         ]);
     }
 
@@ -97,9 +121,9 @@ class SaleController extends Controller
     {
         $sale = new Sale;
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить акцию',
-            'action' => 'user.sales.store',
+            'action' => route('user.sales.store'),
             'fields' => $this->fields($sale),
             'item' => $sale
         ]);
@@ -123,8 +147,9 @@ class SaleController extends Controller
             ->sales()
             ->firstOrNew(['id' => $request->id]);
 
-        if (Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
+        
         if ($sale->image&&$sale->image!==$request->image) 
             Storage::delete('images/'.$sale->image);
 
@@ -158,9 +183,9 @@ class SaleController extends Controller
         $sale = $company->sales()->where('id',$id)->first();
         if (!$sale) return redirect()->route('user.sales.create');
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Редактировать акцию',
-            'action' => 'user.sales.store',
+            'action' => route('user.sales.store'),
             'fields' => $this->fields($sale),
             'item' => $sale
         ]);

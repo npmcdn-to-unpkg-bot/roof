@@ -60,20 +60,6 @@ class SaleController extends Controller
                 'type'=>'ckeditor',
                 'label'=>'Текст',
                 'value'=>old() ? old('content') : $sale->content
-            ],[
-                'name'=>'sales',
-                'type'=>'checkbox',
-                'label'=>'Поместить новость в разделе "АКЦИИ И СКИДКИ"',
-                'value'=>old() ? old('sales') : $sale->sales
-            ],[
-                'name'=>'company_id',
-                'type'=>'select',
-                'settings'=>'',
-                'label'=>'Комания',
-                'value'=>old() 
-                    ? old('company_id') 
-                    : ($sale->company ? $sale->company->id : ''),
-                'options'=>Company::lists('name','id')
             ]
         ];
 
@@ -88,16 +74,39 @@ class SaleController extends Controller
     {
 
         $sales = Sale::paginate(15);
-
-        return view('admin.table', [
-            'table' => $this->table,
+        $th = [
+            [
+                'title'=>'Картинка',
+                'width'=>'40px',
+            ],[
+                'title'=>'Заголовок',
+                'width'=>'auto',
+            ],[
+                'title'=>'',
+                'width'=>'90px',
+            ],
+        ];
+        $table=collect()->push($th);
+        foreach ($sales as $sale){
+            $table->push([
+                [
+                    'field'=>$sale->image,
+                    'type'=>'image',
+                ],[
+                    'field'=>$sale->title,
+                    'type'=>'text',
+                ],[
+                    'edit' => route('admin.sales.edit', $sale),
+                    'delete' => route('admin.sales.destroy', $sale),
+                    'type'=>'actions',
+                ],
+            ]);
+        }
+        return view('admin.universal.index', [
+            'table' => $table,
             'items' => $sales,
-            'title' => 'Новости',
-            'links' => [
-                'show' => 'admin.sales.show',
-                'edit' => 'admin.sales.edit',
-                'delete' => 'admin.sales.destroy'
-            ]
+            'title' => 'Акции и скидки',
+            'pagination' => $sales->render()
         ]);
     }
 
@@ -110,9 +119,9 @@ class SaleController extends Controller
     {
         $sale = new Sale;
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить акцию',
-            'action' => 'admin.sales.store',
+            'action' => route('admin.sales.store'),
             'fields' => $this->fields($sale),
             'item' => $sale
         ]);
@@ -132,13 +141,14 @@ class SaleController extends Controller
 
         $sale = Sale::firstOrNew(['id' => $request->id]);
 
-        if (Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
+
         if ($sale->image&&$sale->image!==$request->image) 
             Storage::delete('images/'.$sale->image);
 
         $sale
-            ->fill($request->only('title','image','entry','content','sales','company_id'))
+            ->fill($request->only('title','image','entry','content'))
             ->save();
 
         return redirect()->route('admin.sales.index');
@@ -166,9 +176,9 @@ class SaleController extends Controller
 
         $sale = Sale::with('company')->find($id);
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Редактировать акцию',
-            'action' => 'admin.sales.store',
+            'action' => route('admin.sales.store'),
             'fields' => $this->fields($sale),
             'item' => $sale
         ]);

@@ -15,24 +15,6 @@ use App\Http\Controllers\Controller;
 
 class BuildingController extends Controller
 {
-    protected $table = [
-        [
-            'field'=>'name',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Название стройки'
-        ],[
-            'field'=>'type',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Тип строения'
-        ],[
-            'field'=>'id',
-            'type'=>'actions',
-            'width'=>'90px',
-            'title'=>''
-        ],
-    ];
 
     public function fields (Building $building) {
         $companies = Company::lists('name','id')->put($building->company_name, $building->company_name);
@@ -119,16 +101,39 @@ class BuildingController extends Controller
     {
 
         $buildings = Building::orderBy('created_at', 'DESC')->paginate(15);        
-
-        return view('admin.table', [
-            'table' => $this->table,
+        $th = [
+                [
+                    'title'=>'Название стройки',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'Тип строения',
+                    'width'=>'auto',
+                ],[
+                    'title'=>'',
+                    'width'=>'90px',
+                ],
+        ];
+        $table=collect()->push($th);
+        foreach ($buildings as $building){
+            $table->push([
+                [
+                    'field'=>$building->name,
+                    'type'=>'text',
+                ],[
+                    'field'=>$building->type,
+                    'type'=>'text',
+                ],[
+                    'edit' => route('admin.buildings.edit', $building),
+                    'delete' => route('admin.buildings.destroy', $building),
+                    'type'=>'actions',
+                ],
+            ]);
+        }
+        return view('admin.universal.index', [
+            'table' => $table,
             'items' => $buildings,
             'title' => 'Стройки',
-            'links' => [
-                'show' => 'admin.buildings.show',
-                'edit' => 'admin.buildings.edit',
-                'delete' => 'admin.buildings.destroy'
-            ]
+            'pagination' => $buildings->render()
         ]);
 
     }
@@ -147,9 +152,9 @@ class BuildingController extends Controller
             'end'=>date("Y-m-d H:i:s"),
         ]);
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить компанию',
-            'action' => 'admin.buildings.store',
+            'action' => route('admin.buildings.store'),
             'fields' => $this->fields($building),
             'item' => $building
         ]);
@@ -231,9 +236,9 @@ class BuildingController extends Controller
     {
         $building = Building::find($id);
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить компанию',
-            'action' => 'admin.buildings.store',
+            'action' => route('admin.buildings.store'),
             'fields' => $this->fields($building),
             'item' => $building
         ]);

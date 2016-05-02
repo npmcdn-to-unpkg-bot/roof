@@ -7,33 +7,14 @@ use Validator;
 use Storage;
 use Auth;
 use App\Models\Catalog\Company;
-use App\Article;
+use App\Models\Catalog\Post;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ArticleController extends Controller
+class PostController extends Controller
 {
 
-    protected $table = [
-        [
-            'field'=>'image',
-            'type'=>'image',
-            'width'=>'40px',
-            'title'=>'Картинка'
-        ],[
-            'field'=>'title',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Заголовок'
-        ],[
-            'field'=>'id',
-            'type'=>'actions',
-            'width'=>'90px',
-            'title'=>''
-        ],
-    ];
-
-    protected function fields (Article $article) {
+    protected function fields (Post $post) {
 
         return [
             [
@@ -41,7 +22,7 @@ class ArticleController extends Controller
                 'type'=>'text',
                 'placeholder'=>'Введите заголовок статьи',
                 'label'=>'Заголовок',
-                'value'=>old() ? old('title') : $article->title
+                'value'=>old() ? old('title') : $post->title
             ],[
                 'name' => 'image',
                 'type' => 'images',
@@ -49,18 +30,18 @@ class ArticleController extends Controller
                 'quantity' => 1,
                 'values' => old() 
                     ? (array)old('image') 
-                    : (array)$article->image
+                    : (array)$post->image
             ],[
                 'name'=>'entry',
                 'type'=>'textarea',
                 'placeholder'=>'Введите краткое содержание статьи',
                 'label'=>'Краткое содержание',
-                'value'=>old() ? old('entry') : $article->entry
+                'value'=>old() ? old('entry') : $post->entry
             ],[
                 'name'=>'content',
                 'type'=>'ckeditor',
                 'label'=>'Текст статьи',
-                'value'=>old() ? old('content') : $article->content
+                'value'=>old() ? old('content') : $post->content
             ]
         ];
         
@@ -73,17 +54,41 @@ class ArticleController extends Controller
     public function index()
     {
 
-        $articles = Auth::user()->company->articles()->paginate(15);
+        $posts = Auth::user()->company->posts()->paginate(15);
 
-        return view('admin.table', [
-            'table' => $this->table,
-            'items' => $articles,
-            'title' => 'Новости',
-            'links' => [
-                'show' => 'user.news.show',
-                'edit' => 'user.news.edit',
-                'delete' => 'user.news.destroy'
+        $th = [
+            [
+                'title'=>'Картинка',
+                'width'=>'40px',
+            ],[
+                'title'=>'Заголовок',
+                'width'=>'auto',
+            ],[
+                'title'=>'',
+                'width'=>'90px',
             ]
+        ];
+        $table = collect()->push($th);
+        foreach ($posts as $post) {
+            $table->push([
+                [
+                    'type'=>'image',
+                    'field'=>$post->image,
+                ],[
+                    'type'=>'text',
+                    'field'=>$post->title,
+                ],[
+                    'type'=>'actions',
+                    'edit' => route('user.blog.edit',$post),
+                    'delete' => route('user.blog.destroy',$post),
+                ]
+            ]);
+        }
+
+        return view('admin.universal.index', [
+            'title' => 'Блог',
+            'table' => $table,
+            'pagination' => $posts->render(),
         ]);
     }
 
@@ -95,13 +100,13 @@ class ArticleController extends Controller
     public function create()
     {
 
-        $article = new Article;
+        $post = new Post;
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить новость',
-            'action' => 'user.news.store',
-            'fields' => $this->fields($article),
-            'item' => $article
+            'action' => route('user.blog.store'),
+            'fields' => $this->fields($post),
+            'item' => $post
         ]);
     }
 
@@ -113,25 +118,26 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), Article::$rules, Article::$messages);
+        $validator = Post::validator($request->all());
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        $article = Auth::user()
+        $post = Auth::user()
             ->company
-            ->articles()
+            ->posts()
             ->firstOrNew(['id' => $request->id]);
 
-        if (Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
-        if ($article->image&&$article->image!==$request->image) 
-            Storage::delete('images/'.$article->image);
 
-        $article
+        if ($post->image&&$post->image!==$request->image) 
+            Storage::delete('images/'.$post->image);
+
+        $post
             ->fill($request->only('title','image','entry','content'))
             ->save();
 
-        return redirect()->route('user.news.index');
+        return redirect()->route('user.blog.index');
     }
 
     /**
@@ -154,14 +160,14 @@ class ArticleController extends Controller
     public function edit($id)
     {
 
-        $article = Auth::user()->company->articles()->where('id', $id)->first();
-        if (!$article) return redirect()->route('user.news.create');
+        $post = Auth::user()->company->posts()->where('id', $id)->first();
+        if (!$post) return redirect()->route('user.blog.create');
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Редактировать новость',
-            'action' => 'user.news.store',
-            'fields' => $this->fields($article),
-            'item' => $article
+            'action' => route('user.blog.store'),
+            'fields' => $this->fields($post),
+            'item' => $post
         ]);
     }
 
@@ -185,7 +191,7 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        Auth::user()->company->articles()->where('id', $id)->delete();
+        Auth::user()->company->posts()->where('id', $id)->delete();
         return back();
     }
 }

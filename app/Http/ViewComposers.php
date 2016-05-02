@@ -8,4 +8,4 @@ view()->composer('public.desk.block', 'App\Http\ViewComposers\DeskBlock');
 view()->composer('public.events.block', 'App\Http\ViewComposers\Calendar');
 view()->composer('public.events.index', 'App\Http\ViewComposers\Calendar');
 
-view()->composer('admin.menu', 'App\Http\ViewComposers\AdminMenu');
+view()->composer('admin.parts.menu', 'App\Http\ViewComposers\AdminMenu');

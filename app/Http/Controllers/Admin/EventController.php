@@ -14,35 +14,6 @@ use App\Http\Controllers\Controller;
 class EventController extends Controller
 {
 
-    protected $table = [
-        [
-            'field'=>'image',
-            'type'=>'image',
-            'width'=>'40px',
-            'title'=>'Картинка'
-        ],[
-            'field'=>'name',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Название'
-        ],[
-            'field'=>'start',
-            'type'=>'date',
-            'width'=>'auto',
-            'title'=>'Начало'
-        ],[
-            'field'=>'end',
-            'type'=>'date',
-            'width'=>'auto',
-            'title'=>'Конец'
-        ],[
-            'field'=>'id',
-            'type'=>'actions',
-            'width'=>'90px',
-            'title'=>''
-        ],
-    ];
-
     protected function fields (Event $event) {
         return [
             [
@@ -115,16 +86,51 @@ class EventController extends Controller
     {
 
         $events = Event::paginate(15);
-
-        return view('admin.table', [
-            'table' => $this->table,
+        $th = [
+            [
+                'title'=>'Картинка',
+                'width'=>'40px',
+            ],[
+                'title'=>'Название',
+                'width'=>'auto',
+            ],[
+                'title'=>'Начало',
+                'width'=>'auto',
+            ],[
+                'title'=>'Конец',
+                'width'=>'auto',
+            ],[
+                'title'=>'',
+                'width'=>'90px',
+            ],
+        ];
+        $table=collect()->push($th);
+        foreach ($events as $event){
+            $table->push([
+                [
+                    'field'=>$event->image,
+                    'type'=>'image',
+                ],[
+                    'field'=>$event->name,
+                    'type'=>'text',
+                ],[
+                    'field'=>$event->start,
+                    'type'=>'date',
+                ],[
+                    'field'=>$event->end,
+                    'type'=>'date',
+                ],[
+                    'edit' => route('admin.events.edit', $event),
+                    'delete' => route('admin.events.destroy', $event),
+                    'type'=>'actions',
+                ],
+            ]);
+        }
+        return view('admin.universal.index', [
+            'table' => $table,
             'items' => $events,
             'title' => 'События',
-            'links' => [
-                'show' => 'admin.events.show',
-                'edit' => 'admin.events.edit',
-                'delete' => 'admin.events.destroy'
-            ]
+            'pagination' => $events->render()
         ]);
     }
 
@@ -140,9 +146,9 @@ class EventController extends Controller
             'end'=>date("Y-m-d H:i:s"),
         ]);
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить событие',
-            'action' => 'admin.events.store',
+            'action' => route('admin.events.store'),
             'fields' => $this->fields($event),
             'item' => $event
         ]);
@@ -167,8 +173,9 @@ class EventController extends Controller
         
         $event = Event::firstOrNew(['id' => $request->id]);
 
-        if (Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
+        
         if ($event->image&&$event->image!==$request->image) 
             Storage::delete('images/'.$event->image);
 
@@ -201,9 +208,9 @@ class EventController extends Controller
     {
         $event = Event::find($id);
 
-        return view('admin.form',[
+        return view('admin.universal.edit',[
             'title' => 'Редактировать событие',
-            'action' => 'admin.events.store',
+            'action' => route('admin.events.store'),
             'fields' => $this->fields($event),
             'item' => $event
         ]);
