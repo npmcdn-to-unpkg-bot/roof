@@ -178,6 +178,21 @@ class AdminMenu
                         ],
                     ],
                 ],[
+                    'name' => 'Тендеры',
+                    'icon' => 'fa-question',
+                    'active' => Request::is('admin/tenders*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список тендеров',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.tenders.index'),
+                        ],[
+                            'name' => 'Добавить тендер',
+                            'icon' => 'fa-plus',
+                            'href' => route('admin.tenders.create'),
+                        ],
+                    ],
+                ],[
                     'name' => 'Библиотека',
                     'icon' => 'fa-book',
                     'active' => Request::is('admin/library*')?'active':'',

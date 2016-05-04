@@ -91,6 +91,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('events', 'Admin\EventController');
 		Route::resource('library', 'Admin\Library\PostController');
 		Route::resource('education', 'Admin\Education\PostController');
+		Route::resource('tenders', 'Admin\TenderController');
 	});
 
 
