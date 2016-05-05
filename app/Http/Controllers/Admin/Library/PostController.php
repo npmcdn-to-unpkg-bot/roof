@@ -130,7 +130,7 @@ class PostController extends Controller
         if (Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
         if ($post->image&&$post->image!==$request->image) 
-            Storage::delete('images/'.$company->image);
+            Storage::delete('images/'.$post->image);
 
         $post->fill($request->only('title','image','entry','content'));
         $post->save();
