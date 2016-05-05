@@ -107,7 +107,7 @@ class PostController extends Controller
 
         return view('admin.universal.edit',[
             'title' => 'Добавить запись',
-            'action' => 'admin.library.store',
+            'action' => route('admin.library.store'),
             'fields' => $this->fields($post),
             'item' => $post
         ]);
@@ -163,7 +163,7 @@ class PostController extends Controller
 
         return view('admin.universal.edit',[
             'title' => 'Редактировать новость',
-            'action' => 'admin.library.store',
+            'action' => route('admin.library.store'),
             'fields' => $this->fields($post),
             'item' => $post
         ]);
