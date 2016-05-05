@@ -66,50 +66,33 @@
 			<div class="reviews">
 				<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 				<div class="title">ОТЗЫВЫ</div>
-				<div class="reviews__post">
-					<img src="/s-img/reviews-1.jpg" alt="" class="reviews__image">
-					<div class="reviews__text">
-						Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года.
+				@foreach ($company->comments as $review)
+					<div class="reviews__post">
+						<img src="/s-img/reviews-1.jpg" alt="" class="reviews__image">
+						<div class="reviews__text">{{$review->text}}</div>
+						<div class="reviews__rate">Оценка: <span class="reviews__rate-value">{!!$review->printRating()!!}</span></div>
 					</div>
-					<div class="reviews__rate">Оценка: <span class="reviews__rate-value">7 баллов</span></div>
-				</div>
-				<div class="reviews__post">
-					<img src="/s-img/reviews-1.jpg" alt="" class="reviews__image">
-					<div class="reviews__text">
-						Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года.
-					</div>
-					<div class="reviews__rate">Оценка: <span class="reviews__rate-value">7 баллов</span></div>
-					<div class="comment">
+					<!-- <div class="comment">
 						<img src="/s-img/comment-1.jpg" alt="" class="comment__image">
 						<div class="comment__text">Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. </div>
-					</div>
-				</div>
-				<div class="reviews__post">
-					<img src="/s-img/reviews-1.jpg" alt="" class="reviews__image">
-					<div class="reviews__text">
-						Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года.
-					</div>
-					<div class="reviews__rate">Оценка: <span class="reviews__rate-value">7 баллов</span></div>
-				</div>
-				<div class="reviews__post">
-					<img src="/s-img/reviews-1.jpg" alt="" class="reviews__image">
-					<div class="reviews__text">
-						Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года.
-					</div>
-					<div class="reviews__rate">Оценка: <span class="reviews__rate-value">7 баллов</span></div>
-				</div>
-				<form action="" class="reviews-form">
-					<textarea name="" resize="none" id="" placeholder="Оставить отзыв о компании" class="reviews-form__text"></textarea>
+					</div> -->
+				@endforeach
+				<form action="{{route('comment.store')}}" class="reviews-form" method="POST">
+					{!! csrf_field() !!}
+					<input type="hidden" name="company_id" value="{{$company->id}}">
+					<textarea name="text" resize="none" placeholder="Оставить отзыв о компании" class="reviews-form__text">{{old('text')}}</textarea>
+					@if ($errors->first('text'))<div class="error">{{ $errors->first('text') }}</div>@endif
 					<button class="button button_big button_blue reviews-form__submit">ОТПРАВИТЬ</button>
 					<div class="reviews-form__rate">Оценка компании: 
 						<div class="rate-form">
-							<input type="radio" class="rate-form__radio" checked name="rate">
+							<input type="radio" class="rate-form__radio" {{old('rating')!=0?'':'checked'}} name="rating" value="0">
 							@for ($i=1;$i<=10;$i++)
 								<label for="rate-form__{{ $i }}" class="rate-form__star"></label>
-								<input type="radio" id="rate-form__{{ $i }}" class="rate-form__radio" value="{{ $i }}" name="rate">
+								<input {{old('rating')==$i?'checked':''}} type="radio" id="rate-form__{{ $i }}" class="rate-form__radio" value="{{ $i }}" name="rating">
 							@endfor
 						</div>
 					</div>
+					@if ($errors->first('rating'))<div class="error">{{ $errors->first('rating') }}</div>@endif
 				</form>
 			</div>
 		</div>

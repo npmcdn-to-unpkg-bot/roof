@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTendersTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,14 @@ class CreateTendersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tenders', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('name');
-            $table->string('image')->nullable();
-            $table->integer('company_id')->index();
-            $table->string('budget');
-            $table->date('end');
-            $table->text('description');
+            $table->text('text');
+            $table->integer('rating');
+            $table->integer('user_id')->index();
+            $table->integer('commentable_id')->index();
+            $table->string('commentable_type');
         });
     }
 
@@ -31,6 +30,6 @@ class CreateTendersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tenders');
+        Schema::drop('comments');
     }
 }

@@ -111,5 +111,9 @@ class Company extends Model
             'company_id',
             'specialisation_id'
         );
-    }    
+    }
+
+    public function comments() {
+        return $this->morphMany('App\Models\Comment','commentable');
+    }
 }

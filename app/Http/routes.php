@@ -21,8 +21,8 @@ Route::get('height/{height}/{name}', 'ThePublic\ImageController@height');
 Route::get('full/{name}', 'ThePublic\ImageController@full');
 
 Route::resource('catalog', 'ThePublic\CompanyController');
-Route::get('specialisation/{id}', 'ThePublic\CompanyController@specialisation');
-Route::get('proposition/{id}', 'ThePublic\CompanyController@proposition');
+Route::get('catalog/specialisation/{id}', 'ThePublic\CompanyController@specialisation');
+Route::get('catalog/proposition/{id}', 'ThePublic\CompanyController@proposition');
 Route::get('price/{name}', 'ThePublic\CompanyController@price');
 Route::resource('buildings', 'ThePublic\BuildingController');
 Route::resource('desk', 'ThePublic\OfferController');
@@ -30,6 +30,7 @@ Route::resource('news', 'ThePublic\ArticleController');
 Route::resource('sales', 'ThePublic\SaleController');
 Route::resource('events', 'ThePublic\EventController');
 Route::get('events/calendar/{date}', 'ThePublic\EventController@calendar');
+Route::resource('tenders', 'ThePublic\TenderController');
 
 Route::group(['prefix' => 'knowladge'],function(){
 
@@ -64,7 +65,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('sales', 'User\SaleController');
 		Route::resource('offers', 'User\OfferController');
 	});
-	
+
+	Route::resource('comment', 'User\CommentController');
 	Route::resource('upload', 'User\UploadController');
 	Route::post('vote', 'User\PollController@vote');
 	Route::get('vote', 'User\PollController@index');

@@ -10,7 +10,7 @@
 		<div id="specialisations" class="page-tabs__tab page-tabs__tab_active container__row offset_vertical_20 taxonomy">
 			@foreach ($specialisations=App\Models\Catalog\Specialisation::all() as $i => $specialisation)
 				@if ($i%6==0) <div class="container__col-4"> @endif
-					<a href="/specialisation/{{ $specialisation->id }}" class="taxonomy__item">{{ $specialisation->name }} 
+					<a href="/catalog/specialisation/{{ $specialisation->id }}" class="taxonomy__item">{{ $specialisation->name }} 
 						<span class="taxonomy__count">({{ $specialisation->companies->count() }})</span>
 					</a>
 				@if ($i+1==count($specialisations)||$i%6==5) </div> @endif
@@ -19,7 +19,7 @@
 		<div id="propositions" class="page-tabs__tab container__row offset_vertical_20 taxonomy">
 			@foreach ($propositions=App\Models\Catalog\Proposition::all() as $i => $proposition)
 				@if ($i%6==0) <div class="container__col-4"> @endif
-					<a href="/proposition/{{ $proposition->id }}" class="taxonomy__item">{{ $proposition->name }} 
+					<a href="/catalog/proposition/{{ $proposition->id }}" class="taxonomy__item">{{ $proposition->name }} 
 						<span class="taxonomy__count">({{ $proposition->companies->count() }})</span>
 					</a>
 				@if ($i+1==count($propositions)||$i%6==5) </div> @endif

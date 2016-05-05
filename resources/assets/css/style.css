@@ -1733,7 +1733,6 @@ td.calendar-block__date_active {
 
 .comment__image {
 	float: left;
-	margin-left: 15px;
 	margin-right: 15px;
 }
 
@@ -2132,7 +2131,7 @@ td.calendar-block__date_active {
 	display: block;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	line-height: 20px;
+	line-height: 25px;
 	background-repeat: no-repeat;
 	background-position: left top 6px;
 }
@@ -2160,6 +2159,10 @@ td.calendar-block__date_active {
 
 .field_small{
 	font-size: 14px;
+}
+
+.field_money {
+	background-image: url(../img/field_money.png);
 }
 
 
@@ -2273,4 +2276,35 @@ td.calendar-block__date_active {
 }
 .post-page__library {
 
+}
+
+/*tender*/
+
+.tender {
+	background-color: #f1f1f1;
+	padding: 15px;
+	overflow: hidden;
+	position: relative;
+	line-height: 25px;
+}
+
+.tender__image {
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 15px;
+}
+
+.tender__name {
+	font-size: 18px;
+    font-weight: bold;
+    line-height: 18px;
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.tender__more {
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
 }

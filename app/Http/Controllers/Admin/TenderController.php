@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Tender;
 use App\Models\Catalog\Company;
+use Storage;
+use Carbon\Carbon;
 
 class TenderController extends Controller
 {
@@ -28,16 +30,24 @@ class TenderController extends Controller
                 'label'=>'Бюджет',
                 'value'=>old() ? old('budget') : $tender->budget
             ],[
-                'name'=>'description',
-                'type'=>'ckeditor',
-                'label'=>'Описание тендера',
-                'value'=>old() ? old('description') : $tender->description
-            ],[
                 'name' => 'end',
                 'type' => 'datepicker',
                 'format' => 'DD.MM.YYYY',
                 'label' => 'Дата окончания приема заявок',
                 'value' => old() ? old('end') : $tender->end->format('d.m.Y')
+            ],[
+                'name' => 'image',
+                'type' => 'images',
+                'label' => 'Картинка',
+                'quantity' => 1,
+                'values' => old() 
+                    ? (array)old('image') 
+                    : (array)$tender->image
+            ],[
+                'name'=>'description',
+                'type'=>'ckeditor',
+                'label'=>'Описание тендера',
+                'value'=>old() ? old('description') : $tender->description
             ],[
                 'name'=>'company_id',
                 'type'=>'select',
@@ -133,8 +143,17 @@ class TenderController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
+        $request->merge(['end' => Carbon::parse($request->end)]);
+
         $tender = Tender::firstOrNew(['id' => $request->id]);
-        $tender->fill($request->only('name','description','budget','company_id'));
+
+        if ($request->image&&Storage::exists('temp/'.$request->image)) 
+            Storage::move('temp/'.$request->image,'images/'.$request->image);
+
+        if ($tender->image&&$tender->image!==$request->image) 
+            Storage::delete('images/'.$tender->image);
+
+        $tender->fill($request->only('name','description','budget','company_id','image','end'));
         $tender->save();
 
         return redirect()->route('admin.tenders.index');
