@@ -8,6 +8,8 @@ use App\Models\Building\Job;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\City;
+use App\Country;
 
 class BuildingController extends Controller
 {
@@ -16,16 +18,46 @@ class BuildingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $buildings = Building::with('company','jobs','images')
-            ->orderBy('created_at', 'desc')
-            ->paginate(9);
-        $jobs = Job::orderBy('created_at', 'desc')
-            ->paginate(20);
+        $buildings = Building::select('buildings.*')->orderBy('created_at', 'desc');
+
+
+        if ($request)
+            $buildings
+                ->leftJoin('building_job','buildings.id','=','building_job.building_id')
+                ->leftJoin('jobs','jobs.id','=','building_job.job_id')
+                ->leftJoin('cities','buildings.city_id','=','cities.id');
+
+        if (!empty($request->country)) 
+            $buildings->where('cities.country_id',$request->country);
+
+        if (!empty($request->city)) 
+            $buildings->where('city_id',$request->city);
+
+        if (!empty($request->type)) 
+            $buildings->where('type',$request->type);
+
+        if (!empty($request->speciality)) 
+            $buildings->where('jobs.speciality',$request->speciality);
+
+        if (!empty($request->seasonality)) 
+            $buildings->where('jobs.seasonality',$request->seasonality);
+
+        $map = $buildings->take(100)->get();
+
+        $cities = City::has('buildings')->get();
+        $countries = Country::has('cities.buildings')->get();
+        $types = Building::distinct()->lists('type');
+        $specialities = Job::distinct()->lists('speciality');
+
         return view('public.buildings.index', [
-            'buildings' => $buildings,
-            'jobs' => $jobs
+            'buildings' => $buildings->paginate(9),
+            'map' => $map,
+            'cities' => $cities,
+            'countries' => $countries,
+            'types' => $types,
+            'specialities' => $specialities
         ]);
     }
 

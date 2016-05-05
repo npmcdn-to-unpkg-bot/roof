@@ -17,6 +17,7 @@ class CreateJobsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('pay');
+            $table->string('speciality');
             $table->text('requirements');
             $table->text('duties');
             $table->text('conditions');

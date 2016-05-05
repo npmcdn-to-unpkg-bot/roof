@@ -19,6 +19,7 @@ class Job extends Model
 		'phone',
 		'seasonality',
 		'company_id',
+		'speciality'
 	];
 
     public function company () {

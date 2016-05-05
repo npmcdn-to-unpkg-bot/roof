@@ -76,6 +76,12 @@ class JobController extends Controller
                 'label'=>'Информация',
                 'value'=>old() ? old('information') : $job->information
             ],[
+                'name'=>'speciality',
+                'type'=>'text',
+                'placeholder'=>'Введите специализацию',
+                'label'=>'Специализация',
+                'value'=>old() ? old('speciality') : $job->speciality
+            ],[
                 'name'=>'email',
                 'type'=>'text',
                 'placeholder'=>'Введите email',
@@ -193,7 +199,7 @@ class JobController extends Controller
             return back()->withInput()->withErrors($validator);
 
         $job = Job::firstOrNew(['id' => $request->id]);
-        $job->fill($request->only('name','pay','requirements','duties','conditions','information','email','phone','seasonality','company_id'));
+        $job->fill($request->only('name','pay','requirements','duties','conditions','information','email','phone','seasonality','company_id','speciality'));
         $job->save();
         $job->buildings()->sync((array)$request->buildings);
 

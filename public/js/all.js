@@ -68,7 +68,7 @@ $(document).ready(function(){
 		$($(this).attr('href')).addClass('tabs__tab_active');
 	});
 
-	$('.page-tabs__nav').click(function(e){
+	$('.page-tabs__nav[href^="#"]').click(function(e){
 		e.preventDefault();
 		var block=$(this).parents('.page-tabs');
 		block.find('.page-tabs__nav_active').removeClass('page-tabs__nav_active');

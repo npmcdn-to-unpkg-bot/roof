@@ -25,6 +25,7 @@ Route::get('catalog/specialisation/{id}', 'ThePublic\CompanyController@specialis
 Route::get('catalog/proposition/{id}', 'ThePublic\CompanyController@proposition');
 Route::get('price/{name}', 'ThePublic\CompanyController@price');
 Route::resource('buildings', 'ThePublic\BuildingController');
+Route::resource('jobs', 'ThePublic\JobController');
 Route::resource('desk', 'ThePublic\OfferController');
 Route::resource('news', 'ThePublic\ArticleController');
 Route::resource('sales', 'ThePublic\SaleController');
