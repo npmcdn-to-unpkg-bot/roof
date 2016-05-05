@@ -81,8 +81,8 @@ class PostController extends Controller
                     'field'=>$post->title,
                     'type'=>'text',
                 ],[
-                    'edit' => route('admin.education.edit', $post),
-                    'delete' => route('admin.education.destroy', $post),
+                    'edit' => route('admin.library.edit', $post),
+                    'delete' => route('admin.library.destroy', $post),
                     'type'=>'actions',
                 ],
             ]);
