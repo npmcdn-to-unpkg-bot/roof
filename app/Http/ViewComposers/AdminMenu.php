@@ -285,17 +285,13 @@ class AdminMenu
                 ],[
                     'name' => 'Пользователи',
                     'icon' => 'fa-user',
-                    'active' => Request::is('admin/company*')?'active':'',
+                    'active' => Request::is('admin/users*')?'active':'',
                     'children' => [
                         [
                             'name' => 'Список пользователей',
                             'icon' => 'fa-list',
-                            'href' => route('admin.company.index'),
-                        ],[
-                            'name' => 'Добавить пользователя',
-                            'icon' => 'fa-plus',
-                            'href' => route('admin.company.create'),
-                        ],
+                            'href' => route('admin.users.index'),
+                        ]
                     ],
                 ],
             ];

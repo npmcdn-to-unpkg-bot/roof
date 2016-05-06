@@ -20,7 +20,7 @@ class BuildingController extends Controller
      */
     public function index(Request $request)
     {
-        $buildings = Building::select('buildings.*')->orderBy('created_at', 'desc');
+        $buildings = Building::select('buildings.*')->orderBy('created_at', 'desc')->distinct();
 
 
         if ($request)
