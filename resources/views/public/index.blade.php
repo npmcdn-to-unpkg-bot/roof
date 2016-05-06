@@ -88,10 +88,10 @@
 			<div class="container__col-8">
 				<div class="knowladge-slider knowladge-slider_offset-bottom">
 					<div class="knowladge-slider__navigation">
-						@foreach (App\Models\Education\Post::take(5)->get() as $education)
-							<a href="{{route('knowladge.education.show', $education)}}" class="knowladge-slider__navigation-item">
-								<span class="knowladge-slider__text">{{str_limit($education->title, 60)}}</span>
-								<img src="/fit/395/292/{{$education->image}}" class="knowladge-slider__image" alt="">
+						@foreach (App\Models\Library\Post::take(5)->get() as $library)
+							<a href="{{route('knowladge.library.show', $library)}}" class="knowladge-slider__navigation-item">
+								<span class="knowladge-slider__text">{{str_limit($library->title, 60)}}</span>
+								<img src="/fit/395/292/{{$library->image}}" class="knowladge-slider__image" alt="">
 							</a>
 						@endforeach
 					</div>
