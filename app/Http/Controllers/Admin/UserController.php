@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
-use Auth;
 
 class UserController extends Controller
 {
@@ -129,7 +128,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Auth::validator($request->all());
+        $validator = User::validator($request->all());
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
