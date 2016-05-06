@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use Auth;
 
 class UserController extends Controller
 {
@@ -17,8 +18,8 @@ class UserController extends Controller
             [
                 'name'=>'name',
                 'type'=>'text',
-                'placeholder'=>'Введите заголовок статьи',
-                'label'=>'Заголовок',
+                'placeholder'=>'Фамилия Имя Очетсва',
+                'label'=>'ФИО',
                 'value'=>old() ? old('name') : $user->name
             ],[
                 'name' => 'image',
@@ -31,14 +32,14 @@ class UserController extends Controller
             ],[
                 'name'=>'email',
                 'type'=>'text',
-                'placeholder'=>'Введите заголовок статьи',
-                'label'=>'Заголовок',
+                'placeholder'=>'Email',
+                'label'=>'email',
                 'value'=>old() ? old('email') : $user->email
             ],[
                 'name'=>'phone',
                 'type'=>'text',
-                'placeholder'=>'Введите заголовок статьи',
-                'label'=>'Заголовок',
+                'placeholder'=>'Телефон',
+                'label'=>'Телефон',
                 'value'=>old() ? old('phone') : $user->phone
             ],
         ];
@@ -128,7 +129,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = User::validator($request->all());
+        $validator = Auth::validator($request->all());
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
