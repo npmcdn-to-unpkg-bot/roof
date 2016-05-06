@@ -1707,6 +1707,7 @@ td.calendar-block__date_active {
 	width: 700px;
 	margin-left: auto;
 	margin-right: auto;
+	overflow: hidden;
 }
 
 .building__gallery li {

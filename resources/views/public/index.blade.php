@@ -38,12 +38,16 @@
 													return $v->lng==0;
 												})->avg('lng')}},
 									},
-									zoom: 5,
+									zoom: 7,
 									disableDefaultUI: true,
 									scrollwheel: false
 								});
 								@foreach ($buildings as $building)
-
+									var marker_{{$building->id}} = new google.maps.Marker({
+										position: {lat: {{$building->lat}}, lng: {{$building->lng}}},
+										map: map,
+										title: '<?php echo addslashes($building->name) ?>'
+									});
 								@endforeach
 							});
 						</script>
@@ -86,7 +90,7 @@
 					<div class="knowladge-slider__navigation">
 						@foreach (App\Models\Education\Post::take(5)->get() as $education)
 							<a href="{{route('knowladge.education.show', $education)}}" class="knowladge-slider__navigation-item">
-								<span class="knowladge-slider__text">{{str_limit($education->title, 70)}}</span>
+								<span class="knowladge-slider__text">{{str_limit($education->title, 60)}}</span>
 								<img src="/fit/395/292/{{$education->image}}" class="knowladge-slider__image" alt="">
 							</a>
 						@endforeach
