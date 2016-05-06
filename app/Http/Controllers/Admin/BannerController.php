@@ -86,7 +86,7 @@ class BannerController extends Controller
         return view('admin.universal.index', [
             'table' => $table,
             'items' => $banners,
-            'title' => 'Баенры',
+            'title' => 'Банеры',
             'pagination' => $banners->render()
         ]);
     }
