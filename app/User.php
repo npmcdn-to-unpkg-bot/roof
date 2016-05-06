@@ -52,14 +52,13 @@ class User extends Authenticatable
     public static function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255',
             'password' => 'required|min:6',
             'name' => 'required|max:255',
         ],[
             'email.required' => 'Введите вашу электронную почту.',
             'email.email' => 'Введите корректную электронную почту.',
             'email.max' => 'Слишком длинная электронная почта.',
-            'email.unique' => 'Пользователь с такой электронной почтой уже зарегистрирован.',
             'password.required' => 'Пароль должен быть не менее 6 символов.',
             'password.min' => 'Пароль должен быть не менее 6 символов.',
             'name.required' => 'Введите ваше имя.',
