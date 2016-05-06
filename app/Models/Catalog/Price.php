@@ -15,12 +15,12 @@ class Price extends Model
 		return Validator::make($fields,[
 			'title' => 'required|max:255',
 			'name' => 'required',
-			'upload' => 'mimes:zip,pdf,doc,docx'
+			'upload' => 'mimes:zip,pdf,doc,docx,xlsx'
 	    ],[
 			'title.required' => 'Название прайс-листа.',
 			'title.max' => 'Заголовок должен быть не больше 255 символов.',
 			'name.required' => 'Загрузите файл прайс-листа.',
-			'upload.mimes' => 'Прайс должен быть в формате zip, pdf, doc или docx'
+			'upload.mimes' => 'Прайс должен быть в формате zip, pdf, xlsx, doc или docx'
 	    ]);
 	}
 

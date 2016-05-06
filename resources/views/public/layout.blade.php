@@ -99,7 +99,7 @@
 		</div>
 	</div>
 	<div class="container-fluid container-fluid_gray copyright text_center">
-		©2016 Ассоциация кровельщиков Украины. Разработка сйта - Ivmar Ukraine
+		©2016 Ассоциация кровельщиков Украины. Разработка сайта - Ivmar Ukraine
 	</div>
 	<script src="/bower/jquery/dist/jquery.min.js"></script>
 	<script src="/bower/ckeditor/ckeditor.js"></script>

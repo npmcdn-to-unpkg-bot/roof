@@ -49,22 +49,22 @@
 					@if ($i%2==0) <div class="container__row {{ $i!==0?'offset_vertical_55':''}}"> @endif
 						<div class="container__col-6">
 							<div class="company-cart company-cart_heihgt_220 company-cart_gray">
-								<a href="{{ route('catalog.show', $company) }}"><img src="/fit/85/85/{{$company->logo}}" alt="" class="company-cart__logo"></a>
+								<a href="{{ route('catalog.show', $company) }}"><img src="/resize/85/85/{{$company->logo}}" alt="" class="company-cart__logo"></a>
 								<a href="{{ route('catalog.show', $company) }}" class="company-cart__name">{{$company->name}}</a>
 								<div class="company-cart__description">{{$company->entry}}</div>
 								<div class="company-cart__bottom">
 									<div class="company-cart__address">{{$company->printAddress()}}</div>
 									<div class="company-cart__post-date">
 										Дата регистрации: 
-										{{ $company->created_at->format('m.d.Y') }}
+										{{ $company->created_at->format('d.m.Y') }}
 									</div>
 								</div>
 								@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label company-cart__right-top">
 								@elseif ($company->privat) <img src="/img/privat.png" alt="" class="company-cart__right-top"> @endif
-								<div class="company-cart__right-bottom company-cart__rating">
+								<!-- <div class="company-cart__right-bottom company-cart__rating">
 									рейтинг
 									<div class="company-cart__rating_value">9.8</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					@if ($i+1==count($companies)||$i%2==1) </div> @endif

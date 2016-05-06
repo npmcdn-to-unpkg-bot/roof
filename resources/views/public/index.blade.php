@@ -24,13 +24,36 @@
 				<div class="container__row buildings-block">
 					<div class="container__col-6">
 						<div id="buildings-block__map" class="buildings-block__map"></div>
+						<?php $buildings=App\Models\Building\Building::take(5)->get() ?>
+						<script>
+							document.addEventListener("DOMContentLoaded",function(){
+								var map = new google.maps.Map(document.getElementById('buildings-block__map'), {
+									center: {
+										lat: {{$buildings
+												->reject(function($v){
+													return $v->lat==0;
+												})->avg('lat')}},
+										lng: {{$buildings
+												->reject(function($v){
+													return $v->lng==0;
+												})->avg('lng')}},
+									},
+									zoom: 5,
+									disableDefaultUI: true,
+									scrollwheel: false
+								});
+								@foreach ($buildings as $building)
+
+								@endforeach
+							});
+						</script>
 					</div>
 					<div class="container__col-6">
 						<div class="buildings-block__tabs">
 							<div class="buildings-block__tab buildings-block__tab_active">
 								<div class="buildings-block__tab-content">
 									<div class="buildings-block__nav-tab">Строительство</div>
-									@foreach (App\Models\Building\Building::take(5)->get() as $building)
+									@foreach ($buildings as $building)
 										<a href="{{route('buildings.show',$building)}}" class="buildings-block__title">{{$building->name}}</a>
 										<div class="buildings-block__calendar">Календарный план: {{$building->calendar()}}</div>
 									@endforeach
@@ -39,7 +62,7 @@
 							<div class="buildings-block__tab">
 								<div class="buildings-block__tab-content">
 									<div class="buildings-block__nav-tab buildings-block__nav-tab_job">Вакансии</div>
-									@foreach (App\Models\Building\Job::take(5)->get() as $job)
+									@foreach (App\Models\Building\Job::take(7)->get() as $job)
 										<a href="#" class="buildings-block__title">{{$job->name}}</a>
 									@endforeach
 								</div>
@@ -61,24 +84,12 @@
 			<div class="container__col-8">
 				<div class="knowladge-slider knowladge-slider_offset-bottom">
 					<div class="knowladge-slider__navigation">
-						<a href="#" class="knowladge-slider__navigation-item knowladge-slider__navigation-item_active">
-							<span class="knowladge-slider__text">Виды и особенности профнастила</span>
-						</a>
-						<a href="#" class="knowladge-slider__navigation-item">
-							<span class="knowladge-slider__text">Монтаж керамической черепицы</span>
-						</a>
-						<a href="#" class="knowladge-slider__navigation-item">
-							<span class="knowladge-slider__text">Навесы и козырьки - <br> привлекательность и польза</span>
-						</a>
-						<a href="#" class="knowladge-slider__navigation-item">
-							<span class="knowladge-slider__text">Металлочерепица: заземление и молниеотвод</span>
-						</a>
-						<a href="#" class="knowladge-slider__navigation-item">
-							<span class="knowladge-slider__text">Монтаж керамической черепицы - 2</span>
-						</a>
-					</div>
-					<div class="knowladge-slider__slider">
-						<img src="/s-img/knowladge-1.jpg" alt="">
+						@foreach (App\Models\Education\Post::take(5)->get() as $education)
+							<a href="{{route('knowladge.education.show', $education)}}" class="knowladge-slider__navigation-item">
+								<span class="knowladge-slider__text">{{str_limit($education->title, 70)}}</span>
+								<img src="/fit/395/292/{{$education->image}}" class="knowladge-slider__image" alt="">
+							</a>
+						@endforeach
 					</div>
 				</div>
 				<div class="container__row">

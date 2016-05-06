@@ -14,12 +14,10 @@ class Example extends Model
 	public static function validator ($fields) {
 		return Validator::make($fields,[
 			'title' => 'required|max:255',
-			'content' => 'required',
 			'image' => 'required',
 	    ],[
 			'title.required' => 'Введите название примера работ.',
 			'title.max' => 'Название должно быть не больше 255 символов.',
-			'content.required' => 'Описание обязательное поле.',
 			'image.required' => 'Загрузите фотографию.',
 	    ]);
 	}

@@ -5,16 +5,16 @@
 	<div class="container__row">
 		<div class="container__col-8">
 			<div class="company-cart clearfix company-cart_page company-cart_white">
-				<img src="/fit/160/140/{{$company->logo}}" alt="" class="company-cart__logo">
+				<img src="/resize/160/140/{{$company->logo}}" alt="" class="company-cart__logo">
 				<div class="company-cart__name">{{$company->name}}</div>
 				<div class="company-cart__description">{{$company->entry}}</div>
 				<div class="company-cart__address">{{$company->printAddress()}}</div>
 				<div class="company-cart__post-date">Дата регистрации: {{$company->created_at->format('d.m.Y')}}</div>
 				<div class="company-cart__right-top">
 					@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label"> @endif
-					<div class="company-cart__rating">
+					<!-- <div class="company-cart__rating">
 						рейтинг <div class="company-cart__rating_value">9.8</div>
-					</div>			
+					</div>	 -->		
 				</div>
 			</div>
 			<div class="tabs">
@@ -68,7 +68,7 @@
 				<div class="title">ОТЗЫВЫ</div>
 				@foreach ($company->comments as $review)
 					<div class="reviews__post">
-						<img src="/s-img/reviews-1.jpg" alt="" class="reviews__image">
+						<img src="/fit/85/85/{{$review->user->image}}" alt="" class="reviews__image">
 						<div class="reviews__text">{{$review->text}}</div>
 						<div class="reviews__rate">Оценка: <span class="reviews__rate-value">{!!$review->printRating()!!}</span></div>
 					</div>

@@ -1,12 +1,3 @@
-if (document.getElementById('buildings-block__map')){
-	var BuildingsBlock__Map = new google.maps.Map(document.getElementById('buildings-block__map'), {
-	  center: {lat: 50.2, lng: 30.42},
-	  zoom: 5,
-	  disableDefaultUI: true,
-	  scrollwheel: false
-	});
-}
-
 $(document).ready(function(){
 
 	$('.removable__remove').click(function(e){
@@ -99,13 +90,20 @@ $(document).ready(function(){
 	    itemMargin: 20,
 	});
 
-	$('.building__gallery').flexslider({
-		animation: "slide",
-		animationLoop: false,
-		controlNav: false,
-		itemWidth: 167,
-		itemMargin: 10
-	});
+	$('.building__gallery').each(function(){
+		if ($(this).find('.slides>li').length > 4)
+		{
+			$(this).flexslider({
+				animation: "slide",
+				animationLoop: false,
+				controlNav: false,
+				itemWidth: 167,
+				itemMargin: 10
+			});
+		}else{
+			$(this).css({'margin-left': 0});
+		}
+	})
 
 
 	$('.masonry').imagesLoaded(function(){
