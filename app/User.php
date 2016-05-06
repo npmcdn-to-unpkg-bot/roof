@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Validator;
 
 class User extends Authenticatable
 {
@@ -46,6 +47,24 @@ class User extends Authenticatable
 
     public function hasRole ($role) {
         return $this->roles()->where('role', $role)->first();
+    }
+
+    public static function validator(array $data)
+    {
+        return Validator::make($data, [
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6',
+            'name' => 'required|max:255',
+        ],[
+            'email.required' => 'Введите вашу электронную почту.',
+            'email.email' => 'Введите корректную электронную почту.',
+            'email.max' => 'Слишком длинная электронная почта.',
+            'email.unique' => 'Пользователь с такой электронной почтой уже зарегистрирован.',
+            'password.required' => 'Пароль должен быть не менее 6 символов.',
+            'password.min' => 'Пароль должен быть не менее 6 символов.',
+            'name.required' => 'Введите ваше имя.',
+            'name.max' => 'Слишком длинное имя.',
+        ]);
     }
 
 }
