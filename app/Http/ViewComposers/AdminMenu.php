@@ -268,7 +268,7 @@ class AdminMenu
                         ],
                     ],
                 ],[
-                    'name' => 'Банеры',
+                    'name' => 'Баннеры',
                     'icon' => 'fa-file-image-o',
                     'active' => Request::is('admin/banners*')?'active':'',
                     'children' => [

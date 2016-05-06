@@ -54,7 +54,7 @@ class BannerController extends Controller
                     'title'=>'id',
                     'width'=>'80px',
                 ],[
-                    'title'=>'Банер',
+                    'title'=>'Баннер',
                     'width'=>'auto',
                 ],[
                     'title'=>'Ссылка',
@@ -86,7 +86,7 @@ class BannerController extends Controller
         return view('admin.universal.index', [
             'table' => $table,
             'items' => $banners,
-            'title' => 'Банеры',
+            'title' => 'Баннеры',
             'pagination' => $banners->render()
         ]);
     }
@@ -102,7 +102,7 @@ class BannerController extends Controller
         $banner = new Banner;
 
         return view('admin.universal.edit',[
-            'title' => 'Добавить банер',
+            'title' => 'Добавить баннер',
             'action' => route('admin.banners.store'),
             'fields' => $this->fields($banner),
             'item' => $banner
@@ -166,7 +166,7 @@ class BannerController extends Controller
         $banner = Banner::find($id);
 
         return view('admin.universal.edit',[
-            'title' => 'Редактировать банер',
+            'title' => 'Редактировать баннер',
             'action' => route('admin.banners.store'),
             'fields' => $this->fields($banner),
             'item' => $banner
