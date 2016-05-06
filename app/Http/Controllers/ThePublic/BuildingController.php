@@ -20,14 +20,16 @@ class BuildingController extends Controller
      */
     public function index(Request $request)
     {
-        $buildings = Building::select('buildings.*')->orderBy('created_at', 'desc')->distinct();
+        $buildings = Building::select('buildings.*')
+            ->orderBy('created_at', 'desc')
+            ->groupBy('buildings.id')
+            ->distinct();
 
 
-        if ($request)
-            $buildings
-                ->leftJoin('building_job','buildings.id','=','building_job.building_id')
-                ->leftJoin('jobs','jobs.id','=','building_job.job_id')
-                ->leftJoin('cities','buildings.city_id','=','cities.id');
+        if ($request) $buildings
+            ->leftJoin('building_job','buildings.id','=','building_job.building_id')
+            ->leftJoin('jobs','jobs.id','=','building_job.job_id')
+            ->leftJoin('cities','buildings.city_id','=','cities.id');
 
         if (!empty($request->country)) 
             $buildings->where('cities.country_id',$request->country);
@@ -44,7 +46,7 @@ class BuildingController extends Controller
         if (!empty($request->seasonality)) 
             $buildings->where('jobs.seasonality',$request->seasonality);
 
-        $map = $buildings->take(100)->get();
+        $map = clone $buildings;
 
         $cities = City::has('buildings')->get();
         $countries = Country::has('cities.buildings')->get();
@@ -53,7 +55,7 @@ class BuildingController extends Controller
 
         return view('public.buildings.index', [
             'buildings' => $buildings->paginate(9),
-            'map' => $map,
+            'map' => $map->take(100)->get(),
             'cities' => $cities,
             'countries' => $countries,
             'types' => $types,
