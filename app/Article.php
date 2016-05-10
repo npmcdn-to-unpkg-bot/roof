@@ -24,7 +24,7 @@ class Article extends Model
     		]);
     }
 
-    protected $fillable = ['title','image','entry','content','market','company_id'];
+    protected $fillable = ['title','image','entry','content'];
 
     public function company () {
     	return $this->belongsTo('App\Models\Catalog\Company');

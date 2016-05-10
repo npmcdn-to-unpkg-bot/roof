@@ -7,8 +7,8 @@
 
 <div class="container offset_vertical_60">
 	<div class="container__row">
-		<div class="container__col-6">@include('public.area.banner',['area' => 'knowladge.index.1'])</div>
-		<div class="container__col-6">@include('public.area.banner',['area' => 'knowladge.index.2'])</div>
+		<div class="container__col-6">@include('public.area.banner',['area' => 'База знаний 1'])</div>
+		<div class="container__col-6">@include('public.area.banner',['area' => 'База знаний 2'])</div>
 	</div>
 </div>
 

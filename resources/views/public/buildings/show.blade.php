@@ -69,7 +69,7 @@
 					</div>
 				@endif
 				<div class="offset_vertical_55">
-					@include('public.area.banner',['area' => 'building.show.1'])
+					@include('public.area.banner',['area' => 'Стройки запись 1'])
 				</div>
 			</div>
 		</div>

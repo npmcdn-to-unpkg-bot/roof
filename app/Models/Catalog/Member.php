@@ -7,6 +7,7 @@ use Validator;
 
 class Member extends Model
 {
+
 	protected $table = 'catalog_members';
 
 	protected $fillable = ['name','image','job','company_id'];

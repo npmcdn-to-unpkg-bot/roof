@@ -5,16 +5,16 @@
 		@if ( Auth::user()&&Auth::user()->hasPoll($poll) )
 			@foreach ($poll->votes as $vote)
 				<div class="question__label">
-					<div class="progress">
-						<div class="progress__bar" style="width: {{$vote->progress()}}%">
-							{{$vote->progress()}}%
-						</div>
-						{{$vote->progress()}}%
-					</div>
 					{{$vote->answer}}
+					<div class="progress" style="width: 370px; max-width: 100%;">
+						<div class="progress__bar" style="width: {{$vote->progress()}}%">
+							{{$vote->progress()}}% ({{$vote->count()}})
+						</div>
+						{{$vote->progress()}}% ({{$vote->count()}})
+					</div>
 				</div>
 			@endforeach
-			<a href="" class="question__all">Смотреть все опросы</a>
+			@if (!Route::is('polls*')) <a href="{{route('polls.index')}}" class="question__all">Смотреть все опросы</a> @endif
 		@else
 			<form action="/vote" method="POST">
 			    {!! csrf_field() !!}
@@ -23,7 +23,7 @@
 						<input type="radio" name="vote" value="{{$vote->id}}" class="question__option"><span class="question__radio"></span>{{$vote->answer}}
 					</label>
 				@endforeach
-				<a href="" class="question__all">Смотреть все опросы</a>
+				@if (!Route::is('polls*')) <a href="{{route('polls.index')}}" class="question__all">Смотреть все опросы</a> @endif
 				<button class="question__button button button_blue button_big">ГОЛОСОВАТЬ</button>
 			</form>
 		@endif

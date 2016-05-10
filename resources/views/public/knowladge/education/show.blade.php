@@ -30,8 +30,8 @@
 					<a href="{{url('knowladge/education/category',$category->id)}}" class="menu__item">{{$category->name}}</a>
 				@endforeach
 			</div>
-			<div class="offset_bottom_60">@include('public.area.banner',['area' => 'knowladge.education.show.1'])</div>
-			<div class="offset_bottom_60">@include('public.area.banner',['area' => 'knowladge.education.show.2'])</div>
+			<div class="offset_bottom_60">@include('public.area.banner',['area' => 'Обучение запись 1'])</div>
+			<div class="offset_bottom_60">@include('public.area.banner',['area' => 'Обучение запись 2'])</div>
 		</div>
 	</div>
 </div>

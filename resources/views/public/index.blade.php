@@ -19,7 +19,7 @@
 		<div class="container__row">
 			<div class="container__col-8">
 				<div class="offset_bottom_60">
-					@include('public.area.banner',['area'=>'front.1'])
+					@include('public.area.banner',['area'=>'Главная 1'])
 				</div>
 				<div class="container__row buildings-block">
 					<div class="container__col-6">
@@ -132,7 +132,7 @@
 				</div>
 			</div>
 			<div class="container__col-4">
-				@include('public.area.banner',['area'=>'front.2'])
+				@include('public.area.banner',['area'=>'Главная 2'])
 			</div>
 		</div>
 	</div>

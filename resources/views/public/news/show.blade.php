@@ -19,9 +19,9 @@
 			</div>
 			<div class="container__col-4">
 				@include('public.events.block')
-				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'news.show.1'])</div>
+				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'Новости запись 1'])</div>
 				<div class="question offset_vertical_55">@include('public.polls.block')</div>
-				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'news.show.2'])</div>
+				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'Новости запись 2'])</div>
 			</div>
 		</div>
 	</div>

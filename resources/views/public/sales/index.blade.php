@@ -19,9 +19,9 @@
 
 			</div>
 			<div class="container__col-4">
-				@include('public.area.banner',['area' => 'sales.1'])
+				@include('public.area.banner',['area' => 'Акции архив 1'])
 				<div class="offset_vertical_55">
-					@include('public.area.banner',['area' => 'sales.2'])
+					@include('public.area.banner',['area' => 'Акции архив 2'])
 				</div>
 			</div>
 		</div>

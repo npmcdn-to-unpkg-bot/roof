@@ -33,9 +33,9 @@
 					</div>
 				</div>
 			</div>
-			@if ($i==1) <div class="container__col-4 offset_bottom_45">@include('public.area.banner',['area' => 'knowladge.library.index.1'])</div> @endif
+			@if ($i==1) <div class="container__col-4 offset_bottom_45">@include('public.area.banner',['area' => 'Библиотека архив 1'])</div> @endif
 		@endforeach
-		@if ($posts->count() < 2) <div class="container__col-4 offset_bottom_45">@include('public.area.banner',['area' => 'knowladge.library.index.1'])</div> @endif
+		@if ($posts->count() < 2) <div class="container__col-4 offset_bottom_45">@include('public.area.banner',['area' => 'Библиотека архив 1'])</div> @endif
 	</div>
 </div>
 

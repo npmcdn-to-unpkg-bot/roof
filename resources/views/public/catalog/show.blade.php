@@ -68,7 +68,7 @@
 				<div class="title">ОТЗЫВЫ</div>
 				@foreach ($company->comments as $review)
 					<div class="reviews__post">
-						<img src="/fit/85/85/{{$review->user->image}}" alt="" class="reviews__image">
+						<img src="/fit/85/85/{{$review->user->image?$review->user->image:'person.png'}}" alt="" class="reviews__image">
 						<div class="reviews__text">{{$review->text}}</div>
 						<div class="reviews__rate">Оценка: <span class="reviews__rate-value">{!!$review->printRating()!!}</span></div>
 					</div>
@@ -103,7 +103,7 @@
 					@foreach ($company->members as $member)
 						<div>
 							<div class="staff__item">
-								<img src="/fit/120/120/{{$member->image}}" alt="" class="staff__image">
+								<img src="/fit/120/120/{{$member->image?$member->image:'person.png'}}" alt="" class="staff__image">
 								<div class="staff__name">{{$member->name}}</div>
 								<div class="staff__job">{{$member->job}}</div>
 							</div>
@@ -112,7 +112,7 @@
 				</div>
 			@endif
 			<div class="offset_bottom_60">
-				@include('public.area.banner',['area' => 'catalog.show.1'])
+				@include('public.area.banner',['area' => 'Каталог запись 1'])
 			</div>
 			@if ($company->posts->first())
 				<div class="company-blog offset_bottom_60">

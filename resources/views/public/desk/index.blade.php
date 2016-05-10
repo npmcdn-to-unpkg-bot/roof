@@ -69,8 +69,8 @@
 					@endforeach
 					<button class="button button_100 button_cyan button_big">ПОКАЗАТЬ</button>
 				</form>
-				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'desk.1'])</div>
-				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'desk.2'])</div>
+				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'Объявления архив 1'])</div>
+				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'Объявления архив 2'])</div>
 			</div>
 		</div>
 	</div>

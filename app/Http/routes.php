@@ -32,6 +32,7 @@ Route::resource('sales', 'ThePublic\SaleController');
 Route::resource('events', 'ThePublic\EventController');
 Route::get('events/calendar/{date}', 'ThePublic\EventController@calendar');
 Route::resource('tenders', 'ThePublic\TenderController');
+Route::resource('polls', 'ThePublic\PollController');
 
 Route::group(['prefix' => 'knowladge'],function(){
 
@@ -65,6 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('blog', 'User\PostController');
 		Route::resource('sales', 'User\SaleController');
 		Route::resource('offers', 'User\OfferController');
+		Route::resource('personal', 'User\UserController');
 	});
 
 	Route::resource('comment', 'User\CommentController');
@@ -95,6 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('library', 'Admin\Library\PostController');
 		Route::resource('education', 'Admin\Education\PostController');
 		Route::resource('tenders', 'Admin\TenderController');
+		Route::resource('pages', 'Admin\PageController');
 		Route::resource('users', 'Admin\UserController');
 	});
 

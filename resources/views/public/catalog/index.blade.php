@@ -69,7 +69,7 @@
 						</div>
 					@if ($i+1==count($companies)||$i%2==1) </div> @endif
 					@if ($i==5) 
-						@include('public.area.banner',['area' => 'catalog.2'])
+						@include('public.area.banner',['area' => 'Каталог архив 2'])
 					@endif
 				@endforeach
 				@include('public.pagenav',['items'=>$companies])
@@ -102,7 +102,7 @@
 				@if (!(Auth::user()&&Auth::user()->company))
 					<a href="{{url('user')}}" class="button button_orange button_huge offset_bottom_60">ДОБАВИТЬ КОМПАНИЮ</a>
 				@endif
-				<div class="offset_bottom_60">@include('public.area.banner',['area' => 'catalog.1'])</div>
+				<div class="offset_bottom_60">@include('public.area.banner',['area' => 'Каталог архив 1'])</div>
 				<div class="offset_bottom_60">@include('public.forum.block')</div>
 				<div class="offset_bottom_60">@include('public.events.block')</div>
 				<div class="offset_bottom_60">@include('public.polls.block')</div>

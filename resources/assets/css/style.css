@@ -2115,6 +2115,7 @@ td.calendar-block__date_active {
 	line-height: 24px;
 	color: black;
 	text-indent: 11px;
+	background-color: #d3d3d3;
 }
 .progress__bar {
 	overflow: hidden;
@@ -2328,4 +2329,17 @@ td.calendar-block__date_active {
 	position: absolute;
 	bottom: 15px;
 	right: 15px;
+}
+
+/*poll*/
+.poll__question {
+	color:  #000000;
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 24.196px;
+	text-decoration: underline;
+}
+
+.poll__created-at {
+
 }

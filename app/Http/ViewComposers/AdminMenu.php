@@ -16,11 +16,22 @@ class AdminMenu
      */
 	public function compose (View $view) {
 
-        $user = Auth::user();
+        $user = auth()->user();
 
         if (Request::is('user*'))
             $menu = [
                 [
+                    'name' => 'Личные данные',
+                    'icon' => 'fa-user',
+                    'active' => Request::is('user/personal*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Изменить',
+                            'icon' => 'fa-edit',
+                            'href' => route('user.personal.edit', $user),
+                        ],
+                    ],
+                ],[
                     'name' => 'Объявления',
                     'icon' => 'fa-file-image-o',
                     'active' => Request::is('user/offers*')?'active':'',
@@ -280,6 +291,21 @@ class AdminMenu
                             'name' => 'Добавить банер',
                             'icon' => 'fa-plus',
                             'href' => route('admin.banners.create'),
+                        ],
+                    ],
+                ],[
+                    'name' => 'Страницы',
+                    'icon' => 'fa-bookmark-o',
+                    'active' => Request::is('admin/pages*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список страниц',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.pages.index'),
+                        ],[
+                            'name' => 'Добавить страницу',
+                            'icon' => 'fa-plus',
+                            'href' => route('admin.pages.create'),
                         ],
                     ],
                 ],[

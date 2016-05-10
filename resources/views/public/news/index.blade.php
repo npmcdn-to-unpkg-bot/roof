@@ -23,9 +23,9 @@
 
 			</div>
 			<div class="container__col-4">
-				@include('public.area.banner',['area' => 'news.1'])
+				@include('public.area.banner',['area' => 'Новости архив 1'])
 				<div class="offset_vertical_55">@include('public.polls.block')</div>
-				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'news.2'])</div>
+				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'Новости архив 2'])</div>
 			</div>
 		</div>
 	</div>

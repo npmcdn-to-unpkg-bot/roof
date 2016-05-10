@@ -170,7 +170,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         return view('admin.universal.edit',[
-            'title' => 'Редактировать новость',
+            'title' => 'Редактировать пользователя',
             'action' => route('admin.users.store'),
             'fields' => $this->fields($user),
             'item' => $user

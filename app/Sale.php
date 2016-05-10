@@ -25,7 +25,7 @@ class Sale extends Model
 		'content.min' => 'Текст должен быть не меньше 300 символов.',
     ];
 
-    protected $fillable = ['title','image','entry','content','company_id'];
+    protected $fillable = ['title','image','entry','content'];
 
     public function company () {
     	return $this->belongsTo('App\Models\Catalog\Company');
