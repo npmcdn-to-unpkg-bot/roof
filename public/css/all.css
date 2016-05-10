@@ -690,6 +690,10 @@ a {
 }
 
 /*actions-menu*/
+.actions-menu {
+	position: relative;
+}
+
 .actions-menu:before {
 	content:'';
 	display: inline-block;
@@ -2740,5 +2744,54 @@ td.calendar-block__date_active {
 
 .poll__created-at {
 
+}
+
+/*search-block*/
+.search-block__form {
+	position: absolute;
+	top: 120px;
+	right: 0;
+	background-color: #6fc0d1;
+	border: none;
+	display: none;
+	padding: 7px;
+}
+
+.search-block__input {
+	background: white;
+	width: 260px;
+	padding: 0 10px;
+	height: 46px;
+	border: none;
+	font-family: "Roboto Condensed";
+	color:  rgb(170, 189, 196);
+	font-size: 18px;
+	font-weight: 300;
+}
+
+/*search*/
+
+.search__input {
+	background: white;
+	border:7px solid #6fc0d1;
+	width: 700px;
+	padding: 0 10px;
+	height: 46px;
+	font-family: "Roboto Condensed";
+	color:  rgb(170, 189, 196);
+	font-size: 18px;
+	font-weight: 300;
+	box-sizing: border-box;
+	vertical-align: middle;
+}
+
+.search__button {
+	height: 46px;
+	width: 46px;
+	vertical-align: middle;
+}
+
+.gsc-orderby-container {
+	display: none !important;
 }
 /*# sourceMappingURL=all.css.map */

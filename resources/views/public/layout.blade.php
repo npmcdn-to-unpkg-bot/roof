@@ -53,7 +53,8 @@
 				{{ Auth::user()->name }}
 				@endif
 			</a>
-			<a href="#" style="background-color: #6fc0d1; background-image: url(/img/user-menu-4.png);" class="actions-menu__item"></a>
+			<a href="#" style="background-color: #6fc0d1; background-image: url(/img/user-menu-4.png);" class="actions-menu__item search-block__show"></a>
+			@include('public.search.block')
 		</div>
 	</div>
 	<div class="container-fluid container-fluid_blue">

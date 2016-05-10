@@ -105,9 +105,12 @@ $(document).ready(function(){
 		}
 	})
 
-
 	$('.masonry').imagesLoaded(function(){
 		$('.masonry').masonry();
+	});
+
+	$('.search-block__show').click(function() {
+		$('.search-block__form').toggle();
 	});
 
 });

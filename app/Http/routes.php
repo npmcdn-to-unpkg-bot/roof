@@ -33,6 +33,7 @@ Route::resource('events', 'ThePublic\EventController');
 Route::get('events/calendar/{date}', 'ThePublic\EventController@calendar');
 Route::resource('tenders', 'ThePublic\TenderController');
 Route::resource('polls', 'ThePublic\PollController');
+Route::get('search', 'ThePublic\SearchController@index');
 
 Route::group(['prefix' => 'knowladge'],function(){
 
