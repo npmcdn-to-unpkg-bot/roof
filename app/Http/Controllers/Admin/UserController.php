@@ -8,6 +8,7 @@ use Storage;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use Excel;
 
 class UserController extends Controller
 {
@@ -200,5 +201,17 @@ class UserController extends Controller
         User::find($id)->delete();
 
         return back();
+    }
+
+    public function excel() {
+        Excel::create('users', function($excel) {
+
+            $excel->sheet('Пользователи', function($sheet) {
+
+                $sheet->fromModel(User::all());
+
+            });
+
+        })->export('xls');
     }
 }

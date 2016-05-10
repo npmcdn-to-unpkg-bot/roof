@@ -99,6 +99,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('tenders', 'Admin\TenderController');
 		Route::resource('pages', 'Admin\PageController');
 		Route::resource('users', 'Admin\UserController');
+		Route::get('users.xls', 'Admin\UserController@excel');
 	});
 
 

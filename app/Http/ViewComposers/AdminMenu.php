@@ -317,6 +317,10 @@ class AdminMenu
                             'name' => 'Список пользователей',
                             'icon' => 'fa-list',
                             'href' => route('admin.users.index'),
+                        ],[
+                            'name' => 'Экспорт в xls',
+                            'icon' => 'fa-list',
+                            'href' => '/admin/users.xls',
                         ]
                     ],
                 ],
