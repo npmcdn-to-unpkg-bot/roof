@@ -1,15 +1,15 @@
 <ul class="nav navbar-nav">
 	<li class="dropdown user user-menu">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		<img src="/bower/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-		<span class="hidden-xs">{{Auth::user()->name}}</span>
+		<img src="/fit/160/160/{{auth()->user()->image?auth()->user()->image:'person.png'}}" class="user-image" alt="User Image">
+		<span class="hidden-xs">{{auth()->user()->name}}</span>
 	</a>
 		<ul class="dropdown-menu">
 			<li class="user-header">
 				<img src="/bower/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 				<p>
-				{{Auth::user()->name}}
-				<small>Зарегистрирован {{Auth::user()->created_at->format('d.m.Y')}}</small>
+				{{auth()->user()->name}}
+				<small>Зарегистрирован {{auth()->user()->created_at->format('d.m.Y')}}</small>
 				</p>
 			</li>
 			<li class="user-footer">
