@@ -10,7 +10,7 @@
 <div class="container offset_bottom_60">
 	<div class="container__row">
 		<div class="container__col-8 post-page">
-			<div class="post-page__created-at">Дата размещение: {{$post->created_at->format('d.m.Y')}}</div>
+			<div class="post-page__created-at">Дата размещения: {{$post->created_at->format('d.m.Y')}}</div>
 			<div class="offset_bottom_30 title">{{$post->title}}</div>
 			<div class="post-page__content">
 				<img class="post-page__image" src="/full/{{$post->image}}" alt="">
