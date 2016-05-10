@@ -31,7 +31,7 @@
 			</div>
 			<div class="container__col-4">
 				@include('public.events.block')
-				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'tenders.show.1'])</div>
+				<div class="offset_vertical_55">@include('public.area.banner',['area' => 'Тендеры запись 1'])</div>
 			</div>
 		</div>
 	</div>
