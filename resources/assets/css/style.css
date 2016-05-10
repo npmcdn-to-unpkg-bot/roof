@@ -195,6 +195,15 @@ a {
 	list-style: none;
 }
 
+.slider li {
+	float: left;
+}
+
+.slider ul {
+	width: 1000%;
+	overflow: hidden;
+}
+
 .flex-next,
 .flex-prev {
 	position: absolute;
