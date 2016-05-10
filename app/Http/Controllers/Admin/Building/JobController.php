@@ -12,30 +12,6 @@ use App\Http\Controllers\Controller;
 class JobController extends Controller
 {
 
-    protected $table = [
-        [
-            'field'=>'name',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Название'
-        ],[
-            'field'=>'phone',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Телефон'
-        ],[
-            'field'=>'email',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Email'
-        ],[
-            'field'=>'id',
-            'type'=>'actions',
-            'width'=>'90px',
-            'title'=>''
-        ],
-    ];
-
     protected function fields (Job $job) {
 
         return [
@@ -47,7 +23,7 @@ class JobController extends Controller
                 'value'=>old() ? old('name') : $job->name
             ],[
                 'name'=>'pay',
-                'type'=>'text',
+                'type'=>'price',
                 'placeholder'=>'Введите оплату',
                 'label'=>'Оплата',
                 'value'=>old() ? old('pay') : $job->pay

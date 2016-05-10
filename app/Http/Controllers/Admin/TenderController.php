@@ -25,7 +25,7 @@ class TenderController extends Controller
                 'value'=>old() ? old('name') : $tender->name
             ],[
                 'name'=>'budget',
-                'type'=>'text',
+                'type'=>'price',
                 'placeholder'=>'Введите бюджет тендера',
                 'label'=>'Бюджет',
                 'value'=>old() ? old('budget') : $tender->budget

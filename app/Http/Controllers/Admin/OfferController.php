@@ -34,7 +34,7 @@ class OfferController extends Controller
                     : (array)$offer->image
             ],[
                 'name'=>'price',
-                'type'=>'text',
+                'type'=>'price',
                 'placeholder'=>'Введите цену',
                 'label'=>'Цена',
                 'value'=>old() ? old('price') : $offer->price
