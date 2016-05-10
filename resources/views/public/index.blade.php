@@ -110,29 +110,14 @@
 	<div class="container container_screen">
 		<div class="container__row">
 			<div class="container__col-4">
-				<div class="sale" style="background-image: url(s-img/sale-1.jpg);">
-					<div class="sale__text">
-					Скидки на дикий камень в магазине “Застройщик”
-					</div>
-					<a href="#" class="sale__button button button_big button_peach">ПОДРОБНЕЕ</a>
-				</div>
-			</div>
-			<div class="container__col-4">
-				<div class="sale sale_half-height" style="background-image: url(s-img/sale-2.jpg);">
-					<div class="sale__text">
-					Самые низкие цены на кирпичи
-					</div>
-					<a href="#" class="sale__button button button_medium button_peach">ПОДРОБНЕЕ</a>
-				</div>
-				<div class="sale sale_half-height" style="background-image: url(s-img/sale-3.jpg);">
-					<div class="sale__text">
-					Кирпичи оптом со скидкой
-					</div>
-					<a href="#" class="sale__button button button_medium button_peach">ПОДРОБНЕЕ</a>
-				</div>
-			</div>
-			<div class="container__col-4">
 				@include('public.area.banner',['area'=>'Главная 2'])
+			</div>
+			<div class="container__col-4">
+				<div class="offset_bottom_30">@include('public.area.banner',['area'=>'Главная 3'])</div>
+				@include('public.area.banner',['area'=>'Главная 4'])
+			</div>
+			<div class="container__col-4">
+				@include('public.area.banner',['area'=>'Главная 5'])
 			</div>
 		</div>
 	</div>
