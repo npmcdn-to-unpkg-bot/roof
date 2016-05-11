@@ -55,6 +55,7 @@ Route::group(['prefix' => 'knowladge'],function(){
 Route::get('/autocomplete/country', 'ThePublic\Autocomplete@country');
 Route::get('/autocomplete/city', 'ThePublic\Autocomplete@city');
 
+Route::post('ulogin', 'User\UloginController@index');
 Route::auth();
 Route::group(['middleware' => 'auth'], function () {
 

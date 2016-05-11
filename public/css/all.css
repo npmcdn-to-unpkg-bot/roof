@@ -2794,4 +2794,22 @@ td.calendar-block__date_active {
 .gsc-orderby-container {
 	display: none !important;
 }
+
+/*social-login*/
+.social-login {
+	color: white;
+	padding: 10px 30px;
+	border-radius: 3px;
+	width: 270px;
+	cursor: pointer;
+}
+
+.social-login_facebook {
+	background-color: rgb(77, 103, 160);
+
+}
+.social-login_googleplus
+{
+	background-color: rgb(216, 89, 74);
+}
 /*# sourceMappingURL=all.css.map */
