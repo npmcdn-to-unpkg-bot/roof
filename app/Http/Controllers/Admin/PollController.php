@@ -41,7 +41,7 @@ class PollController extends Controller
             ],[
                 'name'=>'poll_active',
                 'type'=>'checkbox',
-                'label'=>'Актинвый опрос',
+                'label'=>'Активный опрос',
                 'value'=> old() 
                     ? old('poll_active') 
                     : Option::where(['name'=>'poll_active', 'value' => $poll->id])->first()

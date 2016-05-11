@@ -6,7 +6,7 @@
 	</a>
 		<ul class="dropdown-menu">
 			<li class="user-header">
-				<img src="/bower/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+				<img src="/fit/160/160/{{auth()->user()->image?auth()->user()->image:'person.png'}}" class="img-circle" alt="User Image">
 				<p>
 				{{auth()->user()->name}}
 				<small>Зарегистрирован {{auth()->user()->created_at->format('d.m.Y')}}</small>

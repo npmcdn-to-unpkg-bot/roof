@@ -19,12 +19,11 @@ class Poll extends Model
     }
 
     public static $rules = [
-    	'question' => 'required|min:50|max:255'
+    	'question' => 'required|max:255'
     ];
 
     public static $messages = [
     	'question.required' => 'Введите вопрос.',
-    	'question.min' => 'Вопрос должен быть не короче 50 символов.',
     	'question.max' => 'Вопрос должен быть не длинее 255 символов.',
     ];
 }

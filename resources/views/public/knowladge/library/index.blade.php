@@ -9,6 +9,7 @@
 <div class="container offset_vertical_40">
 	<div class="library">
 		<span class="library__label">Рубрики</span>
+		<a class="library__item" href="{{route('knowladge.library.index')}}">Все рубрики</a>
 		@foreach (App\Models\Library\Category::all() as $category)
 			<a class="library__item {{Request::is('knowladge/library/category/'.$category->id)?'library__item_active':''}}" href="{{url('knowladge/library/category',$category)}}">{{$category->name}}</a>
 		@endforeach

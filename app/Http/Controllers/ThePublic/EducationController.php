@@ -17,7 +17,7 @@ class EducationController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(20);
+        $posts = Post::order('created_at','desc')->paginate(20);
 
         return view('public.knowladge.education.index',[
             'posts' => $posts
@@ -38,7 +38,7 @@ class EducationController extends Controller
     }
 
     public function category($id) {
-        $posts = Category::find($id)->posts()->paginate(20);
+        $posts = Category::find($id)->posts()->order('created_at','desc')->paginate(20);
 
         return view('public.knowladge.education.index',[
             'posts' => $posts

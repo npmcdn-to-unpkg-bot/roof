@@ -34,13 +34,14 @@ class Job extends Model
     	return Validator::make($fields,[
 			'name' => 'required|max:255',
 			'pay' => 'max:255',
-			'information' => 'required',
+			'information' => 'required|max:65535',
 			'phone' => 'required',
 		],[
 			'name.required' => 'Название вакансии обязательное поле.',
 			'name.max' => 'Назване вакансии должно быть не длинее 255 символов.',
 			'pay.max' => 'Текст об оплате не должен превышать 255 символов.',
 			'information.required' => 'Информация о вакансии обязательное поле.',
+			'information.max' => 'Текст не должен превышать 65535 символов.',
 			'phone.required' => 'Телефон обязательное поле.',
 		]);
     }

@@ -18,7 +18,7 @@ class CreateEducationTables extends Migration
             $table->string('image');
             $table->string('title');
             $table->text('entry');
-            $table->text('content');
+            $table->longtext('content');
         });
         Schema::create('education_categories', function (Blueprint $table) {
             $table->increments('id');

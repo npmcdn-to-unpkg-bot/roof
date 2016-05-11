@@ -50,6 +50,11 @@ $(document).ready(function(){
 		block.find('.job__full').slideToggle();
 	});
 	
+	$('.poll__question').click(function(){
+		var block = $(this).parents('.poll');
+		block.find('.poll__more').slideToggle();
+	})
+
 	$('.tabs__nav').click(function(e){
 		e.preventDefault();
 		var block=$(this).parents('.tabs');

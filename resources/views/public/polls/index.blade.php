@@ -11,20 +11,22 @@
 
 				<div class="title offset_vertical_30">АРХИВ ОПРОСОВ</div>
 				@foreach ($polls as $poll)
-					<div class="poll">
+					<div class="poll offset_vertical_30">
 						<div class="poll__question">{{ $poll->question }}</div>
 						<div class="poll__created-at">{{$poll->created_at->format('d.m.Y')}}</div>
-						@foreach ($poll->votes as $vote)
-							<div class="question__label">
-								{{$vote->answer}}
-								<div class="progress" style="width: 370px;">
-									<div class="progress__bar" style="width: {{$vote->progress()}}%">
+						<div class="poll__more">
+							@foreach ($poll->votes as $vote)
+								<div class="question__label">
+									{{$vote->answer}}
+									<div class="progress" style="width: 370px;">
+										<div class="progress__bar" style="width: {{$vote->progress()}}%">
+											{{$vote->progress()}}% ({{$vote->count()}})
+										</div>
 										{{$vote->progress()}}% ({{$vote->count()}})
 									</div>
-									{{$vote->progress()}}% ({{$vote->count()}})
 								</div>
-							</div>
-						@endforeach
+							@endforeach
+						</div>
 					</div>
 				@endforeach
 

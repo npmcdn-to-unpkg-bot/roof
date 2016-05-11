@@ -29,7 +29,7 @@ class Building extends Model
 		        'name' => 'required|min:3|max:255',
 		        'type' => 'required|min:3|max:255',
 		        'images' => 'required',
-		        'information' => 'required|min:50',
+		        'information' => 'required|max:65535',
 		        'start' => 'required|date_format:"m Y"',
 		        'end' => 'required|date_format:"m Y"',
 		    ],[
@@ -41,7 +41,7 @@ class Building extends Model
 		        'type.min' => 'Тип объекта должен быть не меньше 3 символов',
 		        'images.required' => 'Загрузите изображения',
 		        'information.required' => 'Введите инофрмация об объекте',
-		        'information.min' => 'Описание должно быть не менее 50 символов',
+		        'information.max' => 'Описание должно быть не более 65535 символов',
 		        'start.required'=> 'Это поле обязательно.',
 		        'end.required'=> 'Это поле обязательно.',
 		    ]);

@@ -20,16 +20,15 @@ class Post extends Model
     	return Validator::make($fields,
 		 	[
 				'title' => 'required|max:255',
-				'entry' => 'required|min:120|max:380',
-				'content' => 'required|min:500',
+				'entry' => 'required|max:380',
+				'content' => 'required|max:65535',
 		    ],[
 				'title.required' => 'Введите заголовок записи.',
 				'title.max' => 'Заголовок должен быть не больше 255 символов.',
 				'entry.required' => 'Заполните краткое содержание записи.',
-				'entry.min' => 'Краткое содержание должно быть не меньше 120 символов.',
 				'entry.max' => 'Краткое содержание должно быть не больше 380 символов.',
 				'content.required' => 'Заполните текст записи.',
-				'content.min' => 'Текст записи должен быть не меньше 500 символов.',
+				'content.max' => 'Текст записи должен быть не более 65535 символов.',
 		    ]);
 
     }

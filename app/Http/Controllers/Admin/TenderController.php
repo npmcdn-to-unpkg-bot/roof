@@ -15,7 +15,10 @@ class TenderController extends Controller
 {
 
     protected function fields (Tender $tender) {
-
+        $companies = Company::lists('name','id')->put($tender->company_name, $tender->company_name);
+        if (old()&&!Company::find(old('company'))&&old('company')!=0) {
+            $companies->put(old('company'), old('company'));
+        }
         return [
             [
                 'name'=>'name',
@@ -29,6 +32,24 @@ class TenderController extends Controller
                 'placeholder'=>'Введите бюджет тендера',
                 'label'=>'Бюджет',
                 'value'=>old() ? old('budget') : $tender->budget
+            ],[
+                'name'=>'person',
+                'type'=>'text',
+                'placeholder'=>'Введите имя',
+                'label'=>'Контактное лицо',
+                'value'=>old() ? old('person') : $tender->person
+            ],[
+                'name'=>'email',
+                'type'=>'text',
+                'placeholder'=>'Введите email',
+                'label'=>'Email',
+                'value'=>old() ? old('email') : $tender->email
+            ],[
+                'name'=>'phone',
+                'type'=>'text',
+                'placeholder'=>'Введите телефон',
+                'label'=>'Телефон',
+                'value'=>old() ? old('phone') : $tender->phone
             ],[
                 'name' => 'end',
                 'type' => 'datepicker',
@@ -49,14 +70,14 @@ class TenderController extends Controller
                 'label'=>'Описание тендера',
                 'value'=>old() ? old('description') : $tender->description
             ],[
-                'name'=>'company_id',
+                'name'=>'company',
                 'type'=>'select',
-                'settings'=>'',
                 'label'=>'Комания',
+                'settings' => 'tags: true,',
                 'value'=>old() 
-                    ? old('company_id') 
-                    : ($tender->company ? $tender->company->id : ''),
-                'options'=>Company::lists('name','id')
+                    ? old('company') 
+                    : ($tender->company ? $tender->company->id : $tender->company_name),
+                'options'=>$companies
             ]
         ];
         
@@ -147,13 +168,21 @@ class TenderController extends Controller
 
         $tender = Tender::firstOrNew(['id' => $request->id]);
 
+        if (Company::find($request->company)) {
+            $tender->company_id = $request->company;
+            $tender->company_name = '';
+        } else {
+            $tender->company_id = 0;
+            $tender->company_name = $request->company;
+        }
+
         if ($request->image&&Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
 
         if ($tender->image&&$tender->image!==$request->image) 
             Storage::delete('images/'.$tender->image);
 
-        $tender->fill($request->only('name','description','budget','company_id','image','end'));
+        $tender->fill($request->only('name','description','budget','image','end','person','email','phone'));
         $tender->save();
 
         return redirect()->route('admin.tenders.index');

@@ -18,7 +18,11 @@ class CreateTendersTable extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->integer('company_id')->index();
+            $table->string('company_name')->index();
             $table->string('budget');
+            $table->string('person');
+            $table->string('email');
+            $table->string('phone');
             $table->date('end');
             $table->text('description');
         });
