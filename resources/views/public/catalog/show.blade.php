@@ -31,10 +31,10 @@
 				<div id="portfolio" class="tabs__tab">
 					@foreach ($company->examples as $i => $example)
 						@if ($i%3==0)<div class="container__row offset_vertical_40"> @endif
-							<div class="container__col-4 building">
+							<a href="/example/{{$example->id}}" class="container__col-4 building fancybox">
 								<img src="/fit/240/145/{{$example->image}}" alt="" class="building__image">
-								<a href="#" class="building__name">{{$example->title}}</a>
-							</div>
+								<div class="building__name">{{$example->title}}</div>
+							</a>
 						@if ($i%3==2||$i+1==count($company->examples)) </div> @endif
 					@endforeach
 				</div>

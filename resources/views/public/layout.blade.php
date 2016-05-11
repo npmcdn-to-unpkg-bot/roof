@@ -108,6 +108,8 @@
 	<script src="/bower/dropzone/dist/min/dropzone.min.js" ></script>
 	<script src="/bower/masonry/dist/masonry.pkgd.min.js"></script>
 	<script src="/bower/imagesloaded/imagesloaded.pkgd.min.js"></script>
+	<link rel="stylesheet" href="/bower/fancybox/source/jquery.fancybox.css">
+	<script src="/bower/fancybox/source/jquery.fancybox.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 	<script src="/js/all.js"></script>
 </body>
