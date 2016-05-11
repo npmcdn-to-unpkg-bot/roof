@@ -118,10 +118,16 @@ $(document).ready(function(){
 		$('.search-block__form').toggle();
 	});
 
-	$('.fancybox').fancybox({
-		type: 'ajax',
-		width: 700,
-		padding: 0
-	})
+	$('.fancybox').click(function(e){
+		e.preventDefault();
+		$.get({
+			url: this.href,
+			success: function(data) {
+				$(data).imagesLoaded(function(){
+					$.fancybox(data,{padding: 0});
+				});
+			}
+		});
+	});
 
 });
