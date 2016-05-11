@@ -26,6 +26,7 @@
     </div>
     <div class="container__col-left reg-social">
         <div class="title">Или авторизуйтесь с помощью социальных сетей</div>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
         <script src="//ulogin.ru/js/ulogin.js"></script>
         <script>
             function login_from_social (token) {
