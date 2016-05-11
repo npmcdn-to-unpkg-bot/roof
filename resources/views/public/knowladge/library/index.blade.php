@@ -37,6 +37,7 @@
 		@endforeach
 		@if ($posts->count() < 2) <div class="container__col-4 offset_bottom_45">@include('public.area.banner',['area' => 'Библиотека архив 1'])</div> @endif
 	</div>
+	@include('public.pagenav',['items'=>$posts])
 </div>
 
 @endsection
