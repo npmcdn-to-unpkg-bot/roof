@@ -89,6 +89,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('company/{company}/sales', 'Admin\Catalog\SaleController');
 		Route::resource('company/{company}/blog', 'Admin\Catalog\PostController');
 		Route::resource('company/{company}/prices', 'Admin\Catalog\PriceController');
+		Route::resource('company/all/specialisations', 'Admin\Catalog\SpecialisationController');
+		Route::resource('company/all/propositions', 'Admin\Catalog\PropositionController');
 		Route::resource('buildings', 'Admin\Building\BuildingController');
 		Route::resource('jobs', 'Admin\Building\JobController');
 		Route::resource('news', 'Admin\ArticleController');
@@ -96,9 +98,12 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::resource('polls', 'Admin\PollController');
 		Route::resource('banners', 'Admin\BannerController');
 		Route::resource('offers', 'Admin\OfferController');
+		Route::resource('offers/all/categories', 'Admin\CategoryController');
 		Route::resource('events', 'Admin\EventController');
 		Route::resource('library', 'Admin\Library\PostController');
+		Route::resource('library/all/categories', 'Admin\Library\CategoryController');
 		Route::resource('education', 'Admin\Education\PostController');
+		Route::resource('education/all/categories', 'Admin\Education\CategoryController');
 		Route::resource('tenders', 'Admin\TenderController');
 		Route::resource('pages', 'Admin\PageController');
 		Route::resource('users', 'Admin\UserController');

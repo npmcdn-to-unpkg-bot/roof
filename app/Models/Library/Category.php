@@ -8,6 +8,10 @@ class Category extends Model
 {
     protected $table = 'library_categories';
 
+	public $timestamps = false;
+
+	protected $fillable = ['id'];
+
     public function posts () {
     	return $this->belongsToMany('App\Models\Library\Post','library_category_post','category_id','post_id');
     }

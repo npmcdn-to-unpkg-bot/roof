@@ -8,6 +8,10 @@ class Category extends Model
 {
     protected $table = 'categories';
 
+	public $timestamps = false;
+
+	protected $fillable = ['id'];
+
     public function offers () {
     	return $this->belongsToMany('App\Offer');
     }

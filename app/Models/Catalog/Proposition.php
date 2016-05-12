@@ -9,6 +9,10 @@ class Proposition extends Model
 
 	protected $table = 'catalog_propositions';
 
+	public $timestamps = false;
+
+	protected $fillable = ['id'];
+
 	public function companies () {
 		return $this->belongsToMany(
 			'App\Models\Catalog\Company',

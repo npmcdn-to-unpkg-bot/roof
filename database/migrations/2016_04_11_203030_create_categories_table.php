@@ -16,6 +16,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
+            $table->integer('order');
         });
         Schema::create('category_offer', function (Blueprint $table) {
             $table->integer('offer_id')->index();

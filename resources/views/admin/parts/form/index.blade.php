@@ -5,7 +5,7 @@
 		</div>
 	@endif
 	{!! csrf_field() !!}
-	@if ($item->id) <input type="hidden" name="id" value="{{$item->id}}"> @endif
+	@if (isset($item)&&$item->id) <input type="hidden" name="id" value="{{$item->id}}"> @endif
 	@foreach ($fields as $field)
 		@include('admin.parts.form.'.$field['type'], $field)
 	@endforeach

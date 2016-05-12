@@ -127,6 +127,16 @@ class AdminMenu
                             'icon' => 'fa-plus',
                             'href' => route('admin.company.create'),
                         ],
+                        [
+                            'name' => 'Специлизации',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.company.all.specialisations.index')
+                        ],
+                        [
+                            'name' => 'Предложения',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.company.all.propositions.index')
+                        ]
                     ],
                 ],[
                     'name' => 'Стройки',
@@ -217,6 +227,11 @@ class AdminMenu
                             'icon' => 'fa-plus',
                             'href' => route('admin.library.create'),
                         ],
+                        [
+                            'name' => 'Категории',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.library.all.categories.index')
+                        ]
                     ],
                 ],[
                     'name' => 'Обучение',
@@ -232,6 +247,11 @@ class AdminMenu
                             'icon' => 'fa-plus',
                             'href' => route('admin.education.create'),
                         ],
+                        [
+                            'name' => 'Категории',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.education.all.categories.index')
+                        ]
                     ],
                 ],[
                     'name' => 'Опросы',
@@ -262,6 +282,11 @@ class AdminMenu
                             'icon' => 'fa-plus',
                             'href' => route('admin.offers.create'),
                         ],
+                        [
+                            'name' => 'Категории',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.offers.all.categories.index')
+                        ]
                     ],
                 ],[
                     'name' => 'События',

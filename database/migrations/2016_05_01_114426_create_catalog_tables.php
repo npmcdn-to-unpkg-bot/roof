@@ -35,6 +35,7 @@ class CreateCatalogTables extends Migration
             $table->increments('id');
             $table->string('slug');
             $table->string('name');
+            $table->integer('order');
         });
         Schema::create('catalog_company_proposition', function (Blueprint $table) {
             $table->integer('company_id')->index();
@@ -44,6 +45,7 @@ class CreateCatalogTables extends Migration
             $table->increments('id');
             $table->string('slug');
             $table->string('name');
+            $table->integer('order');
         });
         Schema::create('catalog_company_specialisation', function (Blueprint $table) {
             $table->integer('company_id')->index();

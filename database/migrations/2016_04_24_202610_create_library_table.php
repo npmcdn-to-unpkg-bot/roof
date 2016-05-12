@@ -23,6 +23,7 @@ class CreateLibraryTable extends Migration
         Schema::create('library_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('order');
         });
         Schema::create('library_category_post', function (Blueprint $table) {
             $table->integer('category_id')->index();

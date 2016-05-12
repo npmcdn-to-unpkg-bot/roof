@@ -23,6 +23,7 @@ class CreateEducationTables extends Migration
         Schema::create('education_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('order');
         });
         Schema::create('education_category_post', function (Blueprint $table) {
             $table->integer('category_id')->index();
