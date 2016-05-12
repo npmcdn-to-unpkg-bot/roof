@@ -17,7 +17,7 @@ class LibraryController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::order('created_at','desc')->paginate(20);
+        $posts = Post::orderBy('created_at','desc')->paginate(20);
 
         return view('public.knowladge.library.index',[
             'posts' => $posts
@@ -38,7 +38,7 @@ class LibraryController extends Controller
     }
 
     public function category($id) {
-        $posts = Category::find($id)->posts()->order('created_at','desc')->paginate(20);
+        $posts = Category::find($id)->posts()->orderBy('created_at','desc')->paginate(20);
 
         return view('public.knowladge.library.index',[
             'posts' => $posts
