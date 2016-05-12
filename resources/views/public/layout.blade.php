@@ -8,25 +8,6 @@
 	<link rel="stylesheet" href="/css/all.css">
 </head>
 <body>
-	<div class="test_mode">Уважаемые посетители, сайт работает в демонстрационном режиме до 10.05.2016! Приносим извинения за возможные неудобства.</div>
-	<style>
-	.test_mode {
-	    width: 100%;
-	    height: 40px;
-	    line-height: 40px;
-	    text-align: center;
-	    position: fixed;
-	    top: 0;
-	    left: 0;
-	    font-family: 'PT Sans', sans-serif;
-	    color: #000;
-	    background-color: #ffff99;
-	    z-index: 1001;
-	}
-	body {
-		padding-top: 40px;
-	}
-	</style>	
 	<div class="container-fluid container-fluid_gray">
 		<div class="container">
 			<div class="container__col-right menu menu_horizontal menu_uppercase menu_white">
