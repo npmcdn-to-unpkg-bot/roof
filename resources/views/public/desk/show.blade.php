@@ -2,7 +2,8 @@
 
 @section('content')
 	<div class="container breadcrumbs">
-		<span class="breadcumbs__current">ДОСКА ОБЪЯВЛЕНИЙ</span>
+		<a href="{{ route('desk.index') }}" class="breadcrumbs__path">ДОСКА ОБЪЯВЛЕНИЙ</a>
+		<span class="breadcumbs__current">{{$offer->title}}</span>
 	</div>
 	<div class="container">
 		<div class="container__row">
