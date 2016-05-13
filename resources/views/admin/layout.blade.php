@@ -20,7 +20,7 @@
 	<script src="/bower/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/bower/AdminLTE/dist/js/app.min.js"></script>
 	<script src="/bower/AdminLTE/plugins/fastclick/fastclick.min.js"></script>
-	<script src="/bower/AdminLTE/plugins/ckeditor/ckeditor.js"></script>
+	<script src="/bower/ckeditor/ckeditor.js"></script>
 	<script src="/bower/AdminLTE/plugins/iCheck/icheck.min.js"></script>
 	<script src="/bower/moment/min/moment-with-locales.min.js"></script>
 	<script src="/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>

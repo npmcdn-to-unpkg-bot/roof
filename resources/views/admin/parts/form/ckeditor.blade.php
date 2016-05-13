@@ -8,5 +8,6 @@
 <script>
 	CKEDITOR.replace('{{$name}}',{
 	    filebrowserBrowseUrl: '/filemanager/show',
+	    extraPlugins: 'iframe, autoembed'
 	});
 </script>
