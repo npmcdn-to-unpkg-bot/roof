@@ -9,8 +9,8 @@ class Sale extends Model
     public static $rules = [
 		'title' => 'required|min:5|max:100',
 		'image' => 'required',
-		'entry' => 'required|min:90|max:380',
-		'content' => 'required|min:500',
+		'entry' => 'required|max:65535',
+		'content' => 'required|max:65535',
     ];
 
     public static $messages = [
@@ -19,10 +19,9 @@ class Sale extends Model
 		'title.max' => 'Заголовок должен быть не больше 100 символов',
 		'image.required' => 'Загрузите картинку.',
 		'entry.required' => 'Заполните краткое содержание.',
-		'entry.min' => 'Краткое содержание должно быть не меньше 90 символов.',
-		'entry.max' => 'Краткое содержание должно быть не больше 380 символов.',
+		'entry.max' => 'Краткое содержание должно быть не больше 65535 символов.',
 		'content.required' => 'Заполните текст.',
-		'content.min' => 'Текст должен быть не меньше 300 символов.',
+		'content.max' => 'Текст должен быть не больше 65535 символов.',
     ];
 
     protected $fillable = ['title','image','entry','content'];
