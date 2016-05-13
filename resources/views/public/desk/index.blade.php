@@ -17,26 +17,7 @@
 					</select>
 					<button class="jus__item button button_search"></button>
 				</form>
-				<div class="container__row offset_vertical_30">
-					<div class="container__col-6">
-						<a href="" class="desk-top">
-							<img src="/s-img/desk-top-1.jpg" alt="" class="desk-top__image">
-							<div class="desk-top__text">
-								<div class="desk-top__title">ОНДУЛИН ОПТОМ</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel aliquid explicabo, tempora aperiam ratione odit sequi reprehenderit rerum fugiat ea ut sunt praesentium quis, excepturi corrupti corporis quidem, similique dolorem.</p>
-							</div>
-						</a>
-					</div>
-					<div class="container__col-6">
-						<a href="" class="desk-top">
-							<img src="/s-img/desk-top-1.jpg" alt="" class="desk-top__image">
-							<div class="desk-top__text">
-								<div class="desk-top__title">ОНДУЛИН ОПТОМ</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel aliquid explicabo, tempora aperiam ratione odit sequi reprehenderit rerum fugiat ea ut sunt praesentium quis, excepturi corrupti corporis quidem, similique dolorem.</p>
-							</div>
-						</a>
-					</div>
-				</div>
+				@include('public.desk.top')
 				@foreach ($offers as $offer)
 					<div class="desk-item offset_vertical_20 {{ $offer->framed ? 'desk-item_dark' : '' }}">
 						<a href="{{route('desk.show',$offer)}}">

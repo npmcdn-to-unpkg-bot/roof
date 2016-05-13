@@ -34,26 +34,7 @@
 						@endforeach
 					</div>
 				</div>
-				<div class="container__row offset_vertical_30">
-					<div class="container__col-6">
-						<a href="" class="desk-top">
-							<img src="/s-img/desk-top-1.jpg" alt="" class="desk-top__image">
-							<div class="desk-top__text">
-								<div class="desk-top__title">ОНДУЛИН ОПТОМ</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel aliquid explicabo, tempora aperiam ratione odit sequi reprehenderit rerum fugiat ea ut sunt praesentium quis, excepturi corrupti corporis quidem, similique dolorem.</p>
-							</div>
-						</a>
-					</div>
-					<div class="container__col-6">
-						<a href="" class="desk-top">
-							<img src="/s-img/desk-top-1.jpg" alt="" class="desk-top__image">
-							<div class="desk-top__text">
-								<div class="desk-top__title">ОНДУЛИН ОПТОМ</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel aliquid explicabo, tempora aperiam ratione odit sequi reprehenderit rerum fugiat ea ut sunt praesentium quis, excepturi corrupti corporis quidem, similique dolorem.</p>
-							</div>
-						</a>
-					</div>
-				</div>
+				@include('public.desk.top')
 			</div>
 			<div class="container__col-4">
 				<div class="title">КАТЕГОРИИ</div>

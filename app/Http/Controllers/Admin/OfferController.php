@@ -88,6 +88,11 @@ class OfferController extends Controller
                 'label'=>'Выделить рамкой',
                 'value'=>old() ? old('framed') : $offer->framed
             ],[
+                'name'=>'top',
+                'type'=>'checkbox',
+                'label'=>'Поместить в топ',
+                'value'=>old() ? old('top') : $offer->top
+            ],[
                 'name'=>'user_id',
                 'type'=>'select',
                 'settings'=>'',
@@ -184,7 +189,7 @@ class OfferController extends Controller
             Storage::delete('images/'.$offer->image);
 
         $offer
-            ->fill($request->only('title','image','price','specialisation','name','email','phone','framed','information','lat','lng','address','city_id'))
+            ->fill($request->only('title','image','price','specialisation','name','email','phone','framed','top','information','lat','lng','address','city_id'))
             ->save();
 
         return redirect()->route('admin.offers.index');

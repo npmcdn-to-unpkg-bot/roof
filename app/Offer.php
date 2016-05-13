@@ -16,6 +16,7 @@ class Offer extends Model
         'email',
         'phone',
         'framed',
+        'top',
         'information',
         'user_id',
         'lat',
