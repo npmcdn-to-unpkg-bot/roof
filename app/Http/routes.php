@@ -20,94 +20,91 @@ Route::get('width/{width}/{name}', 'ThePublic\ImageController@width');
 Route::get('height/{height}/{name}', 'ThePublic\ImageController@height');
 Route::get('full/{name}', 'ThePublic\ImageController@full');
 
-Route::resource('catalog', 'ThePublic\CompanyController');
 Route::get('catalog/specialisation/{id}', 'ThePublic\CompanyController@specialisation');
 Route::get('catalog/proposition/{id}', 'ThePublic\CompanyController@proposition');
 Route::get('price/{name}', 'ThePublic\CompanyController@price');
 Route::get('example/{id}', 'ThePublic\CompanyController@example');
-Route::resource('buildings', 'ThePublic\BuildingController');
-Route::resource('jobs', 'ThePublic\JobController');
-Route::resource('desk', 'ThePublic\OfferController');
-Route::resource('news', 'ThePublic\ArticleController');
-Route::resource('sales', 'ThePublic\SaleController');
-Route::resource('events', 'ThePublic\EventController');
 Route::get('events/calendar/{date}', 'ThePublic\EventController@calendar');
-Route::resource('tenders', 'ThePublic\TenderController');
-Route::resource('polls', 'ThePublic\PollController');
 Route::get('search', 'ThePublic\SearchController@index');
+Route::get('knowladge', ['as' => 'knowladge.index', function () {
+		return view('public.knowladge.index');
+	}]);
+Route::get('knowladge/library/category/{id}', 'ThePublic\LibraryController@category');
 
-Route::group(['prefix' => 'knowladge'],function(){
-
-	Route::get('', ['as' => 'knowladge.index', function () {
-			return view('public.knowladge.index');
-		}]);
-
-	Route::resource('library', 'ThePublic\LibraryController');
-	Route::get('library/category/{id}', 'ThePublic\LibraryController@category');
-	
-	Route::group(['middleware' => 'auth'], function () {
-		Route::resource('education', 'ThePublic\EducationController');
-		Route::get('education/category/{id}', 'ThePublic\EducationController@category');
-	});
-
-});
-
-
-Route::get('/autocomplete/country', 'ThePublic\Autocomplete@country');
-Route::get('/autocomplete/city', 'ThePublic\Autocomplete@city');
+Route::resources([
+	'catalog'                    => 'ThePublic\CompanyController',
+	'buildings'                  => 'ThePublic\BuildingController',
+	'jobs'                       => 'ThePublic\JobController',
+	'desk'                       => 'ThePublic\OfferController',
+	'news'                       => 'ThePublic\ArticleController',
+	'sales'                      => 'ThePublic\SaleController',
+	'events'                     => 'ThePublic\EventController',
+	'tenders'                    => 'ThePublic\TenderController',
+	'polls'                      => 'ThePublic\PollController',
+	'knowladge/library'          => 'ThePublic\LibraryController',
+]);
 
 Route::post('ulogin', 'User\UloginController@index');
 Route::auth();
+
 Route::group(['middleware' => 'auth'], function () {
 
-
-	Route::group(['prefix' => 'user'], function () {
-		Route::get('', 'User\CompanyController@edit');
-		Route::resource('company', 'User\CompanyController');
-		Route::resource('buildings', 'User\BuildingController');
-		Route::resource('jobs', 'User\JobController');
-		Route::resource('blog', 'User\PostController');
-		Route::resource('sales', 'User\SaleController');
-		Route::resource('offers', 'User\OfferController');
-		Route::resource('personal', 'User\UserController');
-	});
-
-	Route::resource('comment', 'User\CommentController');
-	Route::resource('upload', 'User\UploadController');
-	Route::post('vote', 'User\PollController@vote');
+	Route::get('autocomplete/country', 'ThePublic\Autocomplete@country');
+	Route::get('autocomplete/city', 'ThePublic\Autocomplete@city');
+	Route::get('education/category/{id}', 'ThePublic\EducationController@category');
+	Route::get('user', 'User\CompanyController@edit');
+	Route::get('user/offers/up/{id}', 'User\OfferController@up');
 	Route::get('vote', 'User\PollController@index');
+	Route::post('vote', 'User\PollController@vote');
 
-	Route::group(['middleware' => 'role:admin'],function () {
+	Route::resources([
+		'user/company'               => 'User\CompanyController',
+		'user/buildings'             => 'User\BuildingController',
+		'user/jobs'                  => 'User\JobController',
+		'user/blog'                  => 'User\PostController',
+		'user/sales'                 => 'User\SaleController',
+		'user/offers'                => 'User\OfferController',
+		'user/personal'              => 'User\UserController',
+		'comment'                    => 'User\CommentController',
+		'upload'                     => 'User\UploadController',
+		'knowladge/education'        => 'ThePublic\EducationController',
+	]);
+
+
+	Route::group(['middleware' => 'role:admin'], function () {
+
     	Route::controller('filemanager', 'FilemanagerLaravelController');
-	});
-
-	Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function () {
-		Route::get('', 'Admin\Catalog\CompanyController@index');
-		Route::resource('company', 'Admin\Catalog\CompanyController');
-		Route::resource('company/{company}/examples', 'Admin\Catalog\ExampleController');
-		Route::resource('company/{company}/staff', 'Admin\Catalog\MemberController');
-		Route::resource('company/{company}/sales', 'Admin\Catalog\SaleController');
-		Route::resource('company/{company}/blog', 'Admin\Catalog\PostController');
-		Route::resource('company/{company}/prices', 'Admin\Catalog\PriceController');
-		Route::resource('company/all/specialisations', 'Admin\Catalog\SpecialisationController');
-		Route::resource('company/all/propositions', 'Admin\Catalog\PropositionController');
-		Route::resource('buildings', 'Admin\Building\BuildingController');
-		Route::resource('jobs', 'Admin\Building\JobController');
-		Route::resource('news', 'Admin\ArticleController');
-		Route::resource('sales', 'Admin\SaleController');
-		Route::resource('polls', 'Admin\PollController');
-		Route::resource('banners', 'Admin\BannerController');
-		Route::resource('offers', 'Admin\OfferController');
-		Route::resource('offers/all/categories', 'Admin\CategoryController');
-		Route::resource('events', 'Admin\EventController');
-		Route::resource('library', 'Admin\Library\PostController');
-		Route::resource('library/all/categories', 'Admin\Library\CategoryController');
-		Route::resource('education', 'Admin\Education\PostController');
-		Route::resource('education/all/categories', 'Admin\Education\CategoryController');
-		Route::resource('tenders', 'Admin\TenderController');
-		Route::resource('pages', 'Admin\PageController');
-		Route::resource('users', 'Admin\UserController');
+		Route::get('admin', 'Admin\Catalog\CompanyController@index');
+		Route::get('offers/up/{id}', 'Admin\OfferController@up');
 		Route::get('users.xls', 'Admin\UserController@excel');
+
+		Route::resources([
+			'admin/company'                         => 'Admin\Catalog\CompanyController',
+			'admin/company/{company}/examples'      => 'Admin\Catalog\ExampleController',
+			'admin/company/{company}/staff'         => 'Admin\Catalog\MemberController',
+			'admin/company/{company}/sales'         => 'Admin\Catalog\SaleController',
+			'admin/company/{company}/blog'          => 'Admin\Catalog\PostController',
+			'admin/company/{company}/prices'        => 'Admin\Catalog\PriceController',
+			'admin/company/all/specialisations'     => 'Admin\Catalog\SpecialisationController',
+			'admin/company/all/propositions'        => 'Admin\Catalog\PropositionController',
+			'admin/buildings'                       => 'Admin\Building\BuildingController',
+			'admin/jobs'                            => 'Admin\Building\JobController',
+			'admin/news'                            => 'Admin\ArticleController',
+			'admin/sales'                           => 'Admin\SaleController',
+			'admin/polls'                           => 'Admin\PollController',
+			'admin/banners'                         => 'Admin\BannerController',
+			'admin/offers'                          => 'Admin\OfferController',
+			'admin/offers/all/categories'           => 'Admin\CategoryController',
+			'admin/events'                          => 'Admin\EventController',
+			'admin/library'                         => 'Admin\Library\PostController',
+			'admin/library/all/categories'          => 'Admin\Library\CategoryController',
+			'admin/education'                       => 'Admin\Education\PostController',
+			'admin/education/all/categories'        => 'Admin\Education\CategoryController',
+			'admin/tenders'                         => 'Admin\TenderController',
+			'admin/pages'                           => 'Admin\PageController',
+			'admin/users'                           => 'Admin\UserController',
+		]);
+
 	});
 
 

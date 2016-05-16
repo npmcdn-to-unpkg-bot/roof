@@ -17,6 +17,15 @@ class CompanyController extends Controller
 {
 
     public function fields (Company $company) {
+        $levelOptions = [
+            '0' => 'Нет',
+            '1' => 'Старт',
+            '2' => 'Бизнес',
+            '3' => 'Премиум',
+        ];
+        foreach ($levelOptions as $level => $label)
+            if ($level < $company->level)
+                unset($levelOptions[$level]);
         return [
             [
                 'name' => 'name',
@@ -60,6 +69,12 @@ class CompanyController extends Controller
                 'placeholder' => 'Введите телефон компании',
                 'label' => 'Телефон компании',
                 'value' => old() ? old('phone') : $company->phone
+            ],[
+                'name'=>'level',
+                'type'=>'radio',
+                'label'=>'Статус компании',
+                'value' => old() ? old('level') : $company->level,
+                'options'=>$levelOptions,
             ],[
                 'type' => 'address',
                 'label' => 'Адрес',
@@ -140,6 +155,9 @@ class CompanyController extends Controller
         $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
         $company->propositions()->sync($request->propositions ? $request->propositions : []);
 
+        $company->level = $request->level;
+        $company->save();
+        
         return redirect('user');
     }
 

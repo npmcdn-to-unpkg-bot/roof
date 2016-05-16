@@ -60,6 +60,17 @@ class CompanyController extends Controller
                 'label' => 'Частный мастер',
                 'value' => old() ? old('privat') : $company->privat
             ],[
+                'name'=>'level',
+                'type'=>'radio',
+                'label'=>'Статус компании',
+                'value' => old() ? old('level') : $company->level,
+                'options'=>[
+                    '0' => 'Нет',
+                    '1' => 'Старт',
+                    '2' => 'Бизнес',
+                    '3' => 'Премиум',
+                ],
+            ],[
                 'name' => 'email',
                 'type' => 'text',
                 'placeholder' => 'Введите email компании',
@@ -215,7 +226,7 @@ class CompanyController extends Controller
             Storage::delete('images/'.$company->logo);
 
         $company
-            ->fill($request->only('name','email','logo','phone','entry','about','services','association','privat','user_id','address','lat','lng','city_id'))
+            ->fill($request->only('name','email','logo','phone','entry','about','services','association','privat','user_id','level','address','lat','lng','city_id'))
             ->save();
         $company->specialisations()->sync((array)$request->specialisations);
         $company->propositions()->sync((array)$request->propositions);

@@ -19,7 +19,7 @@
 				</form>
 				@include('public.desk.top')
 				@foreach ($offers as $offer)
-					<div class="desk-item offset_vertical_20 {{ $offer->framed ? 'desk-item_dark' : '' }}">
+					<div class="desk-item offset_vertical_20 {{ $offer->framed > Carbon\Carbon::now() ? 'desk-item_dark' : '' }}">
 						<a href="{{route('desk.show',$offer)}}">
 							<img src="/fit/160/140/{{$offer->image}}" alt="" class="desk-item__image">
 						</a>

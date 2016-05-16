@@ -11,6 +11,7 @@ use App\Country;
 use App\City;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class OfferController extends Controller
 {
@@ -84,14 +85,30 @@ class OfferController extends Controller
                     : $offer->address
             ],[
                 'name'=>'framed',
-                'type'=>'checkbox',
+                'type'=>'radiodate',
                 'label'=>'Выделить рамкой',
-                'value'=>old() ? old('framed') : $offer->framed
+                'value'=>old('framed'),
+                'periods'=>[
+                    '0' => 'Нет',
+                    '3' => 'На 3 дня',
+                    '7' => 'На 7 дней',
+                    '30' => 'На 1 месяц',
+                    '90' => 'На 3 месяца',
+                ],
+                'expire' => $offer->framed
             ],[
                 'name'=>'top',
-                'type'=>'checkbox',
+                'type'=>'radiodate',
                 'label'=>'Поместить в топ',
-                'value'=>old() ? old('top') : $offer->top
+                'value'=>old('top'),
+                'periods'=>[
+                    '0' => 'Нет',
+                    '3' => 'На 3 дня',
+                    '7' => 'На 7 дней',
+                    '30' => 'На 1 месяц',
+                    '90' => 'На 3 месяца',
+                ],
+                'expire' => $offer->top
             ],[
                 'name'=>'user_id',
                 'type'=>'select',
@@ -113,7 +130,7 @@ class OfferController extends Controller
     public function index()
     {
 
-        $offers = Offer::paginate(15);
+        $offers = Offer::orderBy('created_at','desc')->paginate(15);
         $th = [
             [
                 'title'=>'Картинка',
@@ -123,7 +140,10 @@ class OfferController extends Controller
                 'width'=>'auto',
             ],[
                 'title'=>'',
-                'width'=>'90px',
+                'width'=>'50px',
+            ],[
+                'title'=>'',
+                'width'=>'100px',
             ],
         ];
         $table=collect()->push($th);
@@ -135,6 +155,9 @@ class OfferController extends Controller
                 ],[
                     'field'=>$offer->title,
                     'type'=>'text',
+                ],[
+                    'up' => '/admin/offers/up/'.$offer->id,
+                    'type'=>'up',
                 ],[
                     'edit' => route('admin.offers.edit', $offer),
                     'delete' => route('admin.offers.destroy', $offer),
@@ -188,8 +211,18 @@ class OfferController extends Controller
         if ($offer->image&&$offer->image!==$request->image) 
             Storage::delete('images/'.$offer->image);
 
+        $offer->framed = max(
+            $offer->framed, 
+            Carbon::now()->addDay($request->framed)
+        );
+
+        $offer->top = max(
+            $offer->top, 
+            Carbon::now()->addDay($request->top)
+        );
+
         $offer
-            ->fill($request->only('title','image','price','specialisation','name','email','phone','framed','top','information','lat','lng','address','city_id'))
+            ->fill($request->only('title','image','price','specialisation','name','email','phone','information','lat','lng','address','city_id'))
             ->save();
 
         return redirect()->route('admin.offers.index');
@@ -249,4 +282,11 @@ class OfferController extends Controller
 
         return back();
     }
+
+    public function up($id)
+    {
+        Offer::where('id',$id)->update(['created_at' => Carbon::now()]);
+        return back();
+    }
+
 }

@@ -11,6 +11,7 @@ use App\Country;
 use App\City;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class OfferController extends Controller
 {
@@ -82,6 +83,32 @@ class OfferController extends Controller
                 'address' => old() 
                     ? old('address') 
                     : $offer->address
+            ],[
+                'name'=>'framed',
+                'type'=>'radiodate',
+                'label'=>'Выделить рамкой',
+                'value'=>old('framed'),
+                'periods'=>[
+                    '0' => 'Нет',
+                    '3' => 'На 3 дня',
+                    '7' => 'На 7 дней',
+                    '30' => 'На 1 месяц',
+                    '90' => 'На 3 месяца',
+                ],
+                'expire' => $offer->framed
+            ],[
+                'name'=>'top',
+                'type'=>'radiodate',
+                'label'=>'Поместить в топ',
+                'value'=>old('top'),
+                'periods'=>[
+                    '0' => 'Нет',
+                    '3' => 'На 3 дня',
+                    '7' => 'На 7 дней',
+                    '30' => 'На 1 месяц',
+                    '90' => 'На 3 месяца',
+                ],
+                'expire' => $offer->top
             ],
         ];
         
@@ -104,7 +131,10 @@ class OfferController extends Controller
                 'width'=>'auto',
             ],[
                 'title'=>'',
-                'width'=>'90px',
+                'width'=>'50px',
+            ],[
+                'title'=>'',
+                'width'=>'100px',
             ],
         ];
         $table=collect()->push($th);
@@ -116,6 +146,9 @@ class OfferController extends Controller
                 ],[
                     'field'=>$offer->title,
                     'type'=>'text',
+                ],[
+                    'up' => '/user/offers/up/'.$offer->id,
+                    'type'=>'up',
                 ],[
                     'edit' => route('user.offers.edit', $offer),
                     'delete' => route('user.offers.destroy', $offer),
@@ -173,6 +206,18 @@ class OfferController extends Controller
             ->fill($request->only('title','image','price','specialisation','name','email','phone','information','lat','lng','address','city_id'))
             ->save();
 
+        $offer->framed = max(
+            $offer->framed, 
+            Carbon::now()->addDay($request->framed)
+        );
+
+        $offer->top = max(
+            $offer->top, 
+            Carbon::now()->addDay($request->top)
+        );
+
+        $offer->save();
+
         return redirect()->route('user.offers.index');
     }
 
@@ -228,6 +273,11 @@ class OfferController extends Controller
     public function destroy($id)
     {
         Auth::user()->offers()->where('id', $id)->delete();
+        return back();
+    }
+    public function up($id)
+    {
+        Offer::where('id',$id)->update(['created_at' => Carbon::now()]);
         return back();
     }
 }

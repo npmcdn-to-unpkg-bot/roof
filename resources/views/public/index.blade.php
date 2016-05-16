@@ -4,13 +4,14 @@
 	<div class="container-fluid container-fluid_light-gray">
 		<div class="container container_screen">
 			<div class="container__row">
-				<div class="container__col-8">
-					@include('public.catalog.block',[
-						'companies'=>App\Models\Catalog\Company::take(6)->with('specialisations')->get()
-					])
+				<div class="container__col-4">
+					@include('public.area.banner',['area'=>'Главная 1'])
 				</div>
 				<div class="container__col-4">
-					<img src="/s-img/tenders.jpg" alt="">
+					@include('public.area.banner',['area'=>'Главная 2'])
+				</div>
+				<div class="container__col-4">
+					@include('public.area.banner',['area'=>'Главная 3'])
 				</div>
 			</div>
 		</div>
@@ -19,7 +20,7 @@
 		<div class="container__row">
 			<div class="container__col-8">
 				<div class="offset_bottom_60">
-					@include('public.area.banner',['area'=>'Главная 1'])
+					@include('public.area.banner',['area'=>'Главная 4'])
 				</div>
 				<div class="container__row buildings-block">
 					<div class="container__col-6">
@@ -110,14 +111,14 @@
 	<div class="container container_screen">
 		<div class="container__row">
 			<div class="container__col-4">
-				@include('public.area.banner',['area'=>'Главная 2'])
-			</div>
-			<div class="container__col-4">
-				<div class="offset_bottom_30">@include('public.area.banner',['area'=>'Главная 3'])</div>
-				@include('public.area.banner',['area'=>'Главная 4'])
-			</div>
-			<div class="container__col-4">
 				@include('public.area.banner',['area'=>'Главная 5'])
+			</div>
+			<div class="container__col-4">
+				<div class="offset_bottom_30">@include('public.area.banner',['area'=>'Главная 6'])</div>
+				@include('public.area.banner',['area'=>'Главная 7'])
+			</div>
+			<div class="container__col-4">
+				@include('public.area.banner',['area'=>'Главная 8'])
 			</div>
 		</div>
 	</div>

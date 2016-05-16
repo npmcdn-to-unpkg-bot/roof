@@ -34,6 +34,7 @@ class Company extends Model
         'logo',
         'email',
         'phone',
+        'level',
         'entry',
         'about',
         'services',

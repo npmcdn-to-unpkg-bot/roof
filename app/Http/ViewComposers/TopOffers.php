@@ -4,6 +4,7 @@ namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
 use App\Offer;
+use Carbon\Carbon;
 
 class TopOffers
 {
@@ -14,7 +15,7 @@ class TopOffers
      * @return void
      */
 	public function compose (View $view) {
-        $offers = Offer::where('top','1')->orderBy('queue','desc')->take(2)->get();
+        $offers = Offer::where('top','>',Carbon::now())->orderBy('queue','desc')->take(2)->get();
         foreach ($offers as $offer) {
             $offer->queue=1;
             $offer->save();

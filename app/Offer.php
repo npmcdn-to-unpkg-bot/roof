@@ -25,6 +25,9 @@ class Offer extends Model
         'address'
     ];
 
+
+    protected $dates = ['created_at', 'updated_at', 'top', 'framed'];
+
 	public static $rules = [
         'title' => 'required|min:10|max:255',
         'price' => 'required',
