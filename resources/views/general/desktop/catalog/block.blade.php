@@ -2,7 +2,7 @@
 <div class="container__row">
 	@foreach ($companies as $i => $company)
 		<div class="container__col-6 catalog-company">
-			<a href="{{route('catalog.show',$company)}}"><img src="/resize/123/123/{{$company->logo}}" alt="" class="catalog-company__image"></a>
+			<a href="{{route('catalog.show',$company)}}"><img src="/resize/85/85/{{$company->logo}}" alt="" class="catalog-company__image"></a>
 			<a href="{{route('catalog.show',$company)}}" class="catalog-company__title">{{$company->name}}</a>
 			<div class="catalog-company__post-date">Дата размещения: {{$company->created_at->format('d.m.Y')}}</div>
 			<div class="catalog-company__activity">
