@@ -8,7 +8,7 @@ use Validator;
 class Company extends Model
 {
 
-	protected $table = 'catalog_companies';
+    protected $table = 'catalog_companies';
 
     public static function validator ($fields) {
         return Validator::make($fields, [

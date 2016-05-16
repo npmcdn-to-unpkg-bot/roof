@@ -12,6 +12,7 @@ use App\City;
 use App\Models\Catalog\Specialisation;
 use App\Models\Catalog\Proposition;
 use App\Http\Requests;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 
 class CompanyController extends Controller
@@ -225,8 +226,17 @@ class CompanyController extends Controller
         if ($company->logo&&$company->logo!==$request->logo) 
             Storage::delete('images/'.$company->logo);
 
+        if ($company->max_level_ever < $request->level) {
+            $company->max_level_start = Carbon::now();
+            $company->max_level_ever = $request->level;
+        }
+        if ($company->level != $request->level) {
+            $company->level = $request->level;
+            $company->level_end = Carbon::now()->addYear();
+        }
+
         $company
-            ->fill($request->only('name','email','logo','phone','entry','about','services','association','privat','user_id','level','address','lat','lng','city_id'))
+            ->fill($request->only('name','email','logo','phone','entry','about','services','association','privat','user_id','address','lat','lng','city_id'))
             ->save();
         $company->specialisations()->sync((array)$request->specialisations);
         $company->propositions()->sync((array)$request->propositions);

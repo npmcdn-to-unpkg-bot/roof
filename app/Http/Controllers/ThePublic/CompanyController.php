@@ -9,6 +9,7 @@ use App\Models\Catalog\Proposition;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class CompanyController extends Controller
 {
@@ -20,10 +21,22 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
 
-        $companies = Company::orderBy('created_at', 'desc');
+        $companies = Company::orderBy('level','desc')
+                        ->orderBy(DB::raw('level*max_level_start'))
+                        ->orderBy('rating', 'desc')
+                        ->orderBy('created_at', 'desc');
+
         if ($request->search) $companies = $companies->where('name', 'LIKE', '%'.$request->search.'%');
         if ($request->letter) $companies = $companies->where('name', 'LIKE', $request->letter.'%');
         $companies = $companies->paginate(10);
+
+        foreach ($companies as &$company) {
+            $company->rating
+                = $company->comments()->avg('rating')*0.7 
+                + $company->association 
+                + $company->level*0.2;
+            Company::where('id', $company->id)->update(['rating'=>$company->rating]);
+        }
 
         return view('public.catalog.index', [
             'companies' => $companies,
@@ -34,7 +47,13 @@ class CompanyController extends Controller
    public function specialisation ($id) {
 
         return view('public.catalog.index', [
-            'companies' => Specialisation::find($id)->companies()->orderBy('created_at', 'desc')->paginate(10)
+            'companies' => Specialisation::find($id)
+                        ->companies()
+                        ->orderBy('level','desc')
+                        ->orderBy(DB::raw('level*max_level_start'))
+                        ->orderBy('rating', 'desc')
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(10)
         ]);
 
     }
@@ -42,7 +61,13 @@ class CompanyController extends Controller
     public function proposition ($id) {
 
         return view('public.catalog.index', [
-            'companies' => Proposition::find($id)->companies()->orderBy('created_at', 'desc')->paginate(10)
+            'companies' => Proposition::find($id)
+                        ->companies()
+                        ->orderBy('level','desc')
+                        ->orderBy(DB::raw('level*max_level_start'))
+                        ->orderBy('rating', 'desc')
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(10)
         ]);
 
     }
@@ -55,8 +80,16 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
+
+        $company = Company::with('buildings','posts','sales','comments')->find($id);
+        $company->rating
+            = $company->comments()->avg('rating')*0.7 
+            + $company->association 
+            + $company->level*0.2;
+        Company::where('id', $company->id)->update(['rating'=>$company->rating]);
+
         return view('public.catalog.show',[
-            'company' => Company::with('buildings','posts','sales')->find($id)
+            'company' => $company
         ]);
     }
 

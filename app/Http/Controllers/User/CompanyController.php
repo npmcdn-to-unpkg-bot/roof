@@ -155,8 +155,14 @@ class CompanyController extends Controller
         $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
         $company->propositions()->sync($request->propositions ? $request->propositions : []);
 
-        $company->level = $request->level;
-        $company->save();
+        if ($company->max_level_ever < $request->level) {
+            $company->max_level_start = Carbon::now();
+            $company->max_level_ever = $request->level;
+        }
+        if ($company->level < $request->level) {
+            $company->level = $request->level;
+            $company->level_end = Carbon::now()->addYear();
+        }
         
         return redirect('user');
     }

@@ -12,9 +12,9 @@
 				<div class="company-cart__post-date">Дата регистрации: {{$company->created_at->format('d.m.Y')}}</div>
 				<div class="company-cart__right-top">
 					@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label"> @endif
-					<!-- <div class="company-cart__rating">
-						рейтинг <div class="company-cart__rating_value">9.8</div>
-					</div>	 -->		
+					<div class="company-cart__rating">
+						рейтинг <div class="company-cart__rating_value">{{$company->rating}}</div>
+					</div>			
 				</div>
 			</div>
 			<div class="tabs">
