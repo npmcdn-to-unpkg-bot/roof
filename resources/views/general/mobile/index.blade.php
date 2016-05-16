@@ -9,7 +9,7 @@
 	<div class="container offset_vertical_30">
 		@include('general.mobile.area.banner',['area'=>'Главная 4'])
 	</div>
-	<div style="height: 360px;" class="container offset_vertical_30 buildings-block">
+	<div style="height: 420px;" class="container offset_vertical_30 buildings-block">
 		<div class="buildings-block__tabs">
 			<div class="buildings-block__tab buildings-block__tab_active">
 				<div class="buildings-block__tab-content">
@@ -36,7 +36,7 @@
 				@foreach (App\Models\Library\Post::take(5)->get() as $library)
 					<a href="{{route('knowladge.library.show', $library)}}" class="knowladge-slider__navigation-item">
 						<span class="knowladge-slider__text">{{str_limit($library->title, 60)}}</span>
-						<img src="/fit/395/292/{{$library->image}}" class="knowladge-slider__image" alt="">
+						<img src="/fit/235/292/{{$library->image}}" class="knowladge-slider__image" alt="">
 					</a>
 				@endforeach
 			</div>

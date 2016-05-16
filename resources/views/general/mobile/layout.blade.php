@@ -25,7 +25,7 @@
 			</a>
 			<a href="#" style="background-color: #6fc0d1; background-image: url(/img/user-menu-4.png);" class="actions-menu__item search-block__show"></a>
 			@include('general.mobile.search.block')
-			<a href="#" style="background-color: #4376ba; background-image: url();"></a>
+			<a href="#" style="background-color: #4376ba; background-image: url();" class="actions-menu__item search-block__show"></a>
 		</div>
 	</div>
 	<div id="main-menu">
@@ -39,9 +39,9 @@
 			<a href="{{ route('news.index') }}" class="{{ Request::is('news*')?'menu__item_active':'' }} menu__item">Новости</a>
 		</div>
 	</div>
-	<div class="container-fluid">
+	<div class="container-fluid association-title">
 		<div class="container">
-			<img src="/img/user-menu-1.png" alt="">
+			<img src="/img/user-menu-1.png" alt="" style="vertical-align: middle;">
 			АССОЦИАЦИЯ КРОВЕЛЬЩИКОВ УКРАИНЫ
 		</div>
 	</div>
@@ -57,9 +57,11 @@
 				<a href="" class="social-buttons__item social-buttons__item_yo"></a>
 			</div>
 		</div>
-		<div class="container">
+	</div>
+	<div class="container-fluid container-fluid_gray">
+		<div class="container container_screen">
 			<div class="container__row">
-				<div class="container__col-6 menu menu_vertical menu_uppercase menu_gray">
+				<div class="container__col-6 menu menu_vertical menu_big menu_uppercase menu_gray">
 					<a href="{{ route('catalog.index') }}" class="menu__item">Каталог компаний</a>
 					<a href="{{ route('buildings.index') }}" class="menu__item">Стройки и вакансии</a>
 					<a href="{{ route('desk.index') }}" class="menu__item">Доска объявлений</a>
@@ -67,7 +69,7 @@
 					<a href="{{ route('knowladge.index') }}" class="menu__item">База знаний</a>
 					<a href="{{ route('news.index') }}" class="menu__item">Новости</a>					
 				</div>
-				<div class="container__col-6 text_right menu menu_vertical menu_uppercase menu_gray">
+				<div class="container__col-6 text_right menu menu_vertical menu_big menu_uppercase menu_gray">
 					<a href="#" class="menu__item">ОБ АССОЦИАЦИИ</a>
 					<a href="{{route('events.index')}}" class="menu__item">КАЛЕНДАРЬ</a>
 					<a href="#" class="menu__item">ОПРОСЫ</a>
@@ -75,9 +77,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="container-fluid container-fluid_gray copyright text_center">
-		©2016 Ассоциация кровельщиков Украины. Разработка сайта - Ivmar Ukraine
 	</div>
 	<script src="/bower/jquery/dist/jquery.min.js"></script>
 	<script src="/bower/flexslider/jquery.flexslider-min.js"></script>
