@@ -148,7 +148,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+        Jenssegers\Agent\AgentServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -208,6 +208,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'FilemanagerLaravel'=> Pqb\FilemanagerLaravel\Facades\FilemanagerLaravel::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
     ],
 
 ];
