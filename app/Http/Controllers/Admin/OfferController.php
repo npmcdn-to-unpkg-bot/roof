@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Offer;
+use App\Category;
 use App\User;
 use Storage;
 use Validator;
@@ -83,6 +84,12 @@ class OfferController extends Controller
                 'address' => old() 
                     ? old('address') 
                     : $offer->address
+            ],[
+                'name' => 'categories',
+                'type' => 'select_multiple',
+                'label' => 'Категории',
+                'values' => old() ? (array)old('categories') : $offer->categories->lists('id')->all(),
+                'options' => Category::lists('name','id')
             ],[
                 'name'=>'framed',
                 'type'=>'radiodate',
@@ -224,7 +231,7 @@ class OfferController extends Controller
         $offer
             ->fill($request->only('title','image','price','specialisation','name','email','phone','information','lat','lng','address','city_id'))
             ->save();
-
+        $offer->categories()->sync((array)$request->categories);
         return redirect()->route('admin.offers.index');
     }
 
