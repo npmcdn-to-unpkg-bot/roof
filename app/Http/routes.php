@@ -12,36 +12,47 @@
 */
 
 
-Route::get('/', function () {	return view('public.index'); });
+Route::get('/', function () {	
+	return response()->general('index',
+		[
+			'companies' => App\Models\Catalog\Company::orderBy('level','desc')
+		            ->orderBy(DB::raw('level*max_level_start'))
+		            ->orderBy('rating', 'desc')
+		            ->orderBy('created_at', 'desc')
+		            ->take(6)
+		            ->get()
+		]
+	);
+});
 
-Route::get('fit/{width}/{height}/{name}', 'ThePublic\ImageController@fit');
-Route::get('resize/{width}/{height}/{name}', 'ThePublic\ImageController@resize');
-Route::get('width/{width}/{name}', 'ThePublic\ImageController@width');
-Route::get('height/{height}/{name}', 'ThePublic\ImageController@height');
-Route::get('full/{name}', 'ThePublic\ImageController@full');
+Route::get('fit/{width}/{height}/{name}', 'General\ImageController@fit');
+Route::get('resize/{width}/{height}/{name}', 'General\ImageController@resize');
+Route::get('width/{width}/{name}', 'General\ImageController@width');
+Route::get('height/{height}/{name}', 'General\ImageController@height');
+Route::get('full/{name}', 'General\ImageController@full');
 
-Route::get('catalog/specialisation/{id}', 'ThePublic\CompanyController@specialisation');
-Route::get('catalog/proposition/{id}', 'ThePublic\CompanyController@proposition');
-Route::get('price/{name}', 'ThePublic\CompanyController@price');
-Route::get('example/{id}', 'ThePublic\CompanyController@example');
-Route::get('events/calendar/{date}', 'ThePublic\EventController@calendar');
-Route::get('search', 'ThePublic\SearchController@index');
+Route::get('catalog/specialisation/{id}', 'General\CompanyController@specialisation');
+Route::get('catalog/proposition/{id}', 'General\CompanyController@proposition');
+Route::get('price/{name}', 'General\CompanyController@price');
+Route::get('example/{id}', 'General\CompanyController@example');
+Route::get('events/calendar/{date}', 'General\EventController@calendar');
+Route::get('search', 'General\SearchController@index');
 Route::get('knowladge', ['as' => 'knowladge.index', function () {
-		return view('public.knowladge.index');
+		return response()->general('knowladge.index');
 	}]);
-Route::get('knowladge/library/category/{id}', 'ThePublic\LibraryController@category');
+Route::get('knowladge/library/category/{id}', 'General\LibraryController@category');
 
 Route::resources([
-	'catalog'                    => 'ThePublic\CompanyController',
-	'buildings'                  => 'ThePublic\BuildingController',
-	'jobs'                       => 'ThePublic\JobController',
-	'desk'                       => 'ThePublic\OfferController',
-	'news'                       => 'ThePublic\ArticleController',
-	'sales'                      => 'ThePublic\SaleController',
-	'events'                     => 'ThePublic\EventController',
-	'tenders'                    => 'ThePublic\TenderController',
-	'polls'                      => 'ThePublic\PollController',
-	'knowladge/library'          => 'ThePublic\LibraryController',
+	'catalog'                    => 'General\CompanyController',
+	'buildings'                  => 'General\BuildingController',
+	'jobs'                       => 'General\JobController',
+	'desk'                       => 'General\OfferController',
+	'news'                       => 'General\ArticleController',
+	'sales'                      => 'General\SaleController',
+	'events'                     => 'General\EventController',
+	'tenders'                    => 'General\TenderController',
+	'polls'                      => 'General\PollController',
+	'knowladge/library'          => 'General\LibraryController',
 ]);
 
 Route::post('ulogin', 'User\UloginController@index');
@@ -49,9 +60,9 @@ Route::auth();
 
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::get('autocomplete/country', 'ThePublic\Autocomplete@country');
-	Route::get('autocomplete/city', 'ThePublic\Autocomplete@city');
-	Route::get('education/category/{id}', 'ThePublic\EducationController@category');
+	Route::get('autocomplete/country', 'General\Autocomplete@country');
+	Route::get('autocomplete/city', 'General\Autocomplete@city');
+	Route::get('education/category/{id}', 'General\EducationController@category');
 	Route::get('user', 'User\CompanyController@edit');
 	Route::get('user/offers/up/{id}', 'User\OfferController@up');
 	Route::get('vote', 'User\PollController@index');
@@ -67,7 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
 		'user/personal'              => 'User\UserController',
 		'comment'                    => 'User\CommentController',
 		'upload'                     => 'User\UploadController',
-		'knowladge/education'        => 'ThePublic\EducationController',
+		'knowladge/education'        => 'General\EducationController',
 	]);
 
 

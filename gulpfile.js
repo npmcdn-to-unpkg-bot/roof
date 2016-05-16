@@ -13,9 +13,11 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.styles([
-    	'./public/bower/dropzone/dist/dropzone.css',
-    	'style.css'
-    ]);
+    	'desktop.css'
+    ],'public/css/desktop.css');
+    mix.styles([
+    	'mobile.css'
+    ],'public/css/mobile.css');
     mix.scripts([
     	'main.js'
     ]);

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Agent;
+use Response;
 
 class AgentServiceProvider extends ServiceProvider
 {
@@ -14,11 +15,10 @@ class AgentServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Response::macro('public', function ($view, $data) {
-            $agent = new Agent();
-            if ($agent->isMobile())
-                return view('public.mobile.'.$view, $data);
-            return view('public.desktop.'.$view, $data);
+        Response::macro('general', function ($view, array $data = array()) {
+            if (Agent::isMobile())
+                return view('general.mobile.'.$view, $data);
+            return view('general.desktop.'.$view, $data);
         });
     }
 
