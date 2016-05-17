@@ -78,18 +78,33 @@ class AdminMenu
                         ],
                     ],
                 ],[
-                    'name' => 'Блог',
-                    'icon' => 'fa-newspaper-o',
-                    'active' => Request::is('user/blog*')?'active':'',
+                    'name' => 'Тендеры',
+                    'icon' => 'fa-question',
+                    'active' => Request::is('user/tenders*')?'active':'',
                     'children' => [
                         [
-                            'name' => 'Список новостей',
+                            'name' => 'Список тендеров',
                             'icon' => 'fa-list',
-                            'href' => route('user.blog.index'),
+                            'href' => route('user.tenders.index'),
                         ],[
-                            'name' => 'Добавить новость',
+                            'name' => 'Добавить тендер',
                             'icon' => 'fa-plus',
-                            'href' => route('user.blog.create'),
+                            'href' => route('user.tenders.create'),
+                        ],
+                    ],
+                ],[                
+                    'name' => 'Вакансии',
+                    'icon' => 'fa-wrench',
+                    'active' => Request::is('user/jobs*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список вакансий',
+                            'icon' => 'fa-list',
+                            'href' => route('user.jobs.index'),
+                        ],[
+                            'name' => 'Добавить вакансию',
+                            'icon' => 'fa-plus',
+                            'href' => route('user.jobs.create'),
                         ],
                     ],
                 ],[

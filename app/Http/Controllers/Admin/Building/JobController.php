@@ -155,7 +155,7 @@ class JobController extends Controller
         $job = new Job;
 
         return view('admin.universal.edit',[
-            'title' => 'Добавить новость',
+            'title' => 'Добавить вакансию',
             'action' => route('admin.jobs.store'),
             'fields' => $this->fields($job),
             'item' => $job

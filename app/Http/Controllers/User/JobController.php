@@ -79,16 +79,7 @@ class JobController extends Controller
                 'type' => 'select_multiple',
                 'label' => 'Стройки',
                 'values' => old() ? (array)old('buildings') : $job->buildings->lists('id')->all(),
-                'options' => Building::lists('name','id')
-            ],[
-                'name'=>'company_id',
-                'type'=>'select',
-                'settings'=>'',
-                'label'=>'Компания',
-                'value'=>old() 
-                    ? old('company_id') 
-                    : ($job->company ? $job->company->id : ''),
-                'options'=>Company::lists('name','id')
+                'options' => auth()->user()->company->buildings()->lists('name','id')
             ]
         ];
         
@@ -101,13 +92,10 @@ class JobController extends Controller
     public function index()
     {
 
-        $jobs = Job::paginate(15);
+        $jobs = auth()->user()->company->jobs()->paginate(15);
         $th = [
                 [
                     'title'=>'Название вакансии',
-                    'width'=>'auto',
-                ],[
-                    'title'=>'Компания',
                     'width'=>'auto',
                 ],[
                     'title'=>'Стройки',
@@ -124,14 +112,11 @@ class JobController extends Controller
                     'field'=>$job->name,
                     'type'=>'text',
                 ],[
-                    'field'=>$job->company ? $job->company->name : '',
-                    'type'=>'text',
-                ],[
                     'field'=> $job->buildings,
                     'type'=>'taxonomy',
                 ],[
-                    'edit' => route('admin.jobs.edit', $job),
-                    'delete' => route('admin.jobs.destroy', $job),
+                    'edit' => route('user.jobs.edit', $job),
+                    'delete' => route('user.jobs.destroy', $job),
                     'type'=>'actions',
                 ],
             ]);
@@ -155,8 +140,8 @@ class JobController extends Controller
         $job = new Job;
 
         return view('admin.universal.edit',[
-            'title' => 'Добавить новость',
-            'action' => route('admin.jobs.store'),
+            'title' => 'Добавить вакансию',
+            'action' => route('user.jobs.store'),
             'fields' => $this->fields($job),
             'item' => $job
         ]);
@@ -174,12 +159,17 @@ class JobController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        $job = Job::firstOrNew(['id' => $request->id]);
-        $job->fill($request->only('name','pay','requirements','duties','conditions','information','email','phone','seasonality','company_id','speciality'));
+        $company = auth()->user()->company;
+
+        $job = $company->jobs()->firstOrNew(['id' => $request->id]);
+
+        $job->company_id = $company->id;
+
+        $job->fill($request->only('name','pay','requirements','duties','conditions','information','email','phone','seasonality','speciality'));
         $job->save();
         $job->buildings()->sync((array)$request->buildings);
 
-        return redirect()->route('admin.jobs.index');
+        return redirect()->route('user.jobs.index');
     }
 
     /**
@@ -206,7 +196,7 @@ class JobController extends Controller
 
         return view('admin.universal.edit',[
             'title' => 'Редактировать вакансию',
-            'action' => route('admin.jobs.store'),
+            'action' => route('user.jobs.store'),
             'fields' => $this->fields($job),
             'item' => $job
         ]);
@@ -232,7 +222,7 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        Job::find($id)->delete();
+        auth()->user()->company->tenders()->where('id', $id)->delete();
 
         return back();
     }

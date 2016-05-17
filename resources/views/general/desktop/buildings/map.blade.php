@@ -1,13 +1,14 @@
-@if (!$map->isEmpty())
 <div class="container buildings-map">
 	<div class="buildings-map__control">
-		<div class="page-tabs">
+		<div class="page-tabs inline-block">
 			<a href="{{route('buildings.index')}}" class="page-tabs__nav page-tabs__nav_active">АКТИВНЫЕ СТРОЙКИ</a>
 			<span class="page-tabs__separator"></span>
 			<a href="{{route('jobs.index')}}" class="page-tabs__nav">ВАКАНСИИ</a>
 		</div>
-		<a href="#" class="buildings-map__hide">Скрыть карту</a>
+		<a href="{{route('user.jobs.create')}}" class="add-job inline-block">ДОБАВИТЬ ВАКАНСИЮ</a>
+		@if (!$map->isEmpty()) <a href="#" class="buildings-map__hide">Скрыть карту</a> @endif
 	</div>
+@if (!$map->isEmpty())
 	<div class="buildings-map__map" id="buildings-map__map"></div>
 	<script>
 		document.addEventListener("DOMContentLoaded",function(){
@@ -35,5 +36,5 @@
 			@endforeach
 		});
 	</script>
-</div>
 @endif
+</div>

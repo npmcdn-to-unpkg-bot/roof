@@ -1221,7 +1221,6 @@ td.calendar-block__date_active {
 
 /*page-tabs*/
 .page-tabs {
-
 }
 
 .page-tabs__nav {
@@ -2426,5 +2425,26 @@ td.calendar-block__date_active {
 .social-login_googleplus
 {
 	background-color: rgb(216, 89, 74);
+}
+
+/*add-job*/
+.add-job {
+	margin-left: 10px;
+	background-color: #e1eaed;
+	color: #8ea5b3;
+	width: 130px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 10px;
+	font-family: "Roboto Condensed";
+	text-decoration: none;
+}
+
+/*inline-block*/
+
+.inline-block {
+	display: inline-block;
+	vertical-align: middle;
 }
 /*# sourceMappingURL=desktop.css.map */

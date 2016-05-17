@@ -16,13 +16,11 @@ class Tender extends Model
     public static function validator ($fields) {
     	return Validator::make($fields,[
 				'name' => 'required|max:255',
-				'company' => 'required',
 				'budget' => 'required|max:255',
 				'end' => 'required',
     		],[
 				'name.required' => 'Введите название тендера.',
 				'name.max' => 'Название тендера должно быть не больше 255 символов.',
-				'company.required' => 'Выберите компанию которая проводит тендер.',
 				'budget.required' => 'Введите бюджет.',
 				'budget.max' => 'Описание бюджета должно быть не больше 255 символов.',
 				'end.required' => 'Выберите дату окончания приема заявок.',

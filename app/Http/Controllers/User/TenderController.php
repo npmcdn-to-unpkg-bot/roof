@@ -69,15 +69,6 @@ class TenderController extends Controller
                 'type'=>'ckeditor',
                 'label'=>'Описание тендера',
                 'value'=>old() ? old('description') : $tender->description
-            ],[
-                'name'=>'company',
-                'type'=>'select',
-                'label'=>'Комания',
-                'settings' => 'tags: true,',
-                'value'=>old() 
-                    ? old('company') 
-                    : ($tender->company ? $tender->company->id : $tender->company_name),
-                'options'=>$companies
             ]
         ];
         
@@ -90,7 +81,7 @@ class TenderController extends Controller
     public function index()
     {
 
-        $tenders = Tender::paginate(15);
+        $tenders = auth()->user()->company->tenders()->paginate(15);
         $th = [
                 [
                     'title'=>'Название',
@@ -119,8 +110,8 @@ class TenderController extends Controller
                     'field'=>$tender->end,
                     'type'=>'date',
                 ],[
-                    'edit' => route('admin.tenders.edit', $tender),
-                    'delete' => route('admin.tenders.destroy', $tender),
+                    'edit' => route('user.tenders.edit', $tender),
+                    'delete' => route('user.tenders.destroy', $tender),
                     'type'=>'actions',
                 ],
             ]);
@@ -146,7 +137,7 @@ class TenderController extends Controller
 
         return view('admin.universal.edit',[
             'title' => 'Добавить тендер',
-            'action' => route('admin.tenders.store'),
+            'action' => route('user.tenders.store'),
             'fields' => $this->fields($tender),
             'item' => $tender
         ]);
@@ -166,15 +157,11 @@ class TenderController extends Controller
 
         $request->merge(['end' => Carbon::parse($request->end)]);
 
-        $tender = Tender::firstOrNew(['id' => $request->id]);
+        $company = auth()->user()->company;
 
-        if (Company::find($request->company)) {
-            $tender->company_id = $request->company;
-            $tender->company_name = '';
-        } else {
-            $tender->company_id = 0;
-            $tender->company_name = $request->company;
-        }
+        $tender = $company->tenders()->firstOrNew(['id' => $request->id]);
+
+        $tender->company_id = $company->id;
 
         if ($request->image&&Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
@@ -185,7 +172,7 @@ class TenderController extends Controller
         $tender->fill($request->only('name','description','budget','image','end','person','email','phone'));
         $tender->save();
 
-        return redirect()->route('admin.tenders.index');
+        return redirect()->route('user.tenders.index');
     }
 
     /**
@@ -212,7 +199,7 @@ class TenderController extends Controller
 
         return view('admin.universal.edit',[
             'title' => 'Редактировать тендер',
-            'action' => route('admin.tenders.store'),
+            'action' => route('user.tenders.store'),
             'fields' => $this->fields($tender),
             'item' => $tender
         ]);
@@ -238,7 +225,7 @@ class TenderController extends Controller
      */
     public function destroy($id)
     {
-        Tender::find($id)->delete();
+        auth()->user()->company->tenders()->where('id', $id)->delete();
 
         return back();
     }

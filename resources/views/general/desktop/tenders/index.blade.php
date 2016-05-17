@@ -32,7 +32,7 @@
 
 			</div>
 			<div class="container__col-4">
-				<a href="{{route('user.offers.index')}}" class="button button_orange button_huge offset_vertical_55">ДОБАВИТЬ ТЕНДЕР</a>
+				<a href="{{route('user.tenders.create')}}" class="button button_orange button_huge offset_vertical_55">ДОБАВИТЬ ТЕНДЕР</a>
 				@include('general.desktop.events.block')
 				<div class="offset_vertical_55">@include('general.desktop.area.banner',['area' => 'Тендеры архив 1'])</div>
 				<div class="offset_vertical_55">@include('general.desktop.polls.block')</div>

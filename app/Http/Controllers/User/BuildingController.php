@@ -184,7 +184,8 @@ class BuildingController extends Controller
             'end' => Carbon::createFromFormat('m Y', $request->end),
         ]);
 
-        $building = Auth::user()
+        $building = auth()
+            ->user()
             ->company
             ->buildings()
             ->firstOrNew(['id' => $request->id]);

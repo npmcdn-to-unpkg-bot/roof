@@ -96,6 +96,10 @@ class Company extends Model
         return $this->hasMany('App\Models\Catalog\Example');
     }
 
+    public function tenders () {
+        return $this->hasMany('App\Models\Tender');
+    }
+
     public function propositions () {
     	return $this->belongsToMany(
             'App\Models\Catalog\Proposition',
