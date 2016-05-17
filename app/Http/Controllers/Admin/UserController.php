@@ -63,6 +63,9 @@ class UserController extends Controller
                     'title'=>'Имя',
                     'width'=>'auto',
                 ],[
+                    'title'=>'Права',
+                    'width'=>'auto',
+                ],[
                     'title'=>'email',
                     'width'=>'auto',
                 ],[
@@ -82,6 +85,9 @@ class UserController extends Controller
                 ],[
                     'field'=>$user->name,
                     'type'=>'text',
+                ],[
+                    'field'=>$user->roles->implode('role',', '),
+                    'type'=>'text'
                 ],[
                     'field'=>$user->email,
                     'type'=>'text',
