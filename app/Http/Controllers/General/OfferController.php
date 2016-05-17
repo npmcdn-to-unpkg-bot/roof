@@ -23,7 +23,7 @@ class OfferController extends Controller
         if ($request->search) $offers = $offers->where('title', 'LIKE', '%'.$request->search.'%');
         if ($request->created_at) $offers = $offers->where('created_at', '>=', Carbon::now()->subWeek($request->created_at));
         $offers = $offers->paginate(10);
-        return response()->general('desk.index',[
+        return view('general.desk.index',[
             'offers' => $offers
         ]); 
     }
@@ -36,7 +36,7 @@ class OfferController extends Controller
      */
     public function show($id)
     {
-        return response()->general('desk.show',[
+        return view('general.desk.show',[
             'offer' => Offer::find($id)
         ]); 
     }

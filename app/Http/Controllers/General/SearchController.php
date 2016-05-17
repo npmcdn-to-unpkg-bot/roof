@@ -10,6 +10,6 @@ use App\Http\Controllers\Controller;
 class SearchController extends Controller
 {
     function index() {
-		return response()->general('search.index');
+		return view('general.search.index');
     }
 }

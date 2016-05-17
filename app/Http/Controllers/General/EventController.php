@@ -16,12 +16,12 @@ class EventController extends Controller
      */
     public function index()
     {
-        return response()->general('events.index');
+        return view('general.events.index');
     }
 
     public function calendar($date)
     {
-        return response()->general('events.index',[
+        return view('general.events.index',[
             'current'=>$date
         ]);
     }
@@ -34,7 +34,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        return response()->general('events.show', [
+        return view('general.events.show', [
             'event' => Event::find($id)
         ]);
     }

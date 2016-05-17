@@ -17,7 +17,7 @@ class SaleController extends Controller
     public function index()
     {
         $sales = Sale::orderBy('created_at', 'desc')->paginate(15);
-        return response()->general('sales.index', [
+        return view('general.sales.index', [
             'sales' => $sales
         ]);
     }
@@ -30,7 +30,7 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        return response()->general('sales.show', [
+        return view('general.sales.show', [
             'sale' => Sale::find($id)
         ]);
     }

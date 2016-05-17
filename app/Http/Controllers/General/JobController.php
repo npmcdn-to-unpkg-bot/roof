@@ -51,7 +51,7 @@ class JobController extends Controller
         $types = Building::distinct()->lists('type');
         $specialities = Job::distinct()->lists('speciality');
 
-        return response()->general('buildings.jobs', [
+        return view('general.buildings.jobs', [
             'jobs' => $jobs->paginate(20),
             'map' => $map,
             'cities' => $cities,

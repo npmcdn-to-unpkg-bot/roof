@@ -17,7 +17,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::orderBy('created_at', 'desc')->paginate(15);
-        return response()->general('news.index', [
+        return view('general.news.index', [
             'articles' => $articles
         ]);
     }
@@ -30,7 +30,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        return response()->general('news.show', [
+        return view('general.news.show', [
             'article' => Article::find($id)
         ]);
     }

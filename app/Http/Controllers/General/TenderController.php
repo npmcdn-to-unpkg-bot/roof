@@ -18,7 +18,7 @@ class TenderController extends Controller
     public function index()
     {
         $tenders = Tender::orderBy('created_at', 'desc')->paginate(15);
-        return response()->general('tenders.index', [
+        return view('general.tenders.index', [
             'tenders' => $tenders
         ]);
     }
@@ -31,7 +31,7 @@ class TenderController extends Controller
      */
     public function show($id)
     {
-        return response()->general('tenders.show', [
+        return view('general.tenders.show', [
             'tender' => Tender::find($id)
         ]);
     }

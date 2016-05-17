@@ -157,7 +157,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProviders::class,
-        App\Providers\AgentServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Pqb\FilemanagerLaravel\FilemanagerLaravelServiceProvider::class
 

@@ -34,7 +34,7 @@
 				@endif
 			</a>
 			<a href="#" style="background-color: #6fc0d1; background-image: url(/img/user-menu-4.png);" class="actions-menu__item search-block__show"></a>
-			@include('general.desktop.search.block')
+			@include('general.search.block')
 		</div>
 	</div>
 	<div class="container-fluid container-fluid_blue">

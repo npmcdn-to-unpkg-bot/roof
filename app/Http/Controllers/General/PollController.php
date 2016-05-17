@@ -18,7 +18,7 @@ class PollController extends Controller
     public function index()
     {
         $polls = Poll::orderBy('created_at', 'desc')->paginate(15);
-        return response()->general('polls.index', [
+        return view('general.polls.index', [
             'polls' => $polls
         ]);
     }

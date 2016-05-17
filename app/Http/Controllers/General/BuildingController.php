@@ -53,7 +53,7 @@ class BuildingController extends Controller
         $types = Building::distinct()->lists('type');
         $specialities = Job::distinct()->lists('speciality');
 
-        return response()->general('buildings.index', [
+        return view('general.buildings.index', [
             'buildings' => $buildings->paginate(9),
             'map' => $map->take(100)->get(),
             'cities' => $cities,
@@ -72,7 +72,7 @@ class BuildingController extends Controller
      */
     public function show($id)
     {
-        return response()->general('buildings.show', [
+        return view('general.buildings.show', [
             'building' => Building::with('company', 'jobs')->find($id)
         ]);
     }

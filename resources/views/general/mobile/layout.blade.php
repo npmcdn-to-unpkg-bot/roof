@@ -24,7 +24,7 @@
 				@endif
 			</a>
 			<a href="#" style="background-color: #6fc0d1; background-image: url(/img/user-menu-4.png);" class="actions-menu__item search-block__show"></a>
-			@include('general.mobile.search.block')
+			@include('general.search.block')
 			<a href="#" style="background-color: #4376ba; background-image: url();" class="actions-menu__item search-block__show"></a>
 		</div>
 	</div>
@@ -61,7 +61,7 @@
 	<div class="container-fluid container-fluid_gray">
 		<div class="container container_screen">
 			<div class="container__row">
-				<div class="container__col-6 menu menu_vertical menu_big menu_uppercase menu_gray">
+				<div class="container__col-left menu menu_vertical menu_big menu_uppercase menu_gray">
 					<a href="{{ route('catalog.index') }}" class="menu__item">Каталог компаний</a>
 					<a href="{{ route('buildings.index') }}" class="menu__item">Стройки и вакансии</a>
 					<a href="{{ route('desk.index') }}" class="menu__item">Доска объявлений</a>
@@ -69,7 +69,7 @@
 					<a href="{{ route('knowladge.index') }}" class="menu__item">База знаний</a>
 					<a href="{{ route('news.index') }}" class="menu__item">Новости</a>					
 				</div>
-				<div class="container__col-6 text_right menu menu_vertical menu_big menu_uppercase menu_gray">
+				<div class="container__col-right text_right menu menu_vertical menu_big menu_uppercase menu_gray">
 					<a href="#" class="menu__item">ОБ АССОЦИАЦИИ</a>
 					<a href="{{route('events.index')}}" class="menu__item">КАЛЕНДАРЬ</a>
 					<a href="#" class="menu__item">ОПРОСЫ</a>

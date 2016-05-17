@@ -38,7 +38,7 @@ class CompanyController extends Controller
             Company::where('id', $company->id)->update(['rating'=>$company->rating]);
         }
 
-        return response()->general('catalog.index', [
+        return view('general.catalog.index', [
             'companies' => $companies,
             'search' => $request->search
         ]);
@@ -46,7 +46,7 @@ class CompanyController extends Controller
 
    public function specialisation ($id) {
 
-        return response()->general('catalog.index', [
+        return view('general.catalog.index', [
             'companies' => Specialisation::find($id)
                         ->companies()
                         ->orderBy('level','desc')
@@ -60,7 +60,7 @@ class CompanyController extends Controller
 
     public function proposition ($id) {
 
-        return response()->general('catalog.index', [
+        return view('general.catalog.index', [
             'companies' => Proposition::find($id)
                         ->companies()
                         ->orderBy('level','desc')
@@ -88,7 +88,7 @@ class CompanyController extends Controller
             + $company->level*0.2;
         Company::where('id', $company->id)->update(['rating'=>$company->rating]);
 
-        return response()->general('catalog.show',[
+        return view('general.catalog.show',[
             'company' => $company
         ]);
     }
@@ -101,7 +101,7 @@ class CompanyController extends Controller
      */
     public function example($id)
     {
-        return response()->general('catalog.example',[
+        return view('general.catalog.example',[
             'example' => Example::find($id)
         ]);
     }

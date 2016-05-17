@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {	
-	return response()->general('index',
+	return view('general.index',
 		[
 			'companies' => App\Models\Catalog\Company::orderBy('level','desc')
 		            ->orderBy(DB::raw('level*max_level_start'))
@@ -38,7 +38,7 @@ Route::get('example/{id}', 'General\CompanyController@example');
 Route::get('events/calendar/{date}', 'General\EventController@calendar');
 Route::get('search', 'General\SearchController@index');
 Route::get('knowladge', ['as' => 'knowladge.index', function () {
-		return response()->general('knowladge.index');
+		return view('general.knowladge.index');
 	}]);
 Route::get('knowladge/library/category/{id}', 'General\LibraryController@category');
 
