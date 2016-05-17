@@ -1,9 +1,12 @@
 /*reset*/
+
+html * {max-height:1000000px;}
+
 html {
 	color:#000;
 	background:#FFF;
 	font-family: "PT Sans", sans-serif;
-	font-size: 14px}
+	font-size: 20px}
 body,div,pre,code,form,fieldset,legend,input,textarea,blockquote,th,td {
 	margin:0;
 	padding:0
@@ -286,6 +289,7 @@ a {
 
 .container__col-sm-12{
 	width: 100%;
+	float: none;
 }
 
 
@@ -429,11 +433,19 @@ a {
 }
 
 .menu_medium .menu__item {
-	font-size: 18px;
+	
 }
 
 .menu_big .menu__item {
 	font-size: 20px;
+}
+
+.menu_large .menu__item {
+	font-size: 25px;
+}
+
+.menu_lh_48 .menu__item{
+	line-height: 48px;
 }
 
 /*title*/
@@ -443,7 +455,6 @@ a {
 	color: #0a3955;
 	font-family: "Roboto Condensed";
 	font-weight: 300;
-	line-height: 30px;
 	text-transform: uppercase;
 }
 
@@ -471,7 +482,7 @@ a {
 }
 
 .catalog-company__title {
-	font-size: 18px;
+	
 	line-height: 18px;
 	font-weight: bold;
 	color: black;
@@ -536,7 +547,7 @@ a {
 .buildings-block__tab-content {
 	padding: 0px 20px;
 	overflow: hidden;
-	height: 360px;
+	height: 420px;
 }
 
 .buildings-block__nav-tab {
@@ -648,9 +659,9 @@ a {
 }
 
 .market-news__title {
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: bold;
-	line-height: 18px;
+	line-height: 25px;
 	color: black;
 	text-decoration: none;
 	display: block;
@@ -658,7 +669,7 @@ a {
 
 .market-news__post-date {
 	color: #9bafb6;
-	font-size: 12px;
+	
 }
 
 .market-news__text {
@@ -678,7 +689,6 @@ a {
 
 .market-news__createdat {
     color: #9bafb6;
-    font-size: 12px;
     line-height: 30px;
     font-weight: bold;
 }
@@ -686,7 +696,6 @@ a {
 
 .market-news__more {
     color: #9bafb6;
-    font-size: 12px;
     font-weight: 700;
     text-decoration: underline;
     text-align: right;
@@ -715,7 +724,7 @@ a {
 	border-right: 12px solid transparent;
 	border-left: 12px solid transparent;
 	color: white;
-	font-size: 18px;
+	
 	text-decoration: none;
 	line-height: 24px;
 }
@@ -723,7 +732,7 @@ a {
 .knowladge-slider__navigation-item:before {
 	content: '>';
 	float: right;
-	font-size: 18px;
+	
 	margin-top: 18px;
 }
 
@@ -763,7 +772,6 @@ a {
 }
 /*question*/
 .question {
-	line-height: 24px;
 }
 
 .question__text {
@@ -859,7 +867,7 @@ td.calendar__date_active {
 
 td.calendar__date_active .calendar__day{
 	color: white;
-	font-size: 18px;
+	
 	top: 84px;
 	right: 5px;
 	z-index: 9;
@@ -894,7 +902,6 @@ td.calendar__date_active .calendar__day{
 .calendar__event {
 	display: block;
 	text-decoration: none;
-	font-size: 14px;
 	color: #6fc0d1;
 	padding-top: 13px;
 	padding-bottom: 13px;
@@ -1083,7 +1090,6 @@ td.calendar-block__date_active {
 
 .objavlenie {
 	margin-top: 30px;
-	font-size: 16px;
 	text-decoration: none;
 	text-align: center;
 	color: black;
@@ -1202,7 +1208,7 @@ td.calendar-block__date_active {
 
 .breadcrumbs__path{
 	text-decoration: underline;
-	font-size: 18px;
+	
 	display: inline-block;
 	vertical-align: bottom;
 	color: white;
@@ -1282,7 +1288,7 @@ td.calendar-block__date_active {
 }
 
 /*jus*/
-.jus {
+/*.jus {
 	text-align: justify;
 }
 
@@ -1299,7 +1305,7 @@ td.calendar-block__date_active {
 	margin-right: 0;
 	text-align: left;
 	vertical-align: middle;
-}
+}*/
 
 /*buding*/
 
@@ -1327,10 +1333,9 @@ td.calendar-block__date_active {
 }
 
 .building__gallery {
-	width: 700px;
+	width: 610px;
 	margin-left: auto;
 	margin-right: auto;
-	overflow: hidden;
 }
 
 .building__gallery li {
@@ -1412,15 +1417,15 @@ td.calendar-block__date_active {
 
 .page-nav__item {
 	display: inline-block;
-	width: 30px;
-	height: 30px;
+	width: 50px;
+	height: 50px;
 	box-sizing: border-box;
 	background-color: #88b2bf;
 	color: white;
 	text-decoration: none;
-	font-size: 18px;
+	font-size: 21px;
 	border: 1px solid #88b2bf;
-	line-height: 30px;
+	line-height: 50px;
 	margin-bottom: 14px;
 	margin-left: 3px;
 	margin-top: 3px;
@@ -1501,7 +1506,7 @@ td.calendar-block__date_active {
 /*taxonomy*/
 
 .taxonomy {
-	font-size: 16px;
+	
 }
 
 .taxonomy__item {
@@ -1525,7 +1530,7 @@ td.calendar-block__date_active {
 }
 
 .company-cart_heihgt_220 {
-	height: 220px;
+	height: 280px;
 }
 
 .company-cart__logo {
@@ -1553,7 +1558,6 @@ td.calendar-block__date_active {
 }
 
 .company-cart__post-date {
-	font-size: 12px;
 	color: #88b2bf;
 }
 
@@ -1620,7 +1624,7 @@ td.calendar-block__date_active {
 
 .company-cart_big {
 	padding: 24px;
-	height: 220px;
+	height: 280px;
 }
 
 .company-cart_small {
@@ -1642,7 +1646,7 @@ td.calendar-block__date_active {
 }
 
 .company-cart_page .company-cart__description {
-	font-size: 18px;
+	
 	margin-left: 200px;
 	height: auto;
 	padding-bottom: 15px;
@@ -1661,7 +1665,7 @@ td.calendar-block__date_active {
 /*company-cart-slider*/
 
 .company-cart-slider {
-	width: 1040px;
+	width: 510px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -1692,7 +1696,7 @@ td.calendar-block__date_active {
 .staff__name {
 	padding-top: 20px;
 	padding-bottom: 18px;
-	font-size: 18px;
+	
   	line-height: 1.2;
 }
 
@@ -1718,7 +1722,7 @@ td.calendar-block__date_active {
 	text-decoration: underline;
 	text-transform: uppercase;
 	color: black;
-	font-size: 18px;
+	
 }
 
 /*reviews*/
@@ -1804,7 +1808,7 @@ td.calendar-block__date_active {
 	border:1px solid #88b2bf;
 	display: block;
 	width: 100%;
-	font-size: 18px;
+	
 	padding: 20px;
 	box-sizing: border-box;
 	height: 160px;
@@ -1812,7 +1816,7 @@ td.calendar-block__date_active {
 .reviews-form__rate {
 	font-family: "Open Sans";
 	font-weight: bold;
-	font-size: 18px;
+	
 	line-height: 50px;
 	margin-top: 20px;
 }
@@ -1828,12 +1832,14 @@ td.calendar-block__date_active {
 .tabs__nav {
 	border:2px solid #88b2bf;
 	box-sizing: border-box;
-	width: 150px;
+	width: 190px;
+	margin-bottom: 30px;
 	height: 40px;
 	text-decoration: none;
 	text-align: center;
 	line-height: 36px;
 	font-size: 22px;
+	display: inline-block;
 	color: #88b2bf;
 	font-family: "Roboto Condensed";
 }
@@ -1882,14 +1888,14 @@ td.calendar-block__date_active {
 	text-decoration: none;
 	display: block;
 	font-weight: bold;
-	font-size: 18px;
+	
 }
 
 /*file-link*/
 
 .file-link {
 	display: block;
-	font-size: 18px;
+	
 	color: black;
 	font-weight: bold;
 	line-height: 1.344;
@@ -1929,7 +1935,7 @@ td.calendar-block__date_active {
 .desk-top__title {
 	font-weight: bold;
 	color: #88b2bf;
-	font-size: 16px;
+	
 }
 .desk-top__text {
 	padding: 20px;
@@ -1960,7 +1966,7 @@ td.calendar-block__date_active {
 	display: block;
  	margin-left: 185px;
  	font-weight: bold;
- 	font-size: 18px;
+ 	
  	text-decoration: none;
 }
 .desk-item__bottom {
@@ -1989,7 +1995,7 @@ td.calendar-block__date_active {
 .title-light {
 	font-weight: bold;
 	color: #88b2bf;
-	font-size: 16px;
+	
 	line-height: 24px;
 	text-transform: uppercase;
 	display: block;	
@@ -2002,7 +2008,7 @@ td.calendar-block__date_active {
 }
 
 .desk-single__title {
-	font-size: 18px;
+	
 	font-weight: bold;
 }
 
@@ -2034,7 +2040,7 @@ td.calendar-block__date_active {
 .desk-single__person,
 .desk-single__phone,
 .desk-single__email {
-	font-size: 18px;
+	
 	padding-left: 35px;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -2104,7 +2110,7 @@ td.calendar-block__date_active {
 	line-height: 22px;
 	margin-top: 14px;
 	margin-bottom: 14px;
-	font-size: 18px;
+	
 	color: black;
 }
 
@@ -2150,7 +2156,7 @@ td.calendar-block__date_active {
 .small-title {
 	font-weight: bold;
 	color: #88b2bf;
-	font-size: 16px;
+	
 	line-height: 24px;
 	text-transform: uppercase;
 	display: block;
@@ -2159,7 +2165,7 @@ td.calendar-block__date_active {
 /*field*/
 
 .field{
-	font-size: 16px;
+	
 	padding-left: 33px;
 	display: block;
 	padding-top: 5px;
@@ -2235,7 +2241,6 @@ td.calendar-block__date_active {
 
 .post__created-at {
   float: left;
-  font-size: 10px;
   color: #999999;
 }
 
@@ -2244,7 +2249,6 @@ td.calendar-block__date_active {
 }
 
 .post__library {
-  font-size: 12px;
   color: #999999;
   text-decoration: none;
 }
@@ -2291,8 +2295,9 @@ td.calendar-block__date_active {
 }
 
 .post-page__image {
-	float: left;
-	margin-right: 20px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 	margin-bottom: 20px;
 }
 
@@ -2328,9 +2333,8 @@ td.calendar-block__date_active {
 }
 
 .tender__name {
-	font-size: 18px;
+	
     font-weight: bold;
-    line-height: 18px;
     color: black;
     text-decoration: none;
     display: block;
@@ -2379,7 +2383,7 @@ td.calendar-block__date_active {
 	border: none;
 	font-family: "Roboto Condensed";
 	color:  rgb(170, 189, 196);
-	font-size: 18px;
+	
 	font-weight: 300;
 }
 
@@ -2393,7 +2397,7 @@ td.calendar-block__date_active {
 	height: 46px;
 	font-family: "Roboto Condensed";
 	color:  rgb(170, 189, 196);
-	font-size: 18px;
+	
 	font-weight: 300;
 	box-sizing: border-box;
 	vertical-align: middle;
@@ -2430,6 +2434,13 @@ td.calendar-block__date_active {
 /*main-menu*/
 #main-menu {
 	display: none;
+	position: absolute;
+	background-color: #5575b6;
+	padding: 41px;
+	right: 0;
+	top: 108px;
+	width: 330px;
+	z-index: 99;
 }
 
 /*association-title*/
@@ -2437,9 +2448,24 @@ td.calendar-block__date_active {
 	background: #003655;
 	color: white;
 	font-family: "Roboto Condensed";
-	font-size: 20px;
+	font-size: 30px;
     font-weight: 300;
 	border-top:8px solid #a3bec6;
 	line-height: 81px;
+}
+
+/*add-job*/
+.add-job {
+	margin-top: 10px;
+	background-color: #e1eaed;
+	color: #8ea5b3;
+	width: 215px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	
+	display: block;
+	font-family: "Roboto Condensed";
+	text-decoration: none;
 }
 /*# sourceMappingURL=mobile.css.map */

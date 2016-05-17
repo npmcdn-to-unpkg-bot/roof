@@ -114,10 +114,6 @@ $(document).ready(function(){
 		$('.masonry').masonry();
 	});
 
-	$('.search-block__show').click(function() {
-		$('.search-block__form').toggle();
-	});
-
 	$('.fancybox').click(function(e){
 		e.preventDefault();
 		$.get({
@@ -128,6 +124,23 @@ $(document).ready(function(){
 				});
 			}
 		});
+	});
+
+	$('.search-block__show').click(function() {
+		event.preventDefault();
+		event.stopPropagation();
+		$('.search-block__form').toggle();
+	});
+
+	$('.main-menu__show').click(function(event){
+		event.preventDefault();
+		event.stopPropagation();
+		$('#main-menu').slideToggle();
+	});
+
+	$('html').click(function(){
+		$('#main-menu').slideUp();
+		$('.search-block__form').hide();
 	});
 
 });

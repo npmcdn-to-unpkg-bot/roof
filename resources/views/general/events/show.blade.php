@@ -7,21 +7,21 @@
 	</div>
 	<div class="container offset_bottom_60">
 		<div class="container__row">
-			<div class="container__col-8">
+			<div class="container__col-8 container__col-sm-12">
 				<div class="title">{{$event->name}}</div>
-				<div class="offset_vertical_30"><img src="/width/765/{{$event->image}}" alt=""></div>
+				<div class="offset_vertical_30"><img src="/width/{{Agent::isMobile() ? '610' : '765'}}/{{$event->image}}" alt=""></div>
 				<div class="container__row">
-					<div class="container__col-6">
+					<div class="container__col-6 container__col-sm-12">
 						<div class="field field_info">
 							<div class="small-title">ИНФОРМАЦИЯ О МЕРОПРИЯТИИ</div>
 							{!!$event->information!!}
 						</div>
 					</div>
-					<div class="container__col-6">
+					<div class="container__col-6 container__col-sm-12">
 						<div class="field field_period">{{$event->start->format('d.m')}} - {{$event->end->format('d.m')}}</div>
 						<div class="field field_company">{{$event->founder}}</div>
 						<div class="field field_address">{{$event->printAddress()}}</div>
-						<div id="event_map" style="width: 360px;height: 250px;"></div>
+						<div id="event_map" style="width: {{Agent::isMobile() ? '610' : '360'}}px;height: 250px;"></div>
 						<script>
 						document.addEventListener('DOMContentLoaded',function () {
 							var eventMap = new google.maps.Map(
@@ -46,9 +46,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="container__col-4">
-				@include('general.events.block')
-				<div class="offset_vertical_55">@include('general.area.banner',['area' => 'news.show.1'])</div>
+			<div class="container__col-4 container__col-sm-12">
+				<div class="offset-sm_vertical_30">@include('general.events.block')</div>
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'news.show.1'])</div>
 			</div>
 		</div>
 	</div>

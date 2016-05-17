@@ -6,11 +6,11 @@
 	</div>
 	<div class="container">
 		<div class="container__row">
-			<div class="container__col-8">
+			<div class="container__col-8 container__col-sm-12">
 				<div class="title">АКТИВНЫЕ ТЕНДЕРЫ</div>
 
 				@foreach ($tenders as $tender)
-					<div class="tender offset_vertical_20">
+					<div class="tender offset_vertical_20 offset-sm_vertical_30">
 						@if ($tender->image)
 							<a href="{{route('tenders.show', $tender)}}"><img class="tender__image" src="/fit/85/85/{{$tender->image}}" alt=""></a>
 						@endif
@@ -31,12 +31,12 @@
 				@include('general.pagenav',['items'=>$tenders])
 
 			</div>
-			<div class="container__col-4">
-				<a href="{{route('user.tenders.create')}}" class="button button_orange button_huge offset_vertical_55">ДОБАВИТЬ ТЕНДЕР</a>
+			<div class="container__col-4 container__col-sm-12">
+				<a href="{{route('user.tenders.create')}}" class="button button_orange button_huge offset_vertical_55 offset-sm_vertical_30">ДОБАВИТЬ ТЕНДЕР</a>
 				@include('general.events.block')
-				<div class="offset_vertical_55">@include('general.area.banner',['area' => 'Тендеры архив 1'])</div>
-				<div class="offset_vertical_55">@include('general.polls.block')</div>
-				<div class="offset_vertical_55">@include('general.area.banner',['area' => 'Тендеры архив 2'])</div>
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Тендеры архив 1'])</div>
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.polls.block')</div>
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Тендеры архив 2'])</div>
 			</div>
 		</div>
 	</div>

@@ -25,18 +25,24 @@
 			</a>
 			<a href="#" style="background-color: #6fc0d1; background-image: url(/img/user-menu-4.png);" class="actions-menu__item search-block__show"></a>
 			@include('general.search.block')
-			<a href="#" style="background-color: #4376ba; background-image: url();" class="actions-menu__item search-block__show"></a>
-		</div>
-	</div>
-	<div id="main-menu">
-		<div class="menu menu_horizontal menu_uppercase menu_no_underline menu_big menu_white menu_justified menu_main">
-			<a href="{{ route('catalog.index') }}" class="{{ Request::is('catalog*')?'menu__item_active':'' }} menu__item">Каталог компаний</a>
-			<a href="{{ route('buildings.index') }}" class="{{ Request::is('buildings*')?'menu__item_active':'' }} menu__item">Стройки и вакансии</a>
-			<a href="{{ route('desk.index') }}" class="{{ Request::is('desk*')?'menu__item_active':'' }} menu__item">Доска объявлений</a>
-			<a href="{{ route('tenders.index') }}" class="{{ Request::is('tenders*')?'menu__item_active':'' }} menu__item">Тендеры</a>
-			<a href="{{ route('sales.index') }}" class="{{ Request::is('sales*')?'menu__item_active':'' }} menu__item">Акции и скидки</a>
-			<a href="{{ route('knowladge.index') }}" class="{{ Request::is('knowladge*')?'menu__item_active':'' }} menu__item">База знаний</a>
-			<a href="{{ route('news.index') }}" class="{{ Request::is('news*')?'menu__item_active':'' }} menu__item">Новости</a>
+			<a href="#" style="background-color: #5575b6; background-image: url(/img/user-menu-5.png);" class="actions-menu__item main-menu__show"></a>
+			<div id="main-menu">
+				<div class="menu menu_vertical menu_lh_48 menu_large menu_uppercase menu_no_underline menu_white menu_justified menu_main">
+					<a href="{{ route('catalog.index') }}" class="{{ Request::is('catalog*')?'menu__item_active':'' }} menu__item">Каталог компаний</a>
+					<a href="{{ route('buildings.index') }}" class="{{ Request::is('buildings*')?'menu__item_active':'' }} menu__item">Стройки и вакансии</a>
+					<a href="{{ route('desk.index') }}" class="{{ Request::is('desk*')?'menu__item_active':'' }} menu__item">Доска объявлений</a>
+					<a href="{{ route('tenders.index') }}" class="{{ Request::is('tenders*')?'menu__item_active':'' }} menu__item">Тендеры</a>
+					<a href="{{ route('sales.index') }}" class="{{ Request::is('sales*')?'menu__item_active':'' }} menu__item">Акции и скидки</a>
+					<a href="{{ route('knowladge.index') }}" class="{{ Request::is('knowladge*')?'menu__item_active':'' }} menu__item">База знаний</a>
+					<a href="{{ route('news.index') }}" class="{{ Request::is('news*')?'menu__item_active':'' }} menu__item">Новости</a>
+				</div>
+				<div class="menu menu_vertical menu_lh_48 menu_uppercase menu_big menu_white menu_justified menu_main">
+					<a href="#" class="menu__item">Об ассоциации</a>
+					<a href="{{ route('events.index') }}" class="menu__item">Календарь</a>
+					<a href="{{ route('polls.index') }}" class="menu__item">Опросы</a>
+					<a href="" class="menu__item">Контакты</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="container-fluid association-title">

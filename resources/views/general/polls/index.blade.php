@@ -6,12 +6,12 @@
 	</div>
 	<div class="container">
 		<div class="container__row">
-			<div class="container__col-8">
+			<div class="container__col-8 container__col-sm-12">
 				@include('general.polls.block')
 
-				<div class="title offset_vertical_30">АРХИВ ОПРОСОВ</div>
+				<div class="title offset_vertical_30 offset-sm_vertical_30">АРХИВ ОПРОСОВ</div>
 				@foreach ($polls as $poll)
-					<div class="poll offset_vertical_30">
+					<div class="poll offset_vertical_30 offset-sm_vertical_30">
 						<div class="poll__question">{{ $poll->question }}</div>
 						<div class="poll__created-at">{{$poll->created_at->format('d.m.Y')}}</div>
 						<div class="poll__more">
@@ -33,10 +33,10 @@
 				@include('general.pagenav',['items'=>$polls])
 
 			</div>
-			<div class="container__col-4">
+			<div class="container__col-4 container__col-sm-12">
 				@include('general.area.banner',['area' => 'Опросы архив 1'])
-				<div class="offset_vertical_55">@include('general.news.block')</div>
-				<div class="offset_vertical_55">@include('general.events.block')</div>
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.news.block')</div>
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.events.block')</div>
 			</div>
 		</div>
 	</div>

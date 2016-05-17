@@ -6,7 +6,7 @@
 	<span class="breadcumbs__current">БИБЛИОТЕКА</span>
 </div>
 
-<div class="container offset_vertical_40">
+<div class="container offset_vertical_40 offset-sm_vertical_30">
 	<div class="library">
 		<span class="library__label">Рубрики</span>
 		<a class="library__item" href="{{route('knowladge.library.index')}}">Все рубрики</a>
@@ -19,7 +19,7 @@
 <div class="container">
 	<div class="container__row masonry">
 		@foreach ($posts as $i => $post)
-			<div class="container__col-4 post offset_bottom_45">
+			<div class="container__col-4 container__col-sm-12 offset-sm_vertical_30 post offset_bottom_45 ">
 				<img src="/width/360/{{$post->image}}" class="post__image">
 				<div class="post__content">
 					<a href="{{route('knowladge.library.show', $post)}}" class="post__title">{{$post->title}}</a>
@@ -34,9 +34,9 @@
 					</div>
 				</div>
 			</div>
-			@if ($i==1) <div class="container__col-4 offset_bottom_45">@include('general.area.banner',['area' => 'Библиотека архив 1'])</div> @endif
+			@if ($i==1) <div class="container__col-4 container__col-sm-12 offset-sm_vertical_30 offset_bottom_45">@include('general.area.banner',['area' => 'Библиотека архив 1'])</div> @endif
 		@endforeach
-		@if ($posts->count() < 2) <div class="container__col-4 offset_bottom_45">@include('general.area.banner',['area' => 'Библиотека архив 1'])</div> @endif
+		@if ($posts->count() < 2) <div class="container__col-4 container__col-sm-12 offset-sm_vertical_30 offset_bottom_45">@include('general.area.banner',['area' => 'Библиотека архив 1'])</div> @endif
 	</div>
 	@include('general.pagenav',['items'=>$posts])
 </div>

@@ -9,8 +9,8 @@
 	<div id="buildings" class="container">
 		@foreach ($buildings as $i => $building)
 			@if ($i%3==0) <div class="container__row offset_vertical_60"> @endif
-				<div class="container__col-4 building">
-					@if ($building->images->first()) <a href="{{ route('buildings.show', $building) }}"><img src="/fit/370/200/{{ $building->images->first()->name }}" alt="" class="building__image"></a> @endif
+				<div class="container__col-4 container__col-sm-12 offset-sm_vertical_60 building">
+					@if ($building->images->first()) <a href="{{ route('buildings.show', $building) }}"><img src="/fit/{{Agent::isMobile()?'610/420':'370/200'}}/{{ $building->images->first()->name }}" alt="" class="building__image"></a> @endif
 					<a href="{{ route('buildings.show', $building) }}" class="building__name">{{ $building->name }}</a>
 					<span class="field field_type">{{ $building->type }}</span>
 					@if ($building->company) <a href="{{ route('catalog.show', $building->company) }}" class="field field_company">{{ $building->company->name }}</a> 

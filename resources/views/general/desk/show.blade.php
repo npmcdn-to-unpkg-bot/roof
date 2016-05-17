@@ -7,24 +7,18 @@
 	</div>
 	<div class="container">
 		<div class="container__row">
-			<div class="container__col-8">
+			<div class="container__col-8 container__col-sm-12">
 				<div class="title">ОБЪЯВЛЕНИЯ</div>
-				<form action="" class="jus offset_vertical_20">
-					<input type="text" size="65" placeholder="КЛЮЧЕВЫЕ СЛОВА" class="input jus__item">
-					<select name="" id="" class="input_select input jus__item">
-						<option value="">ВЫБИРИТЕ СТРАНУ</option>
-					</select>
-					<button class="jus__item button button_search"></button>
-				</form>
+				@include('general.desk.filter')
 				<div class="container__row desk-single">
-					<div class="container__col-6">
-						<img src="/fit/370/200/{{$offer->image}}" alt="" class="desk-single__image">
+					<div class="container__col-6 container__col-sm-12">
+						<img src="/fit/{{Agent::isMobile() ? '610/420' : '370/200'}}/{{$offer->image}}" alt="" class="desk-single__image">
 						<div class="title-light">КОНТАКТНАЯ ИНФОРМАЦИЯ</div>
 						@if($offer->name)<div class="desk-single__person">{{$offer->name}}</div>@endif
 						@if($offer->phone)<div class="desk-single__phone">{{$offer->phone}}</div>@endif
 						@if($offer->email)<a href="#" class="desk-single__email">{{$offer->email}}</a>@endif
 					</div>
-					<div class="container__col-6">
+					<div class="container__col-6 container__col-sm-12">
 						<div class="desk-single__title">{{$offer->title}}</div>
 						<div class="desk-single__text">{{$offer->information}}</div>
 						<div class="desk-single__info">№{{$offer->id}}   Дата размещения: {{$offer->created_at->format('d.m.Y')}}</div>
@@ -37,7 +31,7 @@
 				</div>
 				@include('general.desk.top')
 			</div>
-			<div class="container__col-4">
+			<div class="container__col-4 container__col-sm-12">
 				<div class="title">КАТЕГОРИИ</div>
 				<form class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare">
 					@foreach (App\Category::all() as $category)
@@ -49,8 +43,8 @@
 					@endforeach
 					<button class="button button_100 button_cyan button_big">ПОКАЗАТЬ</button>
 				</form>
-				<div class="offset_vertical_55">@include('general.area.banner',['area' =>'Объявления запись 1'])</div>
-				<div class="offset_vertical_55">@include('general.area.banner',['area' => 'Объявления запись 2'])</div>
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' =>'Объявления запись 1'])</div>
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Объявления запись 2'])</div>
 			</div>
 		</div>
 	</div>

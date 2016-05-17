@@ -7,16 +7,16 @@
 	</div>
 	<div class="container offset_bottom_60">
 		<div class="container__row">
-			<div class="container__col-8">
+			<div class="container__col-8 container__col-sm-12">
 				<div class="title  offset_bottom_30">{{$tender->name}}</div>
-				<div class="container__row">
-					<div class="container__col-6">
+				<div class="container__row offset-sm_vertical_30">
+					<div class="container__col-6 container__col-sm-12">
 						<div class="field field_info">
 							<div class="small-title">ИНФОРМАЦИЯ О ТЕНДЕРЕ</div>
 							{!!$tender->description!!}
 						</div>
 					</div>
-					<div class="container__col-6">
+					<div class="container__col-6 container__col-sm-12">
 						<div class="field field_money">Бюджет: {{$tender->budget}}</div>
 						@if ($tender->company||$tender->company_name)
 							<div class="field field_company">Организатор: 
@@ -35,9 +35,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="container__col-4">
+			<div class="container__col-4 container__col-sm-12">
 				@include('general.events.block')
-				<div class="offset_vertical_55">@include('general.area.banner',['area' => 'Тендеры запись 1'])</div>
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Тендеры запись 1'])</div>
 			</div>
 		</div>
 	</div>

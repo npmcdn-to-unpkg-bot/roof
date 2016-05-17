@@ -3,17 +3,17 @@
 @section('content')
 <div class="container offset_vertical_60">
 	<div class="container__row">
-		<div class="container__col-8">
+		<div class="container__col-8 container__col-sm-12">
 			<div class="company-cart clearfix company-cart_page company-cart_white">
 				<img src="/resize/160/140/{{$company->logo}}" alt="" class="company-cart__logo">
 				<div class="company-cart__name">{{$company->name}}</div>
 				<div class="company-cart__description">{{$company->entry}}</div>
 				<div class="container__row">
-					<div class="container__col-8">
+					<div class="container__col-8 container__col-sm-12">
 						<div class="company-cart__address">{{$company->printAddress()}}</div>
 						<div class="company-cart__post-date">Дата регистрации: {{$company->created_at->format('d.m.Y')}}</div>
 					</div>
-					<div class="container__col-4">{{$company->phone}}</div>
+					<div class="container__col-4 container__col-sm-12">{{$company->phone}}</div>
 				</div>
 				<div class="company-cart__right-top">
 					@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label"> @endif
@@ -36,8 +36,8 @@
 				<div id="portfolio" class="tabs__tab">
 					@foreach ($company->examples as $i => $example)
 						@if ($i%3==0)<div class="container__row offset_vertical_40"> @endif
-							<a href="/example/{{$example->id}}" class="container__col-4 building fancybox">
-								<img src="/fit/240/145/{{$example->image}}" alt="" class="building__image">
+							<a href="/example/{{$example->id}}" class="container__col-4 container__col-sm-12 building fancybox">
+								<img src="/fit/{{Agent::isMobile() ? '610/420' : '240/145'}}/{{$example->image}}" alt="" class="building__image">
 								<div class="building__name">{{$example->title}}</div>
 							</a>
 						@if ($i%3==2||$i+1==count($company->examples)) </div> @endif
@@ -101,9 +101,9 @@
 				</form>
 			</div>
 		</div>
-		<div class="container__col-4">
+		<div class="container__col-4 container__col-sm-12">
 			@if ($company->members->first())
-				<div class="staff offset_bottom_60">
+				<div class="staff offset_bottom_60 sm_vertical_30">
 					<div class="title">СОТРУДНИКИ</div>
 					@foreach ($company->members as $member)
 						<div>
@@ -116,7 +116,7 @@
 					@endforeach
 				</div>
 			@endif
-			<div class="offset_bottom_60">
+			<div class="offset_bottom_60 offset-sm_vertical_30">
 				@include('general.area.banner',['area' => 'Каталог запись 1'])
 			</div>
 			@if ($company->posts->first())

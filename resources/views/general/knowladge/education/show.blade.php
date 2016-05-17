@@ -9,11 +9,11 @@
 
 <div class="container offset_bottom_60">
 	<div class="container__row">
-		<div class="container__col-8 post-page">
+		<div class="container__col-8 container__col-sm-12 post-page">
 			<div class="post-page__created-at">Дата размещения: {{$post->created_at->format('d.m.Y')}}</div>
 			<div class="offset_bottom_30 title">{{$post->title}}</div>
 			<div class="post-page__content">
-				<img class="post-page__image" src="/full/{{$post->image}}" alt="">
+				<img class="post-page__image" src="/width/{{Agent::isMobile()?'610':'765'}}/{{$post->image}}" alt="">
 				{!!$post->content!!}
 			</div>
 			<div class="post-page__libraries">
@@ -23,15 +23,15 @@
 				@endforeach
 			</div>
 		</div>
-		<div class="container__col-4">
+		<div class="container__col-4 container__col-sm-12">
 			<div class="title">РАЗДЕЛЫ</div>
 			<div class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare">
 				@foreach(App\Models\Education\Category::all() as $category)
 					<a href="{{url('knowladge/education/category',$category->id)}}" class="menu__item">{{$category->name}}</a>
 				@endforeach
 			</div>
-			<div class="offset_bottom_60">@include('general.area.banner',['area' => 'Обучение запись 1'])</div>
-			<div class="offset_bottom_60">@include('general.area.banner',['area' => 'Обучение запись 2'])</div>
+			<div class="offset_bottom_60 offset-sm_bottom_30">@include('general.area.banner',['area' => 'Обучение запись 1'])</div>
+			<div class="offset_bottom_60 offset-sm_bottom_30">@include('general.area.banner',['area' => 'Обучение запись 2'])</div>
 		</div>
 	</div>
 </div>
