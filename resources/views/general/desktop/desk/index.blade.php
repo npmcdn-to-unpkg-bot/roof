@@ -40,7 +40,7 @@
 			</div>
 			<div class="container__col-4">
 				<div class="title">КАТЕГОРИИ</div>
-				<form class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare">
+				<form class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare offset_bottom_60">
 					@foreach (App\Category::all() as $category)
 						<label class="menu__item">
 							<input class="input_checkbox" type="checkbox" name="category" value="{{$category->id}}">
@@ -50,6 +50,7 @@
 					@endforeach
 					<button class="button button_100 button_cyan button_big">ПОКАЗАТЬ</button>
 				</form>
+				<a href="{{route('user.offers.create')}}" class="button button_orange button_huge">ДОБАВИТЬ ОБЪЯВЛЕНИЕ</a>
 				<div class="offset_vertical_55">@include('general.desktop.area.banner',['area' => 'Объявления архив 1'])</div>
 				<div class="offset_vertical_55">@include('general.desktop.area.banner',['area' => 'Объявления архив 2'])</div>
 			</div>

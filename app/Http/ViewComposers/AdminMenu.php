@@ -128,7 +128,7 @@ class AdminMenu
                             'href' => route('admin.company.create'),
                         ],
                         [
-                            'name' => 'Специлизации',
+                            'name' => 'Специализации',
                             'icon' => 'fa-list',
                             'href' => route('admin.company.all.specialisations.index')
                         ],

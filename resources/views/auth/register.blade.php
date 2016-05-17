@@ -1,4 +1,4 @@
-@extends('public.layout')
+@extends('general.desktop.layout')
 
 @section('content')
 <div class="container breadcrumbs">

@@ -1,3 +1,4 @@
+@if (!$map->isEmpty())
 <div class="container buildings-map">
 	<div class="buildings-map__control">
 		<div class="page-tabs">
@@ -35,3 +36,4 @@
 		});
 	</script>
 </div>
+@endif

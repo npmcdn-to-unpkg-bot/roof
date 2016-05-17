@@ -1544,7 +1544,6 @@ td.calendar-block__date_active {
     font-size: 24px;
     line-height: 25px;
     margin-bottom: 10px;
-    margin-top: 10px;
 }
 
 .company-cart__description {
@@ -1562,7 +1561,6 @@ td.calendar-block__date_active {
 
 .company-cart__member-label {
 	width: 50px;
-	margin: 8px;
 	display: inline-block;
 	vertical-align: middle;
 }

@@ -15,11 +15,13 @@
 							<a href="{{route('tenders.show', $tender)}}"><img class="tender__image" src="/fit/85/85/{{$tender->image}}" alt=""></a>
 						@endif
 						<a href="{{route('tenders.show', $tender)}}" class="tender__name">{{$tender->name}}</a>
-						<div class="tender__company"><strong>Компания: </strong>
-							@if ($tender->company) <a href="{{route('catalog.show',$tender->company)}}">{{$tender->company->name}}</a> 
-							@else {{$tender->company_name}}
-							@endif
-						</div>
+						@if ($tender->company||$tender->company_name)
+							<div class="tender__company"><strong>Компания: </strong>
+								@if ($tender->company) <a href="{{route('catalog.show',$tender->company)}}">{{$tender->company->name}}</a> 
+								@else {{$tender->company_name}}
+								@endif
+							</div>
+						@endif
 						<div class="tender__budget"><strong>Бюджет: </strong>{{$tender->budget}}</div>
 						<div class="tender__end"><strong>Крайний срок подачи заявки: </strong>{{$tender->end->format('18.08.2016')}}</div>
 						<a href="{{route('tenders.show', $tender)}}" class="tender__more">Читать подробнее</a>
@@ -30,6 +32,7 @@
 
 			</div>
 			<div class="container__col-4">
+				<a href="{{route('user.offers.index')}}" class="button button_orange button_huge offset_vertical_55">ДОБАВИТЬ ТЕНДЕР</a>
 				@include('general.desktop.events.block')
 				<div class="offset_vertical_55">@include('general.desktop.area.banner',['area' => 'Тендеры архив 1'])</div>
 				<div class="offset_vertical_55">@include('general.desktop.polls.block')</div>

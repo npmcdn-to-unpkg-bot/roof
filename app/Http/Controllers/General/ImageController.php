@@ -55,7 +55,6 @@ class ImageController extends Controller
     public function resize ($width, $height, $name) {
 
     	$path = $this->getImagePath($name);
-
 		$source = Image::cache( function($image) use ($width,$height,$path) {
 
 	        $image->make($path);
@@ -63,8 +62,7 @@ class ImageController extends Controller
 			    $constraint->aspectRatio();
 			    $constraint->upsize();
 			});
-			$image->resizeCanvas($width, $height, 'center', false, 'ffffff');
-
+			$image->resizeCanvas($width, $height, 'center', false, 'rgba(255,255,255,0)');
 		}, $this->lifetime);
 
 		$image = Image::make($source);

@@ -29,6 +29,7 @@ function initAddressPicker(){
 
 	$('#country').select2({
 		minimumInputLength: 1,
+		placeholder: 'Страна',
 		ajax: {
 			url: "/autocomplete/country",
 			delay: 250,
@@ -43,6 +44,7 @@ function initAddressPicker(){
 
 	$('#city').select2({
 		minimumInputLength: 1,
+		placeholder: 'Город',
 		ajax: {
 			url: "/autocomplete/city",
 			delay: 250,

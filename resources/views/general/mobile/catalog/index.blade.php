@@ -51,7 +51,7 @@
 							<div class="company-cart company-cart_heihgt_220 company-cart_gray">
 								<a href="{{ route('catalog.show', $company) }}"><img src="/resize/85/85/{{$company->logo}}" alt="" class="company-cart__logo"></a>
 								<a href="{{ route('catalog.show', $company) }}" class="company-cart__name">{{$company->name}}</a>
-								<div class="company-cart__description">{{$company->entry}}</div>
+								<div class="company-cart__description">{{str_limit($company->entry, 190)}}</div>
 								<div class="company-cart__bottom">
 									<div class="company-cart__address">{{$company->printAddress()}}</div>
 									<div class="company-cart__post-date">

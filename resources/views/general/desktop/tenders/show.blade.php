@@ -18,11 +18,13 @@
 					</div>
 					<div class="container__col-6">
 						<div class="field field_money">Бюджет: {{$tender->budget}}</div>
-						<div class="field field_company">Организатор: 
-							@if ($tender->company) <a href="{{route('catalog.show',$tender->company)}}">{{$tender->company->name}}</a> 
-							@else {{$tender->company_name}}
-							@endif
-						</div>
+						@if ($tender->company||$tender->company_name)
+							<div class="field field_company">Организатор: 
+								@if ($tender->company) <a href="{{route('catalog.show',$tender->company)}}">{{$tender->company->name}}</a> 
+								@else {{$tender->company_name}}
+								@endif
+							</div>
+						@endif
 						<div class="field field_period">Срок подачи заявок: {{$tender->end->format('d.m.Y')}}</div>
 						<div class="field field_type">
 							Контакты для подачи заявки:<br>
