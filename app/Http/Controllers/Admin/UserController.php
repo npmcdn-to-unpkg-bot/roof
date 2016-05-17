@@ -8,6 +8,7 @@ use Storage;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Role;
 use Excel;
 
 class UserController extends Controller
@@ -42,7 +43,13 @@ class UserController extends Controller
                 'placeholder'=>'Телефон',
                 'label'=>'Телефон',
                 'value'=>old() ? old('phone') : $user->phone
-            ],
+            ],[
+                'name'=>'roles',
+                'type'=>'select_multiple',
+                'label' => 'Роли',
+                'values' => old() ? (array)old('roles') : $user->roles->lists('id')->all(),
+                'options' => Role::lists('role','id')
+            ]
         ];
         
     }
@@ -150,6 +157,8 @@ class UserController extends Controller
 
         $user->fill($request->only('title','image','entry','content'));
         $user->save();
+
+        $user->roles()->sync((array)$request->roles);
 
         return redirect()->route('admin.users.index');
     }
