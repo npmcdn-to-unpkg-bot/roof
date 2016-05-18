@@ -12,14 +12,14 @@
 							<a href="{{ route('catalog.show', $company) }}" class="company-cart__name">{{ $company->name }}</a>
 							<div class="company-cart__description">{{ $company->entry }}</div>
 							<div class="container__row company-cart__bottom">
-								<div class="container__col-6">
+								<div class="container__col-8">
 									<div class="company-cart__address">{{ $company->printAddress() }}</div>
 									<div class="company-cart__post-date">
 										Дата регистрации:
 										{{ $company->created_at->format('d.m.Y') }}
 									</div>
 								</div>
-								<div class="container__col-6">
+								<div class="container__col-4">
 									{{ $company->phone }}
 								</div>
 							</div>

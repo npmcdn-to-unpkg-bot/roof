@@ -138,9 +138,4 @@ $(document).ready(function(){
 		$('#main-menu').slideToggle();
 	});
 
-	$('html').click(function(){
-		$('#main-menu').slideUp();
-		$('.search-block__form').hide();
-	});
-
 });

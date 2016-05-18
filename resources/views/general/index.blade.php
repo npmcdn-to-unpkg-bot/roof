@@ -4,15 +4,21 @@
 	<div class="container-fluid container-fluid_light-gray">
 		<div class="container container_screen">
 			<div class="container__row">
-				<div class="container__col-4 container__col-sm-12 offset-sm_vertical_30 text_center">
-					@include('general.area.banner',['area'=>'Главная 1'])
-				</div>
-				<div class="container__col-4 container__col-sm-12 offset-sm_vertical_30 text_center">
-					@include('general.area.banner',['area'=>'Главная 2'])
-				</div>
-				<div class="container__col-4 container__col-sm-12 offset-sm_vertical_30 text_center">
-					@include('general.area.banner',['area'=>'Главная 3'])
-				</div>
+				@if (Agent::isMobile())
+					<div class="container__col-sm-12">
+						@include('general.catalog.block')
+					</div>
+				@else
+					<div class="container__col-4">
+						@include('general.area.banner',['area'=>'Главная 1'])
+					</div>
+					<div class="container__col-4">
+						@include('general.area.banner',['area'=>'Главная 2'])
+					</div>
+					<div class="container__col-4">
+						@include('general.area.banner',['area'=>'Главная 3'])
+					</div>
+				@endif
 			</div>
 		</div>
 	</div>

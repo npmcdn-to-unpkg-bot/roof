@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('autocomplete/country', 'General\Autocomplete@country');
 	Route::get('autocomplete/city', 'General\Autocomplete@city');
-	Route::get('education/category/{id}', 'General\EducationController@category');
+	Route::get('knowladge/education/category/{id}', 'General\EducationController@category');
 	Route::get('user', 'User\CompanyController@edit');
 	Route::get('user/offers/up/{id}', 'User\OfferController@up');
 	Route::get('vote', 'User\PollController@index');

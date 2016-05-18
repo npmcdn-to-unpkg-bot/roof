@@ -2015,6 +2015,7 @@ td.calendar-block__date_active {
 .desk-single__text {
 	margin-top: 30px;
 	margin-bottom: 30px;
+	word-wrap: break-word;
 }
 
 .desk-single__info {

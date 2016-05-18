@@ -37,7 +37,7 @@
 					<a href="{{ route('news.index') }}" class="{{ Request::is('news*')?'menu__item_active':'' }} menu__item">Новости</a>
 				</div>
 				<div class="menu menu_vertical menu_lh_48 menu_uppercase menu_big menu_white menu_justified menu_main">
-					<a href="#" class="menu__item">Об ассоциации</a>
+					<a href="http://rau.org.ua/" target="blank" class="menu__item">Об ассоциации</a>
 					<a href="{{ route('events.index') }}" class="menu__item">Календарь</a>
 					<a href="{{ route('polls.index') }}" class="menu__item">Опросы</a>
 					<a href="" class="menu__item">Контакты</a>
@@ -76,9 +76,11 @@
 					<a href="{{ route('news.index') }}" class="menu__item">Новости</a>					
 				</div>
 				<div class="container__col-right text_right menu menu_vertical menu_big menu_uppercase menu_gray">
-					<a href="#" class="menu__item">ОБ АССОЦИАЦИИ</a>
+					<a href="http://rau.org.ua/" target="blank" class="menu__item">ОБ АССОЦИАЦИИ</a>
 					<a href="{{route('events.index')}}" class="menu__item">КАЛЕНДАРЬ</a>
-					<a href="#" class="menu__item">ОПРОСЫ</a>
+					<a href="{{route('polls.index')}}" class="menu__item">ОПРОСЫ</a>
+					<a href="#" class="menu__item">УСЛОВИЯ ПОРТАЛА</a>
+					<a href="#" class="menu__item">РЕКЛАМОДАТЕЛЯМ</a>
 					<a href="#" class="menu__item">КОНТАКТЫ</a>					
 				</div>
 			</div>
