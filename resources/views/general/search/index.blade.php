@@ -22,9 +22,16 @@
 				    s.parentNode.insertBefore(gcse, s);
 				  })();
 		  		document.addEventListener("DOMContentLoaded",function(){
-			    	$('.gsc-adBlock').remove();
+		  			setTimeout(function(){
+			    		$('.gsc-adBlock').remove();
+		  			},5);
 				});
 				</script>
+				<style>
+					.gsc-adBlock {
+						display: none;
+					}
+				</style>
 				<gcse:searchresults-only></gcse:searchresults-only>
 			</div>
 			<div class="container__col-4">
