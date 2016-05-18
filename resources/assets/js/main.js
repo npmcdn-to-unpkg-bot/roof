@@ -126,7 +126,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('.search-block__show').click(function() {
+	$('.search-block__show').click(function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		$('.search-block__form').toggle();
