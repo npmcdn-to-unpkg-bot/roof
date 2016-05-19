@@ -14,6 +14,9 @@
 			<div class="container__col-8 container__col-sm-12">
 				<div class="title">{{$event->name}}</div>
 				<div class="offset_vertical_30"><img src="/width/{{Agent::isMobile() ? '610' : '765'}}/{{$event->image}}" alt=""></div>
+				<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
+				<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
+				<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>
 				<div class="container__row">
 					<div class="container__col-6 container__col-sm-12">
 						<div class="field field_info">
@@ -47,9 +50,6 @@
 							Ссылка на сайт мероприятия:<br>
 							<a href="http://{{$event->website}}/">{{$event->website}}</a>
 						</div>
-						<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
-						<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
-						<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>
 					</div>
 				</div>
 			</div>
