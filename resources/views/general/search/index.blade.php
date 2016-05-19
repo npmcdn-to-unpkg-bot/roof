@@ -23,11 +23,23 @@
 				    var s = document.getElementsByTagName('script')[0];
 				    s.parentNode.insertBefore(gcse, s);
 				  })();
-		  		document.addEventListener("DOMContentLoaded",function(){
-		  			setTimeout(function(){
-			    		$('.gsc-adBlock').remove();
-		  			},5);
-				});
+			  		document.addEventListener("DOMContentLoaded",function(){
+			  			setInterval(function(){
+				    		$('.gsc-adBlock').remove();
+							$('.gs-visibleUrl').each(function(key, item){
+				  				if ($(item).text().search('/knowladge')>0) $(item).text('БАЗА ЗНАНИЙ');
+				  				if ($(item).text().search('/catalog')>0) $(item).text('КАТАЛОГ КОМПАНИЙ');
+				  				if ($(item).text().search('/buildings')>0) $(item).text('СТРОЙКИ И ВАКАНСИИ');
+				  				if ($(item).text().search('/jobs')>0) $(item).text('СТРОЙКИ И ВАКАНСИИ');
+				  				if ($(item).text().search('/tenders')>0) $(item).text('ТЕНДЕРЫ');
+				  				if ($(item).text().search('/events')>0) $(item).text('КАЛЕНДАРЬ');
+				  				if ($(item).text().search('/polls')>0) $(item).text('ОПРОСЫ');
+				  				if ($(item).text().search('/sales')>0) $(item).text('АКЦИИ И СКИДКИ');
+				  				if ($(item).text().search('/news')>0) $(item).text('НОВОСТИ РЫНКА');
+				  				if ($(item).text().search('/desk')>0) $(item).text('ДОСКА ОБЪЯВЛЕНИЙ');
+				  			});
+			  			},500);
+					});
 				</script>
 				<style>
 					.gcsc-branding,
@@ -36,7 +48,40 @@
 					}
 					.gs-webResult.gs-result a.gs-title:visited, .gs-webResult.gs-result a.gs-title:visited b, .gs-imageResult a.gs-title:visited, .gs-imageResult a.gs-title:visited b,
 					.gs-webResult.gs-result a.gs-title:link, .gs-webResult.gs-result a.gs-title:link b, .gs-imageResult a.gs-title:link, .gs-imageResult a.gs-title:link b{
-						color: #88b2bf;
+						color:  #000000;
+						font-size: 18px;
+						font-weight: 700;
+						line-height: 24.196px;
+						text-decoration: none;
+
+					}
+					.gsc-result-info{
+						text-transform: uppercase;
+						font-family: "Roboto Condensed";
+						color:  #0a3955;
+						font-size: 30px;
+						font-weight: 300;
+						line-height: 24.196px;
+						text-align: left;
+					}
+					.gsc-thumbnail-inside{
+						padding-left: 0;
+						display: inline-block;
+						vertical-align: bottom;
+						margin-bottom: 15px;
+					}
+					.gsc-url-top {
+						display: inline-block;
+						vertical-align: bottom;
+						background-color:  #07b7c6;
+						height: 15px;
+						margin-bottom: 14px;
+					}
+					.gs-webResult div.gs-visibleUrl, .gs-imageResult div.gs-visibleUrl{
+						color:  #ffffff;
+						font-size: 10px;
+						font-weight: 700;
+						line-height: 15px;
 					}
 				</style>
 				<gcse:searchresults-only></gcse:searchresults-only>
