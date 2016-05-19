@@ -25,6 +25,12 @@ class PageController extends Controller
                 'type'=>'ckeditor',
                 'label'=>'Текст статьи',
                 'value'=>old() ? old('content') : $page->content
+            ],[
+                'name'=>'slug',
+                'type'=>'text',
+                'placeholder'=>'Слаг',
+                'label'=>'Слаг',
+                'value'=>old() ? old('slug') : $page->slug
             ]
         ];
         
@@ -100,7 +106,7 @@ class PageController extends Controller
             return back()->withInput()->withErrors($validator);
 
         $page = Page::firstOrNew(['id' => $request->id]);
-        $page->fill($request->only('name', 'content'));
+        $page->fill($request->only('name', 'content', 'slug'));
         $page->save();
 
         return redirect()->route('admin.pages.index');

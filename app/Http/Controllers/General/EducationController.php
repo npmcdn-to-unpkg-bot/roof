@@ -37,7 +37,7 @@ class EducationController extends Controller
         if (!$post) abort(404);
 
         return view('general.knowladge.education.show', [
-            'post' => 
+            'post' => $post
         ]);
     }
 

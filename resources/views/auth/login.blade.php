@@ -1,4 +1,6 @@
-@extends('general.desktop.layout')
+@extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
+
+@section('title')Вход@endsection
 
 @section('content')
 <div class="container breadcrumbs">

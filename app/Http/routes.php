@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/', function () {	
 	return view('general.index',
 		[
@@ -120,8 +119,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 	});
 
-
+Route::get('{slug}', 'General\PageController@show');
 
 });
-
-

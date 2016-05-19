@@ -10,14 +10,14 @@ class Page extends Model
     public static function validator ($fields) {
     	return Validator::make($fields,[
 				'name' => 'required|max:255',
-				'content' => 'required|min:500',
+				'content' => 'required|max:65536',
     		],[
 				'name.required' => 'Введите заголовок статьи.',
 				'name.max' => 'Заголовок должен быть не больше 255 символов.',
 				'content.required' => 'Заполните текст статьи.',
-				'content.min' => 'Текст статьи должен быть не меньше 500 символов.',
+				'content.max' => 'Текст статьи должен быть не больше 65536 символов.',
     		]);
     }
 
-    protected $fillable = ['name','content'];
+    protected $fillable = ['name','content','slug'];
 }
