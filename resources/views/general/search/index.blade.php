@@ -38,6 +38,9 @@
 				  				if ($(item).text().search('/news')>0) $(item).text('НОВОСТИ РЫНКА');
 				  				if ($(item).text().search('/desk')>0) $(item).text('ДОСКА ОБЪЯВЛЕНИЙ');
 				  			});
+			  				$('.gsc-result-info').each(function(key, item){
+			  					$(item).text($(item).text().replace('примерно',''));
+			  				});
 			  			},500);
 					});
 				</script>
