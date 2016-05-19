@@ -19,6 +19,9 @@
 			<div class="post-page__content">
 				<img class="post-page__image" src="/width/{{Agent::isMobile()?'610':'765'}}/{{$post->image}}" alt="">
 				{!!$post->content!!}
+				<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
+				<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
+				<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>
 			</div>
 			<div class="post-page__libraries">
 				@foreach ($post->categories as $category)

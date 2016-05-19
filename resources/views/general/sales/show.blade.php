@@ -17,6 +17,9 @@
 					<div class="offset_vertical_20 offset-sm_vertical_30">
 						@if ($sale->image) <img src="/width/{{Agent::isMobile() ? '610' : '240'}}/{{$sale->image}}" alt="" class="market-news__image"> @endif
 						<div class="market-news__text">{!! $sale->content !!}</div>
+						<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
+						<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
+						<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>
 					</div>
 				</div>
 			</div>

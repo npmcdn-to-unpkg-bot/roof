@@ -13,7 +13,7 @@ class AssRatingColumnToCompany extends Migration
     public function up()
     {
         Schema::table('catalog_companies', function (Blueprint $table){
-            $table->integer('rating');
+            $table->float('rating');
         });
     }
 

@@ -34,6 +34,9 @@
 					<a href="#prices" class="jus__item tabs__nav">ПРАЙСЫ</a>
 					<a href="#sales" class="jus__item tabs__nav">АКЦИИ</a>
 				</div>
+				<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
+				<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
+				<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>
 				<div id="description" class="tabs__tab tabs__tab_active">
 					{!!$company->about!!}
 				</div>
