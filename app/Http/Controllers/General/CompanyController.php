@@ -26,8 +26,13 @@ class CompanyController extends Controller
                         ->orderBy('rating', 'desc')
                         ->orderBy('created_at', 'desc');
 
-        if ($request->search) $companies = $companies->where('name', 'LIKE', '%'.$request->search.'%');
-        if ($request->letter) $companies = $companies->where('name', 'LIKE', $request->letter.'%');
+        if ($request->search) {
+            $companies = $companies->where('name', 'LIKE', '%'.$request->search.'%');
+        }
+        if ($request->letter){ 
+            $companies = $companies->where('name', 'LIKE', $request->letter.'%'); 
+            Response::header('X-Robots-Tag', 'noindex');
+        }
         $companies = $companies->paginate(10);
 
         foreach ($companies as &$company) {
