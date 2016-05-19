@@ -13,14 +13,13 @@ class Company extends Model
     public static function validator ($fields) {
         return Validator::make($fields, [
                 'name' => 'required|max:255',
-                'email' => 'required|max:255',
+                'email' => 'max:255',
                 'phone' => 'required',
                 'logo' => 'required',
                 'entry' => 'max:255'
             ],[
                 'name.required' => 'Введите название компании.',
                 'name.max' => 'Название компании должно быть не больше 255 символов.',
-                'email.required' => 'Введите электронную почту компании.',
                 'email.email' => 'Введите корректную электронную почту компании.',
                 'email.max' => 'Электронная почта не должна быть больше 255 символов.',
                 'phone.required' => 'Введите телефон компании.',
