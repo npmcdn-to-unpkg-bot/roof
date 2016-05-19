@@ -30,8 +30,18 @@ class SaleController extends Controller
      */
     public function show($id)
     {
+        $sale = Sale::find($id);
+
+        if (!$sale) abort(404);
+
         return view('general.sales.show', [
-            'sale' => Sale::find($id)
+            'sale' => $sale
         ]);
     }
+
+    public function edit()    { abort(404); }
+    public function create()  { abort(404); }
+    public function store()   { abort(404); }
+    public function delete()  { abort(404); }
+    
 }

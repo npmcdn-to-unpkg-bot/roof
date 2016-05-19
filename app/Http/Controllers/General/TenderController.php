@@ -31,8 +31,20 @@ class TenderController extends Controller
      */
     public function show($id)
     {
+
+        $tender = Tender::find($id);
+
+        if (!$tender) abort(404);
+
         return view('general.tenders.show', [
-            'tender' => Tender::find($id)
+            'tender' => $tender
         ]);
     }
+
+
+    public function edit()    { abort(404); }
+    public function create()  { abort(404); }
+    public function store()   { abort(404); }
+    public function delete()  { abort(404); }
+    
 }

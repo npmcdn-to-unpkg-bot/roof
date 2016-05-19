@@ -47,6 +47,36 @@ class AdminMenu
                         ],
                     ],
                 ],[
+                    'name' => 'Тендеры',
+                    'icon' => 'fa-question',
+                    'active' => Request::is('user/tenders*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список тендеров',
+                            'icon' => 'fa-list',
+                            'href' => route('user.tenders.index'),
+                        ],[
+                            'name' => 'Добавить тендер',
+                            'icon' => 'fa-plus',
+                            'href' => route('user.tenders.create'),
+                        ],
+                    ],
+                ],[                
+                    'name' => 'Вакансии',
+                    'icon' => 'fa-wrench',
+                    'active' => Request::is('user/jobs*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список вакансий',
+                            'icon' => 'fa-list',
+                            'href' => route('user.jobs.index'),
+                        ],[
+                            'name' => 'Добавить вакансию',
+                            'icon' => 'fa-plus',
+                            'href' => route('user.jobs.create'),
+                        ],
+                    ],
+                ],[
                     'name' => 'Компания',
                     'icon' => 'fa-bank',
                     'active' => Request::is('user/company*')?'active':'',
@@ -75,36 +105,6 @@ class AdminMenu
                             'name' => 'Добавить стройку',
                             'icon' => 'fa-plus',
                             'href' => route('user.buildings.create'),
-                        ],
-                    ],
-                ],[
-                    'name' => 'Тендеры',
-                    'icon' => 'fa-question',
-                    'active' => Request::is('user/tenders*')?'active':'',
-                    'children' => [
-                        [
-                            'name' => 'Список тендеров',
-                            'icon' => 'fa-list',
-                            'href' => route('user.tenders.index'),
-                        ],[
-                            'name' => 'Добавить тендер',
-                            'icon' => 'fa-plus',
-                            'href' => route('user.tenders.create'),
-                        ],
-                    ],
-                ],[                
-                    'name' => 'Вакансии',
-                    'icon' => 'fa-wrench',
-                    'active' => Request::is('user/jobs*')?'active':'',
-                    'children' => [
-                        [
-                            'name' => 'Список вакансий',
-                            'icon' => 'fa-list',
-                            'href' => route('user.jobs.index'),
-                        ],[
-                            'name' => 'Добавить вакансию',
-                            'icon' => 'fa-plus',
-                            'href' => route('user.jobs.create'),
                         ],
                     ],
                 ],[

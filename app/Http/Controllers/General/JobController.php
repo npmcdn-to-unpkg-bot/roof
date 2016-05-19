@@ -61,4 +61,9 @@ class JobController extends Controller
         ]);
     }
 
+    public function edit()    { abort(404); }
+    public function create()  { abort(404); }
+    public function store()   { abort(404); }
+    public function delete()  { abort(404); }
+
 }

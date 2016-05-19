@@ -1,5 +1,9 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title'){{$offer->title}}@endsection
+
+@section('description'){{ str_limit($offer->information,150) }}@endsection
+
 @section('content')
 	<div class="container breadcrumbs">
 		<a href="{{ route('desk.index') }}" class="breadcrumbs__path">ДОСКА ОБЪЯВЛЕНИЙ</a>

@@ -72,9 +72,18 @@ class BuildingController extends Controller
      */
     public function show($id)
     {
+        $building = Building::with('company', 'jobs')->find($id);
+
+        if (!$building) abort(404);
+        
         return view('general.buildings.show', [
-            'building' => Building::with('company', 'jobs')->find($id)
+            'building' => $building
         ]);
     }
+
+    public function edit()    { abort(404); }
+    public function create()  { abort(404); }
+    public function store()   { abort(404); }
+    public function delete()  { abort(404); }
 
 }

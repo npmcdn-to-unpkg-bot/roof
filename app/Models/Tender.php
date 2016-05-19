@@ -9,9 +9,13 @@ class Tender extends Model
 {
     protected $table = 'tenders';
 
-    protected $fillable = ['name','company_id','budget','end','description','image','person','email','phone'];
+    protected $fillable = ['name','company_id','budget','end','description','image','person','email','phone','user_id'];
 
 	protected $dates = ['created_at', 'updated_at', 'end'];
+
+    public function user () {
+        return $this->belongsTo('App\User');
+    }
 
     public static function validator ($fields) {
     	return Validator::make($fields,[

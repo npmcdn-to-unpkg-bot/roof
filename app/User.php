@@ -26,6 +26,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function tenders () {
+        return $this->hasMany('App\Models\Tender');
+    }
+
+    public function jobs () {
+        return $this->hasMany('App\Models\Building\Job');
+    }
+
     public function company () {
         return $this->hasOne('App\Models\Catalog\Company');
     }

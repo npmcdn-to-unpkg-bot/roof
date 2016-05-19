@@ -88,6 +88,8 @@ class CompanyController extends Controller
             + $company->level*0.2;
         Company::where('id', $company->id)->update(['rating'=>$company->rating]);
 
+        if (!$company) abort(404);
+
         return view('general.catalog.show',[
             'company' => $company
         ]);
@@ -109,5 +111,10 @@ class CompanyController extends Controller
     public function price($name) {
         return response()->download(storage_path('app/prices/'.$name));
     }
+
+    public function edit()    { abort(404); }
+    public function create()  { abort(404); }
+    public function store()   { abort(404); }
+    public function delete()  { abort(404); }
 
 }

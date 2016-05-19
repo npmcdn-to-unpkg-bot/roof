@@ -1,5 +1,7 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title')Акции и скидки@endsection
+
 @section('content')
 	<div class="container breadcrumbs">
 		<span class="breadcumbs__current">АКЦИИ И СКИДКИ</span>

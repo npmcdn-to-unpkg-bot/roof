@@ -89,6 +89,15 @@ class JobController extends Controller
                     ? old('company_id') 
                     : ($job->company ? $job->company->id : ''),
                 'options'=>Company::lists('name','id')
+            ],[
+                'name'=>'user_id',
+                'type'=>'select',
+                'settings'=>'',
+                'label'=>'Пользователь',
+                'value'=>old() 
+                    ? old('user_id') 
+                    : ($job->user ? $job->user->id : ''),
+                'options'=>User::lists('email','id')
             ]
         ];
         
@@ -175,7 +184,7 @@ class JobController extends Controller
             return back()->withInput()->withErrors($validator);
 
         $job = Job::firstOrNew(['id' => $request->id]);
-        $job->fill($request->only('name','pay','requirements','duties','conditions','information','email','phone','seasonality','company_id','speciality'));
+        $job->fill($request->only('name','pay','requirements','duties','conditions','information','email','phone','seasonality','company_id','speciality','user_id'));
         $job->save();
         $job->buildings()->sync((array)$request->buildings);
 

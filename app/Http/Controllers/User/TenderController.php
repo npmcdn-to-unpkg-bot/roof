@@ -81,7 +81,7 @@ class TenderController extends Controller
     public function index()
     {
 
-        $tenders = auth()->user()->company->tenders()->paginate(15);
+        $tenders = auth()->user()->tenders()->paginate(15);
         $th = [
                 [
                     'title'=>'Название',
@@ -157,11 +157,9 @@ class TenderController extends Controller
 
         $request->merge(['end' => Carbon::parse($request->end)]);
 
-        $company = auth()->user()->company;
-
-        $tender = $company->tenders()->firstOrNew(['id' => $request->id]);
-
-        $tender->company_id = $company->id;
+        $tender = auth()->user()->tenders()->firstOrNew(['id' => $request->id]);
+        $tender->user_id = auth()->user()->id;
+        $tender->company_id = auth()->user()->company ? auth()->user()->company->id : '';
 
         if ($request->image&&Storage::exists('temp/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
@@ -225,7 +223,7 @@ class TenderController extends Controller
      */
     public function destroy($id)
     {
-        auth()->user()->company->tenders()->where('id', $id)->delete();
+        auth()->user()->tenders()->where('id', $id)->delete();
 
         return back();
     }

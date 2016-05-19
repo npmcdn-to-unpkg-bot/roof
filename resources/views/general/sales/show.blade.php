@@ -1,5 +1,9 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title'){{$sale->title}}@endsection
+
+@section('description'){{ str_limit($sale->entry,150) }}@endsection
+
 @section('content')
 	<div class="container breadcrumbs">
 		<a href="{{route('sales.index')}}" class="breadcrumbs__path">АКЦИИ И СКИДКИ</a>

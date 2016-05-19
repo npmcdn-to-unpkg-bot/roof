@@ -78,6 +78,15 @@ class TenderController extends Controller
                     ? old('company') 
                     : ($tender->company ? $tender->company->id : $tender->company_name),
                 'options'=>$companies
+            ],[
+                'name'=>'user_id',
+                'type'=>'select',
+                'settings'=>'',
+                'label'=>'Пользователь',
+                'value'=>old() 
+                    ? old('user_id') 
+                    : ($tender->user ? $tender->user->id : ''),
+                'options'=>User::lists('email','id')
             ]
         ];
         
@@ -182,7 +191,7 @@ class TenderController extends Controller
         if ($tender->image&&$tender->image!==$request->image) 
             Storage::delete('images/'.$tender->image);
 
-        $tender->fill($request->only('name','description','budget','image','end','person','email','phone'));
+        $tender->fill($request->only('name','description','budget','image','end','person','email','phone','user_id'));
         $tender->save();
 
         return redirect()->route('admin.tenders.index');

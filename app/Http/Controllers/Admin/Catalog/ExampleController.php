@@ -187,7 +187,7 @@ class ExampleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($company, $id)
     {
         Example::find($id)->delete();
         return back();

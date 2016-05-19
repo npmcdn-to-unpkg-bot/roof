@@ -19,8 +19,13 @@ class Job extends Model
 		'phone',
 		'seasonality',
 		'company_id',
-		'speciality'
+		'speciality',
+		'user_id'
 	];
+
+    public function user () {
+    	return $this->belongsTo('App\User');
+    }
 
     public function company () {
     	return $this->belongsTo('App\Models\Catalog\Company');

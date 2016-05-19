@@ -1,5 +1,9 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title'){{$post->title}}@endsection
+
+@section('description'){{ str_limit($post->entry,150) }}@endsection
+
 @section('content')
 <div class="container breadcrumbs">
 	<a href="{{route('knowladge.index')}}" class="breadcrumbs__path">БАЗА ЗНАНИЙ</a>

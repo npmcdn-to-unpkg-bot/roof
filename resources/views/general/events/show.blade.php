@@ -1,5 +1,9 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title'){{$event->name}}@endsection
+
+@section('description'){{ str_limit(strip_tags($event->information),150) }}@endsection
+
 @section('content')
 	<div class="container breadcrumbs">
 		<a href="{{route('events.index')}}" class="breadcrumbs__path">КАЛЕНДАРЬ</a>

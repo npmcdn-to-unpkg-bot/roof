@@ -1,5 +1,9 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title'){{$building->name}}@endsection
+
+@section('description'){{ str_limit($building->information,150) }}@endsection
+
 @section('content')
 	<div class="container breadcrumbs">
 		<a href="{{ route('buildings.index') }}" class="breadcrumbs__path">СТРОЙКИ И ВАКАНСИИ</a><span class="breadcumbs__current">{{ $building->name }}</span>

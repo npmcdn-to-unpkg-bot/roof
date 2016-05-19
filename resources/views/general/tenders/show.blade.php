@@ -1,5 +1,9 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title'){{ $tender->name }}@endsection
+
+@section('description'){{ str_limit(strip_tags($tender->description),150) }}@endsection
+
 @section('content')
 	<div class="container breadcrumbs">
 		<a href="{{route('tenders.index')}}" class="breadcrumbs__path">ТЕНДЕРЫ</a>

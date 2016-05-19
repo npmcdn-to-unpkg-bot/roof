@@ -34,9 +34,19 @@ class EventController extends Controller
      */
     public function show($id)
     {
+
+        $event = Event::find($id);
+
+        if (!$event) abort(404);
+
         return view('general.events.show', [
-            'event' => Event::find($id)
+            'event' => $event
         ]);
     }
+
+    public function edit()    { abort(404); }
+    public function create()  { abort(404); }
+    public function store()   { abort(404); }
+    public function delete()  { abort(404); }
 
 }

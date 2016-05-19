@@ -2,7 +2,9 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<title>Roof</title>
+	<title>@yield('title') | Первый кровельный портал</title>
+	<meta name="title" content="@yield('title') | Первый кровельный портал">
+	<meta name="description" content="@yield('description')">
 	<meta name="viewport" content="width=720px, user-scalable=no">
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700|PT+Sans:400,700&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/css/mobile.css">

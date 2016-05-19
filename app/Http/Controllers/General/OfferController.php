@@ -36,9 +36,19 @@ class OfferController extends Controller
      */
     public function show($id)
     {
+
+        $offer = Offer::find($id);
+
+        if (!$offer) abort(404);
+
         return view('general.desk.show',[
-            'offer' => Offer::find($id)
+            'offer' => $offer
         ]); 
     }
+
+    public function edit()    { abort(404); }
+    public function create()  { abort(404); }
+    public function store()   { abort(404); }
+    public function delete()  { abort(404); }
 
 }

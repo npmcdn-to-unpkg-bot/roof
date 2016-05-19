@@ -1,5 +1,7 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title'){{Стройки и вакансии}}@endsection
+
 @section('content')
 	<div class="page-tabs">
 		<div class="container breadcrumbs">

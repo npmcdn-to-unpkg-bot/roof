@@ -79,7 +79,7 @@ class JobController extends Controller
                 'type' => 'select_multiple',
                 'label' => 'Стройки',
                 'values' => old() ? (array)old('buildings') : $job->buildings->lists('id')->all(),
-                'options' => auth()->user()->company->buildings()->lists('name','id')
+                'options' => auth()->user()->company ? auth()->user()->company->buildings()->lists('name','id') : []
             ]
         ];
         
@@ -92,7 +92,7 @@ class JobController extends Controller
     public function index()
     {
 
-        $jobs = auth()->user()->company->jobs()->paginate(15);
+        $jobs = auth()->user()->jobs()->paginate(15);
         $th = [
                 [
                     'title'=>'Название вакансии',
@@ -159,11 +159,10 @@ class JobController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        $company = auth()->user()->company;
+        $job = auth()->user()->jobs()->firstOrNew(['id' => $request->id]);
+        $job->user_id = auth()->user()->id;
 
-        $job = $company->jobs()->firstOrNew(['id' => $request->id]);
-
-        $job->company_id = $company->id;
+        $job->company_id = auth()->user()->company ? auth()->user()->company->id : '';
 
         $job->fill($request->only('name','pay','requirements','duties','conditions','information','email','phone','seasonality','speciality'));
         $job->save();
@@ -222,7 +221,7 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        auth()->user()->company->tenders()->where('id', $id)->delete();
+        auth()->user()->jobs()->where('id', $id)->delete();
 
         return back();
     }

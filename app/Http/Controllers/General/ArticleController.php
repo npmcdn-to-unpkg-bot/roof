@@ -30,9 +30,19 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
+
+        $article = Article::find($id);
+
+        if (!$article) abort(404);
+
         return view('general.news.show', [
-            'article' => Article::find($id)
+            'article' => $article
         ]);
     }
+
+    public function edit()    { abort(404); }
+    public function create()  { abort(404); }
+    public function store()   { abort(404); }
+    public function delete()  { abort(404); }
 
 }

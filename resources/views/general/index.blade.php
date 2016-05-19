@@ -1,5 +1,7 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title')Главная@endsection
+
 @section('content')
 	<div class="container-fluid container-fluid_light-gray">
 		<div class="container container_screen">

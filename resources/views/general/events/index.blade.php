@@ -1,5 +1,7 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title')Календарь@endsection
+
 @section('content')
 	<div class="container breadcrumbs">
 		<span class="breadcumbs__current">КАЛЕНДАРЬ</span>

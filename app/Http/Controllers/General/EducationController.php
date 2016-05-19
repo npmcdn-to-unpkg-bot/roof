@@ -32,8 +32,12 @@ class EducationController extends Controller
      */
     public function show($id)
     {
+        $post = Post::find($id);
+
+        if (!$post) abort(404);
+
         return view('general.knowladge.education.show', [
-            'post' => Post::find($id)
+            'post' => 
         ]);
     }
 
@@ -44,5 +48,10 @@ class EducationController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function edit()    { abort(404); }
+    public function create()  { abort(404); }
+    public function store()   { abort(404); }
+    public function delete()  { abort(404); }
 
 }

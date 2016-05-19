@@ -1,5 +1,7 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title')Доска объявлений@endsection
+
 @section('content')
 	<div class="container breadcrumbs">
 		<span class="breadcumbs__current">ДОСКА ОБЪЯВЛЕНИЙ</span>

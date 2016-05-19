@@ -195,7 +195,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($company, $id)
     {
         Post::find($id)->delete();
         return back();

@@ -1,5 +1,7 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
+@section('title')Каталог компаний@endsection
+
 @section('content')
 	<div class="container offset_vertical_40 page-tabs offset-sm_vertical_30">
 		<div>
