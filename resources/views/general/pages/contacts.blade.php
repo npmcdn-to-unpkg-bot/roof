@@ -35,11 +35,13 @@
 		.contact-value {
 			color:  #0a3955;
 		}
+		@if (!Agent::isMobile())
 		#map {
 			position: absolute;
 			top: 0;
 			right: 0;
 		}
+		@endif
 	</style>
 </div>
 @endsection
