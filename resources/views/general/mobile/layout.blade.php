@@ -42,7 +42,7 @@
 					<a href="http://rau.org.ua/" target="blank" class="menu__item">Об ассоциации</a>
 					<a href="{{ route('events.index') }}" class="menu__item">Календарь</a>
 					<a href="{{ route('polls.index') }}" class="menu__item">Опросы</a>
-					<a href="" class="menu__item">Контакты</a>
+					<a href="{{url('contacts')}}" class="menu__item">Контакты</a>
 				</div>
 			</div>
 		</div>
@@ -81,9 +81,9 @@
 					<a href="http://rau.org.ua/" target="blank" class="menu__item">ОБ АССОЦИАЦИИ</a>
 					<a href="{{route('events.index')}}" class="menu__item">КАЛЕНДАРЬ</a>
 					<a href="{{route('polls.index')}}" class="menu__item">ОПРОСЫ</a>
-					<a href="#" class="menu__item">УСЛОВИЯ ПОРТАЛА</a>
-					<a href="#" class="menu__item">РЕКЛАМОДАТЕЛЯМ</a>
-					<a href="#" class="menu__item">КОНТАКТЫ</a>					
+					<a href="{{url('uslovia')}}" class="menu__item">УСЛОВИЯ ПОРТАЛА</a>
+					<a href="{{url('reklamodatelam')}}" class="menu__item">РЕКЛАМОДАТЕЛЯМ</a>
+					<a href="{{url('contacts')}}" class="menu__item">КОНТАКТЫ</a>					
 				</div>
 			</div>
 		</div>

@@ -15,14 +15,14 @@
 				<a href="http://rau.org.ua/" target="blank" class="menu__item">ОБ АССОЦИАЦИИ</a>
 				<a href="{{route('events.index')}}" class="menu__item">КАЛЕНДАРЬ</a>
 				<a href="{{route('polls.index')}}" class="menu__item">ОПРОСЫ</a>
-				<a href="#" class="menu__item">КОНТАКТЫ</a>
+				<a href="{{url('contacts')}}" class="menu__item">КОНТАКТЫ</a>
 			</div>
 		</div>
 	</div>
 	<div class="container">
 		<a href="/"><img src="/img/logo.png" alt="" class="logo logo_in-header container__col-left"></a>
 		<div class="container__col-right actions-menu">
-			<a href="#" style="background-color: #5575b6; background-image: url(/img/user-menu-1.png);" class="actions-menu__item"></a>
+			<a href="http://rau.org.ua/" style="background-color: #5575b6; background-image: url(/img/user-menu-1.png);" class="actions-menu__item"></a>
 			@if ( !Auth::user() || !Auth::user()->company )
 			<a href="{{url('user')}}" style="background-color: #d98e64; background-image: url(/img/user-menu-2.png);" class="actions-menu__item">
 				ДОБАВИТЬ КОМПАНИЮ
@@ -76,9 +76,9 @@
 					<a href="http://rau.org.ua/" target="blank" class="menu__item">ОБ АССОЦИАЦИИ</a>
 					<a href="{{route('events.index')}}" class="menu__item">КАЛЕНДАРЬ</a>
 					<a href="{{route('polls.index')}}" class="menu__item">ОПРОСЫ</a>
-					<a href="#" class="menu__item">УСЛОВИЯ ПОРТАЛА</a>
-					<a href="#" class="menu__item">РЕКЛАМОДАТЕЛЯМ</a>
-					<a href="#" class="menu__item">КОНТАКТЫ</a>
+					<a href="{{url('uslovia')}}" class="menu__item">УСЛОВИЯ ПОРТАЛА</a>
+					<a href="{{url('reklamodatelam')}}" class="menu__item">РЕКЛАМОДАТЕЛЯМ</a>
+					<a href="{{url('contacts')}}" class="menu__item">КОНТАКТЫ</a>
 				</div>
 			</div>
 		</div>
