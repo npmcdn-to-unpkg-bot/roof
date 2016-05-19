@@ -14,17 +14,18 @@
 		#page-404 {
 			width: 546px;
 			margin: 150px auto;	
-			height: 245px;
 			padding-top: 107px;
 			font-size: 30px;
 			position: relative;
 		}
+		@if ( !Agent::isMobile() )
 		#image-404 {
 			position: absolute;
 			z-index: -1;
 			top: 0;
 			right: 0;
 		}
+		@endif
 	</style>
 </div>
 @endsection

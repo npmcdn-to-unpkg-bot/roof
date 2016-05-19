@@ -11,15 +11,15 @@
         <form action="{{ url('/register') }}" method="POST" class="reg-page reg-page_layout">
             {!! csrf_field() !!}
             <div class="title">РЕГИСТРАЦИЯ</div>       
-            <div class="offset_vertical_30">
+            <div class="offset_vertical_30 offset-sm_vertical_30">
                 <input type="text" name="email" value="{{ old('email') }}" placeholder="EMAIL" class="input input_100 input_bold {{ $errors->has('email') ?  'input_error' : '' }}">
                 @if ($errors->has('email'))<div class="error">{{ $errors->first('email') }}</div>@endif
             </div>
-            <div class="offset_vertical_30">
+            <div class="offset_vertical_30 offset-sm_vertical_30">
                 <input type="password" name="password" placeholder="ПАРОЛЬ" class="input input_100 input_bold {{ $errors->has('password') ?  'input_error' : '' }}">
                 @if ($errors->has('password'))<div class="error">{{ $errors->first('password') }}</div>@endif
             </div>
-            <div class="offset_vertical_30">
+            <div class="offset_vertical_30 offset-sm_vertical_30">
                 <input type="text" name="name" value="{{ old('name') }}" placeholder="ИМЯ" class="input input_100 input_bold {{ $errors->has('name') ?  'input_error' : '' }}">
             </div>
             <button class="button button_big button_minth reg-page__button">РЕГИСТРАЦИЯ</button>
@@ -53,8 +53,8 @@
             }
         </script>
         <div id="uLogin" data-ulogin="display=buttons;fields=first_name,last_name,email,photo_big;providers=googleplus,facebook;hidden=;redirect_uri=;callback=login_from_social">
-            <div data-uloginbutton="facebook" class="social-login social-login_facebook offset_vertical_30"><i style="margin-right: 15px; width: 15px;" class="fa fa-facebook"></i> Войти через <strong>Facebook</strong></div>
-            <div data-uloginbutton="googleplus" class="social-login social-login_googleplus offset_vertical_30"><i style="margin-right: 15px; width: 15px;" class="fa fa-google-plus"></i> Войти через <strong>Google+</strong></div>
+            <div data-uloginbutton="facebook" class="social-login social-login_facebook offset_vertical_30 offset-sm_vertical_30"><i style="margin-right: 15px; width: 15px;" class="fa fa-facebook"></i> Войти через <strong>Facebook</strong></div>
+            <div data-uloginbutton="googleplus" class="social-login social-login_googleplus offset_vertical_30 offset-sm_vertical_30"><i style="margin-right: 15px; width: 15px;" class="fa fa-google-plus"></i> Войти через <strong>Google+</strong></div>
         </div>
     </div>
 </div>

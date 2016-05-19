@@ -119,6 +119,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 	});
 
-Route::get('{slug}', 'General\PageController@show');
-
 });
+
+Route::get('{slug}', 'General\PageController@show');
