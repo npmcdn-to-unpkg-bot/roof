@@ -15,4 +15,8 @@ class Order extends Model
     public function service(){
     	return $this->belongsTo('App\Models\Service');
     }
+    public function apply(){
+    	$this->service->apply($this->orderable);
+    	return $this;
+    }
 }

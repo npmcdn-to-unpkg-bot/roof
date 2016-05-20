@@ -87,6 +87,17 @@ class AdminMenu
                             'href' => url('user'),
                         ],
                     ],
+                ],[
+                    'name' => 'Счета',
+                    'icon' => 'fa-bank',
+                    'active' => Request::is('user/orders*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список счетов',
+                            'icon' => 'fa-list',
+                            'href' => route('user.orders.index'),
+                        ],
+                    ],
                 ],
             ];
 

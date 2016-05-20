@@ -17,7 +17,7 @@ class CreatServicesTable extends Migration
             $table->string('name');
             $table->string('group');
             $table->string('callback');
-            $table->string('days');
+            $table->string('value');
             $table->integer('price');
         });
     }

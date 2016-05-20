@@ -25,34 +25,27 @@ class OrderController extends Controller
     {
         $liqpay = new LiqPay($this->public_key, $this->private_key);
 
-        $orders = auth()->user()->orders()->paginate(15);
+        $orders = auth()
+            ->user()
+            ->orders()
+            ->orderBy('payed')
+            ->orderBy('created_at','desc')
+            ->paginate(15);
+
         $th = [
-            [
-                'title'=>'',
-                'width'=>'45px',
-            ],[
-                'title'=>'#',
-                'width'=>'90px',
-            ],[
-                'title'=>'Дата',
-                'width'=>'90px',
-            ],[
-                'title'=>'Заказ',
-                'width'=>'auto',
-            ],[
-                'title'=>'Статус',
-                'width'=>'200px',
-            ],[
-                'title'=>'',
-                'width'=>'100px',
-            ],
+            ['title'=>'',         'width'=>'45px'  ],
+            ['title'=>'#',        'width'=>'90px'  ],
+            ['title'=>'Дата',     'width'=>'90px'  ],
+            ['title'=>'Заказ',    'width'=>'auto'  ],
+            ['title'=>'Статус',   'width'=>'200px' ],
+            ['title'=>'',         'width'=>'100px' ]
         ];
         $table=collect()->push($th);
         foreach ($orders as $order){
             $table->push([
                 [
                     'edit'=>false,
-                    'delete'=>route('user.orders.destroy', $order),
+                    'delete'=> $order->payed ? false : route('user.orders.destroy', $order),
                     'type'=>'actions',
                 ],[
                     'field'=>$order->id,
@@ -116,8 +109,13 @@ class OrderController extends Controller
         if ($request->signature == $signature) {
             $data = json_decode ( base64_decode ($request->data) );
             $order = Order::find($data->order_id);
-            // $order->liqpay_response = $request->data;
-            if ($data->status=='sandbox') $order->payed = 1;
+            $order->liqpay_response = base64_decode ($request->data);
+            if ($data->status=='sandbox') {
+                $order->payed = 1;
+                $order->apply();
+            }else{
+                $order->payed = 0;
+            }
             $order->save();
         }else{
             abort(404);

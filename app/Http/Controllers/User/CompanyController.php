@@ -12,20 +12,15 @@ use App\Models\Catalog\Specialisation;
 use App\Models\Catalog\Proposition;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 
 class CompanyController extends Controller
 {
 
     public function fields (Company $company) {
-        $levelOptions = [
-            '0' => 'Нет',
-            '1' => 'Старт',
-            '2' => 'Бизнес',
-            '3' => 'Премиум',
-        ];
-        foreach ($levelOptions as $level => $label)
-            if ($level < $company->level)
-                unset($levelOptions[$level]);
+        $level = Service::where('group','company_level')
+            ->where('value','>=',$company->level)
+            ->get();
         return [
             [
                 'name' => 'name',
@@ -70,11 +65,11 @@ class CompanyController extends Controller
                 'label' => 'Телефон компании',
                 'value' => old() ? old('phone') : $company->phone
             ],[
-                'name'=>'level',
-                'type'=>'radio',
+                'name'=>'company_level',
+                'type'=>'company_level',
                 'label'=>'Статус компании',
-                'value' => old() ? old('level') : $company->level,
-                'options'=>$levelOptions,
+                'value' => old() ? old('company_level') : $level->where('value', (string)$company->level)->first()['id'],
+                'options' => $level,
             ],[
                 'type' => 'address',
                 'label' => 'Адрес',
@@ -155,15 +150,15 @@ class CompanyController extends Controller
         $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
         $company->propositions()->sync($request->propositions ? $request->propositions : []);
 
-        if ($company->max_level_ever < $request->level) {
-            $company->max_level_start = Carbon::now();
-            $company->max_level_ever = $request->level;
+        $service = Service::find($request->company_level);
+        if ( $service  && ($company->level < $service->value) ) {
+            $company->orders()->create([
+                'user_id' => auth()->user()->id,
+                'service_id' => $request->company_level
+            ]);
+            return redirect()->route('user.orders.index');
         }
-        if ($company->level < $request->level) {
-            $company->level = $request->level;
-            $company->level_end = Carbon::now()->addYear();
-        }
-        
+
         return redirect('user');
     }
 

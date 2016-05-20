@@ -13,7 +13,7 @@ use App\City;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Service;
+use App\Models\Service;
 
 class OfferController extends Controller
 {
@@ -272,9 +272,13 @@ class OfferController extends Controller
         Auth::user()->offers()->where('id', $id)->delete();
         return back();
     }
+    
     public function up($id)
     {
-        Offer::where('id',$id)->update(['created_at' => Carbon::now()]);
-        return back();
+        $order = Offer::find($id)->orders()->create([
+            'user_id' => auth()->user()->id,
+            'service_id' => Service::where('group','offer_up')->first()->id
+        ]);
+        return redirect()->route('user.orders.index');
     }
 }

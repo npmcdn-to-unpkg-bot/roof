@@ -120,4 +120,7 @@ class Company extends Model
     public function comments() {
         return $this->morphMany('App\Models\Comment','commentable');
     }
+    public function orders () {
+        return $this->morphMany('App\Models\Order','orderable');
+    }
 }
