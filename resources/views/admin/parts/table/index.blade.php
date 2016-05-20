@@ -17,3 +17,8 @@
 		<div class="pull-right">{{$pagination}}</div>
 	</div>
 </div>
+<style>
+.table>tbody>tr>td {
+	vertical-align: middle;
+}
+</style>

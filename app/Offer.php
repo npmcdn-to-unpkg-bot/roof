@@ -74,4 +74,8 @@ class Offer extends Model
     public function user () {
     	return $this->belongsTo('App\User');
     }
+
+    public function orders () {
+        return $this->morphMany('App\Models\Order','orderable');
+    }
 }

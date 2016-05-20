@@ -13,11 +13,14 @@ use App\City;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Service;
 
 class OfferController extends Controller
 {
 
     protected function fields (Offer $offer) {
+
+
 
         return [
             [
@@ -91,30 +94,12 @@ class OfferController extends Controller
                 'values' => old() ? (array)old('categories') : $offer->categories->lists('id')->all(),
                 'options' => Category::lists('name','id')
             ],[
-                'name'=>'framed',
-                'type'=>'radiodate',
-                'label'=>'Выделить рамкой',
-                'value'=>old('framed'),
-                'periods'=>[
-                    '0' => 'Нет',
-                    '3' => 'На 3 дня',
-                    '7' => 'На 7 дней',
-                    '30' => 'На 1 месяц',
-                    '90' => 'На 3 месяца',
-                ],
+                'name'=>'offer_framed',
+                'type'=>'service',
                 'expire' => $offer->framed
             ],[
-                'name'=>'top',
-                'type'=>'radiodate',
-                'label'=>'Поместить в топ',
-                'value'=>old('top'),
-                'periods'=>[
-                    '0' => 'Нет',
-                    '3' => 'На 3 дня',
-                    '7' => 'На 7 дней',
-                    '30' => 'На 1 месяц',
-                    '90' => 'На 3 месяца',
-                ],
+                'name'=>'offer_top',
+                'type'=>'service',
                 'expire' => $offer->top
             ],
         ];
@@ -215,17 +200,20 @@ class OfferController extends Controller
         
         $offer->categories()->sync((array)$request->categories);
 
-        $offer->framed = max(
-            $offer->framed, 
-            Carbon::now()->addDay($request->framed)
-        );
+        if ($request->offer_framed)
+            $order = $offer->orders()->create([
+                'user_id' => auth()->user()->id,
+                'service_id' => $request->offer_framed
+            ]);
 
-        $offer->top = max(
-            $offer->top, 
-            Carbon::now()->addDay($request->top)
-        );
+        if ($request->offer_top)
+            $order = $offer->orders()->create([
+                'user_id' => auth()->user()->id,
+                'service_id' => $request->offer_top
+            ]);
 
-        $offer->save();
+        if ($request->offer_top||$request->offer_framed)
+            return redirect()->route('user.orders.index');
 
         return redirect()->route('user.offers.index');
     }

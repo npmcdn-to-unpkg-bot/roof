@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d6e5e300c17f49ad5a3dee683ad5873b",
-    "content-hash": "689904ad277a12460b84df057df1f60f",
+    "hash": "cce815f39497b6deef8dff89e7a440e7",
+    "content-hash": "375b76771313bf033b3640fda5ba84db",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1149,6 +1149,49 @@
                 "storage"
             ],
             "time": "2016-04-28 06:53:12"
+        },
+        {
+            "name": "liqpay/liqpay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liqpay/sdk-php.git",
+                "reference": "650dbf35d929f82d465903ac44768ec47a0862b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liqpay/sdk-php/zipball/650dbf35d929f82d465903ac44768ec47a0862b5",
+                "reference": "650dbf35d929f82d465903ac44768ec47a0862b5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "./LiqPay.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL 3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Liqpay",
+                    "email": "support@liqpay.com",
+                    "homepage": "https://www.liqpay.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "SDK for Liqpay",
+            "homepage": "https://github.com/liqpay/sdk-php",
+            "keywords": [
+                "liqpay",
+                "pay"
+            ],
+            "time": "2016-02-12 14:56:47"
         },
         {
             "name": "maatwebsite/excel",
@@ -3951,7 +3994,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "liqpay/liqpay": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

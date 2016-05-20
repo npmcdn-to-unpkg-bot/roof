@@ -42,6 +42,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Offer');
     }
 
+    public function orders () {
+        return $this->hasMany('App\Models\Order');
+    }
+
     public function roles () {
         return $this->belongsToMany('App\Role');
     }
