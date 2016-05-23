@@ -20,11 +20,17 @@ class OfferController extends Controller
     {
 
         $offers = Offer::orderBy('created_at', 'desc');
-        if ($request->search) $offers = $offers->where('title', 'LIKE', '%'.$request->search.'%');
-        if ($request->created_at) $offers = $offers->where('created_at', '>=', Carbon::now()->subWeek($request->created_at));
+        $categories = explode(',',$request->categories);
+        if ($request->search) $offers->where('title', 'LIKE', '%'.$request->search.'%');
+        if ($request->created_at) $offers->where('created_at', '>=', Carbon::now()->subWeek($request->created_at));
+        if ($request->categories) $offers->whereHas('categories',
+        function ($query) use ($categories) {
+            return $query->whereIn('id', $categories);
+        });
         $offers = $offers->paginate(10);
         return view('general.desk.index',[
-            'offers' => $offers
+            'offers' => $offers,
+            'categories' => $categories
         ]); 
     }
 

@@ -34,15 +34,30 @@
 			</div>
 			<div class="container__col-4 container__col-sm-12">
 				<div class="title">КАТЕГОРИИ</div>
-				<form class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare offset_bottom_60 offset-sm_vertical_30">
+				<form id="deskCategories" class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare offset_bottom_60 offset-sm_vertical_30">
+					<input type="hidden" name="categories" value="{{Request::get('categories')}}">
 					@foreach (App\Category::all() as $category)
 						<label class="menu__item">
-							<input class="input_checkbox" type="checkbox" name="category" value="{{$category->id}}">
+							<input class="input_checkbox" type="checkbox" value="{{$category->id}}" @if(in_array($category->id,$categories)) checked @endif>
 							<span></span>
 							{{$category->name}}
 						</label>
 					@endforeach
 					<button class="button button_100 button_cyan button_big">ПОКАЗАТЬ</button>
+					<script>
+						document
+							.getElementById('deskCategories')
+							.addEventListener('change', deskCategoriesChange);
+						function deskCategoriesChange(event) {
+							$(this).find('[name=categories]').val(
+								$(this)
+									.find('input:checked')
+									.map(function (){ return this.value })
+									.get()
+									.join(',')
+							)
+						}
+					</script>
 				</form>
 				<a href="{{route('user.offers.create')}}" class="button button_orange button_huge offset-sm_vertical_30">ДОБАВИТЬ ОБЪЯВЛЕНИЕ</a>
 				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Объявления архив 1'])</div>

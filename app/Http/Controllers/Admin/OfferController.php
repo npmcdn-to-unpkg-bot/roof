@@ -12,6 +12,7 @@ use App\Country;
 use App\City;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Carbon\Carbon;
 
 class OfferController extends Controller
@@ -91,30 +92,12 @@ class OfferController extends Controller
                 'values' => old() ? (array)old('categories') : $offer->categories->lists('id')->all(),
                 'options' => Category::lists('name','id')
             ],[
-                'name'=>'framed',
-                'type'=>'radiodate',
-                'label'=>'Выделить рамкой',
-                'value'=>old('framed'),
-                'periods'=>[
-                    '0' => 'Нет',
-                    '3' => 'На 3 дня',
-                    '7' => 'На 7 дней',
-                    '30' => 'На 1 месяц',
-                    '90' => 'На 3 месяца',
-                ],
+                'name'=>'offer_framed',
+                'type'=>'service',
                 'expire' => $offer->framed
             ],[
-                'name'=>'top',
-                'type'=>'radiodate',
-                'label'=>'Поместить в топ',
-                'value'=>old('top'),
-                'periods'=>[
-                    '0' => 'Нет',
-                    '3' => 'На 3 дня',
-                    '7' => 'На 7 дней',
-                    '30' => 'На 1 месяц',
-                    '90' => 'На 3 месяца',
-                ],
+                'name'=>'offer_top',
+                'type'=>'service',
                 'expire' => $offer->top
             ],[
                 'name'=>'user_id',
@@ -218,20 +201,24 @@ class OfferController extends Controller
         if ($offer->image&&$offer->image!==$request->image) 
             Storage::delete('images/'.$offer->image);
 
+        $framed = Service::find($request->offer_framed);
         $offer->framed = max(
             $offer->framed, 
-            Carbon::now()->addDay($request->framed)
+            Carbon::now()->addDay( $framed ? $framed->value : 0)
         );
 
+        $top = Service::find($request->offer_top);
         $offer->top = max(
             $offer->top, 
-            Carbon::now()->addDay($request->top)
+            Carbon::now()->addDay( $top ? $top->value : 0)
         );
 
         $offer
             ->fill($request->only('title','image','price','specialisation','name','email','phone','information','lat','lng','address','city_id'))
             ->save();
+
         $offer->categories()->sync((array)$request->categories);
+
         return redirect()->route('admin.offers.index');
     }
 
