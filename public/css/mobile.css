@@ -616,6 +616,8 @@ a {
 .forum-message__avatar {
 	float: left;
 	margin-right: 8px;
+	width: 35px;
+	height: auto;
 }
 
 .forum-message__name {
