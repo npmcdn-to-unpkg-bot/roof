@@ -96,6 +96,10 @@ class AdminMenu
                             'name' => 'Список счетов',
                             'icon' => 'fa-list',
                             'href' => route('user.orders.index'),
+                        ],[
+                            'name' => 'Зарезервированые услуги',
+                            'icon' => 'fa-list',
+                            'href' => route('user.reserve.index'),
                         ],
                     ],
                 ],
@@ -373,6 +377,17 @@ class AdminMenu
                             'icon' => 'fa-list',
                             'href' => '/admin/users.xls',
                         ]
+                    ],
+                ],[
+                    'name' => 'Настройки',
+                    'icon' => 'fa-cog',
+                    'active' => Request::is('admin/options*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Данные портала',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.options.index'),
+                        ],
                     ],
                 ],
             ];

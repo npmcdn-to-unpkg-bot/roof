@@ -199,7 +199,6 @@ a {
 }
 
 .slider ul {
-	width: 1000%;
 	overflow: hidden;
 }
 
@@ -472,7 +471,7 @@ a {
 
 /*catalog-company*/
 .catalog-company {
-	line-height: 21px;
+	line-height: 34px;
 	margin-top: 27px;
 }
 
@@ -1606,6 +1605,7 @@ td.calendar-block__date_active {
 	right: 0;
 }
 
+
 .company-cart__right-top {
 	position: absolute;
 	top: 0;
@@ -1616,7 +1616,7 @@ td.calendar-block__date_active {
 	position: absolute;
 	bottom: 20px;
 	left: 0;
-	padding-right: 20px;
+	padding-right: 75px;
 	padding-left: 20px;
 	width: 100%;
 	box-sizing: border-box;
@@ -1624,7 +1624,7 @@ td.calendar-block__date_active {
 
 .company-cart_big {
 	padding: 24px;
-	height: 280px;
+	height: 310px;
 }
 
 .company-cart_small {
@@ -1640,6 +1640,9 @@ td.calendar-block__date_active {
 	padding: 0;
 }
 
+.company-cart_page .company-cart__phone {
+	margin-left: 200px;
+}
 .company-cart_page .company-cart__name {
 	font-size: 30px;
 	margin-left: 200px;
@@ -1950,7 +1953,7 @@ td.calendar-block__date_active {
 	margin-left: -8px;
 	line-height: 24px;
 	position: relative;
-	height: 138px;
+	height: 200px;
 }
 
 .desk-item_dark {
@@ -2341,9 +2344,7 @@ td.calendar-block__date_active {
 }
 
 .tender__more {
-	position: absolute;
-	bottom: 15px;
-	right: 15px;
+	float: right;
 }
 
 /*poll*/
@@ -2392,7 +2393,7 @@ td.calendar-block__date_active {
 .search__input {
 	background: white;
 	border:7px solid #6fc0d1;
-	width: 700px;
+	width: 570px;
 	padding: 0 10px;
 	height: 46px;
 	font-family: "Roboto Condensed";
@@ -2448,7 +2449,7 @@ td.calendar-block__date_active {
 	background: #003655;
 	color: white;
 	font-family: "Roboto Condensed";
-	font-size: 30px;
+	font-size: 28px;
     font-weight: 300;
 	border-top:8px solid #a3bec6;
 	line-height: 81px;

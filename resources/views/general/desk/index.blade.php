@@ -15,7 +15,7 @@
 				@foreach ($offers as $offer)
 					<div class="desk-item offset_vertical_20 offset-sm_vertical_20 {{ $offer->framed > Carbon\Carbon::now() ? 'desk-item_dark' : '' }}">
 						<a href="{{route('desk.show',$offer)}}">
-							<img src="/fit/160/140/{{$offer->image}}" alt="" class="desk-item__image">
+							<img src="/fit/{{Agent::isMobile() ? '160/200' : '160/140'}}/{{$offer->image}}" alt="" class="desk-item__image">
 						</a>
 						<a href="{{route('desk.show',$offer)}}" class="desk-item__title">{{ $offer->title }}</a>
 						<div class="desk-item__bottom">

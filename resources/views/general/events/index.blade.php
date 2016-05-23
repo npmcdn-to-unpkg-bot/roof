@@ -6,7 +6,7 @@
 	<div class="container breadcrumbs">
 		<span class="breadcumbs__current">КАЛЕНДАРЬ</span>
 	</div>
-	<div class="container">
+	<div class="container offset_bottom_60">
 		<div class="container__row">
 			<div class="container__col-8 container__col-sm-12">
 				<div class="calendar {{$class}}">

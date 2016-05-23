@@ -79,6 +79,7 @@ Route::group(['middleware'=>'csrf'], function (){
 			'user/personal'              => 'User\UserController',
 			'user/jobs'                  => 'User\JobController',
 			'user/tenders'               => 'User\TenderController',
+			'user/reserve'               => 'User\ReserveController',
 			'comment'                    => 'User\CommentController',
 			'upload'                     => 'User\UploadController',
 			'knowladge/education'        => 'General\EducationController',
@@ -117,6 +118,7 @@ Route::group(['middleware'=>'csrf'], function (){
 				'admin/tenders'                         => 'Admin\TenderController',
 				'admin/pages'                           => 'Admin\PageController',
 				'admin/users'                           => 'Admin\UserController',
+				'admin/options'                         => 'Admin\OptionController',
 			]);
 
 		});

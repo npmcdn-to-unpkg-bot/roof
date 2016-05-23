@@ -8,7 +8,7 @@
 	</div>
 	<div class="container">
 		<div class="container__row">
-			<div class="container__col-8">
+			<div class="container__col-8 container__col-sm-12">
 				<form action="/search" class="search__form">
 					<input type="text" name='q' placeholder="ВВЕДИТЕ СЛОВО ДЛЯ ПОИСКА" class="search__input" value="{{Request::get('q')}}">
 					<button class="search__button button button_blue"><img src="/img/user-menu-4.png" alt=""></button>
@@ -89,10 +89,10 @@
 				</style>
 				<gcse:searchresults-only></gcse:searchresults-only>
 			</div>
-			<div class="container__col-4">
+			<div class="container__col-4 container__col-sm-12">
 				@include('general.area.banner',['area' => 'Новости архив 1'])
-				<div class="offset_vertical_55">@include('general.polls.block')</div>
-				<div class="offset_vertical_55">@include('general.area.banner',['area' => 'Новости архив 2'])</div>
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.polls.block')</div>
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Новости архив 2'])</div>
 			</div>
 		</div>
 	</div>

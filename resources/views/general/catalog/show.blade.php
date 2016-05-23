@@ -17,7 +17,9 @@
 						<div class="company-cart__address">{{$company->printAddress()}}</div>
 						<div class="company-cart__post-date">Дата регистрации: {{$company->created_at->format('d.m.Y')}}</div>
 					</div>
-					<div class="container__col-4 container__col-sm-12 {{Agent::isMobile() ? '' : 'text_right'}}">{{$company->phone}}</div>
+					<div class="container__col-4 container__col-sm-12 {{Agent::isMobile() ? '' : 'text_right'}}">
+						<div class="company-cart__phone">{{$company->phone}}</div>
+					</div>
 				</div>
 				<div class="company-cart__right-top">
 					@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label"> @endif

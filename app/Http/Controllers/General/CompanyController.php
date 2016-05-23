@@ -31,8 +31,11 @@ class CompanyController extends Controller
         }
         if ($request->letter){ 
             $companies = $companies->where('name', 'LIKE', $request->letter.'%'); 
-            Response::header('X-Robots-Tag', 'noindex');
+            $XRobotsTag = 'noindex';
+        }else{
+            $XRobotsTag = 'all';
         }
+
         $companies = $companies->paginate(10);
 
         foreach ($companies as &$company) {
@@ -43,10 +46,12 @@ class CompanyController extends Controller
             Company::where('id', $company->id)->update(['rating'=>$company->rating]);
         }
 
-        return view('general.catalog.index', [
-            'companies' => $companies,
-            'search' => $request->search
-        ]);
+        return response()
+            ->view('general.catalog.index', [
+                'companies' => $companies,
+                'search' => $request->search
+            ])
+            ->header('X-Robots-Tag', $XRobotsTag);;
     }
 
    public function specialisation ($id) {

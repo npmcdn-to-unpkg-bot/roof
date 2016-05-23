@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Models\Service;
 
 class Service extends Model
 {
@@ -32,16 +33,21 @@ class Service extends Model
         $orderable->save();
     }
     public function company_level ($orderable) {
-
-        $orderable->level = $this->value;
-        $orderable->level_end = Carbon::now()->addYear();
-
+        if ($orderable->level < $this->value) {
+            $orderable->level = $this->value;
+            $orderable->level_end = Carbon::now()->addYear();
+        }
+        if ($this->value = 2) {
+            $reserveOffers = $orderable->user->reserves()->create([
+                'service_id' => Service::where('group','offer_top')->where('value','7')->firstOrNew([])->id,
+                'count'      => 10
+            ]);
+            $reserveOffers->save();
+        }
         if ($orderable->max_level_ever < $orderable->level) {
             $orderable->max_level_start = Carbon::now();
             $orderable->max_level_ever = $orderable->level;
         }
-        
         $orderable->save();
-
     }
 }
