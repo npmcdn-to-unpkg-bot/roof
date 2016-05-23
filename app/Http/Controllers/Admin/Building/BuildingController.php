@@ -72,10 +72,10 @@ class BuildingController extends Controller
                 'lng' => old() ? old('lng') : $building->lng,
                 'country' => old() 
                     ? Country::firstOrNew(['id'=>old('country_id')])
-                    : ($building->city ? $building->city->country : new Country),
+                    : ($building->city ? $building->city->country : Country::firstOrNew(['name'=>'Украина'])),
                 'city' => old() 
                     ? City::firstOrNew(['id'=>old('city_id')])
-                    : ($building->city ? $building->city : new Country),
+                    : ($building->city ? $building->city : City::firstOrNew(['name'=>'Киев'])),
                 'address' => old() 
                     ? old('address') 
                     : $building->address

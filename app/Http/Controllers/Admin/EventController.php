@@ -66,10 +66,10 @@ class EventController extends Controller
                 'lng' => old() ? old('lng') : $event->lng,
                 'country' => old() 
                     ? Country::firstOrNew(['id'=>old('country_id')])
-                    : ($event->city ? $event->city->country : new Country),
+                    : ($event->city ? $event->city->country : Country::firstOrNew(['name'=>'Украина'])),
                 'city' => old() 
                     ? City::firstOrNew(['id'=>old('city_id')])
-                    : ($event->city ? $event->city : new Country),
+                    : ($event->city ? $event->city : City::firstOrNew(['name'=>'Киев'])),
                 'address' => old() 
                     ? old('address') 
                     : $event->address

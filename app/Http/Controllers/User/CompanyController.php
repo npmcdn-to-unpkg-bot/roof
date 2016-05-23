@@ -78,10 +78,10 @@ class CompanyController extends Controller
                 'lng' => old() ? old('lng') : $company->lng,
                 'country' => old() 
                     ? Country::firstOrNew(['id'=>old('country_id')])
-                    : ($company->city ? $company->city->country : new Country),
+                    : ($company->city ? $company->city->country : Country::firstOrNew(['name'=>'Украина'])),
                 'city' => old() 
                     ? City::firstOrNew(['id'=>old('city_id')])
-                    : ($company->city ? $company->city : new Country),
+                    : ($company->city ? $company->city : City::firstOrNew(['name'=>'Киев'])),
                 'address' => old() 
                     ? old('address') 
                     : $company->address

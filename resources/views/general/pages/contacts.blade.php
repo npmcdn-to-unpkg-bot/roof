@@ -10,16 +10,19 @@
 <div class="container">
 	<div id="contacts-page">
 		Адрес:
-		<div class="contact-value">Киев, Б-р Ромена Роллана 7</div>
+		<div class="contact-value">{!! App\Option::firstOrNew(['name'=>'address'])->value !!}</div>
 		<br>
 		Телефон:
-		<div class="contact-value">+38 066 918 2362</div>
+		<div class="contact-value">{!! App\Option::firstOrNew(['name'=>'phone'])->value !!}</div>
 		<br>
 		e-mail:
-		<div class="contact-value">Svlasenko@roofers.com.ua <br>
-		info@roofers.com.ua</div>
+		<div class="contact-value">
+		{!! App\Option::firstOrNew(['name'=>'email_1'])->value !!}
+		<br>
+		{!! App\Option::firstOrNew(['name'=>'email_2'])->value !!}
+		</div>
 
-		<iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2541.4700945684513!2d30.36660735157167!3d50.43234387937212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cb837ecc39f9%3A0xc97fc4e1e6de1d76!2z0LHRg9C7LiDQoNC-0LzQtdC90LAg0KDQvtC70LvQsNC90LAsIDcsINCa0LjRl9Cy!5e0!3m2!1sru!2sua!4v1463645981148" width="571" height="433" frameborder="0" style="border:0" allowfullscreen></iframe>
+		{!! App\Option::firstOrNew(['name'=>'map'])->value !!}
 	</div>
 	<style>
 		#contacts-page{

@@ -15,6 +15,7 @@
 				<a href="http://rau.org.ua/" target="blank" class="menu__item">ОБ АССОЦИАЦИИ</a>
 				<a href="{{route('events.index')}}" class="menu__item">КАЛЕНДАРЬ</a>
 				<a href="{{route('polls.index')}}" class="menu__item">ОПРОСЫ</a>
+				<a href="http://forum.roofers.com.ua/" target="blank" class="menu__item">ФОРУМ</a>
 				<a href="{{url('contacts')}}" class="menu__item">КОНТАКТЫ</a>
 			</div>
 		</div>
@@ -66,10 +67,10 @@
 					<a href="/"><img src="/img/logo-gray.png" alt="" class="logo logo_in-footer logo_gray"></a>
 					<br>
 					<div class="social-buttons">
-						<a href="" class="social-buttons__item social-buttons__item_fb"></a>
-						<a href="" class="social-buttons__item social-buttons__item_li"></a>
-						<a href="" class="social-buttons__item social-buttons__item_in"></a>
-						<a href="" class="social-buttons__item social-buttons__item_yo"></a>
+						<a href="{!! App\Option::firstOrNew(['name'=>'facebook'])->value !!}" class="social-buttons__item social-buttons__item_fb"></a>
+						<a href="{!! App\Option::firstOrNew(['name'=>'linkedin'])->value !!}" class="social-buttons__item social-buttons__item_li"></a>
+						<a href="{!! App\Option::firstOrNew(['name'=>'instagram'])->value !!}" class="social-buttons__item social-buttons__item_in"></a>
+						<a href="{!! App\Option::firstOrNew(['name'=>'youtube'])->value !!}" class="social-buttons__item social-buttons__item_yo"></a>
 					</div>
 				</div>
 				<div class="container__col-2 text_right menu menu_vertical menu_uppercase menu_gray">
@@ -84,7 +85,7 @@
 		</div>
 	</div>
 	<div class="container-fluid container-fluid_gray copyright text_center">
-		©2016 Ассоциация кровельщиков Украины. Разработка сайта - Ivmar Ukraine
+		©2016 Ассоциация кровельщиков Украины. Разработка сайта - <a target="blank" href="http://ivmar.com.ua/">Ivmar Ukraine</a>
 	</div>
 	<script src="/bower/jquery/dist/jquery.min.js"></script>
 	<script src="/bower/flexslider/jquery.flexslider-min.js"></script>

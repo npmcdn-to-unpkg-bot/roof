@@ -15,12 +15,10 @@ class Member extends Model
 	public static function validator ($fields) {
 		return Validator::make($fields,[
 			'name' => 'required|max:255',
-			'image' => 'required',
 			'job' => 'required|max:255',
 	    ],[
 			'name.required' => 'Введите имя сотрудника.',
 			'name.max' => 'Имя сотрудника должно быть не больше 255 символов.',
-			'image.required' => 'Загрузите фотографию сотрудника.',
 			'job.required' => 'Должность сотрудника обязательное поле.',
 			'job.max' => 'Название должности должно быть не больше 255 символов.',
 	    ]);
