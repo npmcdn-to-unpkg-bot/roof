@@ -19,8 +19,9 @@ class CompanyController extends Controller
 
     public function fields (Company $company) {
         $level = Service::where('group','company_level')
-            ->where('value','>=',$company->level)
+            ->where('value','>=',$company->level ? $company->level : 0)
             ->get();
+
         return [
             [
                 'name' => 'name',
