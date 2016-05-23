@@ -123,6 +123,21 @@ class AdminMenu
                         ],
                     ],
                 ],[
+                    'name' => 'Блог',
+                    'icon' => 'fa-newspaper-o',
+                    'active' => Request::is('user/blog*')?'active':'',
+                    'children' => [
+                        [
+                            'name' => 'Список статей',
+                            'icon' => 'fa-list',
+                            'href' => route('user.blog.index'),
+                        ],[
+                            'name' => 'Добавить статью',
+                            'icon' => 'fa-plus',
+                            'href' => route('user.blog.create'),
+                        ],
+                    ],
+                ],[
                     'name' => 'Акции',
                     'icon' => 'fa-percent',
                     'active' => Request::is('user/sales*')?'active':'',
@@ -387,6 +402,10 @@ class AdminMenu
                             'name' => 'Данные портала',
                             'icon' => 'fa-list',
                             'href' => route('admin.options.index'),
+                        ],[
+                            'name' => 'Библиотека на главной',
+                            'icon' => 'fa-list',
+                            'href' => route('admin.options.library.index'),
                         ],
                     ],
                 ],

@@ -113,6 +113,7 @@ Route::group(['middleware'=>'csrf'], function (){
 				'admin/events'                          => 'Admin\EventController',
 				'admin/library'                         => 'Admin\Library\PostController',
 				'admin/library/all/categories'          => 'Admin\Library\CategoryController',
+				'admin/options/library'                 => 'Admin\Library\BlockController',
 				'admin/education'                       => 'Admin\Education\PostController',
 				'admin/education/all/categories'        => 'Admin\Education\CategoryController',
 				'admin/tenders'                         => 'Admin\TenderController',
