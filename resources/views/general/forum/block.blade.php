@@ -10,7 +10,7 @@
 	mb_internal_encoding("UTF-8");
 	$db->set_charset("utf8");
 
-	$query_posts = $db->query('SELECT * FROM phpbb_posts ORDER BY post_time DESC LIMIT 5');
+	$query_posts = $db->query('SELECT * FROM phpbb_posts ORDER BY post_time DESC LIMIT 4');
 
 	while ($post = $query_posts->fetch_assoc()){
 		$post['post_time'] = date('d.m.Y', $post['post_time']);
