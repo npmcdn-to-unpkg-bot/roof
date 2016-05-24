@@ -9,7 +9,7 @@ class Post extends Model
 {
 	protected $table = 'catalog_posts';
 
-	protected $fillable = ['id','title','image','entry','content','company_id'];
+	protected $fillable = ['id','title','image','entry','content','company_id','meta_title','meta_description'];
 
 	public static function validator ($fields) {
 		return Validator::make($fields,[

@@ -10,7 +10,7 @@ class Post extends Model
 
 	protected $table = 'library_posts';
 
-	protected $fillable = ['id','title','image','entry','content'];
+	protected $fillable = ['id','title','image','entry','content','meta_title','meta_description'];
 	
     public function categories () {
     	return $this->belongsToMany('App\Models\Library\Category','library_category_post','post_id','category_id');

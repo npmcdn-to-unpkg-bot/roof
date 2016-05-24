@@ -20,7 +20,9 @@ class Job extends Model
 		'seasonality',
 		'company_id',
 		'speciality',
-		'user_id'
+		'user_id',
+		'meta_title',
+		'meta_description'
 	];
 
     public function user () {

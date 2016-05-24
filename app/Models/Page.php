@@ -19,5 +19,5 @@ class Page extends Model
     		]);
     }
 
-    protected $fillable = ['name','content','slug'];
+    protected $fillable = ['name','content','slug','meta_title','meta_description'];
 }

@@ -1,8 +1,8 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
-@section('title'){{$page->name}}@endsection
+@section('title'){{$page->meta_title ? $page->meta_title : $page->name}}@endsection
 
-@section('description'){{ str_limit(strip_tags($page->content),150) }}@endsection
+@section('description'){{$page->meta_description ? $page->meta_description :  str_limit(strip_tags($page->content),150) }}@endsection
 
 @section('content')
 

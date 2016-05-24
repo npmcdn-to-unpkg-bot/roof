@@ -50,6 +50,18 @@ class PostController extends Controller
                     ? old('company_id') 
                     : ($post->company ? $post->company->id : ''),
                 'options'=>Company::lists('name','id')
+            ],[
+                'name'=>'meta_title',
+                'type'=>'text',
+                'label'=>'Введите meta title',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_title') : $post->meta_title
+            ],[
+                'name'=>'meta_description',
+                'type'=>'textarea',
+                'label'=>'Введите meta description',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_description') : $post->meta_description
             ]
         ];
         
@@ -141,7 +153,7 @@ class PostController extends Controller
         if ($post->image&&$post->image!==$request->image) 
             Storage::delete('images/'.$company->image);
 
-        $post->fill($request->only('title','image','entry','content','company_id'));
+        $post->fill($request->only('title','image','entry','content','company_id','meta_title','meta_description'));
         $post->save();
 
         return redirect()->route('admin.company.{company}.blog.index', $company);

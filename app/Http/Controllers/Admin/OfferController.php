@@ -108,6 +108,18 @@ class OfferController extends Controller
                     ? old('user_id') 
                     : ($offer->user ? $offer->user->id : ''),
                 'options'=>User::lists('email','id')
+            ],[
+                'name'=>'meta_title',
+                'type'=>'text',
+                'label'=>'Введите meta title',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_title') : $offer->meta_title
+            ],[
+                'name'=>'meta_description',
+                'type'=>'textarea',
+                'label'=>'Введите meta description',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_description') : $offer->meta_description
             ]
         ];
         
@@ -214,7 +226,7 @@ class OfferController extends Controller
         );
 
         $offer
-            ->fill($request->only('title','image','price','specialisation','name','email','phone','information','lat','lng','address','city_id'))
+            ->fill($request->only('title','image','price','specialisation','name','email','phone','information','lat','lng','address','city_id','meta_title','meta_description'))
             ->save();
 
         $offer->categories()->sync((array)$request->categories);

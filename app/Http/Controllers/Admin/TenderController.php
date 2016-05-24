@@ -87,6 +87,18 @@ class TenderController extends Controller
                     ? old('user_id') 
                     : ($tender->user ? $tender->user->id : ''),
                 'options'=>User::lists('email','id')
+            ],[
+                'name'=>'meta_title',
+                'type'=>'text',
+                'label'=>'Введите meta title',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_title') : $tender->meta_title
+            ],[
+                'name'=>'meta_description',
+                'type'=>'textarea',
+                'label'=>'Введите meta description',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_description') : $tender->meta_description
             ]
         ];
         
@@ -191,7 +203,7 @@ class TenderController extends Controller
         if ($tender->image&&$tender->image!==$request->image) 
             Storage::delete('images/'.$tender->image);
 
-        $tender->fill($request->only('name','description','budget','image','end','person','email','phone','user_id'));
+        $tender->fill($request->only('name','description','budget','image','end','person','email','phone','user_id','meta_title','meta_description'));
         $tender->save();
 
         return redirect()->route('admin.tenders.index');

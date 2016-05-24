@@ -9,7 +9,7 @@ class Tender extends Model
 {
     protected $table = 'tenders';
 
-    protected $fillable = ['name','company_id','budget','end','description','image','person','email','phone','user_id'];
+    protected $fillable = ['name','company_id','budget','end','description','image','person','email','phone','user_id','meta_title','meta_description'];
 
 	protected $dates = ['created_at', 'updated_at', 'end'];
 

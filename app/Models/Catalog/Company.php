@@ -44,7 +44,9 @@ class Company extends Model
         'lat',
         'lng',
         'city_id',
-        'address'
+        'address',
+        'meta_title',
+        'meta_description'
     ];
 
     protected $dates = ['created_at','updated_at'];

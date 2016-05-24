@@ -21,7 +21,9 @@ class Building extends Model
 		'lat',
 		'lng',
 		'city_id',
-		'address'
+		'address',
+		'meta_title',
+		'meta_description'
 	];
 
 	public static function validator ($fields) {

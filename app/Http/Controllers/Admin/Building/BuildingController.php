@@ -88,6 +88,18 @@ class BuildingController extends Controller
                     ? old('company') 
                     : ($building->company ? $building->company->id : $building->company_name),
                 'options'=>$companies
+            ],[
+                'name'=>'meta_title',
+                'type'=>'text',
+                'label'=>'Введите meta title',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_title') : $company->meta_title
+            ],[
+                'name'=>'meta_description',
+                'type'=>'textarea',
+                'label'=>'Введите meta description',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_description') : $company->meta_description
             ]
         ];
     }
@@ -180,7 +192,7 @@ class BuildingController extends Controller
 
 
         $building = Building::firstOrNew(['id' => $request->id])
-            ->fill($request->only('name','type','information','published','start','end','lat','lng','address','city_id'));
+            ->fill($request->only('name','type','information','published','start','end','lat','lng','address','city_id','meta_title','meta_description'));
 
         if (Company::find($request->company)) {
             $building->company_id = $request->company;

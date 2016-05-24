@@ -1,8 +1,8 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
-@section('title'){{ $tender->name }}@endsection
+@section('title'){{$tender->meta_title ? $tender->meta_title : $tender->name }}@endsection
 
-@section('description'){{ str_limit(strip_tags($tender->description),150) }}@endsection
+@section('description'){{ $tender->meta_description ? $tender->meta_description : str_limit(strip_tags($tender->description),150) }}@endsection
 
 @section('content')
 	<div class="container breadcrumbs">
@@ -43,7 +43,7 @@
 				</div>
 			</div>
 			<div class="container__col-4 container__col-sm-12">
-				@include('general.events.block')
+				@include('general.tenders.block')
 				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Тендеры запись 1'])</div>
 			</div>
 		</div>

@@ -118,6 +118,18 @@ class CompanyController extends Controller
                     ? old('user_id') 
                     : ($company->user ? $company->user->id : ''),
                 'options'=>User::lists('email','id')
+            ],[
+                'name'=>'meta_title',
+                'type'=>'text',
+                'label'=>'Введите meta title',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_title') : $company->meta_title
+            ],[
+                'name'=>'meta_description',
+                'type'=>'textarea',
+                'label'=>'Введите meta description',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_description') : $company->meta_description
             ]
         ];
     }
@@ -236,7 +248,7 @@ class CompanyController extends Controller
         }
 
         $company
-            ->fill($request->only('name','email','logo','phone','entry','about','services','association','privat','user_id','address','lat','lng','city_id'))
+            ->fill($request->only('name','email','logo','phone','entry','about','services','association','privat','user_id','address','lat','lng','city_id','meta_title','meta_description'))
             ->save();
         $company->specialisations()->sync((array)$request->specialisations);
         $company->propositions()->sync((array)$request->propositions);

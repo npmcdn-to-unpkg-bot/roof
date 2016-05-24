@@ -22,7 +22,7 @@ class CreateBuildingsTable extends Migration
             $table->date('end');
             $table->boolean('published')->nullable();
             $table->integer('company_id')->index();
-            $table->string('company_name');
+            $table->string('company_name')->nullable();
             $table->decimal('lat',7,5);
             $table->decimal('lng',7,5);
             $table->string('address');

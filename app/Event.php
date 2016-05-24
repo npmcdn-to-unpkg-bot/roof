@@ -20,7 +20,9 @@ class Event extends Model
     	'lng',
     	'city_id',
     	'address',
-    	'website'
+    	'website',
+    	'meta_title',
+    	'meta_description'
     ];
 
 	public function printAddress () {

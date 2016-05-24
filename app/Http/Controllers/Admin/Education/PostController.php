@@ -46,7 +46,19 @@ class PostController extends Controller
                 'label' => 'Разделы',
                 'values' => old() ? (array)old('categories') : $post->categories->lists('id')->all(),
                 'options' => Category::lists('name','id')
-            ],
+            ],[
+                'name'=>'meta_title',
+                'type'=>'text',
+                'label'=>'Введите meta title',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_title') : $post->meta_title
+            ],[
+                'name'=>'meta_description',
+                'type'=>'textarea',
+                'label'=>'Введите meta description',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_description') : $post->meta_description
+            ]
         ];
         
     }
@@ -132,7 +144,7 @@ class PostController extends Controller
         if ($post->image&&$post->image!==$request->image) 
             Storage::delete('images/'.$post->image);
 
-        $post->fill($request->only('title','image','entry','content'));
+        $post->fill($request->only('title','image','entry','content','meta_title','meta_description'));
         $post->save();
         $post->categories()->sync((array)$request->categories);
 

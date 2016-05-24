@@ -73,7 +73,19 @@ class EventController extends Controller
                 'address' => old() 
                     ? old('address') 
                     : $event->address
-            ],
+            ],[
+                'name'=>'meta_title',
+                'type'=>'text',
+                'label'=>'Введите meta title',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_title') : $event->meta_title
+            ],[
+                'name'=>'meta_description',
+                'type'=>'textarea',
+                'label'=>'Введите meta description',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_description') : $event->meta_description
+            ]
         ];
         
     }
@@ -180,7 +192,7 @@ class EventController extends Controller
             Storage::delete('images/'.$event->image);
 
         $event
-            ->fill($request->only('name','image','information','start','end','founder','address','lat','lng','city_id','website'))
+            ->fill($request->only('name','image','information','start','end','founder','address','lat','lng','city_id','website','meta_title','meta_description'))
             ->save();
 
         return redirect()->route('admin.events.index');

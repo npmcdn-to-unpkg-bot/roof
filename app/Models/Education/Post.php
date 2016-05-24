@@ -14,7 +14,7 @@ class Post extends Model
     	return $this->belongsToMany('App\Models\Education\Category','education_category_post','post_id','category_id');
     }
 
-	protected $fillable = ['id','title','image','entry','content'];
+	protected $fillable = ['id','title','image','entry','content','meta_title','meta_description'];
 
     public static function validator ($fields) {
     	return Validator::make($fields,

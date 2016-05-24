@@ -1,8 +1,8 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
-@section('title'){{$company->name}}@endsection
+@section('title'){{$company->meta_title ? $company->meta_title : $company->name}}@endsection
 
-@section('description'){{ str_limit($company->entry,150) }}@endsection
+@section('description'){{ $company->meta_description ? $company->meta_description  : str_limit($company->entry,150) }}@endsection
 
 @section('content')
 <div class="container offset_vertical_60">

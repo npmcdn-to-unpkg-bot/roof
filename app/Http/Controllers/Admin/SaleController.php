@@ -13,25 +13,6 @@ use App\Http\Controllers\Controller;
 class SaleController extends Controller
 {
 
-    protected $table = [
-        [
-            'field'=>'image',
-            'type'=>'image',
-            'width'=>'40px',
-            'title'=>'Картинка'
-        ],[
-            'field'=>'title',
-            'type'=>'text',
-            'width'=>'auto',
-            'title'=>'Заголовок'
-        ],[
-            'field'=>'id',
-            'type'=>'actions',
-            'width'=>'90px',
-            'title'=>''
-        ],
-    ];
-
     protected function fields (Sale $sale) {
 
         return [
@@ -60,6 +41,18 @@ class SaleController extends Controller
                 'type'=>'ckeditor',
                 'label'=>'Текст',
                 'value'=>old() ? old('content') : $sale->content
+            ],[
+                'name'=>'meta_title',
+                'type'=>'text',
+                'label'=>'Введите meta title',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_title') : $sale->meta_title
+            ],[
+                'name'=>'meta_description',
+                'type'=>'textarea',
+                'label'=>'Введите meta description',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_description') : $sale->meta_description
             ]
         ];
 
@@ -148,7 +141,7 @@ class SaleController extends Controller
             Storage::delete('images/'.$sale->image);
 
         $sale
-            ->fill($request->only('title','image','entry','content'))
+            ->fill($request->only('title','image','entry','content','meta_title','meta_description'))
             ->save();
 
         return redirect()->route('admin.sales.index');

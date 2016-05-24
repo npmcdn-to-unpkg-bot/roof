@@ -50,6 +50,18 @@ class SaleController extends Controller
                     ? old('company_id') 
                     : ($sale->company ? $sale->company->id : ''),
                 'options'=>Company::lists('name','id')
+            ],[
+                'name'=>'meta_title',
+                'type'=>'text',
+                'label'=>'Введите meta title',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_title') : $sale->meta_title
+            ],[
+                'name'=>'meta_description',
+                'type'=>'textarea',
+                'label'=>'Введите meta description',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_description') : $sale->meta_description
             ]
         ];
         
@@ -139,7 +151,7 @@ class SaleController extends Controller
         if ($sale->image&&$sale->image!==$request->image) 
             Storage::delete('images/'.$company->image);
 
-        $sale->fill($request->only('title','image','entry','content','company_id'));
+        $sale->fill($request->only('title','image','entry','content','company_id','meta_title','meta_description'));
         $sale->save();
 
         return redirect()->route('admin.company.{company}.sales.index', $company);

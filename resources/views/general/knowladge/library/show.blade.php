@@ -1,8 +1,8 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
-@section('title'){{$post->title}}@endsection
+@section('title'){{ $post->meta_title ? $post->meta_title :  $post->title}}@endsection
 
-@section('description'){{ str_limit($post->entry,150) }}@endsection
+@section('description'){{ $post->meta_description ? $post->meta_description :   str_limit($post->entry,150) }}@endsection
 
 @section('content')
 <div class="container breadcrumbs">

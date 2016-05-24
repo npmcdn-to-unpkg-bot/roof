@@ -40,6 +40,18 @@ class ArticleController extends Controller
                 'type'=>'ckeditor',
                 'label'=>'Текст статьи',
                 'value'=>old() ? old('content') : $article->content
+            ],[
+                'name'=>'meta_title',
+                'type'=>'text',
+                'label'=>'Введите meta title',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_title') : $article->meta_title
+            ],[
+                'name'=>'meta_description',
+                'type'=>'textarea',
+                'label'=>'Введите meta description',
+                'placeholder'=>'',
+                'value'=>old() ? old('meta_description') : $article->meta_description
             ]
         ];
         
@@ -128,7 +140,7 @@ class ArticleController extends Controller
         if ($article->image&&$article->image!==$request->image) 
             Storage::delete('images/'.$article->image);
 
-        $article->fill($request->only('title','image','entry','content'));
+        $article->fill($request->only('title','image','entry','content','meta_title','meta_description'));
         $article->save();
 
         return redirect()->route('admin.news.index');

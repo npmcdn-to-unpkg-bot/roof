@@ -6,5 +6,6 @@ view()->composer( 'general.desk.block',              'App\Http\ViewComposers\Des
 view()->composer( 'general.events.block',            'App\Http\ViewComposers\Calendar'            );
 view()->composer( 'general.events.index',            'App\Http\ViewComposers\Calendar'            );
 view()->composer( 'general.desk.top',                'App\Http\ViewComposers\TopOffers'           );
+view()->composer( 'general.buildings.block',         'App\Http\ViewComposers\Buildings'           );
 
 view()->composer( 'admin.parts.menu',                'App\Http\ViewComposers\AdminMenu'           );
