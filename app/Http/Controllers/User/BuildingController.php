@@ -129,8 +129,8 @@ class BuildingController extends Controller
                     'field'=>$building->type,
                     'type'=>'text',
                 ],[
-                    'edit' => route('user.buildings.edit', $building),
-                    'delete' => route('user.buildings.destroy', $building),
+                    'edit' => route('user.company.buildings.edit', $building),
+                    'delete' => route('user.company.buildings.destroy', $building),
                     'type'=>'actions',
                 ],
             ]);
@@ -139,7 +139,8 @@ class BuildingController extends Controller
             'table' => $table,
             'items' => $buildings,
             'title' => 'Стройки',
-            'pagination' => $buildings->render()
+            'pagination' => $buildings->render(),
+            'add' => route('user.company.buildings.create')
         ]);
 
     }
@@ -159,8 +160,8 @@ class BuildingController extends Controller
         ]);
 
         return view('admin.universal.edit',[
-            'title' => 'Добавить компанию',
-            'action' => route('user.buildings.store'),
+            'title' => 'Добавить стройку',
+            'action' => route('user.company.buildings.store'),
             'fields' => $this->fields($building),
             'item' => $building
         ]);
@@ -214,7 +215,7 @@ class BuildingController extends Controller
 
         $building->images()->sync($images->pluck('id')->all());
 
-        return redirect()->route('user.buildings.index');
+        return redirect()->route('user.company.buildings.index');
     }
 
     /**
@@ -238,11 +239,11 @@ class BuildingController extends Controller
     {
         $building = Auth::user()->company->buildings()->where('id', $id)->first();
 
-        if (!$building) return redirect()->route('user.buildings.create');
+        if (!$building) return redirect()->route('user.company.buildings.create');
 
         return view('admin.universal.edit',[
             'title' => 'Добавить компанию',
-            'action' => route('user.buildings.store'),
+            'action' => route('user.company.buildings.store'),
             'fields' => $this->fields($building),
             'item' => $building
         ]);

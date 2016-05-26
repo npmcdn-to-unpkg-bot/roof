@@ -14,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'job', 'phone', 'image'
+        'name', 'email', 'password', 'job', 'phone', 'image','company_id','join_company_id'
     ];
 
     /**
@@ -36,6 +36,14 @@ class User extends Authenticatable
 
     public function company () {
         return $this->hasOne('App\Models\Catalog\Company');
+    }
+
+    public function member_in_company () {
+        if ($this->company_id){
+            return $this->belongsTo('App\Models\Catalog\Company','company_id');
+        }else{
+            return $this->belongsTo('App\Models\Catalog\Company','join_company_id');
+        }
     }
 
     public function offers () {

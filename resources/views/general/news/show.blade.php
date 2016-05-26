@@ -6,7 +6,7 @@
 
 @section('content')
 	<div class="container breadcrumbs">
-		<a href="{{route('news.index')}}" class="breadcrumbs__path">НОВОСТИ РЫНКА</a>
+		<a href="{{route('news.index')}}" class="breadcrumbs__path">НОВОСТИ И СТАТЬИ</a>
 		<span class="breadcumbs__current">{{$article->title}}</span>
 	</div>
 	<div class="container">

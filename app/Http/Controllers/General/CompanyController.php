@@ -122,6 +122,12 @@ class CompanyController extends Controller
         return response()->download(storage_path('app/prices/'.$name));
     }
 
+    public function join ($id) {
+        auth()->user()->update(['join_company_id'=>$id]);
+        
+        return back();
+    }
+
     public function edit()    { abort(404); }
     public function create()  { abort(404); }
     public function store()   { abort(404); }

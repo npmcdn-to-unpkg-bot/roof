@@ -1,4 +1,4 @@
-<div class="title">НОВОСТИ РЫНКА</div>
+<div class="title">НОВОСТИ И СТАТЬИ</div>
 <div class="market-news">
 	@foreach (App\Article::take(3)->get() as $article)
 		<a href="{{route('news.show',$article)}}" class="market-news__item">

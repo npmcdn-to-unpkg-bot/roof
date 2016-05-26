@@ -35,7 +35,7 @@
 				  				if ($(item).text().search('/events')>0) $(item).text('КАЛЕНДАРЬ');
 				  				if ($(item).text().search('/polls')>0) $(item).text('ОПРОСЫ');
 				  				if ($(item).text().search('/sales')>0) $(item).text('АКЦИИ И СКИДКИ');
-				  				if ($(item).text().search('/news')>0) $(item).text('НОВОСТИ РЫНКА');
+				  				if ($(item).text().search('/news')>0) $(item).text('НОВОСТИ И СТАТЬИ');
 				  				if ($(item).text().search('/desk')>0) $(item).text('ДОСКА ОБЪЯВЛЕНИЙ');
 				  			});
 			  				$('.gsc-result-info').each(function(key, item){

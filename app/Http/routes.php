@@ -61,23 +61,25 @@ Route::group(['middleware'=>'csrf'], function (){
 
 	Route::group(['middleware' => 'auth'], function () {
 
+		Route::get('catalog/join/{id}', 'General\CompanyController@join');
 		Route::get('autocomplete/country', 'General\Autocomplete@country');
 		Route::get('autocomplete/city', 'General\Autocomplete@city');
 		Route::get('knowladge/education/category/{id}', 'General\EducationController@category');
 		Route::get('user', 'User\CompanyController@edit');
 		Route::get('user/offers/up/{id}', 'User\OfferController@up');
+		Route::get('user/company/staff/{id}/accept', 'User\MemberController@accept');
 		Route::get('vote', 'User\PollController@index');
 		Route::post('vote', 'User\PollController@vote');
 
 		Route::resources([
+			'user/company/staff'         => 'User\MemberController',
+			'user/company/blog'          => 'User\PostController',
+			'user/company/sales'         => 'User\SaleController',
+			'user/company/buildings'     => 'User\BuildingController',
 			'user/company'               => 'User\CompanyController',
-			'user/buildings'             => 'User\BuildingController',
 			'user/jobs'                  => 'User\JobController',
-			'user/blog'                  => 'User\PostController',
-			'user/sales'                 => 'User\SaleController',
 			'user/offers'                => 'User\OfferController',
 			'user/personal'              => 'User\UserController',
-			'user/jobs'                  => 'User\JobController',
 			'user/tenders'               => 'User\TenderController',
 			'user/reserve'               => 'User\ReserveController',
 			'comment'                    => 'User\CommentController',

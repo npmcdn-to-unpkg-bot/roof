@@ -99,8 +99,8 @@ class SaleController extends Controller
                     'field'=>$sale->title,
                 ],[
                     'type'=>'actions',
-                    'edit' => route('user.sales.edit',$sale),
-                    'delete' => route('user.sales.destroy',$sale),
+                    'edit' => route('user.company.sales.edit',$sale),
+                    'delete' => route('user.company.sales.destroy',$sale),
                 ]
             ]);
         }
@@ -109,6 +109,7 @@ class SaleController extends Controller
             'title' => 'Акции и скидки',
             'table' => $table,
             'pagination' => $sales->render(),
+            'add' => route('user.company.sales.create')
         ]);
     }
 
@@ -123,7 +124,7 @@ class SaleController extends Controller
 
         return view('admin.universal.edit',[
             'title' => 'Добавить акцию',
-            'action' => route('user.sales.store'),
+            'action' => route('user.company.sales.store'),
             'fields' => $this->fields($sale),
             'item' => $sale
         ]);
@@ -157,7 +158,7 @@ class SaleController extends Controller
             ->fill($request->only('title','image','entry','content'))
             ->save();
 
-        return redirect()->route('user.sales.index');
+        return redirect()->route('user.company.sales.index');
     }
 
     /**
@@ -181,11 +182,11 @@ class SaleController extends Controller
     {
         $company = Auth::user()->company;
         $sale = $company->sales()->where('id',$id)->first();
-        if (!$sale) return redirect()->route('user.sales.create');
+        if (!$sale) return redirect()->route('user.company.sales.create');
 
         return view('admin.universal.edit',[
             'title' => 'Редактировать акцию',
-            'action' => route('user.sales.store'),
+            'action' => route('user.company.sales.store'),
             'fields' => $this->fields($sale),
             'item' => $sale
         ]);

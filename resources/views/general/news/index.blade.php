@@ -1,15 +1,15 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
-@section('title')Новости рынка@endsection
+@section('title')Новости и статьи@endsection
 
 @section('content')
 	<div class="container breadcrumbs">
-		<span class="breadcumbs__current">НОВОСТИ РЫНКА</span>
+		<span class="breadcumbs__current">НОВОСТИ И СТАТЬИ</span>
 	</div>
 	<div class="container">
 		<div class="container__row">
 			<div class="container__col-8 container__col-sm-12">
-				<div class="title">НОВОСТИ РЫНКА</div>
+				<div class="title">НОВОСТИ И СТАТЬИ</div>
 
 				@foreach ($articles as $article)
 				<div class="market-news offset_vertical_30  offset-sm_vertical_30">

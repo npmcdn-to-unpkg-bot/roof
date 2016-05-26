@@ -24,10 +24,12 @@
 					</div>
 					<div class="container__col-6 container__col-sm-12">
 						<div class="desk-single__title">{{$offer->title}}</div>
-						<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
-						<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
-						<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>						
 						<div class="desk-single__text">{{$offer->information}}</div>
+						<div class="text_right">
+							<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
+							<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
+							<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>						
+						</div>
 						<div class="desk-single__info">№{{$offer->id}}   Дата размещения: {{$offer->created_at->format('d.m.Y')}}</div>
 						<div>Специализация: {{$offer->specialisation}}</div>
 						@foreach($offer->categories as $category)

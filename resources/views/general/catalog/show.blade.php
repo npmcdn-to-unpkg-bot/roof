@@ -127,6 +127,9 @@
 					@endforeach
 				</div>
 			@endif
+			@if ( auth()->user() && !auth()->user()->member_in_company )
+			<a href="{{url('catalog/join',$company->id)}}" class="button button_orange button_huge offset-sm_vertical_30 offset_bottom_60">ВСТУПИТЬ В КОМПАНИЮ</a>
+			@endif
 			<div class="offset_bottom_60 offset-sm_vertical_30">
 				@include('general.area.banner',['area' => 'Каталог запись 1'])
 			</div>

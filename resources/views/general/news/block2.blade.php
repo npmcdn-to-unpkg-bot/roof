@@ -1,6 +1,6 @@
 <div class="container-fluid container-fluid_light-gray padding_vertical_40">
 	<div class="container">
-		<div class="title">НОВОСТИ РЫНКА</div>
+		<div class="title">НОВОСТИ И СТАТЬИ</div>
 		<div class="container__row market-news">
 		@foreach(App\Article::take(3)->get() as $article)
 			<a href="{{route('news.show',$article)}}" class="container__col-4 container__col-sm-12 market-news__item">

@@ -19,6 +19,11 @@
 							<div class="small-title">ИНФОРМАЦИЯ О ТЕНДЕРЕ</div>
 							{!!$tender->description!!}
 						</div>
+						<div class="text_right">
+							<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
+							<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
+							<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>
+						</div>
 					</div>
 					<div class="container__col-6 container__col-sm-12">
 						<div class="field field_money">Бюджет: {{$tender->budget}}</div>
@@ -36,14 +41,11 @@
 							@if ($tender->email) Email: {{$tender->email}}<br> @endif
 							@if ($tender->phone) Телефон: {{$tender->phone}} @endif
 						</div>
-						<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
-						<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
-						<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>
 					</div>
 				</div>
 			</div>
 			<div class="container__col-4 container__col-sm-12">
-				@include('general.tenders.block')
+				@include('general.events.block')
 				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Тендеры запись 1'])</div>
 			</div>
 		</div>

@@ -69,14 +69,6 @@ class CreateCatalogTables extends Migration
             $table->text('content');
             $table->integer('company_id')->index();
         });
-        Schema::create('catalog_members', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-            $table->string('image');
-            $table->string('name');
-            $table->string('job');
-            $table->integer('company_id')->index();
-        });
         Schema::create('catalog_prices', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
@@ -109,7 +101,6 @@ class CreateCatalogTables extends Migration
         Schema::drop('catalog_company_specialisation');
         Schema::drop('catalog_posts');
         Schema::drop('catalog_sales');
-        Schema::drop('catalog_members');
         Schema::drop('catalog_prices');
         Schema::drop('catalog_examples');
     }

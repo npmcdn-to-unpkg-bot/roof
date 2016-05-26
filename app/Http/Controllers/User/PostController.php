@@ -79,8 +79,8 @@ class PostController extends Controller
                     'field'=>$post->title,
                 ],[
                     'type'=>'actions',
-                    'edit' => route('user.blog.edit',$post),
-                    'delete' => route('user.blog.destroy',$post),
+                    'edit' => route('user.company.blog.edit',$post),
+                    'delete' => route('user.company.blog.destroy',$post),
                 ]
             ]);
         }
@@ -89,6 +89,7 @@ class PostController extends Controller
             'title' => 'Блог',
             'table' => $table,
             'pagination' => $posts->render(),
+            'add' => route('user.company.blog.create')
         ]);
     }
 
@@ -104,7 +105,7 @@ class PostController extends Controller
 
         return view('admin.universal.edit',[
             'title' => 'Добавить новость',
-            'action' => route('user.blog.store'),
+            'action' => route('user.company.blog.store'),
             'fields' => $this->fields($post),
             'item' => $post
         ]);
@@ -137,7 +138,7 @@ class PostController extends Controller
             ->fill($request->only('title','image','entry','content'))
             ->save();
 
-        return redirect()->route('user.blog.index');
+        return redirect()->route('user.company.blog.index');
     }
 
     /**
@@ -161,11 +162,11 @@ class PostController extends Controller
     {
 
         $post = Auth::user()->company->posts()->where('id', $id)->first();
-        if (!$post) return redirect()->route('user.blog.create');
+        if (!$post) return redirect()->route('user.company.blog.create');
 
         return view('admin.universal.edit',[
             'title' => 'Редактировать новость',
-            'action' => route('user.blog.store'),
+            'action' => route('user.company.blog.store'),
             'fields' => $this->fields($post),
             'item' => $post
         ]);

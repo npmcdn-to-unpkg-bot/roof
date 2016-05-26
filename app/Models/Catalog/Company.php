@@ -85,7 +85,11 @@ class Company extends Model
     }
 
     public function members () {
-        return $this->hasMany('App\Models\Catalog\Member');
+        return $this->hasMany('App\User','company_id');
+    }
+
+    public function new_members () {
+        return $this->hasMany('App\User','join_company_id');
     }
 
     public function prices () {

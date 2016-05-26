@@ -76,10 +76,11 @@ class AdminMenu
                             'href' => route('user.jobs.create'),
                         ],
                     ],
-                ],[
+                ],
+                'company' => [
                     'name' => 'Компания',
                     'icon' => 'fa-bank',
-                    'active' => Request::is('user/company*')?'active':'',
+                    'active' => Request::is('user')||Request::is('user*')?'active':'',
                     'children' => [
                         [
                             'name' => $user->company ? $user->company->name : 'Добавить компанию',
@@ -106,54 +107,26 @@ class AdminMenu
             ];
 
         if (Request::is('user*')&&Auth::user()->company)
-            $menu = array_merge($menu,[
-                [
-                    'name' => 'Стройки',
-                    'icon' => 'fa-building',
-                    'active' => Request::is('user/buildings*')?'active':'',
-                    'children' => [
+            $menu['company']['children'] = array_merge(
+                $menu['company']['children'],[
                         [
-                            'name' => 'Список строек',
-                            'icon' => 'fa-list',
-                            'href' => route('user.buildings.index'),
+                            'name' => 'Cтройки',
+                            'icon' => 'fa-bank',
+                            'href' => route('user.company.buildings.index'),
                         ],[
-                            'name' => 'Добавить стройку',
-                            'icon' => 'fa-plus',
-                            'href' => route('user.buildings.create'),
-                        ],
-                    ],
-                ],[
-                    'name' => 'Блог',
-                    'icon' => 'fa-newspaper-o',
-                    'active' => Request::is('user/blog*')?'active':'',
-                    'children' => [
-                        [
-                            'name' => 'Список статей',
-                            'icon' => 'fa-list',
-                            'href' => route('user.blog.index'),
+                            'name' => 'Блог',
+                            'icon' => 'fa-newspaper-o',
+                            'href' => route('user.company.blog.index'),
                         ],[
-                            'name' => 'Добавить статью',
-                            'icon' => 'fa-plus',
-                            'href' => route('user.blog.create'),
-                        ],
-                    ],
-                ],[
-                    'name' => 'Акции',
-                    'icon' => 'fa-percent',
-                    'active' => Request::is('user/sales*')?'active':'',
-                    'children' => [
-                        [
-                            'name' => 'Список акций',
-                            'icon' => 'fa-list',
-                            'href' => route('user.sales.index'),
+                            'name' => 'Акции и скидки',
+                            'icon' => 'fa-percent',
+                            'href' => route('user.company.sales.index'),
                         ],[
-                            'name' => 'Добавить акцию',
-                            'icon' => 'fa-plus',
-                            'href' => route('user.sales.create'),
+                            'name' => 'Сотрудники',
+                            'icon' => 'fa-user',
+                            'href' => route('user.company.staff.index'),
                         ],
-                    ],
-                ]
-            ]);
+                ]);
 
         if (Request::is('admin*'))
             $menu = [
