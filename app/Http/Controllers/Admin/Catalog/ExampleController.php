@@ -82,8 +82,8 @@ class ExampleController extends Controller
                     'field'=>$example->title,
                 ],[
                     'type'=>'actions',
-                    'edit' => route('admin.company.{company}.examples.edit',['company'=>$company,'examples'=>$examples]),
-                    'delete' => route('admin.company.{company}.examples.destroy',['company'=>$company,'examples'=>$examples]),
+                    'edit' => route('admin.company.{company}.examples.edit',['company'=>$company,'examples'=>$example]),
+                    'delete' => route('admin.company.{company}.examples.destroy',['company'=>$company,'examples'=>$example]),
                 ],
             ]);
         }

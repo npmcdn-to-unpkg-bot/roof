@@ -94,6 +94,7 @@ Route::group(['middleware'=>'csrf'], function (){
 			Route::get('admin', 'Admin\Catalog\CompanyController@index');
 			Route::get('offers/up/{id}', 'Admin\OfferController@up');
 			Route::get('users.xls', 'Admin\UserController@excel');
+			Route::get('admin/company/{company}/staff/{id}/accept', 'Admin\Catalog\MemberController@accept');
 
 			Route::resources([
 				'admin/company'                         => 'Admin\Catalog\CompanyController',
