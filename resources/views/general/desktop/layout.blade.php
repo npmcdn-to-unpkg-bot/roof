@@ -67,10 +67,10 @@
 					<a href="/"><img src="/img/logo-gray.png" alt="" class="logo logo_in-footer logo_gray"></a>
 					<br>
 					<div class="social-buttons">
-						<a href="{!! App\Option::firstOrNew(['name'=>'facebook'])->value !!}" class="social-buttons__item social-buttons__item_fb"></a>
-						<a href="{!! App\Option::firstOrNew(['name'=>'linkedin'])->value !!}" class="social-buttons__item social-buttons__item_li"></a>
-						<a href="{!! App\Option::firstOrNew(['name'=>'instagram'])->value !!}" class="social-buttons__item social-buttons__item_in"></a>
-						<a href="{!! App\Option::firstOrNew(['name'=>'youtube'])->value !!}" class="social-buttons__item social-buttons__item_yo"></a>
+						<a target="blank" href="{!! App\Option::firstOrNew(['name'=>'facebook'])->value !!}" class="social-buttons__item social-buttons__item_fb"></a>
+						<a target="blank" href="{!! App\Option::firstOrNew(['name'=>'linkedin'])->value !!}" class="social-buttons__item social-buttons__item_li"></a>
+						<a target="blank" href="{!! App\Option::firstOrNew(['name'=>'instagram'])->value !!}" class="social-buttons__item social-buttons__item_in"></a>
+						<a target="blank" href="{!! App\Option::firstOrNew(['name'=>'youtube'])->value !!}" class="social-buttons__item social-buttons__item_yo"></a>
 					</div>
 				</div>
 				<div class="container__col-2 text_right menu menu_vertical menu_uppercase menu_gray">
@@ -87,6 +87,9 @@
 	<div class="container-fluid container-fluid_gray copyright text_center">
 		©2016 Ассоциация кровельщиков Украины. Разработка сайта - <a target="blank" href="http://ivmar.com.ua/">Ivmar Ukraine</a>
 	</div>
+
+	<a href="/want-roof" class="floating-want-roof fancybox">ХОЧУ КРОВЛЮ</a>
+
 	<script src="/bower/jquery/dist/jquery.min.js"></script>
 	<script src="/bower/flexslider/jquery.flexslider-min.js"></script>
 	<script src="/bower/masonry/dist/masonry.pkgd.min.js"></script>

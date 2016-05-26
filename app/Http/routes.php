@@ -32,6 +32,7 @@ Route::group(['middleware'=>'csrf'], function (){
 	Route::get('height/{height}/{name}', 'General\ImageController@height');
 	Route::get('full/{name}', 'General\ImageController@full');
 
+
 	Route::get('catalog/specialisation/{id}', 'General\CompanyController@specialisation');
 	Route::get('catalog/proposition/{id}', 'General\CompanyController@proposition');
 	Route::get('price/{name}', 'General\CompanyController@price');
@@ -44,6 +45,7 @@ Route::group(['middleware'=>'csrf'], function (){
 	Route::get('knowladge/library/category/{id}', 'General\LibraryController@category');
 
 	Route::resources([
+		'want-roof'                  => 'General\ContactFormController',
 		'catalog'                    => 'General\CompanyController',
 		'buildings'                  => 'General\BuildingController',
 		'jobs'                       => 'General\JobController',

@@ -2450,3 +2450,23 @@ td.calendar-block__date_active {
 	display: inline-block;
 	vertical-align: middle;
 }
+
+/*floating-want-roof*/
+.floating-want-roof {
+	position: fixed;
+	right: 0;
+	top: 20%;
+	line-height: 65px;
+	border-radius: 7px 7px 0 0;
+	height: 60px;
+	width: 220px;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	font-weight: 400;
+	font-family: "Roboto Condensed";
+	transform: rotate(-90deg);
+	text-decoration: none;
+	transform-origin: bottom right;
+	background: #6fc0d1;
+}
