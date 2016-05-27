@@ -14,6 +14,7 @@ use App\Models\Catalog\Proposition;
 use App\Http\Requests;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use Agent;
 
 class CompanyController extends Controller
 {
@@ -144,51 +145,34 @@ class CompanyController extends Controller
 
         $companies = Company::orderBy('created_at', 'DESC')->paginate(15);        
 
-        $th=[
-                [
-                    'title'=>'Логотип',
-                    'width'=>'40px',
-                ],[
-                    'title'=>'Название компании',
-                    'width'=>'auto',
-                ],[
-                    'title'=>'Пользователь',
-                    'width'=>'10%',
-                ],[
-                    'title'=>'Специализации',
-                    'width'=>'20%',
-                ],[
-                    'title'=>'Предложения',
-                    'width'=>'20%',
-                ],[
-                    'title'=>'',
-                    'width'=>'90px',
-                ]
-            ];
+        $th = collect()
+            ->push([ 'title'=>'Логотип', 'width'=>'40px'])
+            ->push([ 'title'=>'Название компании', 'width'=>'auto']);
+        if (!Agent::isMobile())
+            $th
+                ->push([ 'title'=>'Пользователь', 'width'=>'10%'])
+                ->push([ 'title'=>'Специализации', 'width'=>'20%'])
+                ->push([ 'title'=>'Предложения', 'width'=>'20%']);
+
+        $th->push([ 'title'=>'', 'width'=>'90px' ]);
+
         $table=collect()->push($th);
         foreach ($companies as $company) {
-            $table->push([
-                [
-                    'type'=>'image',
-                    'field'=>$company->logo,
-                ],[
-                    'type'=>'text',
-                    'field'=>$company->name,
-                ],[
-                    'type'=>'user',
-                    'field'=>$company->user,
-                ],[
-                    'type'=>'taxonomy',
-                    'field'=>$company->specialisations,
-                ],[
-                    'type'=>'taxonomy',
-                    'field'=>$company->propositions,
-                ],[
-                    'type'=>'actions',
-                    'edit' => route('admin.company.edit', $company),
-                    'delete' => route('admin.company.destroy', $company)
-                ],
-            ]);
+            $td = collect()
+                ->push([ 'type'=>'image','field'=>$company->logo ])
+                ->push([ 'type'=>'text', 'field'=>$company->name ]);
+                
+            if (!Agent::isMobile())
+                $td
+                    ->push(['type'=>'taxonomy','field'=>$company->specialisations])
+                    ->push(['type'=>'taxonomy','field'=>$company->propositions])
+                    ->push(['type'=>'user','field'=>$company->user,]);
+
+            $td->push(['type'=>'actions',
+                'edit' => route('admin.company.edit', $company),
+                'delete' => route('admin.company.destroy', $company)]);
+
+            $table->push($td);
         }
 
         return view('admin.universal.index', [
