@@ -1,5 +1,5 @@
 <ul class="nav navbar-nav">
-	@if (auth()->user()->company)
+	@if (Request::is('user*')&&auth()->user()->company)
 		@if (auth()->user()->company->level==0)
 			<li ><a href="#" style="text-decoration: underline;"><img src="/img/coin.png" alt="" style="margin-right: 10px;"> КУПИТЬ СТАТУС</a></li>
 			<li><a href="#" style="text-decoration: underline;">Условия портала</a></li>
