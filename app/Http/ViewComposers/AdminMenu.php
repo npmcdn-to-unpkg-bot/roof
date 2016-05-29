@@ -88,7 +88,11 @@ class AdminMenu
                             'href' => url('user'),
                         ],
                     ],
-                ],[
+                ],
+            ];
+        if (Request::is('user*')&&auth()->user()->orders()->first())
+            $menu = array_merge($menu, [
+                'payment'=>[
                     'name' => 'Счета',
                     'icon' => 'fa-bank',
                     'active' => Request::is('user/orders*')?'active':'',
@@ -97,15 +101,19 @@ class AdminMenu
                             'name' => 'Список счетов',
                             'icon' => 'fa-list',
                             'href' => route('user.orders.index'),
-                        ],[
+                        ]
+                    ]
+                ]
+            ]);
+        if (Request::is('user*')&&auth()->user()->reserves()->first())
+            $menu['payment']['children'] = array_merge(
+                $menu['payment']['children'],[
+                        [
                             'name' => 'Зарезервированые услуги',
                             'icon' => 'fa-list',
                             'href' => route('user.reserve.index'),
-                        ],
-                    ],
-                ],
-            ];
-
+                        ]
+                ]);
         if (Request::is('user*')&&Auth::user()->company)
             $menu['company']['children'] = array_merge(
                 $menu['company']['children'],[

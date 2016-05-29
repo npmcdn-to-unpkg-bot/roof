@@ -1,14 +1,14 @@
 <ul class="nav navbar-nav">
 	@if (Request::is('user*')&&auth()->user()->company)
 		@if (auth()->user()->company->level==0)
-			<li ><a href="#" style="text-decoration: underline;"><img src="/img/coin.png" alt="" style="margin-right: 10px;"> КУПИТЬ СТАТУС</a></li>
-			<li><a href="#" style="text-decoration: underline;">Условия портала</a></li>
+			<li ><a href="{{route('user.company.services.index')}}" style="text-decoration: underline;"><img src="/img/coin.png" alt="" style="margin-right: 10px;"> КУПИТЬ СТАТУС</a></li>
+			<li><a href="{{url('uslovia')}}" style="text-decoration: underline;">Условия портала</a></li>
 		@elseif (auth()->user()->company->level==1)
-			<li><a>Ваш текущий статус <span style="color: black; margin-left: 10px; height: 24px; width: 87px; display: inline-block; text-align: center; line-height: 24px; font-size: 16px; background-image: url(/img/silver.png);">СТАРТ</span></a></li>
+			<li><a href="{{url('uslovia')}}">Ваш текущий статус <span style="color: black; margin-left: 10px; height: 24px; width: 87px; display: inline-block; text-align: center; line-height: 24px; font-size: 16px; background-image: url(/img/silver.png);">СТАРТ</span></a></li>
 		@elseif (auth()->user()->company->level==2)
-			<li><a>Ваш текущий статус <span style="color: black; margin-left: 10px; height: 24px; width: 87px; display: inline-block; text-align: center; line-height: 24px; font-size: 16px; background-image: url(/img/gold.png);">БИЗНЕС</span></a></li>
+			<li><a href="{{url('uslovia')}}">Ваш текущий статус <span style="color: black; margin-left: 10px; height: 24px; width: 87px; display: inline-block; text-align: center; line-height: 24px; font-size: 16px; background-image: url(/img/gold.png);">БИЗНЕС</span></a></li>
 		@elseif (auth()->user()->company->level==3)
-			<li><a>Ваш текущий статус <span style="color: white; margin-left: 10px; height: 24px; width: 87px; display: inline-block; text-align: center; line-height: 24px; font-size: 16px; background-image: url(/img/platinum.png);">ПРЕМИУМ</span></a></li>
+			<li><a href="{{url('uslovia')}}">Ваш текущий статус <span style="color: white; margin-left: 10px; height: 24px; width: 87px; display: inline-block; text-align: center; line-height: 24px; font-size: 16px; background-image: url(/img/platinum.png);">ПРЕМИУМ</span></a></li>
 		@elseif (auth()->user()->company->level==4)
 		@endif
 	@endif

@@ -25,7 +25,7 @@
 							</div>
 						@endif
 						<div class="tender__budget"><strong>Бюджет: </strong>{{$tender->budget}}</div>
-						<div class="tender__end"><strong>Крайний срок подачи заявки: </strong>{{$tender->end->format('18.08.2016')}}</div>
+						<div class="tender__end"><strong>Крайний срок подачи заявки: </strong>{{$tender->end->format('d.m.Y')}}</div>
 						<a href="{{route('tenders.show', $tender)}}" class="tender__more">Читать подробнее</a>
 					</div>
 				@endforeach

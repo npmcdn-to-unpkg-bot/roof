@@ -226,7 +226,7 @@ class OfferController extends Controller
         );
 
         $offer
-            ->fill($request->only('title','image','price','specialisation','name','email','phone','information','lat','lng','address','city_id','meta_title','meta_description'))
+            ->fill($request->only('title','image','price','specialisation','name','email','user_id','phone','information','lat','lng','address','city_id','meta_title','meta_description'))
             ->save();
 
         $offer->categories()->sync((array)$request->categories);

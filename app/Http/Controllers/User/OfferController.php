@@ -20,16 +20,16 @@ class OfferController extends Controller
 
     protected function fields (Offer $offer) {
 
-
-
-        return [
-            [
+        $fields = collect();
+        $fields
+            ->push([
                 'name'=>'title',
                 'type'=>'text',
                 'placeholder'=>'Введите заголовок объявления',
                 'label'=>'Заголовок',
                 'value'=>old() ? old('title') : $offer->title
-            ],[
+            ])
+            ->push([
                 'name' => 'image',
                 'type' => 'images',
                 'label' => 'Картинка',
@@ -37,43 +37,60 @@ class OfferController extends Controller
                 'values' => old() 
                     ? (array)old('image') 
                     : (array)$offer->image
-            ],[
+            ])
+            ->push([
                 'name'=>'price',
-                'type'=>'text',
+                'type'=>'price',
                 'placeholder'=>'Введите цену',
                 'label'=>'Цена',
                 'value'=>old() ? old('price') : $offer->price
-            ],[
+            ]);
+        if (auth()->user()->company->level == 3)
+            $fields
+            ->push([
+                'name'=>'old_price',
+                'type'=>'price',
+                'placeholder'=>'Введите цену',
+                'label'=>'Старая цена',
+                'value'=>old() ? old('old_price') : $offer->old_price
+            ]);
+        $fields
+            ->push([
                 'name'=>'information',
                 'type'=>'textarea',
                 'placeholder'=>'Введите текст',
                 'label'=>'Текст объявления',
                 'value'=>old() ? old('information') : $offer->information
-            ],[
+            ])
+            ->push([
                 'name'=>'specialisation',
                 'type'=>'text',
                 'placeholder'=>'Введите специализацию',
                 'label'=>'Специализация',
                 'value'=>old() ? old('specialisation') : $offer->specialisation
-            ],[
+            ])
+            ->push([
                 'name'=>'name',
                 'type'=>'text',
                 'placeholder'=>'Введите имя',
                 'label'=>'Имя',
                 'value'=>old() ? old('name') : $offer->name
-            ],[
+            ])
+            ->push([
                 'name'=>'email',
                 'type'=>'text',
                 'placeholder'=>'Введите email',
                 'label'=>'Email',
                 'value'=>old() ? old('email') : $offer->email
-            ],[
+            ])
+            ->push([
                 'name'=>'phone',
                 'type'=>'text',
                 'placeholder'=>'Введите телефон',
                 'label'=>'Телефон',
                 'value'=>old() ? old('phone') : $offer->phone
-            ],[
+            ])
+            ->push([
                 'type' => 'address',
                 'label' => 'Адрес',
                 'lat' => old() ? old('lat') : $offer->lat,
@@ -87,14 +104,16 @@ class OfferController extends Controller
                 'address' => old() 
                     ? old('address') 
                     : $offer->address
-            ],[
+            ])
+            ->push([
                 'name' => 'categories',
                 'type' => 'select_multiple',
                 'label' => 'Категории',
                 'values' => old() ? (array)old('categories') : $offer->categories->lists('id')->all(),
                 'options' => Category::lists('name','id')
-            ]
-        ];
+            ]);
+
+        return $fields;
         
     }
     /**
@@ -168,7 +187,8 @@ class OfferController extends Controller
             'title' => 'Добавить объявление',
             'action' => route('user.offers.store'),
             'fields' => $this->fields($offer),
-            'item' => $offer
+            'item' => $offer,
+            'promote' => true,
         ]);
     }
 
@@ -192,11 +212,16 @@ class OfferController extends Controller
         if ($offer->image&&$offer->image!==$request->image) 
             Storage::delete('images/'.$offer->image);
 
+        if (auth()->user()->company->level == 3)
+            $offer->old_price = $request->old_price;
+
         $offer
             ->fill($request->only('title','image','price','specialisation','name','email','phone','information','lat','lng','address','city_id'))
             ->save();
         
         $offer->categories()->sync((array)$request->categories);
+
+        if ($request->promote) return redirect()->route('user.offers.services.edit', $offer);
 
         return redirect()->route('user.offers.index');
     }
@@ -228,7 +253,8 @@ class OfferController extends Controller
             'title' => 'Редактировать объявление',
             'action' => route('user.offers.store'),
             'fields' => $this->fields($offer),
-            'item' => $offer
+            'item' => $offer,
+            'promote' => true,
         ]);
     }
 

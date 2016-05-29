@@ -9,7 +9,10 @@
 	@foreach ($fields as $field)
 		@include('admin.parts.form.'.$field['type'], $field)
 	@endforeach
-	<div class="clearfix">
-		<button type="submit" class="btn btn-success btn-lg pull-right">Сохранить</button>
+	<div class="clearfix text-right">
+		<button type="submit" class="btn btn-primary btn-lg">Сохранить</button>
+		@if(isset($promote)&&$promote)
+		<button type="submit" class="btn btn-success btn-lg" name="promote" value="true">Сохранить и рекламировать</button>
+		@endif
 	</div>
 </form>

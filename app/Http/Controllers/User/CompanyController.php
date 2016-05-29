@@ -142,6 +142,8 @@ class CompanyController extends Controller
         $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
         $company->propositions()->sync($request->propositions ? $request->propositions : []);
 
+        if ($request->promote) return redirect()->route('user.company.services.index');
+
         return redirect('user');
     }
 
@@ -171,7 +173,8 @@ class CompanyController extends Controller
             'title' => $user->company ? 'Редактировать компанию' : 'Добавить компанию',
             'action' => route('user.company.store'),
             'fields' => $this->fields($company),
-            'item' => $company
+            'item' => $company,
+            'promote' => !$company->level,
         ]);
     }
 

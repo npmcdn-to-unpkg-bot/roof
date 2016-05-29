@@ -20,8 +20,6 @@ class OfferController extends Controller
 
     protected function fields (Offer $offer) {
 
-
-
         return [
             [
                 'name'=>'offer_framed',
@@ -53,14 +51,7 @@ class OfferController extends Controller
     public function create()
     {
 
-        $offer = new Offer;
-
-        return view('admin.universal.edit',[
-            'title' => 'Добавить объявление',
-            'action' => route('user.offers.store'),
-            'fields' => $this->fields($offer),
-            'item' => $offer
-        ]);
+      
     }
 
     /**
@@ -114,7 +105,7 @@ class OfferController extends Controller
         if (!$offer) return redirect()->route('user.offer.create');
 
         return view('admin.universal.edit',[
-            'title' => 'Редактировать объявление',
+            'title' => 'Рекламировать объявление',
             'action' => route('user.offers.store'),
             'fields' => $this->fields($offer),
             'item' => $offer

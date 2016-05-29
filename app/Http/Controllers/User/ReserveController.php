@@ -25,9 +25,6 @@ class ReserveController extends Controller
             ],[
                 'title'=>'Количество',
                 'width'=>'auto',
-            ],[
-                'title'=>'',
-                'width'=>'90px',
             ]
         ];
         $table = collect()->push($th);
@@ -39,10 +36,6 @@ class ReserveController extends Controller
                 ],[
                     'type'=>'text',
                     'field'=>$reserve->count,
-                ],[
-                    'type'=>'actions',
-                    'edit' => false,
-                    'delete' => route('user.blog.destroy',$reserve),
                 ]
             ]);
         }
@@ -117,7 +110,5 @@ class ReserveController extends Controller
      */
     public function destroy($id)
     {
-        auth()->user()->reserves()->where('id',$id)->delete();
-        return back();
     }
 }
