@@ -80,7 +80,7 @@ class AdminMenu
                 'company' => [
                     'name' => 'Компания',
                     'icon' => 'fa-bank',
-                    'active' => Request::is('user')||Request::is('user*')?'active':'',
+                    'active' => Request::is('user')||Request::is('user/company*')?'active':'',
                     'children' => [
                         [
                             'name' => $user->company ? $user->company->name : 'Добавить компанию',

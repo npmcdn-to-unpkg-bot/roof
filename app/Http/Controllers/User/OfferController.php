@@ -93,15 +93,7 @@ class OfferController extends Controller
                 'label' => 'Категории',
                 'values' => old() ? (array)old('categories') : $offer->categories->lists('id')->all(),
                 'options' => Category::lists('name','id')
-            ],[
-                'name'=>'offer_framed',
-                'type'=>'service',
-                'expire' => $offer->framed
-            ],[
-                'name'=>'offer_top',
-                'type'=>'service',
-                'expire' => $offer->top
-            ],
+            ]
         ];
         
     }
@@ -127,6 +119,9 @@ class OfferController extends Controller
             ],[
                 'title'=>'',
                 'width'=>'100px',
+            ],[
+                'title'=>'',
+                'width'=>'100px',
             ],
         ];
         $table=collect()->push($th);
@@ -141,6 +136,9 @@ class OfferController extends Controller
                 ],[
                     'up' => '/user/offers/up/'.$offer->id,
                     'type'=>'up',
+                ],[
+                    'html'=>'<a class="btn btn-success" href="'.route('user.offers.services.edit',$offer).'">Рекламировать</a>',
+                    'type'=>'html',
                 ],[
                     'edit' => route('user.offers.edit', $offer),
                     'delete' => route('user.offers.destroy', $offer),
@@ -199,21 +197,6 @@ class OfferController extends Controller
             ->save();
         
         $offer->categories()->sync((array)$request->categories);
-
-        if ($request->offer_framed)
-            $order = $offer->orders()->create([
-                'user_id' => auth()->user()->id,
-                'service_id' => $request->offer_framed
-            ]);
-
-        if ($request->offer_top)
-            $order = $offer->orders()->create([
-                'user_id' => auth()->user()->id,
-                'service_id' => $request->offer_top
-            ]);
-
-        if ($request->offer_top||$request->offer_framed)
-            return redirect()->route('user.orders.index');
 
         return redirect()->route('user.offers.index');
     }

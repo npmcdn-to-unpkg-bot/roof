@@ -18,9 +18,6 @@ class CompanyController extends Controller
 {
 
     public function fields (Company $company) {
-        $level = Service::where('group','company_level')
-            ->where('value','>=',$company->level ? $company->level : 0)
-            ->get();
 
         return [
             [
@@ -65,12 +62,6 @@ class CompanyController extends Controller
                 'placeholder' => 'Введите телефон компании',
                 'label' => 'Телефон компании',
                 'value' => old() ? old('phone') : $company->phone
-            ],[
-                'name'=>'company_level',
-                'type'=>'company_level',
-                'label'=>'Статус компании',
-                'value' => old() ? old('company_level') : $level->where('value', (string)$company->level)->first()['id'],
-                'options' => $level,
             ],[
                 'type' => 'address',
                 'label' => 'Адрес',
@@ -150,15 +141,6 @@ class CompanyController extends Controller
             ->save();
         $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
         $company->propositions()->sync($request->propositions ? $request->propositions : []);
-
-        $service = Service::find($request->company_level);
-        if ( $service  && ($company->level < $service->value) ) {
-            $company->orders()->create([
-                'user_id' => auth()->user()->id,
-                'service_id' => $request->company_level
-            ]);
-            return redirect()->route('user.orders.index');
-        }
 
         return redirect('user');
     }
