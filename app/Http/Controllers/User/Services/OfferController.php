@@ -20,17 +20,28 @@ class OfferController extends Controller
 
     protected function fields (Offer $offer) {
 
-        return [
-            [
+        $fields = collect();
+
+        if ($offer->framed < Carbon::now())
+            $fields->push([
                 'name'=>'offer_framed',
-                'type'=>'service',
-                'expire' => $offer->framed
-            ],[
+                'type'=>'services',
+                'info'=>'При активации услуги «ПОДСВЕТКА», Ваше объявление будет выделено цветом для максимального привлечения к нему внимания клиентов. Подробнее об условиях предоставления услуг Вы можете прочитать на странице <a href="'.url('uslovia').'">Условия портала</a>',
+                'label'=>'Подсветка',
+                'options' => Service::where('group','offer_framed')->get(),
+            ]);
+
+        if ($offer->top < Carbon::now())
+            $fields->push([
                 'name'=>'offer_top',
-                'type'=>'service',
-                'expire' => $offer->top
-            ]
-        ];
+                'type'=>'services',
+                'info'=>'При активации услуги «ТОП» Ваше объявление будет выделено рамкой и помещено в первой строке раздела «Доска объявлений». Подробнее об условиях предоставления услуг Вы можете прочитать на странице <a href="'.url('uslovia').'">Условия портала</a>',
+                'label'=>'ТОП',
+                'options' => Service::where('group','offer_top')->get(),
+            ]);
+
+
+        return $fields;
         
     }
     /**
@@ -62,6 +73,8 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
+
+        $offer = Auth::user()->offers()->firstOrNew(['id' => $request->id]);
 
         if ($request->offer_framed)
             $order = $offer->orders()->create([
@@ -106,7 +119,7 @@ class OfferController extends Controller
 
         return view('admin.universal.edit',[
             'title' => 'Рекламировать объявление',
-            'action' => route('user.offers.store'),
+            'action' => route('user.offers.services.store'),
             'fields' => $this->fields($offer),
             'item' => $offer
         ]);

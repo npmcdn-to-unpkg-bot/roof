@@ -25,9 +25,9 @@ class CompanyController extends Controller
         return [
             [
                 'name'=>'company_level',
-                'type'=>'company_level',
+                'type'=>'services',
+                'info'=>'При покупке статуса для Вашей компании Вы получаете ряд преимуществ согласно выбранного тарифного плана. Также Вы сможете докупить определенные функции в дальнейшем или улучшить свой тарифный план. Подробнее об условиях всех тарифных пакетов Вы можете почитать на странице <a href="'.url('uslovia').'">Условия портала</a>',
                 'label'=>'Статус компании',
-                'value' => old() ? old('company_level') : $level->where('value', (string)$company->level)->first()['id'],
                 'options' => $level,
             ]
         ];

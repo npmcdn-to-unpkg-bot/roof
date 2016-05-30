@@ -38,10 +38,10 @@ class Service extends Model
             $orderable->level_end = Carbon::now()->addYear();
         }
         if ($this->value = 2) {
-            $reserveOffers = $orderable->user->reserves()->create([
-                'service_id' => Service::where('group','offer_top')->where('value','7')->firstOrNew([])->id,
-                'count'      => 10
+            $reserveOffers = $orderable->user->reserves()->firstOrNew([
+                'service_id' => Service::where('group','offer_top')->where('value','7')->firstOrNew([])->id
             ]);
+            $reserveOffers->count += 10;
             $reserveOffers->save();
         }
         if ($orderable->max_level_ever < $orderable->level) {
