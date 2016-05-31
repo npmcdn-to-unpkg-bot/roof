@@ -1,6 +1,6 @@
 <?php $banner = App\Area::firstOrNew(['name' => $area])->banner ?>
 @if ($banner)
-	<a href="{{$banner->href}}" style="display: block;">
+	<a href="{{$banner->href}}" target="{{ $banner->target }}" style="display: block;">
 		<img src="/full/{{$banner->image}}" style="max-width: 100%;" alt="">
 	</a>
 @endif

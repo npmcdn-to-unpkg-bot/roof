@@ -1,8 +1,8 @@
 <ul class="nav navbar-nav">
 	@if (Request::is('user*')&&auth()->user()->company)
+		<li><a href="{{url('uslovia')}}" style="text-decoration: underline;">Условия портала</a></li>
 		@if (auth()->user()->company->level==0)
 			<li ><a href="{{route('user.company.services.index')}}" style="text-decoration: underline;"><img src="/img/coin.png" alt="" style="margin-right: 10px;"> КУПИТЬ СТАТУС</a></li>
-			<li><a href="{{url('uslovia')}}" style="text-decoration: underline;">Условия портала</a></li>
 		@elseif (auth()->user()->company->level==1)
 			<li><a href="{{url('uslovia')}}">Ваш текущий статус <span style="color: black; margin-left: 10px; height: 24px; width: 87px; display: inline-block; text-align: center; line-height: 24px; font-size: 16px; background-image: url(/img/silver.png);">СТАРТ</span></a></li>
 		@elseif (auth()->user()->company->level==2)

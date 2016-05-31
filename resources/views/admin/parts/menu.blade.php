@@ -14,7 +14,7 @@
 
 @if (Request::is('user*'))
 	<div style="text-align: center;">
-		@if (auth()->user()->company&&auth()->user()->company->level==0) 
+		@if (!auth()->user()->company||auth()->user()->company&&auth()->user()->company->level==0) 
 			<div style="color: white; margin-top: 15px;">@include('general.area.banner',['area' =>'Личный кабинет 1'])</div>
 		@endif
 		<div style="color: white; margin-top: 15px;">@include('general.area.banner',['area' =>'Личный кабинет 2'])</div>

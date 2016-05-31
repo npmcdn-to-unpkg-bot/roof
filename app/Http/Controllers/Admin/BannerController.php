@@ -14,6 +14,7 @@ class BannerController extends Controller
 {
 
     protected function fields (Banner $banner)  {
+        if (!$banner->target) $banner->target = '_blank';
         return [
             [
                 'name' => 'image',
@@ -37,6 +38,15 @@ class BannerController extends Controller
                     ? (array)old('areas')
                     : $banner->areas->lists('id')->all(),
                 'options'=>Area::lists('name','id')
+            ],[
+                'name'=>'target',
+                'type'=>'radio',
+                'label'=>'Открыть в новой вкладке',
+                'value' => old() ? old('target') : $banner->target,
+                'options'=>[
+                    '_blank' => 'Да',
+                    '_self' => 'Нет',
+                ],
             ]
         ];
     }
@@ -129,6 +139,8 @@ class BannerController extends Controller
             Storage::move('temp/'.$request->image,'images/'.$request->image);
         if ($banner->image&&$banner->image!==$request->image) 
             Storage::delete('images/'.$banner->image);
+
+        $banner->target = $request->target;
 
         $banner
             ->fill($request->only('image','href'))

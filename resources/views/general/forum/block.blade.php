@@ -1,10 +1,10 @@
 <?php 
 
 	$db = new mysqli(
-		"acc00954.mysql.ukraine.com.ua",
-		"acc00954_forum",
-		"h8blqs2d",
-		"acc00954_forum"
+		env("FORUM_DB_HOST"),
+		env("FORUM_DB_DATABASE"),
+		env("FORUM_DB_PASSWORD"),
+		env("FORUM_DB_USERNAME")
 	);
 	
 	mb_internal_encoding("UTF-8");

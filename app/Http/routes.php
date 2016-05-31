@@ -32,7 +32,6 @@ Route::group(['middleware'=>'csrf'], function (){
 	Route::get('height/{height}/{name}', 'General\ImageController@height');
 	Route::get('full/{name}', 'General\ImageController@full');
 
-
 	Route::get('catalog/specialisation/{id}', 'General\CompanyController@specialisation');
 	Route::get('catalog/proposition/{id}', 'General\CompanyController@proposition');
 	Route::get('price/{name}', 'General\CompanyController@price');
@@ -85,7 +84,7 @@ Route::group(['middleware'=>'csrf'], function (){
 			'user/offers'                => 'User\OfferController',
 			'user/personal'              => 'User\UserController',
 			'user/tenders'               => 'User\TenderController',
-			'user/reserve'               => 'User\ReserveController',
+			'user/reserve'               => 'User\Services\ReserveController',
 			'comment'                    => 'User\CommentController',
 			'upload'                     => 'User\UploadController',
 			'knowladge/education'        => 'General\EducationController',
@@ -139,9 +138,6 @@ Route::group(['middleware'=>'csrf'], function (){
 
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::resource('user/orders', 'User\OrderController');
-
-	Route::get('user/payment', 'User\PayController@index');
-	Route::post('user/payment', 'User\PayController@complete');
-
+	Route::get('user/orders/reserve/{id}', 'User\Services\OrderController@use_reserve');
+	Route::resource('user/orders', 'User\Services\OrderController');
 });

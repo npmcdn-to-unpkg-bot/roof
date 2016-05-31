@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Services;
 
 use Illuminate\Http\Request;
 
@@ -38,6 +38,7 @@ class OrderController extends Controller
             ['title'=>'Дата',     'width'=>'90px'  ],
             ['title'=>'Заказ',    'width'=>'auto'  ],
             ['title'=>'Статус',   'width'=>'200px' ],
+            ['title'=>'',         'width'=>'100px' ],
             ['title'=>'',         'width'=>'100px' ]
         ];
         $table=collect()->push($th);
@@ -59,6 +60,9 @@ class OrderController extends Controller
                 ],[
                     'field'=>$order->payed ? 'Оплачено' : 'Ожидает оплаты',
                     'type'=>'text',
+                ],[
+                    'html' => (!$order->payed)&&auth()->user()->reserves()->where('service_id',$order->service->id)->first()?'<a href="/user/orders/reserve/'.$order->id.'" class="btn btn-lg btn-primary">Использовать резерв</a>':''  ,
+                    'type'=>'html',
                 ],[
                     'html' => $order->payed ? '' : $liqpay->cnb_form([
                             'version'        => 3,
@@ -123,6 +127,21 @@ class OrderController extends Controller
         return redirect()->route('user.orders.index');
     }
 
+    public function use_reserve($id) {
+        $user = auth()->user();
+        $order = Order::find($id);
+        $reserve = $user->reserves()->where('service_id',$order->service->id)->first();
+        if ($order->user_id == $user->id && $reserve->count > 0) {
+            $order->payed = 1;
+            $order->apply();
+            $order->save();
+            
+            $reserve->count -= 1;
+            $reserve->save();
+        }
+        return back();
+    }
+
     /**
      * Display the specified resource.
      *
@@ -169,3 +188,4 @@ class OrderController extends Controller
         return back();
     }
 }
+
