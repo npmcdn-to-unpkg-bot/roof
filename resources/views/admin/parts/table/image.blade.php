@@ -1,1 +1,1 @@
-@if ($field) <img src="/height/30/{{ $field }}" alt=""> @endif
+@if ($field) <img src="/fit/50/50/{{ $field }}" alt=""> @endif
