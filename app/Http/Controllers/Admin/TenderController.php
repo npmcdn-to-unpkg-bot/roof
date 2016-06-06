@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Tender;
 use App\Models\Catalog\Company;
+use App\User;
 use Storage;
 use Carbon\Carbon;
 
