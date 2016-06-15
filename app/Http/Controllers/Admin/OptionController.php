@@ -31,6 +31,12 @@ class OptionController extends Controller
                 'placeholder' => '',
                 'value' => old() ? old('email_2') : Option::firstOrNew(['name'=>'email_2'])->value
             ],[
+                'name' => 'email_want_roof',
+                'type' => 'text',
+                'label' => 'Email',
+                'placeholder' => '',
+                'value' => old() ? old('email_want_roof') : Option::firstOrNew(['name'=>'email_want_roof'])->value
+            ],[
                 'name' => 'phone',
                 'type' => 'text',
                 'label' => 'Телефон',
@@ -102,6 +108,7 @@ class OptionController extends Controller
     {
         Option::firstOrCreate(['name'=>'email_1'])->update(['value'=>$request->email_1]);
         Option::firstOrCreate(['name'=>'email_2'])->update(['value'=>$request->email_2]);
+        Option::firstOrCreate(['name'=>'email_want_roof'])->update(['value'=>$request->email_want_roof]);
         Option::firstOrCreate(['name'=>'phone'])->update(['value'=>$request->phone]);
         Option::firstOrCreate(['name'=>'address'])->update(['value'=>$request->address]);
         Option::firstOrCreate(['name'=>'map'])->update(['value'=>$request->map]);

@@ -30,7 +30,7 @@ class ContactFormController extends Controller
 
 		Mail::send('general.contact.mail', $request->all(), function($m){
 			$m->from('sent_form@roofers.com.ua','roofers.com.ua');
-			$m->to(Option::firstOrNew(['name'=>'email_2'])->value,'info')
+			$m->to(Option::firstOrNew(['name'=>'email_want_roof'])->value,'info')
 				->subject('Новое отправление формы "ХОЧУ КРОВЛЮ"');
 		});
 
