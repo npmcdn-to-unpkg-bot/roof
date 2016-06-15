@@ -33,7 +33,7 @@ class OptionController extends Controller
             ],[
                 'name' => 'email_want_roof',
                 'type' => 'text',
-                'label' => 'Email',
+                'label' => 'Email для формы "Хочу кровлю"',
                 'placeholder' => '',
                 'value' => old() ? old('email_want_roof') : Option::firstOrNew(['name'=>'email_want_roof'])->value
             ],[
