@@ -71,7 +71,7 @@
 							<div class="company-sale__item">
 								<img src="/fit/120/85/{{$sale->image}}" alt="" class="company-sale__image">
 								<div class="company-sale__text">
-									<a href="{{route('sales.show',$sale)}}" class="company-sale__title">{{$sale->title}}</a>
+									<a href="/catalog/{{$company->id}}/sales/{{$sale->id}}" class="company-sale__title">{{$sale->title}}</a>
 									<p>{{$sale->entry}}</p>
 								</div>
 							</div>

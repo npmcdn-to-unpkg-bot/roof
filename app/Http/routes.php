@@ -34,6 +34,7 @@ Route::group(['middleware'=>'csrf'], function (){
 
 	Route::get('catalog/specialisation/{id}', 'General\CompanyController@specialisation');
 	Route::get('catalog/proposition/{id}', 'General\CompanyController@proposition');
+	Route::get('catalog/{company}/sales/{sale}', 'General\CompanyController@sale');
 	Route::get('price/{name}', 'General\CompanyController@price');
 	Route::get('example/{id}', 'General\CompanyController@example');
 	Route::get('events/calendar/{date}', 'General\EventController@calendar');

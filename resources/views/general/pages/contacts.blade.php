@@ -17,9 +17,9 @@
 		<br>
 		e-mail:
 		<div class="contact-value">
-		{!! App\Option::firstOrNew(['name'=>'email_1'])->value !!}
+		<a href="mailto:{!! App\Option::firstOrNew(['name'=>'email_1'])->value !!}">{!! App\Option::firstOrNew(['name'=>'email_1'])->value !!}</a>
 		<br>
-		{!! App\Option::firstOrNew(['name'=>'email_2'])->value !!}
+		<a href="mailto:{!! App\Option::firstOrNew(['name'=>'email_2'])->value !!}">{!! App\Option::firstOrNew(['name'=>'email_2'])->value !!}</a>
 		</div>
 
 		{!! App\Option::firstOrNew(['name'=>'map'])->value !!}

@@ -26,7 +26,7 @@
 						</div>
 					</div>
 					<div class="container__col-6 container__col-sm-12">
-						<div class="field field_money">Бюджет: {{$tender->budget}}</div>
+						<div class="field field_money">Бюджет: {{$tender->budget ? $tender->budget : 'Открыт'}}</div>
 						@if ($tender->company||$tender->company_name)
 							<div class="field field_company">Организатор: 
 								@if ($tender->company) <a href="{{route('catalog.show',$tender->company)}}">{{$tender->company->name}}</a> 

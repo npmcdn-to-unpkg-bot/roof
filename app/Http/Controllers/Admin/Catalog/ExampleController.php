@@ -39,7 +39,7 @@ class ExampleController extends Controller
                 'name'=>'company_id',
                 'type'=>'select',
                 'settings'=>'',
-                'label'=>'Комания',
+                'label'=>'Компания',
                 'value'=>old() 
                     ? old('company_id') 
                     : ($example->company ? $example->company->id : ''),

@@ -73,7 +73,7 @@ class TenderController extends Controller
             ],[
                 'name'=>'company',
                 'type'=>'select',
-                'label'=>'Комания',
+                'label'=>'Компания',
                 'settings' => 'tags: true,',
                 'value'=>old() 
                     ? old('company') 

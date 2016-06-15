@@ -82,7 +82,7 @@ class BuildingController extends Controller
             ],[
                 'name'=>'company',
                 'type'=>'select',
-                'label'=>'Комания',
+                'label'=>'Компания',
                 'settings' => 'tags: true,',
                 'value'=>old() 
                     ? old('company') 
@@ -93,13 +93,13 @@ class BuildingController extends Controller
                 'type'=>'text',
                 'label'=>'Введите meta title',
                 'placeholder'=>'',
-                'value'=>old() ? old('meta_title') : $company->meta_title
+                'value'=>old() ? old('meta_title') : $building->meta_title
             ],[
                 'name'=>'meta_description',
                 'type'=>'textarea',
                 'label'=>'Введите meta description',
                 'placeholder'=>'',
-                'value'=>old() ? old('meta_description') : $company->meta_description
+                'value'=>old() ? old('meta_description') : $building->meta_description
             ]
         ];
     }

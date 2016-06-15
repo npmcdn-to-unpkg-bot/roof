@@ -14,7 +14,7 @@ class AssociationBlock
      * @return void
      */
 	public function compose (View $view) {
-        $association = Company::where('association', 1)->get();
+        $association = Company::where('association', 1)->orderByRaw("RAND()")->get();
         return $view->with('association', $association);
     }
 }

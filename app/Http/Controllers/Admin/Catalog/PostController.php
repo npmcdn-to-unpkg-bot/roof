@@ -45,7 +45,7 @@ class PostController extends Controller
                 'name'=>'company_id',
                 'type'=>'select',
                 'settings'=>'',
-                'label'=>'Комания',
+                'label'=>'Компания',
                 'value'=>old() 
                     ? old('company_id') 
                     : ($post->company ? $post->company->id : ''),

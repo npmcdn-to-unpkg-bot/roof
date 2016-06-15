@@ -15,6 +15,6 @@
 </div>
 <script>
 	function concat_price () {
-		$('#{{$name}}').val($('#price_{{$name}}').val()+$('#currency_{{$name}}').val());
+		$('#{{$name}}').val($('#price_{{$name}}').val()+' '+$('#currency_{{$name}}').val());
 	}
 </script>

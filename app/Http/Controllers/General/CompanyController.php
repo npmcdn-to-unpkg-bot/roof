@@ -82,6 +82,18 @@ class CompanyController extends Controller
 
     }
 
+    public function sale ($company_id, $sale_id) {
+
+        $company = Company::find($company_id);
+        $sale = $company->sales()->find($sale_id);
+
+        if (!$sale) abort(404);
+
+        return view('general.sales.show', [
+            'sale' => $sale
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *

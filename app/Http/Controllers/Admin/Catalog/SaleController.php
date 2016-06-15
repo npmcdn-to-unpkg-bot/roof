@@ -45,7 +45,7 @@ class SaleController extends Controller
                 'name'=>'company_id',
                 'type'=>'select',
                 'settings'=>'',
-                'label'=>'Комания',
+                'label'=>'Компания',
                 'value'=>old() 
                     ? old('company_id') 
                     : ($sale->company ? $sale->company->id : ''),
@@ -99,8 +99,8 @@ class SaleController extends Controller
                     'field'=>$sale->title,
                 ],[
                     'type'=>'actions',
-                    'edit' => route('admin.company.{company}.sales.edit',['company'=>$company,'sales'=>$sales]),
-                    'delete' => route('admin.company.{company}.sales.destroy',['company'=>$company,'sales'=>$sales]),
+                    'edit' => route('admin.company.{company}.sales.edit',['company'=>$company,'sales'=>$sale]),
+                    'delete' => route('admin.company.{company}.sales.destroy',['company'=>$company,'sales'=>$sale]),
                 ],
             ]);
         }

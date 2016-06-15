@@ -12,10 +12,17 @@
 		<div id="jobs" class="container">
 			@foreach ($jobs as $i => $job)
 				<div class="job">
-					<div class="job__title">{{$job->name}}</div>
+					<div class="container__row">
+						<div class="container__col-6 job__title">
+							{{$job->name}}
+						</div>
+						<div class="container__col-6 text_right">
+							{{$job->created_at->format('d.m.Y')}}
+						</div>
+					</div>
 					<div class="job__pay">ЗАРПЛАТА: {{$job->pay}}</div>
 					<div class="job__preview" style="display: block;">
-						 <p>{{$job->information}}</p>
+						<p>{{$job->information}}</p>
 					</div>
 					<div class="job__full" style="display: none;">
 						@if ($job->requirements)

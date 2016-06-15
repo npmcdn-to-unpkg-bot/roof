@@ -54,7 +54,7 @@ class CompanyController extends Controller
             ],[
                 'name' => 'association',
                 'type' => 'checkbox',
-                'label' => 'Член ассоциации',
+                'label' => 'Член Ассоциации',
                 'value' => old() ? old('association') : $company->association
             ],[
                 'name' => 'privat',

@@ -77,26 +77,11 @@
 				@include('general.pagenav',['items'=>$companies])
 				<div class="container__row offset_vertical_55 offset-sm_vertical_30">
 					<div class="container__col-6 container__col-sm-6">
-						<div class="sale" style="background-image: url(/s-img/sale-1.jpg);">
-							<div class="sale__text">
-							Скидки на дикий камень в магазине “Застройщик”
-							</div>
-							<a href="#" class="sale__button button button_big button_peach">ПОДРОБНЕЕ</a>
-						</div>
+						@include('general.area.banner',['area'=>'Каталог архив 3'])
 					</div>
 					<div class="container__col-6 container__col-sm-6">
-						<div class="sale sale_half-height" style="background-image: url(/s-img/sale-2.jpg);">
-							<div class="sale__text">
-							Самые низкие цены на кирпичи
-							</div>
-							<a href="#" class="sale__button button button_medium button_peach">ПОДРОБНЕЕ</a>
-						</div>
-						<div class="sale sale_half-height" style="background-image: url(/s-img/sale-3.jpg);">
-							<div class="sale__text">
-							Кирпичи оптом со скидкой
-							</div>
-							<a href="#" class="sale__button button button_medium button_peach">ПОДРОБНЕЕ</a>
-						</div>
+						<div class="offset_bottom_30">@include('general.area.banner',['area'=>'Каталог архив 4'])</div>
+						@include('general.area.banner',['area'=>'Каталог архив 5'])
 					</div>
 				</div>
 			</div>
