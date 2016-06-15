@@ -92,6 +92,9 @@
 	<div class="container-fluid container-fluid_gray copyright text_center">
 		©2016 Ассоциация кровельщиков Украины. Разработка сайта - <a target="blank" href="http://ivmar.com.ua/">Ivmar Ukraine</a>
 	</div>
+
+	<a href="/want-roof" class="floating-want-roof fancybox">ХОЧУ КРОВЛЮ</a>
+
 	<script src="/bower/jquery/dist/jquery.min.js"></script>
 	<script src="/bower/flexslider/jquery.flexslider-min.js"></script>
 	<script src="/bower/masonry/dist/masonry.pkgd.min.js"></script>

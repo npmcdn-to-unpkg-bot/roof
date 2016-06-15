@@ -2471,3 +2471,24 @@ td.calendar-block__date_active {
 	font-family: "Roboto Condensed";
 	text-decoration: none;
 }
+
+
+/*floating-want-roof*/
+.floating-want-roof {
+	position: fixed;
+	left: 50%;
+	margin-left: -110px;
+	bottom: 0;
+	line-height: 65px;
+	border-radius: 7px 7px 0 0;
+	height: 60px;
+	width: 220px;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	font-weight: 400;
+	font-family: "Roboto Condensed";
+	text-decoration: none;
+	transform-origin: bottom right;
+	background: #6fc0d1;
+}
