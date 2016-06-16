@@ -7,7 +7,7 @@ use Validator;
 use Storage;
 use Auth;
 use App\Models\Catalog\Company;
-use App\Sale;
+use App\Models\Catalog\Sale;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -138,7 +138,7 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), Sale::$rules, Sale::$messages);
+        $validator = Sale::validator($request->all());
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
