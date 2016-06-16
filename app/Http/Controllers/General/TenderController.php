@@ -17,7 +17,7 @@ class TenderController extends Controller
      */
     public function index()
     {
-        $tenders = Tender::orderBy('created_at', 'desc')->paginate(15);
+        $tenders = Tender::whereRaw('end >= NOW()')->orderBy('created_at', 'desc')->paginate(15);
         return view('general.tenders.index', [
             'tenders' => $tenders
         ]);
