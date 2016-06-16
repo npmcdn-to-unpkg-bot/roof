@@ -114,7 +114,10 @@ class PriceController extends Controller
         if ($request->hasFile('upload')) {
             $name = time().'-'
                 .$request->file('upload')->getClientOriginalName();
-            Storage::put('prices/'.$name,$request->file('upload'));
+            Storage::put(
+                'prices/'.$name,
+                file_get_contents($request->file('upload')->getRealPath())
+            );
             $request->merge([
                 'name' => $name,
                 'type' => $request->file('upload')->getClientOriginalExtension()
