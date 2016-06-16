@@ -2491,5 +2491,6 @@ td.calendar-block__date_active {
 	text-decoration: none;
 	transform-origin: bottom right;
 	background: #6fc0d1;
+	z-index: 999;
 }
 /*# sourceMappingURL=mobile.css.map */
