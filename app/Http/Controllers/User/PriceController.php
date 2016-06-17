@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Catalog;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 
@@ -27,15 +27,6 @@ class PriceController extends Controller
                 'type' => 'file',
                 'label' => 'Прайс',
                 'value' => old() ? old('name') : $price->name
-            ],[
-                'name'=>'company_id',
-                'type'=>'select',
-                'settings'=>'',
-                'label'=>'Компания',
-                'value'=>old() 
-                    ? old('company_id') 
-                    : ($price->company ? $price->company->id : ''),
-                'options'=>Company::lists('name','id')
             ]
         ];
         
@@ -47,10 +38,9 @@ class PriceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($company)
+    public function index()
     {
-        $prices = Company::find($company)->prices()->paginate(15);
-        $company = Company::find($company);
+        $prices = auth()->user()->company->prices()->paginate(15);
         
         $th = [
             [
@@ -69,17 +59,16 @@ class PriceController extends Controller
                     'field'=>$price->title,
                 ],[
                     'type'=>'actions',
-                    'edit' => route('admin.company.{company}.prices.edit',['company'=>$company,'prices'=>$price]),
-                    'delete' => route('admin.company.{company}.prices.destroy',['company'=>$company,'prices'=>$price]),
+                    'edit' => route('user.company.price.edit',$price),
+                    'delete' => route('user.company.price.destroy',$price),
                 ],
             ]);
         }
 
-        return view('admin.catalog.index', [
+        return view('admin.universal.index', [
             'table' => $table,
+            'items' => $prices,
             'title' => 'Прайсы',
-            'company' => $company,
-            'add' => route('admin.company.{company}.prices.create',$company),
             'pagination' => $prices->render()
         ]);
     }
@@ -89,15 +78,13 @@ class PriceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($company)
+    public function create()
     {
-        $price = new Price(['company_id'=>$company]);
-        $company = Company::find($company);
+        $price = new Price;
 
-        return view('admin.catalog.edit',[
+        return view('admin.universal.edit',[
             'title' => 'Добавить прайс',
-            'action' => route('admin.company.{company}.prices.store',$company),
-            'company' => $company,
+            'action' => route('user.company.price.store'),
             'fields' => $this->fields($price),
             'item' => $price
         ]);
@@ -109,7 +96,7 @@ class PriceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $company)
+    public function store(Request $request)
     {
         if ($request->hasFile('upload')) {
             $name = time().'-'
@@ -128,13 +115,13 @@ class PriceController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        $price = Price::firstOrNew(['id' => $request->id]);
-        $price->fill($request->only('title','name','company_id'));
+        $price = auth()->user()->company->prices()->firstOrNew(['id' => $request->id]);
+        $price->fill($request->only('title','name'));
         $price->type = $request->type ? $request->type : $price->type;
         $price->type = $price->type ? $price->type : 'zip';
         $price->save();
 
-        return redirect()->route('admin.company.{company}.prices.index', $company);
+        return redirect()->route('user.company.price.index');
     }
 
     /**
@@ -154,15 +141,13 @@ class PriceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($company, $id)
+    public function edit($id)
     {
-        $price = Price::find($id);
-        $company = Company::find($company);
+        $price = auth()->user()->company->prices()->find($id);
 
-        return view('admin.catalog.edit',[
-            'title' => 'Добавить прайс',
-            'action' => route('admin.company.{company}.prices.store',$company),
-            'company' => $company,
+        return view('admin.universal.edit',[
+            'title' => 'Редактировать вакансию',
+            'action' => route('user.company.price.store'),
             'fields' => $this->fields($price),
             'item' => $price
         ]);
@@ -186,9 +171,9 @@ class PriceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($company, $id)
+    public function destroy($id)
     {
-        Price::find($id)->delete();
+        auth()->user()->company->prices()->find($id)->delete();
         return back();
     }
 }

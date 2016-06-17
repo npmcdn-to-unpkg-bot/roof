@@ -79,7 +79,7 @@ class AdminMenu
                 ],
                 'company' => [
                     'name' => 'Компания',
-                    'icon' => 'fa-bank',
+                    'icon' => 'fa-copyright',
                     'active' => Request::is('user')||Request::is('user/company*')?'active':'',
                     'children' => [
                         [
@@ -129,6 +129,10 @@ class AdminMenu
                             'name' => 'Акции и скидки',
                             'icon' => 'fa-percent',
                             'href' => route('user.company.sales.index'),
+                        ],[
+                            'name' => 'Прайсы',
+                            'icon' => 'fa-list',
+                            'href' => route('user.company.price.index'),
                         ],[
                             'name' => 'Сотрудники',
                             'icon' => 'fa-user',

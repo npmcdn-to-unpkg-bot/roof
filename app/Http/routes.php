@@ -79,6 +79,7 @@ Route::group(['middleware'=>'csrf'], function (){
 			'user/company/sales'         => 'User\SaleController',
 			'user/company/buildings'     => 'User\BuildingController',
 			'user/company/services'      => 'User\Services\CompanyController',
+			'user/company/price'         => 'User\PriceController',
 			'user/company'               => 'User\CompanyController',
 			'user/jobs'                  => 'User\JobController',
 			'user/offers/services'       => 'User\Services\OfferController',
