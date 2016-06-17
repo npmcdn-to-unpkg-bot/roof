@@ -131,6 +131,7 @@ class PriceController extends Controller
         $price = Price::firstOrNew(['id' => $request->id]);
         $price->fill($request->only('title','name','company_id'));
         $price->type = $request->type ? $request->type : $price->type;
+        $price->type = $price->type ? $price->type : 'zip';
         $price->save();
 
         return redirect()->route('admin.company.{company}.prices.index', $company);
