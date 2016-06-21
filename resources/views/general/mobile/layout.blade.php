@@ -6,6 +6,21 @@
 	<meta name="title" content="@yield('title') | Первый кровельный портал">
 	<meta name="description" content="@yield('description')">
 	<meta name="viewport" content="width=720px, user-scalable=no">
+	<script>
+		document.ondragstart = noselect
+		document.onselectstart = noselect
+		document.oncontextmenu = noselect
+		function noselect () { return false }
+	</script>
+	<style>
+	* {
+	 	-moz-user-select: none;
+	    -webkit-user-select: none;
+	    -ms-user-select: none;
+	    -o-user-select: none;
+	    user-select: none;
+	}
+	</style>
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700|PT+Sans:400,700&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/css/mobile.css">
 </head>
