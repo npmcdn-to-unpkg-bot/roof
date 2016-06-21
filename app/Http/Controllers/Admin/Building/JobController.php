@@ -8,6 +8,7 @@ use App\Models\Building\Job;
 use App\Models\Building\Building;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class JobController extends Controller
 {
