@@ -11,11 +11,6 @@ use LiqPay;
 
 class OrderController extends Controller
 {
-
-    protected $public_key = env("LIQPAY_PUBLIC_KEY");
-
-    protected $private_key = env("LIQPAY_PRIVAT_KEY");
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +18,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $liqpay = new LiqPay($this->public_key, $this->private_key);
+        $liqpay = new LiqPay(env("LIQPAY_PUBLIC_KEY"), env("LIQPAY_PRIVAT_KEY"));
 
         $orders = auth()
             ->user()
