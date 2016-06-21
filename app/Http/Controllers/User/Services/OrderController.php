@@ -12,9 +12,9 @@ use LiqPay;
 class OrderController extends Controller
 {
 
-    protected $public_key = 'i48589244001';
+    protected $public_key = env("LIQPAY_PUBLIC_KEY");
 
-    protected $private_key = 'KL21yzcLCKzeMqXrvAmEVqcn2BzVixAEMYtMDJQ3';
+    protected $private_key = env("LIQPAY_PRIVAT_KEY");
 
     /**
      * Display a listing of the resource.
