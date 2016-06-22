@@ -10,7 +10,6 @@ use Storage;
 use Auth;
 use App\Country;
 use App\City;
-use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -46,7 +45,7 @@ class OfferController extends Controller
                 'label'=>'Цена',
                 'value'=>old() ? old('price') : $offer->price
             ]);
-        if (auth()->user()->company->level == 3)
+        if (auth()->user()->company&&auth()->user()->company->level == 3)
             $fields
             ->push([
                 'name'=>'old_price',
