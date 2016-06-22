@@ -37,13 +37,23 @@ class Service extends Model
             $orderable->level = $this->value;
             $orderable->level_end = Carbon::now()->addYear();
         }
-        if ($this->value = 2) {
+
+        if ($this->value == 1) {
+            $reserveOffers = $orderable->user->reserves()->firstOrNew([
+                'service_id' => Service::where('group','offer_framed')->where('value','7')->firstOrNew([])->id
+            ]);
+            $reserveOffers->count += 10;
+            $reserveOffers->save();
+        }
+
+        if ($this->value == 2) {
             $reserveOffers = $orderable->user->reserves()->firstOrNew([
                 'service_id' => Service::where('group','offer_top')->where('value','7')->firstOrNew([])->id
             ]);
             $reserveOffers->count += 10;
             $reserveOffers->save();
         }
+        
         if ($orderable->max_level_ever < $orderable->level) {
             $orderable->max_level_start = Carbon::now();
             $orderable->max_level_ever = $orderable->level;
