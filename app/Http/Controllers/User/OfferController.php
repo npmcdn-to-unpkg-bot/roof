@@ -10,6 +10,7 @@ use Storage;
 use Auth;
 use App\Country;
 use App\City;
+use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
