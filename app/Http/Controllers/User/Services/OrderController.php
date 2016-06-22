@@ -107,6 +107,7 @@ class OrderController extends Controller
         if ($request->signature == $signature) {
             $data = json_decode ( base64_decode ($request->data) );
             $order = Order::find($data->order_id);
+            $order->status = $data->status;
             $order->liqpay_response = base64_decode ($request->data);
             if ($data->status=='success') {
                 $order->payed = 1;
