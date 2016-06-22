@@ -100,9 +100,9 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $signature = base64_encode( sha1( 
-            $this->private_key .  
+            env("LIQPAY_PRIVAT_KEY") .  
             $request->data . 
-            $this->private_key
+            env("LIQPAY_PRIVAT_KEY")
             , 1 ));
         if ($request->signature == $signature) {
             $data = json_decode ( base64_decode ($request->data) );
