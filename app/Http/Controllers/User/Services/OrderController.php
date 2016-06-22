@@ -64,7 +64,6 @@ class OrderController extends Controller
                             'action'         => 'pay',
                             'amount'         => $order->service->price,
                             'currency'       => 'UAH',
-                            'sandbox'        => '1',
                             'description'    => $order->service->name,
                             'order_id'       => $order->id,
                             'result_url'     => route('user.orders.index'),
@@ -109,7 +108,7 @@ class OrderController extends Controller
             $data = json_decode ( base64_decode ($request->data) );
             $order = Order::find($data->order_id);
             $order->liqpay_response = base64_decode ($request->data);
-            if ($data->status=='sandbox') {
+            if ($data->status=='success') {
                 $order->payed = 1;
                 $order->apply();
             }else{
