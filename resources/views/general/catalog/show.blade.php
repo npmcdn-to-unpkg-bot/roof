@@ -138,10 +138,13 @@
 					<div class="title">БЛОГ КОМПАНИИ</div>
 					@foreach ($company->posts as $post)
 						<div class="company-blog__item">
-							<a href="" class="company-blog__title">{{$post->title}}</a>
+							<a href="{{route('catalog.{company}.post.show', ['company' => $company, 'post' => $post])}}" class="company-blog__title">{{$post->title}}</a>
 							<p>{{$post->entry}}</p>
 						</div>
 					@endforeach
+					<div class="company-blog__item">
+						<a href="{{route('catalog.{company}.post.index', $company)}}" class="company-blog__title">ВСЕ ЗАПИСИ</a>
+					</div>
 				</div>
 			@endif
 		</div>

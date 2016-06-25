@@ -46,6 +46,7 @@ Route::group(['middleware'=>'csrf'], function (){
 
 	Route::resources([
 		'want-roof'                  => 'General\ContactFormController',
+		'catalog/{company}/post'     => 'General\CatalogPostController',
 		'catalog'                    => 'General\CompanyController',
 		'buildings'                  => 'General\BuildingController',
 		'jobs'                       => 'General\JobController',

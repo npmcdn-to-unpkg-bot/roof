@@ -114,7 +114,7 @@ class CompanyController extends Controller
                 'name'=>'user_id',
                 'type'=>'select',
                 'settings'=>'',
-                'label'=>'Пользователь',
+                'label'=>'Владелец',
                 'value'=>old() 
                     ? old('user_id') 
                     : ($company->user ? $company->user->id : ''),
@@ -164,9 +164,9 @@ class CompanyController extends Controller
                 
             if (!Agent::isMobile())
                 $td
+                    ->push(['type'=>'user','field'=>$company->user,])
                     ->push(['type'=>'taxonomy','field'=>$company->specialisations])
-                    ->push(['type'=>'taxonomy','field'=>$company->propositions])
-                    ->push(['type'=>'user','field'=>$company->user,]);
+                    ->push(['type'=>'taxonomy','field'=>$company->propositions]);
 
             $td->push(['type'=>'actions',
                 'edit' => route('admin.company.edit', $company),

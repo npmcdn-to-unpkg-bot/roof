@@ -6,9 +6,47 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\User;
+use Validator;
+use Storage;
 
 class MemberController extends Controller
 {
+
+    protected function fields (User $user) {
+
+        return [
+            [
+                'name'=>'name',
+                'type'=>'text',
+                'placeholder'=>'Фамилия Имя Очетсва',
+                'label'=>'ФИО',
+                'value'=>old() ? old('name') : $user->name
+            ],[
+                'name' => 'image',
+                'type' => 'images',
+                'label' => 'Аватарка',
+                'quantity' => 1,
+                'values' => old() 
+                    ? (array)old('image') 
+                    : (array)$user->image
+            ],[
+                'name'=>'phone',
+                'type'=>'text',
+                'placeholder'=>'Телефон',
+                'label'=>'Телефон',
+                'value'=>old() ? old('phone') : $user->phone
+            ],[
+                'name'=>'job',
+                'type'=>'text',
+                'placeholder'=>'Должность',
+                'label'=>'Должность',
+                'value'=>old() ? old('job') : $user->job
+            ]
+        ];
+        
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +75,7 @@ class MemberController extends Controller
                     'width'=>'50px',
                 ],[
                     'title'=>'',
-                    'width'=>'50px',
+                    'width'=>'90px',
                 ],
         ];
         $table=collect()->push($th);
@@ -60,6 +98,7 @@ class MemberController extends Controller
                     'type'=>'html',
                 ],[
                     'edit' => false,
+                    'edit' => route('user.company.staff.edit', $member),
                     'delete' => route('user.company.staff.destroy', $member),
                     'type'=>'actions',
                 ],
@@ -91,7 +130,29 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+        ],[
+            'name.required' => 'Введите ваше имя.',
+            'name.max' => 'Слишком длинное имя.',
+        ]);
+        if ($validator->fails())
+            return back()->withInput()->withErrors($validator);
+
+        $user = auth()->user()->company->members()->find($request->id);
+
+        if (!$user) abort(404);
+
+        if ($request->image&&Storage::exists('temp/'.$request->image)) 
+            Storage::move('temp/'.$request->image,'images/'.$request->image);
+
+        if ($user->image&&$user->image!==$request->image) 
+            Storage::delete('images/'.$user->image);
+
+        $user->fill($request->only('name','image','phone','job'));
+        $user->save();
+
+        return redirect()->route('user.company.staff.index');
     }
 
     /**
@@ -113,7 +174,14 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('admin.universal.edit',[
+            'title' => 'Редактировать пользователя',
+            'action' => route('user.company.staff.store'),
+            'fields' => $this->fields($user),
+            'item' => $user
+        ]);
     }
 
     /**

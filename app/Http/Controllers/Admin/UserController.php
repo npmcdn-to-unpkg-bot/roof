@@ -44,6 +44,12 @@ class UserController extends Controller
                 'label'=>'Телефон',
                 'value'=>old() ? old('phone') : $user->phone
             ],[
+                'name'=>'job',
+                'type'=>'text',
+                'placeholder'=>'Должность',
+                'label'=>'Должность',
+                'value'=>old() ? old('job') : $user->job
+            ],[
                 'name'=>'roles',
                 'type'=>'select_multiple',
                 'label' => 'Роли',
@@ -155,7 +161,7 @@ class UserController extends Controller
         if ($user->image&&$user->image!==$request->image) 
             Storage::delete('images/'.$user->image);
 
-        $user->fill($request->only('title','image','entry','content'));
+        $user->fill($request->only('name','image','email','phone','job'));
         $user->save();
 
         $user->roles()->sync((array)$request->roles);

@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Catalog\Company;
 use Storage;
+use App\User;
+use Validator;
 
 class MemberController extends Controller
 {
@@ -19,7 +21,7 @@ class MemberController extends Controller
     public function index($id)
     {
         $company = Company::find($id);
-        $members = $company->new_members;
+        $members = $company->members;
         $members = $members->merge( $company->members );
 
         $th = [
@@ -40,7 +42,7 @@ class MemberController extends Controller
                     'width'=>'50px',
                 ],[
                     'title'=>'',
-                    'width'=>'50px',
+                    'width'=>'90px',
                 ],
         ];
         $table=collect()->push($th);
@@ -63,6 +65,7 @@ class MemberController extends Controller
                     'type'=>'html',
                 ],[
                     'edit' => false,
+                    'edit' => route('admin.users.edit', $member),
                     'delete' => route('admin.company.{company}.staff.destroy',['company'=>$company,'staff'=>$member]),
                     'type'=>'actions',
                 ],
@@ -72,6 +75,7 @@ class MemberController extends Controller
             'table' => $table,
             'items' => $members,
             'company' => $company,
+            'add' => route('admin.company.{company}.staff.create',$company),
             'title' => 'Сотрудники компании',
             'pagination' => false,
         ]);
@@ -82,9 +86,25 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($company)
     {
-        //
+        $company = Company::find($company);
+
+        return view('admin.catalog.edit',[
+            'title' => 'Добавить сотрудника',
+            'action' => route('admin.company.{company}.staff.store', $company),
+            'company' => $company,
+            'fields' => [
+                [
+                    'name'=>'user_id',
+                    'type'=>'select',
+                    'settings'=>'',
+                    'label'=>'Пользователь',
+                    'value'=>'',
+                    'options'=>User::lists('email','id')
+                ]
+            ]
+        ]);
     }
 
     /**
@@ -93,9 +113,19 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $company)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'user_id'=>'not_in:0'
+        ],[
+            'user_id.not_in'=>'Выберите пользователя'
+        ]);
+        if ($validator->fails())
+            return back()->withInput()->withErrors($validator);
+        User::where('id', $request->user_id)->update([
+            'company_id' => $company
+        ]);
+        return redirect()->route('admin.company.{company}.staff.index',$company);
     }
 
     /**
@@ -155,7 +185,7 @@ class MemberController extends Controller
         $company = Company::find($company);
         $company->new_members()->where('id',$id)->update([
             'join_company_id' => 0,
-            'company_id' => auth()->user()->company->id
+            'company_id' => $company->id
         ]);
         return back();
     }
