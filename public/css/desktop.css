@@ -1781,6 +1781,10 @@ td.calendar-block__date_active {
 	vertical-align: middle;
 }
 
+.rate-form__container {
+	display: inline-block;
+}
+
 .rate-form__radio {
 	display: none;
 }
@@ -1815,12 +1819,11 @@ td.calendar-block__date_active {
 	font-family: "Open Sans";
 	font-weight: bold;
 	font-size: 18px;
-	line-height: 50px;
-	margin-top: 20px;
+	line-height: 40px;
+	text-align: right;
 }
 .reviews-form__submit {
 	margin-top: 20px;
-	float: right;
 }
 
 /*tabs*/

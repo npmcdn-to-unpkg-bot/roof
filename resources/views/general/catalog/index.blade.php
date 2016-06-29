@@ -63,10 +63,12 @@
 								</div>
 								@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label company-cart__right-top">
 								@elseif ($company->privat) <img src="/img/privat.png" alt="" class="company-cart__right-top"> @endif
+								@if ($company->rating)
 								<div class="company-cart__right-bottom company-cart__rating">
 									рейтинг
 									<div class="company-cart__rating_value">{{$company->rating}}</div>
 								</div>
+								@endif
 							</div>
 						</div>
 					@if ($i+1==count($companies)||$i%2==1) </div> @endif

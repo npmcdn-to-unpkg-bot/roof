@@ -44,7 +44,8 @@ class CommentController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
         $comment = new Comment;
-        $comment->fill($request->only('text','rating'));
+        $comment->fill($request->only('text','rating_service','rating_prof','rating_quality','rating_resp'));
+        $comment->rating = ($request->rating_service + $request->rating_prof + $request->rating_quality + $request->rating_resp)/4;
         $comment->user_id = Auth::user()->id;
         Company::find($request->company_id)->comments()->save($comment);
 

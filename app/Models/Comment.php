@@ -11,7 +11,7 @@ class Comment extends Model
     	return $this->morphTo();
     }
 
-    protected $fillable = ['text','rating'];
+    protected $fillable = ['text','rating','rating_service','rating_prof','rating_quality','rating_resp'];
 
     public function comments() {
     	return $this->morphMany('App\Models\Comment','commentable');
@@ -40,12 +40,21 @@ class Comment extends Model
     public static function validator ($fields) {
     	return Validator::make($fields,[
     			'text' => 'required',
-    			'rating' => 'required|not_in:0',
+                'rating_service' => 'required|not_in:0',
+                'rating_prof' => 'required|not_in:0',
+                'rating_quality' => 'required|not_in:0',
+                'rating_resp' => 'required|not_in:0',
     			'company_id' => 'required'
     		],[
     			'text.required' => 'Введите текст отзыва',
-    			'rating.required' => 'Поставьте оценку',
-    			'rating.not_in' => 'Поставьте оценку',
+                'rating_service.required' => 'Поставьте оценку',
+                'rating_prof.required' => 'Поставьте оценку',
+                'rating_quality.required' => 'Поставьте оценку',
+                'rating_resp.required' => 'Поставьте оценку',
+                'rating_service.not_in' => 'Поставьте оценку',
+                'rating_prof.not_in' => 'Поставьте оценку',
+                'rating_quality.not_in' => 'Поставьте оценку',
+                'rating_resp.not_in' => 'Поставьте оценку',
     			'company_id.required' => ''
     		]);
     }

@@ -23,9 +23,11 @@
 				</div>
 				<div class="company-cart__right-top">
 					@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label"> @endif
+					@if ($company->rating)
 					<div class="company-cart__rating">
 						рейтинг <div class="company-cart__rating_value">{{$company->rating}}</div>
-					</div>			
+					</div>
+					@endif
 				</div>
 			</div>
 			<div class="tabs">
@@ -98,17 +100,53 @@
 					<input type="hidden" name="company_id" value="{{$company->id}}">
 					<textarea name="text" resize="none" placeholder="Оставить отзыв о компании" class="reviews-form__text">{{old('text')}}</textarea>
 					@if ($errors->first('text'))<div class="error">{{ $errors->first('text') }}</div>@endif
-					<button class="button button_big button_blue reviews-form__submit">ОТПРАВИТЬ</button>
-					<div class="reviews-form__rate">Оценка компании: 
-						<div class="rate-form">
-							<input type="radio" class="rate-form__radio" {{old('rating')!=0?'':'checked'}} name="rating" value="0">
-							@for ($i=1;$i<=10;$i++)
-								<label for="rate-form__{{ $i }}" class="rate-form__star"></label>
-								<input {{old('rating')==$i?'checked':''}} type="radio" id="rate-form__{{ $i }}" class="rate-form__radio" value="{{ $i }}" name="rating">
-							@endfor
+					<div class="text_center">
+						<div class="rate-form__container">
+							<div class="reviews-form__rate">Сервис/обслуживание: 
+								<div class="rate-form">
+									<input type="radio" class="rate-form__radio" {{old('rating_service')!=0?'':'checked'}} name="rating_service" value="0">
+									@for ($i=1;$i<=10;$i++)
+										<label for="rating_service__{{ $i }}" class="rate-form__star"></label>
+										<input {{old('rating_service')==$i?'checked':''}} type="radio" id="rating_service__{{ $i }}" class="rate-form__radio" value="{{ $i }}" name="rating_service">
+									@endfor
+								</div>
+							</div>
+							<div class="reviews-form__rate">Профессионализм: 
+								<div class="rate-form">
+									<input type="radio" class="rate-form__radio" {{old('rating_prof')!=0?'':'checked'}} name="rating_prof" value="0">
+									@for ($i=1;$i<=10;$i++)
+										<label for="rating_prof__{{ $i }}" class="rate-form__star"></label>
+										<input {{old('rating_prof')==$i?'checked':''}} type="radio" id="rating_prof__{{ $i }}" class="rate-form__radio" value="{{ $i }}" name="rating_prof">
+									@endfor
+								</div>
+							</div>
+							<div class="reviews-form__rate">Качество товаров/услуг: 
+								<div class="rate-form">
+									<input type="radio" class="rate-form__radio" {{old('rating_quality')!=0?'':'checked'}} name="rating_quality" value="0">
+									@for ($i=1;$i<=10;$i++)
+										<label for="rating_quality__{{ $i }}" class="rate-form__star"></label>
+										<input {{old('rating_quality')==$i?'checked':''}} type="radio" id="rating_quality__{{ $i }}" class="rate-form__radio" value="{{ $i }}" name="rating_quality">
+									@endfor
+								</div>
+							</div>
+							<div class="reviews-form__rate">Ответственность/пунктуальность: 
+								<div class="rate-form">
+									<input type="radio" class="rate-form__radio" {{old('rating_resp')!=0?'':'checked'}} name="rating_resp" value="0">
+									@for ($i=1;$i<=10;$i++)
+										<label for="rating_resp__{{ $i }}" class="rate-form__star"></label>
+										<input {{old('rating_resp')==$i?'checked':''}} type="radio" id="rating_resp__{{ $i }}" class="rate-form__radio" value="{{ $i }}" name="rating_resp">
+									@endfor
+								</div>
+							</div>
+							@if ($errors->first('rating_service'))<div class="error">{{ $errors->first('rating_service') }}</div>@endif
+							@if ($errors->first('rating_prof'))<div class="error">{{ $errors->first('rating_prof') }}</div>@endif
+							@if ($errors->first('rating_quality'))<div class="error">{{ $errors->first('rating_quality') }}</div>@endif
+							@if ($errors->first('rating_resp'))<div class="error">{{ $errors->first('rating_resp') }}</div>@endif
 						</div>
 					</div>
-					@if ($errors->first('rating'))<div class="error">{{ $errors->first('rating') }}</div>@endif
+					<div class="text_center">
+						<button class="button button_big button_blue reviews-form__submit">ОТПРАВИТЬ</button>
+					</div>
 				</form>
 			</div>
 		</div>

@@ -39,10 +39,7 @@ class CompanyController extends Controller
         $companies = $companies->paginate(10);
 
         foreach ($companies as &$company) {
-            $company->rating
-                = $company->comments()->avg('rating')*0.7 
-                + $company->association 
-                + $company->level*0.2;
+            $company->rating = $company->comments()->avg('rating');
             Company::where('id', $company->id)->update(['rating'=>$company->rating]);
         }
 
@@ -105,10 +102,7 @@ class CompanyController extends Controller
 
         $company = Company::with('buildings','posts','sales','comments')->find($id);
         if (!$company) abort(404);
-        $company->rating
-            = $company->comments()->avg('rating')*0.7 
-            + $company->association 
-            + $company->level*0.2;
+        $company->rating = $company->comments()->avg('rating');
         Company::where('id', $company->id)->update(['rating'=>$company->rating]);
 
 
