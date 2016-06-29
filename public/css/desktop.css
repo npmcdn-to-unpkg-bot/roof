@@ -2473,4 +2473,48 @@ td.calendar-block__date_active {
 	transform-origin: bottom right;
 	background: #6fc0d1;
 }
+
+/*rate-details*/
+
+.rate-details {
+	padding: 20px 0;
+	background-color: #eeeeee;
+}
+
+.rate-details:after {
+	content:'';
+	display: block;
+	clear: both;
+}
+
+.rate-details__value {
+	color: #3e4055;
+	font-weight: 300;
+	font-size: 48px;
+	font-family: "Roboto Condensed";
+}
+.rate-details__label {
+	color: #3e4055;
+	font-family: "Roboto Condensed";
+}
+.rate-details__reviews {
+	width: 110px;
+	text-align: center;
+	float: left;
+}
+.rate-details__positive {
+	width: 180px;
+	float: left;
+	text-align: center;
+	border-right: 1px solid #8f8f8f;
+	border-left: 1px solid #8f8f8f;
+	padding-bottom: 10px;
+}
+.rate-details__all {
+	padding: 10px 40px;
+	font-size: 12px;
+	font-weight: 400;
+	color: black;
+	float: left;
+}
 /*# sourceMappingURL=desktop.css.map */

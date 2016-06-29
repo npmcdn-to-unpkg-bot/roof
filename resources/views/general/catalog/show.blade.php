@@ -84,6 +84,36 @@
 			<div class="reviews">
 				<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 				<div class="title">ОТЗЫВЫ</div>
+				<div class="offset_vertical_30 rate-details">
+					<div class="rate-details__reviews">
+						<div class="rate-details__value">{{$company->comments()->count()}}</div>
+						<div class="rate-details__label">отзыва</div>
+					</div>
+					<div class="rate-details__positive">
+						<div class="rate-details__value">
+							{{$company->comments()->where('rating','>=','5')->count() / $company->comments()->count() * 100}}%
+						</div>
+						<div class="rate-details__label">положительных</div>
+					</div>
+					<div class="rate-details__all">
+						<div>
+							Сервис/обслуживание: 
+							{{$company->comments()->where('rating_service','>=','5')->count() / $company->comments()->count() * 100}}%
+						</div>
+						<div>
+							Профессионализм: 
+							{{$company->comments()->where('rating_prof','>=','5')->count() / $company->comments()->count() * 100}}%
+						</div>
+						<div>
+							Качество товаров/услуг: 
+							{{$company->comments()->where('rating_quality','>=','5')->count() / $company->comments()->count() * 100}}%
+						</div>
+						<div>
+							Ответственность/пунктуальность: 
+							{{$company->comments()->where('rating_resp','>=','5')->count() / $company->comments()->count() * 100}}%
+						</div>
+					</div>
+				</div>
 				@foreach ($company->comments as $review)
 					<div class="reviews__post">
 						<img src="/fit/85/85/{{$review->user->image?$review->user->image:'person.png'}}" alt="" class="reviews__image">
