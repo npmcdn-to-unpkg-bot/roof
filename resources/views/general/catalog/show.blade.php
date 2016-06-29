@@ -84,6 +84,8 @@
 			<div class="reviews">
 				<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 				<div class="title">ОТЗЫВЫ</div>
+				
+				@if($company->comments->first())
 				<div class="offset_vertical_30 rate-details">
 					<div class="rate-details__reviews">
 						<div class="rate-details__value">{{$company->comments()->count()}}</div>
@@ -114,6 +116,8 @@
 						</div>
 					</div>
 				</div>
+				@endif
+
 				@foreach ($company->comments as $review)
 					<div class="reviews__post">
 						<img src="/fit/85/85/{{$review->user->image?$review->user->image:'person.png'}}" alt="" class="reviews__image">
