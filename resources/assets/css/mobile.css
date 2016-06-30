@@ -2275,7 +2275,8 @@ td.calendar-block__date_active {
   color: #898989;
   text-transform: uppercase;
   font-weight: bold;
-  width: 120px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-align: center;
 }
 
@@ -2284,6 +2285,7 @@ td.calendar-block__date_active {
   text-decoration: none;
   padding-right: 10px;
   padding-left: 10px;
+  display: inline-block;
 }
 
 .library__item_active {
@@ -2453,8 +2455,9 @@ td.calendar-block__date_active {
 	font-family: "Roboto Condensed";
 	font-size: 28px;
     font-weight: 300;
-	border-top:8px solid #a3bec6;
 	line-height: 81px;
+	display: block;
+	text-decoration: none;
 }
 
 /*add-job*/
@@ -2492,4 +2495,62 @@ td.calendar-block__date_active {
 	transform-origin: bottom right;
 	background: #6fc0d1;
 	z-index: 999;
+}
+
+
+/*rate-details*/
+
+.rate-details {
+	padding: 20px 0;
+	background-color: #eeeeee;
+}
+
+.rate-details:after {
+	content:'';
+	display: block;
+	clear: both;
+}
+
+.rate-details__value {
+	color: #3e4055;
+	font-weight: 300;
+	font-size: 48px;
+	font-family: "Roboto Condensed";
+}
+.rate-details__label {
+	color: #3e4055;
+	font-family: "Roboto Condensed";
+}
+.rate-details__reviews {
+	width: 110px;
+	text-align: center;
+	float: left;
+}
+.rate-details__positive {
+	width: 180px;
+	float: left;
+	text-align: center;
+	border-right: 1px solid #8f8f8f;
+	border-left: 1px solid #8f8f8f;
+	padding-bottom: 10px;
+}
+.rate-details__all {
+	padding: 0 10px;
+	font-size: 18px;
+	font-weight: 400;
+	color: black;
+	float: left;
+}
+
+/*fixed-top-header*/
+.fixed-top-header {
+	border-bottom:8px solid #a3bec6;
+	top: 0;
+	position: fixed;
+	left: 0;
+	background-color: white;
+}
+
+body {
+	margin-top: 131px;
 }

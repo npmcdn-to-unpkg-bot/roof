@@ -100,19 +100,19 @@
 					<div class="rate-details__all">
 						<div>
 							Сервис/обслуживание: 
-							{{$company->comments()->where('rating_service','>=','5')->count() / $company->comments()->count() * 100}}%
+							{{$company->comments()->avg('rating_service') * 10}}%
 						</div>
 						<div>
 							Профессионализм: 
-							{{$company->comments()->where('rating_prof','>=','5')->count() / $company->comments()->count() * 100}}%
+							{{$company->comments()->avg('rating_prof') * 10}}%
 						</div>
 						<div>
 							Качество товаров/услуг: 
-							{{$company->comments()->where('rating_quality','>=','5')->count() / $company->comments()->count() * 100}}%
+							{{$company->comments()->avg('rating_quality') * 10}}%
 						</div>
 						<div>
 							Ответственность/пунктуальность: 
-							{{$company->comments()->where('rating_resp','>=','5')->count() / $company->comments()->count() * 100}}%
+							{{$company->comments()->avg('rating_resp') * 10}}%
 						</div>
 					</div>
 				</div>

@@ -21,9 +21,8 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
 
-        $companies = Company::orderBy('level','desc')
-                        ->orderBy(DB::raw('level*max_level_start'))
-                        ->orderBy('rating', 'desc')
+        $companies = Company::
+                          orderBy('rating', 'desc')
                         ->orderBy('created_at', 'desc');
 
         if ($request->search) {
@@ -56,8 +55,6 @@ class CompanyController extends Controller
         return view('general.catalog.index', [
             'companies' => Specialisation::find($id)
                         ->companies()
-                        ->orderBy('level','desc')
-                        ->orderBy(DB::raw('level*max_level_start'))
                         ->orderBy('rating', 'desc')
                         ->orderBy('created_at', 'desc')
                         ->paginate(10)
@@ -70,8 +67,6 @@ class CompanyController extends Controller
         return view('general.catalog.index', [
             'companies' => Proposition::find($id)
                         ->companies()
-                        ->orderBy('level','desc')
-                        ->orderBy(DB::raw('level*max_level_start'))
                         ->orderBy('rating', 'desc')
                         ->orderBy('created_at', 'desc')
                         ->paginate(10)

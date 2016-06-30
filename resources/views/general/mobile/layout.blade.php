@@ -25,50 +25,52 @@
 	<link rel="stylesheet" href="/css/mobile.css">
 </head>
 <body>
-	<div class="container">
-		<a href="/"><img src="/img/logo.png" alt="" class="logo logo_in-header container__col-left"></a>
-		<div class="container__col-right actions-menu">
-			@if ( !Auth::user() || !Auth::user()->company )
-			<a href="{{url('user')}}" style="background-color: #d98e64; background-image: url(/img/user-menu-2.png);" class="actions-menu__item">
-				ДОБАВИТЬ КОМПАНИЮ
-			</a>
-			@endif
-			<a href="{{ url('/register') }}" style="background-color: #7dc691; background-image: url(/img/user-menu-3.png);" class="actions-menu__item">
-				@if (Auth::guest())
-				ВХОД <br> РЕГИСТРАЦИЯ
-				@else
-				{{ Auth::user()->name }}
+	<div class="container-fluid fixed-top-header">
+		<div class="container">
+			<a href="/"><img src="/img/logo.png" alt="" class="logo logo_in-header container__col-left"></a>
+			<div class="container__col-right actions-menu">
+				@if ( !Auth::user() || !Auth::user()->company )
+				<a href="{{url('user')}}" style="background-color: #d98e64; background-image: url(/img/user-menu-2.png);" class="actions-menu__item">
+					ДОБАВИТЬ КОМПАНИЮ
+				</a>
 				@endif
-			</a>
-			<a href="#" style="background-color: #6fc0d1; background-image: url(/img/user-menu-4.png);" class="actions-menu__item search-block__show"></a>
-			@include('general.search.block')
-			<a href="#" style="background-color: #5575b6; background-image: url(/img/user-menu-5.png);" class="actions-menu__item main-menu__show"></a>
-			<div id="main-menu">
-				<div class="menu menu_vertical menu_lh_48 menu_large menu_uppercase menu_no_underline menu_white menu_justified menu_main">
-					<a href="{{ route('catalog.index') }}" class="{{ Request::is('catalog*')?'menu__item_active':'' }} menu__item">Каталог компаний</a>
-					<a href="{{ route('buildings.index') }}" class="{{ Request::is('buildings*')?'menu__item_active':'' }} menu__item">Стройки и вакансии</a>
-					<a href="{{ route('desk.index') }}" class="{{ Request::is('desk*')?'menu__item_active':'' }} menu__item">Доска объявлений</a>
-					<a href="{{ route('tenders.index') }}" class="{{ Request::is('tenders*')?'menu__item_active':'' }} menu__item">Тендеры</a>
-					<a href="{{ route('sales.index') }}" class="{{ Request::is('sales*')?'menu__item_active':'' }} menu__item">Акции и скидки</a>
-					<a href="{{ route('knowladge.index') }}" class="{{ Request::is('knowladge*')?'menu__item_active':'' }} menu__item">База знаний</a>
-					<a href="{{ route('news.index') }}" class="{{ Request::is('news*')?'menu__item_active':'' }} menu__item">Новости и статьи</a>
-				</div>
-				<div class="menu menu_vertical menu_lh_48 menu_uppercase menu_big menu_white menu_justified menu_main">
-					<a href="http://rau.org.ua/" target="blank" class="menu__item">Об ассоциации</a>
-					<a href="{{ route('events.index') }}" class="menu__item">Календарь</a>
-					<a href="{{ route('polls.index') }}" class="menu__item">Опросы</a>
-					<a href="http://forum.roofers.com.ua/" target="blank" class="menu__item">ФОРУМ</a>
-					<a href="{{url('contacts')}}" class="menu__item">Контакты</a>
+				<a href="{{ url('/register') }}" style="background-color: #7dc691; background-image: url(/img/user-menu-3.png);" class="actions-menu__item">
+					@if (Auth::guest())
+					ВХОД <br> РЕГИСТРАЦИЯ
+					@else
+					{{ Auth::user()->name }}
+					@endif
+				</a>
+				<a href="#" style="background-color: #6fc0d1; background-image: url(/img/user-menu-4.png);" class="actions-menu__item search-block__show"></a>
+				@include('general.search.block')
+				<a href="#" style="background-color: #5575b6; background-image: url(/img/user-menu-5.png);" class="actions-menu__item main-menu__show"></a>
+				<div id="main-menu">
+					<div class="menu menu_vertical menu_lh_48 menu_large menu_uppercase menu_no_underline menu_white menu_justified menu_main">
+						<a href="{{ route('catalog.index') }}" class="{{ Request::is('catalog*')?'menu__item_active':'' }} menu__item">Каталог компаний</a>
+						<a href="{{ route('buildings.index') }}" class="{{ Request::is('buildings*')?'menu__item_active':'' }} menu__item">Стройки и вакансии</a>
+						<a href="{{ route('desk.index') }}" class="{{ Request::is('desk*')?'menu__item_active':'' }} menu__item">Доска объявлений</a>
+						<a href="{{ route('tenders.index') }}" class="{{ Request::is('tenders*')?'menu__item_active':'' }} menu__item">Тендеры</a>
+						<a href="{{ route('sales.index') }}" class="{{ Request::is('sales*')?'menu__item_active':'' }} menu__item">Акции и скидки</a>
+						<a href="{{ route('knowladge.index') }}" class="{{ Request::is('knowladge*')?'menu__item_active':'' }} menu__item">База знаний</a>
+						<a href="{{ route('news.index') }}" class="{{ Request::is('news*')?'menu__item_active':'' }} menu__item">Новости и статьи</a>
+					</div>
+					<div class="menu menu_vertical menu_lh_48 menu_uppercase menu_big menu_white menu_justified menu_main">
+						<a href="http://rau.org.ua/" target="blank" class="menu__item">Об ассоциации</a>
+						<a href="{{ route('events.index') }}" class="menu__item">Календарь</a>
+						<a href="{{ route('polls.index') }}" class="menu__item">Опросы</a>
+						<a href="http://forum.roofers.com.ua/" target="blank" class="menu__item">ФОРУМ</a>
+						<a href="{{url('contacts')}}" class="menu__item">Контакты</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid association-title">
+	<a href="http://rau.org.ua/" target="_blank" class="container-fluid association-title">
 		<div class="container">
 			<img src="/img/user-menu-1.png" alt="" style="vertical-align: middle;">
 			АССОЦИАЦИЯ КРОВЕЛЬЩИКОВ УКРАИНЫ
 		</div>
-	</div>
+	</a>
 	@yield('content')
 	<div class="container-fluid container-fluid_gray container-fluid_footer">
 		<div class="container text_center">

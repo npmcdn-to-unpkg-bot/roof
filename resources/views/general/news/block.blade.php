@@ -1,6 +1,6 @@
 <div class="title">НОВОСТИ И СТАТЬИ</div>
 <div class="market-news">
-	@foreach (App\Article::take(3)->get() as $article)
+	@foreach (App\Article::take(3)->orderBy('created_at','desc')->get() as $article)
 		<a href="{{route('news.show',$article)}}" class="market-news__item">
 			@if($article->image)<a href="{{route('news.show', $article)}}"><img src="/fit/85/85/{{$article->image}}" alt="" class="market-news__image"></a>@endif
 			<a href="{{route('news.show', $article)}}" class="market-news__title">{{$article->title}}</a>
