@@ -1813,7 +1813,6 @@ td.calendar-block__date_active {
 	border:1px solid #88b2bf;
 	display: block;
 	width: 100%;
-	
 	padding: 20px;
 	box-sizing: border-box;
 	height: 160px;
@@ -1821,13 +1820,13 @@ td.calendar-block__date_active {
 .reviews-form__rate {
 	font-family: "Open Sans";
 	font-weight: bold;
-	
+	text-align: right;
+	font-size: 18px;
 	line-height: 50px;
 	margin-top: 20px;
 }
 .reviews-form__submit {
 	margin-top: 20px;
-	float: right;
 }
 
 /*tabs*/
