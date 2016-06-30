@@ -1,7 +1,7 @@
 <div class="container-fluid container-fluid_light-gray">
 	<div class="container container_screen">
 		<?php $cols = Agent::isMobile() ? 3 : 6 ?>
-		<div class="title">ДОСКА ОБЪЯВЛЕНИЙ</div>
+		<a href="{{route('desk.index')}}" class="title">ДОСКА ОБЪЯВЛЕНИЙ</a>
 		@foreach ($offers as $i => $offer)
 			@if ($i%$cols==0) <div class="container__row"> @endif
 			<a href="{{route('desk.show',$offer)}}" class="container__col-2 container__col-sm-4 objavlenie">

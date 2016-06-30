@@ -1,4 +1,4 @@
-<div class="title">КАТАЛОГ КОМПАНИЙ</div>
+<a href="{{route('catalog.index')}}" class="title">КАТАЛОГ КОМПАНИЙ</a>
 <div class="container__row">
 	@foreach ($companies as $i => $company)
 		<div class="container__col-6 container__col-sm-12 offset-sm_vertical_30 catalog-company clearfix">

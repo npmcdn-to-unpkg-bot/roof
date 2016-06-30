@@ -1,6 +1,6 @@
 <div class="container-fluid container-fluid_light-gray padding_vertical_40">
 	<div class="container">
-		<div class="title">НОВОСТИ И СТАТЬИ</div>
+		<a href="{{route('news.index')}}" class="title">НОВОСТИ И СТАТЬИ</a>
 		<div class="container__row market-news">
 		@foreach(App\Article::take(3)->orderBy('created_at','desc')->get() as $article)
 			<a href="{{route('news.show',$article)}}" class="container__col-4 container__col-sm-12 market-news__item">

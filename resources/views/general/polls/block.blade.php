@@ -1,6 +1,6 @@
 @if ($poll)
 	<div class="question">
-		<div class="title">ПОСЛЕДНИЙ ОПРОС</div>
+		<a href="{{route('polls.index')}}" class="title">ПОСЛЕДНИЙ ОПРОС</a>
 		<div class="question__text">{{ $poll->question }}</div>
 		@if ( Auth::user()&&Auth::user()->hasPoll($poll) )
 			@foreach ($poll->votes as $vote)

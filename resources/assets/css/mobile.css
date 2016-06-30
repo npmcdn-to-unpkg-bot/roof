@@ -451,6 +451,7 @@ a {
 
 .title {
 	font-size: 50px;
+	text-decoration: none;
 	color: #0a3955;
 	font-family: "Roboto Condensed";
 	font-weight: 300;

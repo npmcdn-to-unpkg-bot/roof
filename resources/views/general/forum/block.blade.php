@@ -30,7 +30,7 @@
 ?>
 
 <div class="forum-message">
-	<div class="title">ПОСЛЕДНЕЕ НА ФОРУМЕ</div>
+	<a href="http://forum.roofers.com.ua/" class="title">ПОСЛЕДНЕЕ НА ФОРУМЕ</a>
 	<?php foreach ($posts as $post): ?>
 		<div class="forum-message__item">
 			<img src="<?php if ($post['user']['user_avatar']): ?>http://forum.roofers.com.ua/download/file.php?avatar=<?php echo $post['user']['user_avatar'] ?><?php else: ?>http://roofers.com.ua/img/no-name-user.jpg<?php endif ?>" alt="" class="forum-message__avatar" width="35px">
