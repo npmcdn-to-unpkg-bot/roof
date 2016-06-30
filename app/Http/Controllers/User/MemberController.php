@@ -54,6 +54,9 @@ class MemberController extends Controller
      */
     public function index()
     {
+        if (!auth()->user()->company)
+            redirect('user');
+
         $members = auth()->user()->company->new_members;
         $members = $members->merge( auth()->user()->company->members );
 
