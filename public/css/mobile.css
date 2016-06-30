@@ -2549,6 +2549,7 @@ td.calendar-block__date_active {
 	position: fixed;
 	left: 0;
 	background-color: white;
+	z-index: 999;
 }
 
 body {
