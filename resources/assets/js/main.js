@@ -138,4 +138,6 @@ $(document).ready(function(){
 		$('#main-menu').slideToggle();
 	});
 
+	$('[href="'+window.location.hash+'"]').click()
+
 });

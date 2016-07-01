@@ -14,7 +14,7 @@
 			<span class="catalog-company__separator"></span>
 			<a href="{{route('catalog.show',$company)}}#prices" class="catalog-company__link">Прайсы</a>
 			<span class="catalog-company__separator"></span>
-			<a href="{{route('catalog.show',$company)}}#blog" class="catalog-company__link">Блог</a>
+			<a href="{{route('catalog.{company}.post.index', $company)}}" class="catalog-company__link">Блог</a>
 		</div>
 	@endforeach
 </div>
