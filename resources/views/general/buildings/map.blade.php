@@ -6,7 +6,7 @@
 			<a href="{{route('jobs.index')}}" class="page-tabs__nav">ВАКАНСИИ</a>
 		</div>
 		<a href="{{route('user.jobs.create')}}" class="add-job inline-block">ДОБАВИТЬ ВАКАНСИЮ</a>
-		@if (!$map->isEmpty()) <a href="#" class="buildings-map__hide">Скрыть карту</a> @endif
+		@if (!$map->isEmpty()) <a href="#" class="buildings-map__hide"></a> @endif
 	</div>
 @if (!$map->isEmpty())
 	<div class="buildings-map__map" id="buildings-map__map"></div>

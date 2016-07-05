@@ -69,7 +69,8 @@ class PriceController extends Controller
             'table' => $table,
             'items' => $prices,
             'title' => 'Прайсы',
-            'pagination' => $prices->render()
+            'pagination' => $prices->render(),
+            'add' => route('user.company.price.create')
         ]);
     }
 

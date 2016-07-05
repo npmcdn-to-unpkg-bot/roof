@@ -75,6 +75,7 @@ $(document).ready(function(){
 
 	$('.buildings-map__hide').click(function(e){
 		e.preventDefault()
+		$(this).toggleClass('buildings-map__hide_active');
 		var block=$(this).parents('.buildings-map');
 		block.find('.buildings-map__map').slideToggle();
 	});

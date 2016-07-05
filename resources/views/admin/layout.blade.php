@@ -5,7 +5,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>roofer.com.ua</title>
 	<!-- Tell the browser to be responsive to screen width -->
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	@if(Agent::isMobile())
+		<meta name="viewport" content="width=420px, user-scalable=no">
+	@else
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	@endif
 	<link rel="stylesheet" href="/bower/AdminLTE/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -14,7 +18,6 @@
 	<link rel="stylesheet" href="/bower/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 	<link rel="stylesheet" href="/bower/AdminLTE/plugins/select2/select2.min.css">  
 	<link rel="stylesheet" href="/bower/AdminLTE/dist/css/AdminLTE.min.css">
-
 	<script src="/bower/AdminLTE/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 	<script src="/bower/AdminLTE/plugins/jQueryUI/jquery-ui.min.js"></script>
 	<script src="/bower/AdminLTE/bootstrap/js/bootstrap.min.js"></script>

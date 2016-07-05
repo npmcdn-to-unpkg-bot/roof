@@ -49,7 +49,7 @@
 												})->avg('lng')}},
 									},
 									zoom: 7,
-									disableDefaultUI: true,
+									disableDefaultUI: false,
 									scrollwheel: false
 								});
 								@foreach ($buildings as $building)

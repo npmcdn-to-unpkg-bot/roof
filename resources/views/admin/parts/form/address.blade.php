@@ -70,7 +70,7 @@ function initAddressPicker(){
         center: position,
         scrollwheel: false,
         mapTypeId: "roadmap",
-		disableDefaultUI: true,
+		disableDefaultUI: false,
 	})
 
 	var marker = new google.maps.Marker({

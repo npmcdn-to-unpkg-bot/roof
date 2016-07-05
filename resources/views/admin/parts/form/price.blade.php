@@ -1,7 +1,7 @@
 <div class="form-group {{$errors->first($name)?'has-error':''}}">
 	<label class="control-label" for="{{$name}}">{{$label}}</label>
 	<div class="form-inline">
-		<input class="form-control" type="number" value="{{ str_replace(['грн.','руб.','$'],'',$value) }}" onchange="concat_price()" id="price_{{$name}}">
+		<input class="form-control" type="number" value="{{ (int)str_replace(['грн.','руб.','$'],'',$value) }}" onchange="concat_price()" id="price_{{$name}}">
 		<select class="form-control" onchange="concat_price()" id="currency_{{$name}}">
 			<option {{strpos($value,'грн.')?'selected':''}}>грн.</option>
 			<option {{strpos($value,'руб.')?'selected':''}}>руб.</option>

@@ -1285,6 +1285,14 @@ td.calendar-block__date_active {
 	background-position: left bottom;
 }
 
+.buildings-map__hide:before {
+	content:'Скрыть карту';
+}
+
+.buildings-map__hide_active:before {
+	content:'Показать карту';
+}
+
 .buildings-map__map {
 	height: 388px;
 }

@@ -38,7 +38,7 @@ class Offer extends Model
         'specialisation' => 'required|min:3|max:35',
         'name' => 'required|max:35',
         'email' => 'max:255',
-        'phone' => 'required',
+        'phone' => 'required|numeric',
     ];
 
     public static $messages = [
@@ -57,6 +57,7 @@ class Offer extends Model
         'email.email' => 'Введите корректный email.',
         'email.max' => 'Email должен быть не длинее 255 символов.',
         'phone.required' => 'Введите телефон.',
+        'phone.numeric' => 'Телефон должен состоять из цифр',
     ];
 
     public function printAddress () {
