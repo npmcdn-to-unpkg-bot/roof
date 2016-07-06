@@ -16,7 +16,10 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales = Sale::orderBy('created_at', 'desc')->paginate(15);
+        $sales = Sale::orderBy('created_at', 'desc')
+            ->whereRaw('start <  NOW()')
+            ->whereRaw('end   >= NOW()')
+            ->paginate(15);
         return view('general.sales.index', [
             'sales' => $sales
         ]);

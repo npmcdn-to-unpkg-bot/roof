@@ -9,6 +9,7 @@ use App\Models\Catalog\Company;
 use App\Sale;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class SaleController extends Controller
 {
@@ -53,7 +54,19 @@ class SaleController extends Controller
                 'label'=>'Введите meta description',
                 'placeholder'=>'',
                 'value'=>old() ? old('meta_description') : $sale->meta_description
-            ]
+            ],[
+                'name' => 'start',
+                'type' => 'datepicker',
+                'format' => 'DD.MM.YYYY HH:mm',
+                'label' => 'Начало',
+                'value' => old() ? old('end') : $sale->end->format('d.m.Y H:i')
+            ],[
+                'name' => 'end',
+                'type' => 'datepicker',
+                'format' => 'DD.MM.YYYY HH:mm',
+                'label' => 'Конец',
+                'value' => old() ? old('end') : $sale->end->format('d.m.Y H:i')
+            ],
         ];
 
     }
@@ -132,6 +145,9 @@ class SaleController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
+        $request->merge(['end' => Carbon::parse($request->end)]);
+        $request->merge(['start' => Carbon::parse($request->start)]);
+
         $sale = Sale::firstOrNew(['id' => $request->id]);
 
         if ($request->image&&Storage::exists('temp/'.$request->image)) 
@@ -140,8 +156,9 @@ class SaleController extends Controller
         if ($sale->image&&$sale->image!==$request->image) 
             Storage::delete('images/'.$sale->image);
 
+
         $sale
-            ->fill($request->only('title','image','entry','content','meta_title','meta_description'))
+            ->fill($request->only('title','image','entry','content','meta_title','meta_description','end','start'))
             ->save();
 
         return redirect()->route('admin.sales.index');
