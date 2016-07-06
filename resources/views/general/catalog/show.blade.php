@@ -69,7 +69,7 @@
 				</div>
 				<div id="sales" class="tabs__tab">
 					<div class="company-sale">
-						@foreach ($company->sales as $sale)
+						@foreach ($sales as $sale)
 							<div class="company-sale__item">
 								<img src="/fit/120/85/{{$sale->image}}" alt="" class="company-sale__image">
 								<div class="company-sale__text">

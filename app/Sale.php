@@ -13,8 +13,6 @@ class Sale extends Model
 		'image' => 'required',
 		'entry' => 'required|max:65535',
 		'content' => 'required|max:65535',
-		'end' => 'required',
-		'start' => 'required',
     ];
 
     public static $messages = [
@@ -26,8 +24,6 @@ class Sale extends Model
 		'entry.max' => 'Краткое содержание должно быть не больше 65535 символов.',
 		'content.required' => 'Заполните текст.',
 		'content.max' => 'Текст должен быть не больше 65535 символов.',
-		'end.required' => 'Это обязательное поле.',
-		'start.required' => 'Это обязательное поле.'
     ];
 
     protected $fillable = ['title','image','entry','content','meta_title','meta_description', 'end', 'start'];

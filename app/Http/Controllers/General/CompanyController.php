@@ -100,8 +100,20 @@ class CompanyController extends Controller
         $company->rating = $company->comments()->avg('rating');
         Company::where('id', $company->id)->update(['rating'=>$company->rating]);
 
+        $sales = $company->sales()
+            ->where(function($query){
+                $query
+                    ->whereRaw('start <  NOW()')
+                    ->orWhereRaw('start = "0000-00-00 00:00:00"');
+            })
+            ->where(function($query){
+                $query
+                    ->whereRaw('end >=  NOW()')
+                    ->orWhereRaw('end = "0000-00-00 00:00:00"');
+            })->get();
 
         return view('general.catalog.show',[
+            'sales' => $sales,
             'company' => $company
         ]);
     }

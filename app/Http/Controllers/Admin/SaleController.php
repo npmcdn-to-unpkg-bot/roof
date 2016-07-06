@@ -59,13 +59,13 @@ class SaleController extends Controller
                 'type' => 'datepicker',
                 'format' => 'DD.MM.YYYY HH:mm',
                 'label' => 'Начало',
-                'value' => old() ? old('end') : $sale->end->format('d.m.Y H:i')
+                'value' => old() ? old('start') : ($sale->start > Carbon::parse('1975') ? $sale->start->format('d.m.Y H:i') : '')
             ],[
                 'name' => 'end',
                 'type' => 'datepicker',
                 'format' => 'DD.MM.YYYY HH:mm',
                 'label' => 'Конец',
-                'value' => old() ? old('end') : $sale->end->format('d.m.Y H:i')
+                'value' => old() ? old('end') : ($sale->end > Carbon::parse('1975') ? $sale->end->format('d.m.Y H:i') : '')
             ],
         ];
 
@@ -123,10 +123,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $sale = new Sale([
-            'end' => Carbon::now(),
-            'start' => Carbon::now(),
-        ]);
+        $sale = new Sale;
 
         return view('admin.universal.edit',[
             'title' => 'Добавить акцию',
@@ -148,8 +145,10 @@ class SaleController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        $request->merge(['end' => Carbon::parse($request->end)]);
-        $request->merge(['start' => Carbon::parse($request->start)]);
+        if ($request->end)
+            $request->merge(['end' => Carbon::parse($request->end)]);
+        if ($request->start)
+            $request->merge(['start' => Carbon::parse($request->start)]);
 
         $sale = Sale::firstOrNew(['id' => $request->id]);
 

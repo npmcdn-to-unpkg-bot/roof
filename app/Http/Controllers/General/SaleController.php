@@ -17,8 +17,16 @@ class SaleController extends Controller
     public function index()
     {
         $sales = Sale::orderBy('created_at', 'desc')
-            ->whereRaw('start <  NOW()')
-            ->whereRaw('end   >= NOW()')
+            ->where(function($query){
+                $query
+                    ->whereRaw('start <  NOW()')
+                    ->orWhereRaw('start = "0000-00-00 00:00:00"');
+            })
+            ->where(function($query){
+                $query
+                    ->whereRaw('end >=  NOW()')
+                    ->orWhereRaw('end = "0000-00-00 00:00:00"');
+            })
             ->paginate(15);
         return view('general.sales.index', [
             'sales' => $sales

@@ -9,7 +9,9 @@ class Sale extends Model
 {
 	protected $table = 'catalog_sales';
 
-	protected $fillable = ['title','image','entry','content','company_id','meta_title','meta_description'];
+	protected $dates = ['created_at','updated_at','start','end'];
+
+	protected $fillable = ['title','image','entry','content','company_id','meta_title','meta_description','start','end'];
 
 	public static function validator ($fields) {
 		return Validator::make($fields,[

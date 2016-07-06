@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Storage;
 use App\Models\Catalog\Sale;
 use App\Models\Catalog\Company;
+use Carbon\Carbon;
 
 class SaleController extends Controller
 {
@@ -62,7 +63,19 @@ class SaleController extends Controller
                 'label'=>'Введите meta description',
                 'placeholder'=>'',
                 'value'=>old() ? old('meta_description') : $sale->meta_description
-            ]
+            ],[
+                'name' => 'start',
+                'type' => 'datepicker',
+                'format' => 'DD.MM.YYYY HH:mm',
+                'label' => 'Начало',
+                'value' => old() ? old('start') : ($sale->start > Carbon::parse('1975') ? $sale->start->format('d.m.Y H:i') : '')
+            ],[
+                'name' => 'end',
+                'type' => 'datepicker',
+                'format' => 'DD.MM.YYYY HH:mm',
+                'label' => 'Конец',
+                'value' => old() ? old('end') : ($sale->end > Carbon::parse('1975') ? $sale->end->format('d.m.Y H:i') : '')
+            ],
         ];
         
     }
@@ -144,6 +157,11 @@ class SaleController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
+        if ($request->end)
+            $request->merge(['end' => Carbon::parse($request->end)]);
+        if ($request->start)
+            $request->merge(['start' => Carbon::parse($request->start)]);
+
         $sale = Sale::firstOrNew(['id' => $request->id]);
 
         if (Storage::exists('temp/'.$request->image)) 
@@ -151,7 +169,7 @@ class SaleController extends Controller
         if ($sale->image&&$sale->image!==$request->image) 
             Storage::delete('images/'.$company->image);
 
-        $sale->fill($request->only('title','image','entry','content','company_id','meta_title','meta_description'));
+        $sale->fill($request->only('title','image','entry','content','company_id','meta_title','meta_description','start','end'));
         $sale->save();
 
         return redirect()->route('admin.company.{company}.sales.index', $company);

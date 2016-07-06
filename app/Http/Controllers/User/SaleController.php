@@ -10,6 +10,7 @@ use App\Models\Catalog\Company;
 use App\Models\Catalog\Sale;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class SaleController extends Controller
 {
@@ -61,7 +62,19 @@ class SaleController extends Controller
                 'type'=>'ckeditor',
                 'label'=>'Текст',
                 'value'=>old() ? old('content') : $sale->content
-            ]
+            ],[
+                'name' => 'start',
+                'type' => 'datepicker',
+                'format' => 'DD.MM.YYYY HH:mm',
+                'label' => 'Начало',
+                'value' => old() ? old('start') : ($sale->start > Carbon::parse('1975') ? $sale->start->format('d.m.Y H:i') : '')
+            ],[
+                'name' => 'end',
+                'type' => 'datepicker',
+                'format' => 'DD.MM.YYYY HH:mm',
+                'label' => 'Конец',
+                'value' => old() ? old('end') : ($sale->end > Carbon::parse('1975') ? $sale->end->format('d.m.Y H:i') : '')
+            ],
         ];
 
     }
@@ -142,6 +155,10 @@ class SaleController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
+        if ($request->end)
+            $request->merge(['end' => Carbon::parse($request->end)]);
+        if ($request->start)
+            $request->merge(['start' => Carbon::parse($request->start)]);
         
         $sale = Auth::user()
             ->company
@@ -155,7 +172,7 @@ class SaleController extends Controller
             Storage::delete('images/'.$sale->image);
 
         $sale
-            ->fill($request->only('title','image','entry','content'))
+            ->fill($request->only('title','image','entry','content','start','end'))
             ->save();
 
         return redirect()->route('user.company.sales.index');

@@ -58,7 +58,6 @@ class CatalogPostController extends Controller
     {
         $company = Company::find($company);
         $article = $company->posts()->find($id);
-
         return view('general.catalog.post.show',[
             'article' => $article,
             'company' => $company
