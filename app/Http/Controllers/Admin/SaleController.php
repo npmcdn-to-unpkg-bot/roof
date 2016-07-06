@@ -123,7 +123,10 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $sale = new Sale;
+        $sale = new Sale([
+            'end' => Carbon::now(),
+            'start' => Carbon::now(),
+        ]);
 
         return view('admin.universal.edit',[
             'title' => 'Добавить акцию',
