@@ -186,7 +186,7 @@ class OfferController extends Controller
         $offer = new Offer;
 
         return view('admin.universal.edit',[
-            'title' => 'Добавить новость',
+            'title' => 'Добавить объявление',
             'action' => route('admin.offers.store'),
             'fields' => $this->fields($offer),
             'item' => $offer
