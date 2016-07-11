@@ -99,6 +99,10 @@ class PriceController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Price::validator($request->all());
+        if ($validator->fails())
+            return back()->withInput()->withErrors($validator);
+        
         if ($request->hasFile('upload')) {
             $name = time().'-'
                 .$request->file('upload')->getClientOriginalName();
@@ -112,9 +116,6 @@ class PriceController extends Controller
             ]);
         }
 
-        $validator = Price::validator($request->all());
-        if ($validator->fails())
-            return back()->withInput()->withErrors($validator);
 
         $price = auth()->user()->company->prices()->firstOrNew(['id' => $request->id]);
         $price->fill($request->only('title','name'));
