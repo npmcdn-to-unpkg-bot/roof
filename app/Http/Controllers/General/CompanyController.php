@@ -31,7 +31,8 @@ class CompanyController extends Controller
         if ($request->letter){ 
             $companies = $companies
                 ->where('name', 'LIKE', $request->letter.'%')
-                ->orWhere('name', 'LIKE', '"'.$request->letter.'%'); 
+                ->orWhere('name', 'LIKE', '"'.$request->letter.'%')
+                ->orWhere('name', 'LIKE', '«'.$request->letter.'%');
             $XRobotsTag = 'noindex';
         }else{
             $XRobotsTag = 'all';
