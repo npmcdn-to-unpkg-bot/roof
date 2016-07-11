@@ -100,6 +100,7 @@
 					    margin-bottom: 14px;
 					    margin-left: 3px;
 					    margin-top: 3px;
+					    text-align: center;
 					}
 					.gsc-results .gsc-cursor-box .gsc-cursor-current-page{
 					    background-color: white;
@@ -112,11 +113,7 @@
 					~.gsc-cursor-page{
 						display: none;
 					}
-					.gsc-cursor-current-page
-					+.gsc-cursor-page
-					+.gsc-cursor-page:after{
-						content:' ...';
-					}
+
 				</style>
 				<gcse:searchresults-only></gcse:searchresults-only>
 			</div>
