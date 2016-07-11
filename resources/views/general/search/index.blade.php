@@ -86,7 +86,7 @@
 						font-weight: 700;
 						line-height: 15px;
 					}
-					.gsc-cursor-page{
+					.gsc-results .gsc-cursor-box .gsc-cursor-page{
 					    display: inline-block;
 					    width: 30px;
 					    height: 30px;
@@ -101,7 +101,7 @@
 					    margin-left: 3px;
 					    margin-top: 3px;
 					}
-					.gsc-cursor-current-page{
+					.gsc-results .gsc-cursor-box .gsc-cursor-current-page{
 					    background-color: white;
 					    border: 1px solid #88b2bf;
 					    color: #88b2bf;
