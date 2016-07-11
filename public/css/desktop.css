@@ -1369,6 +1369,8 @@ td.calendar-block__date_active {
 .job__pay,
 .job__title {
 	font-weight: bold;
+	color: black;
+	text-decoration: none;
 }
 
 .job__label {

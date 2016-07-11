@@ -13,9 +13,9 @@
 			@foreach ($jobs as $i => $job)
 				<div class="job">
 					<div class="container__row">
-						<div class="container__col-6 job__title">
+						<a href="{{route('jobs.show',$job)}}" class="container__col-6 job__title">
 							{{$job->name}}
-						</div>
+						</a>
 						<div class="container__col-6 text_right">
 							{{$job->created_at->format('d.m.Y')}}
 						</div>

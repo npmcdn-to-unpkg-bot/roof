@@ -61,6 +61,16 @@ class JobController extends Controller
         ]);
     }
 
+    public function show($id) {
+        $job = Job::find($id);
+
+        if (!$job) abort(404);
+        
+        return view('general.buildings.job', [
+            'job' => $job
+        ]);
+    }
+
     public function edit()    { abort(404); }
     public function create()  { abort(404); }
     public function store()   { abort(404); }
