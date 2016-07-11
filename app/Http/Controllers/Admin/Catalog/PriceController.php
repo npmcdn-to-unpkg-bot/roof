@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Storage;
 use App\Models\Catalog\Price;
 use App\Models\Catalog\Company;
+use Validator;
 
 class PriceController extends Controller
 {
@@ -114,17 +115,29 @@ class PriceController extends Controller
         if ($request->hasFile('upload')) {
             $name = time().'-'
                 .$request->file('upload')->getClientOriginalName();
-            Storage::put(
-                'prices/'.$name,
-                file_get_contents($request->file('upload')->getRealPath())
-            );
-            $request->merge([
-                'name' => $name,
-                'type' => $request->file('upload')->getClientOriginalExtension()
-            ]);
+            $type = $request->file('upload')->getClientOriginalExtension();
+            if (in_array($type, ['zip', 'pdf', 'xls', 'xlsx', 'doc', 'docx']) ){
+                Storage::put(
+                    'prices/'.$name,
+                    file_get_contents($request->file('upload')->getRealPath())
+                );
+                $request->merge([
+                    'name' => $name,
+                    'type' => $type
+                ]);
+            }else{
+                return back()->withInput();
+            }
         }
 
-        $validator = Price::validator($request->all());
+        $validator = Validator::make($request->all(),[
+                'title' => 'required|max:255',
+                'name' => 'required',
+            ],[
+                'title.required' => 'Название прайс-листа.',
+                'name.required' => 'Загрузите файл.',
+                'title.max' => 'Заголовок должен быть не больше 255 символов.',
+            ]);
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 

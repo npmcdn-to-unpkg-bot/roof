@@ -15,4 +15,7 @@
 	@if ($errors->first($name))
 		<span class="help-block">{{ $errors->first($name) }}</span>
 	@endif
+	@if ($errors->first('upload'))
+		<span class="help-block">{{ $errors->first('upload') }}</span>
+	@endif
 </div>
