@@ -101,6 +101,7 @@
 					    margin-left: 3px;
 					    margin-top: 3px;
 					    text-align: center;
+					    position: relative;
 					}
 					.gsc-results .gsc-cursor-box .gsc-cursor-current-page{
 					    background-color: white;
@@ -113,10 +114,24 @@
 						display: none;
 					}
 
-					.gsc-cursor-page:nth-child(1),
-					.gsc-cursor-page:nth-child(2),
-					.gsc-cursor-page:nth-child(3){
-						display: inline-block !important;
+					.gsc-cursor-current-page
+					+.gsc-cursor-page:after{
+						content:'...';
+						position: absolute;
+					    display: inline-block;
+					    width: 30px;
+					    height: 30px;
+					    box-sizing: border-box;
+					    background-color: #88b2bf;
+					    color: white;
+					    text-decoration: none;
+					    font-size: 18px;
+					    border: 1px solid #88b2bf;
+					    line-height: 30px;
+					    margin-bottom: 14px;
+					    top: -1px;
+					    left: 37px;
+					    text-align: center;
 					}
 
 				</style>
