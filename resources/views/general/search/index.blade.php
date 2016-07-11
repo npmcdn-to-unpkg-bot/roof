@@ -113,6 +113,12 @@
 						display: none;
 					}
 
+					.gsc-cursor-page:nth-child(1),
+					.gsc-cursor-page:nth-child(2),
+					.gsc-cursor-page:nth-child(3){
+						display: inline-block;
+					}
+
 				</style>
 				<gcse:searchresults-only></gcse:searchresults-only>
 			</div>
