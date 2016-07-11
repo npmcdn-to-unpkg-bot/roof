@@ -19,6 +19,13 @@
 	    -o-user-select: none;
 	    user-select: none;
 	}
+	input {
+	 	-moz-user-select: text;
+	    -webkit-user-select: text;
+	    -ms-user-select: text;
+	    -o-user-select: text;
+	    user-select: text;
+	}
 	</style>
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700|PT+Sans:400,700&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/css/desktop.css">
