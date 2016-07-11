@@ -95,7 +95,7 @@
 					.gsc-cursor-current-page
 					+.gsc-cursor-page
 					+.gsc-cursor-page:after{
-						content:'...';
+						content:' ...';
 					}
 				</style>
 				<gcse:searchresults-only></gcse:searchresults-only>
