@@ -109,7 +109,6 @@
 					}
 					.gsc-cursor-current-page
 					+.gsc-cursor-page
-					+.gsc-cursor-page
 					~.gsc-cursor-page{
 						display: none;
 					}
