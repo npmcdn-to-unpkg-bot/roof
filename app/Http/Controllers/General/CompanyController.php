@@ -29,7 +29,9 @@ class CompanyController extends Controller
             $companies = $companies->where('name', 'LIKE', '%'.$request->search.'%');
         }
         if ($request->letter){ 
-            $companies = $companies->where('name', 'LIKE', $request->letter.'%'); 
+            $companies = $companies
+                ->where('name', 'LIKE', $request->letter.'%')
+                ->orWhere('name', 'LIKE', '"'.$request->letter.'%'); 
             $XRobotsTag = 'noindex';
         }else{
             $XRobotsTag = 'all';
