@@ -10,6 +10,7 @@
 		<div class="container__row">
 			<div class="container__col-8 container__col-sm-12">
 				<form action="/search" class="search__form">
+				    <input type="hidden" name="filter" value="0" />
 					<input type="text" name='q' placeholder="ВВЕДИТЕ СЛОВО ДЛЯ ПОИСКА" class="search__input" value="{{Request::get('q')}}">
 					<button class="search__button button button_blue"><img src="/img/user-menu-4.png" alt=""></button>
 				</form>
