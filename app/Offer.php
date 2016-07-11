@@ -36,6 +36,7 @@ class Offer extends Model
         'image' => 'required',
         'information' => 'required|min:50',
         'specialisation' => 'required|min:3|max:35',
+        'categories' => 'required',
         'name' => 'required|max:35',
         'email' => 'max:255',
         'phone' => 'required|numeric',
@@ -58,6 +59,7 @@ class Offer extends Model
         'email.max' => 'Email должен быть не длинее 255 символов.',
         'phone.required' => 'Введите телефон.',
         'phone.numeric' => 'Телефон должен состоять из цифр',
+        'categories.required' => 'Выберите категорию объявления.',
     ];
 
     public function printAddress () {
