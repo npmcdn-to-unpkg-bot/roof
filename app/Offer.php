@@ -39,7 +39,7 @@ class Offer extends Model
         'categories' => 'required',
         'name' => 'required|max:35',
         'email' => 'max:255',
-        'phone' => 'required|numeric',
+        'phone' => 'required',
     ];
 
     public static $messages = [

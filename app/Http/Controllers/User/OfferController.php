@@ -86,7 +86,7 @@ class OfferController extends Controller
             ->push([
                 'name'=>'phone',
                 'type'=>'text',
-                'placeholder'=>'Введите телефон',
+                'placeholder'=>'Введите телефоны через запятую: +38000000000,+38000000000,+38000000000',
                 'label'=>'Телефон',
                 'value'=>old() ? old('phone') : $offer->phone
             ])
