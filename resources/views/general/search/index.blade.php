@@ -86,6 +86,26 @@
 						font-weight: 700;
 						line-height: 15px;
 					}
+					.gsc-cursor-page{
+					    display: inline-block;
+					    width: 30px;
+					    height: 30px;
+					    box-sizing: border-box;
+					    background-color: #88b2bf;
+					    color: white;
+					    text-decoration: none;
+					    font-size: 18px;
+					    border: 1px solid #88b2bf;
+					    line-height: 30px;
+					    margin-bottom: 14px;
+					    margin-left: 3px;
+					    margin-top: 3px;
+					}
+					.gsc-cursor-current-page{
+					    background-color: white;
+					    border: 1px solid #88b2bf;
+					    color: #88b2bf;
+					}
 					.gsc-cursor-current-page
 					+.gsc-cursor-page
 					+.gsc-cursor-page
