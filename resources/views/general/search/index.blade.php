@@ -86,6 +86,17 @@
 						font-weight: 700;
 						line-height: 15px;
 					}
+					.gsc-cursor-current-page
+					+.gsc-cursor-page
+					+.gsc-cursor-page
+					~.gsc-cursor-page{
+						display: none;
+					}
+					.gsc-cursor-current-page
+					+.gsc-cursor-page
+					+.gsc-cursor-page:after{
+						content:'...';
+					}
 				</style>
 				<gcse:searchresults-only></gcse:searchresults-only>
 			</div>
