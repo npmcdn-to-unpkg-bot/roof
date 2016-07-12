@@ -111,7 +111,7 @@
 	</div>
 
 	<a href="/want-roof" class="floating-want-roof fancybox">ХОЧУ КРОВЛЮ</a>
-
+	@include('general.metrika')
 	<script src="/bower/jquery/dist/jquery.min.js"></script>
 	<script src="/bower/flexslider/jquery.flexslider-min.js"></script>
 	<script src="/bower/masonry/dist/masonry.pkgd.min.js"></script>

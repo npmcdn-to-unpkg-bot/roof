@@ -57,6 +57,12 @@ class CompanyController extends Controller
                 'label' => 'Email компании',
                 'value' => old() ? old('email') : $company->email
             ],[
+                'name' => 'site',
+                'type' => 'text',
+                'placeholder' => 'Введите сайт компании',
+                'label' => 'Сайт компании',
+                'value' => old() ? old('site') : $company->site
+            ],[
                 'name' => 'phone',
                 'type' => 'text',
                 'placeholder' => 'Введите телефон компании',
@@ -137,7 +143,7 @@ class CompanyController extends Controller
             Storage::delete('images/'.$company->logo);
 
         $company
-            ->fill($request->only('name','email','logo','phone','entry','about','address','lat','lng','city_id','services'))
+            ->fill($request->only('name','email','site','logo','phone','entry','about','address','lat','lng','city_id','services'))
             ->save();
         $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
         $company->propositions()->sync($request->propositions ? $request->propositions : []);

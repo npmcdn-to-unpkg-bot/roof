@@ -137,6 +137,10 @@ class AdminMenu
                             'name' => 'Сотрудники',
                             'icon' => 'fa-user',
                             'href' => route('user.company.staff.index'),
+                        ],[
+                            'name' => 'Портфолио',
+                            'icon' => 'fa-thumbs-o-up',
+                            'href' => route('user.company.examples.index'),
                         ],
                 ]);
 

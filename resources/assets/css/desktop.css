@@ -486,6 +486,7 @@ a {
 
 .catalog-company__post-date {
 	color: #9bafb6;
+	text-decoration: none;
 }
 
 .catalog-company__activity {
@@ -1569,6 +1570,7 @@ td.calendar-block__date_active {
 .company-cart__post-date {
 	font-size: 12px;
 	color: #88b2bf;
+	text-decoration: none;
 }
 
 .company-cart__member-label {
@@ -1841,6 +1843,7 @@ td.calendar-block__date_active {
 .tabs {
 
 }
+.tabs__link,
 .tabs__nav {
 	border:2px solid #88b2bf;
 	box-sizing: border-box;

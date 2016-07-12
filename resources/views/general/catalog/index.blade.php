@@ -53,13 +53,15 @@
 							<div class="company-cart company-cart_heihgt_220 company-cart_gray">
 								<a href="{{ route('catalog.show', $company) }}"><img src="/resize/85/85/{{$company->logo}}" alt="" class="company-cart__logo"></a>
 								<a href="{{ route('catalog.show', $company) }}" class="company-cart__name">{{$company->name}}</a>
-								<div class="company-cart__description">{{str_limit($company->entry, 190)}}</div>
+								<div class="company-cart__description">{{str_limit($company->entry, 150)}}</div>
 								<div class="company-cart__bottom">
 									<div class="company-cart__address">{{$company->printAddress()}}</div>
-									<div class="company-cart__post-date">
-										Дата регистрации: 
-										{{ $company->created_at->format('d.m.Y') }}
-									</div>
+									@if($company->site)
+									<a href="{{ $company->site }}" class="company-cart__post-date">
+										Сайт компании: 
+										{{ $company->site }}
+									</a>
+									@endif
 								</div>
 								@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label company-cart__right-top">
 								@elseif ($company->privat) <img src="/img/privat.png" alt="" class="company-cart__right-top"> @endif

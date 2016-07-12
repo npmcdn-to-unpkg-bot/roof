@@ -79,6 +79,12 @@ class CompanyController extends Controller
                 'label' => 'Email компании',
                 'value' => old() ? old('email') : $company->email
             ],[
+                'name' => 'site',
+                'type' => 'text',
+                'placeholder' => 'Введите сайт компании',
+                'label' => 'Сайт компании',
+                'value' => old() ? old('site') : $company->site
+            ],[
                 'name' => 'phone',
                 'type' => 'text',
                 'placeholder' => 'Введите телефон компании',
@@ -232,7 +238,7 @@ class CompanyController extends Controller
         }
 
         $company
-            ->fill($request->only('name','email','logo','phone','entry','about','services','association','privat','user_id','address','lat','lng','city_id','meta_title','meta_description'))
+            ->fill($request->only('name','email','site','logo','phone','entry','about','services','association','privat','user_id','address','lat','lng','city_id','meta_title','meta_description'))
             ->save();
         $company->specialisations()->sync((array)$request->specialisations);
         $company->propositions()->sync((array)$request->propositions);

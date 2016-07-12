@@ -66,7 +66,7 @@ class UserController extends Controller
         if ($user->image&&$user->image!==$request->image) 
             Storage::delete('images/'.$user->image);
 
-        $user->fill($request->only('title','image','entry','content'));
+        $user->fill($request->only('title','image','entry','content','phone'));
         $user->save();
 
         return redirect('user');

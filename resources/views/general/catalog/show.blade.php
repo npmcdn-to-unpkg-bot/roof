@@ -15,7 +15,7 @@
 				<div class="container__row">
 					<div class="container__col-8 container__col-sm-12">
 						<div class="company-cart__address">{{$company->printAddress()}}</div>
-						<div class="company-cart__post-date">Дата регистрации: {{$company->created_at->format('d.m.Y')}}</div>
+						@if($company->site)<a href="{{$company->site}}" class="company-cart__post-date">Сайт компании: {{$company->site}}</a>@endif
 					</div>
 					<div class="container__col-4 container__col-sm-12 {{Agent::isMobile() ? '' : 'text_right'}}">
 						<div class="company-cart__phone">{{$company->phone}}</div>
@@ -37,6 +37,7 @@
 					<a href="#services" class="jus__item tabs__nav">УСЛУГИ</a>
 					<a href="#prices" class="jus__item tabs__nav">ПРАЙСЫ</a>
 					<a href="#sales" class="jus__item tabs__nav">АКЦИИ</a>
+					@if (Agent::isMobile()) <a href="{{route('catalog.{company}.post.index', $company)}}" class="jus__item tabs__link">БЛОГ</a> @endif
 				</div>
 				<div id="description" class="tabs__tab tabs__tab_active">
 					{!!$company->about!!}
