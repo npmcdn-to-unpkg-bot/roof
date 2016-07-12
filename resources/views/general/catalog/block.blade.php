@@ -4,7 +4,9 @@
 		<div class="container__col-6 container__col-sm-12 offset-sm_vertical_30 catalog-company clearfix">
 			<a href="{{route('catalog.show',$company)}}"><img src="/resize/{{Agent::isMobile() ? '123/123' : '85/85'}}/{{$company->logo}}" alt="" class="catalog-company__image"></a>
 			<a href="{{route('catalog.show',$company)}}" class="catalog-company__title">{{$company->name}}</a>
-			<div class="catalog-company__post-date">Дата размещения: {{$company->created_at->format('d.m.Y')}}</div>
+			@if($company->site)
+			<a href="http://{{$company->site}}" class="catalog-company__post-date">Сайт компании: {{$company->site}}</a>
+			@endif
 			<div class="catalog-company__activity">
 				@if ($company->specialisations->first()) Специализация: {{str_limit($company->specialisations->first()->name,25)}}
 				@else Без специализации
