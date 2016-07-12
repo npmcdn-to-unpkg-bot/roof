@@ -57,7 +57,7 @@
 								<div class="company-cart__bottom">
 									<div class="company-cart__address">{{$company->printAddress()}}</div>
 									@if($company->site)
-									<a href="{{ $company->site }}" class="company-cart__post-date">
+									<a href="http://{{$company->site}}" class="company-cart__post-date">
 										Сайт компании: 
 										{{ $company->site }}
 									</a>

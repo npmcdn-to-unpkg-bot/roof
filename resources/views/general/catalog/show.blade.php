@@ -15,7 +15,7 @@
 				<div class="container__row">
 					<div class="container__col-8 container__col-sm-12">
 						<div class="company-cart__address">{{$company->printAddress()}}</div>
-						@if($company->site)<a href="{{$company->site}}" class="company-cart__post-date">Сайт компании: {{$company->site}}</a>@endif
+						@if($company->site)<a href="http://{{$company->site}}" class="company-cart__post-date">Сайт компании: {{$company->site}}</a>@endif
 					</div>
 					<div class="container__col-4 container__col-sm-12 {{Agent::isMobile() ? '' : 'text_right'}}">
 						<div class="company-cart__phone">{{$company->phone}}</div>
