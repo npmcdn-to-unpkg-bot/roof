@@ -81,7 +81,7 @@ class CompanyController extends Controller
             ],[
                 'name' => 'site',
                 'type' => 'text',
-                'placeholder' => 'Введите сайт компании',
+                'placeholder' => 'www.example.com',
                 'label' => 'Сайт компании',
                 'value' => old() ? old('site') : $company->site
             ],[
