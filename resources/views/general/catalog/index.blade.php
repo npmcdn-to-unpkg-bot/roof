@@ -68,7 +68,7 @@
 								@if ($company->rating)
 								<div class="company-cart__right-bottom company-cart__rating">
 									рейтинг
-									<div class="company-cart__rating_value">{{$company->rating}}</div>
+									<div class="company-cart__rating_value">{{ number_format($company->rating,2) }}</div>
 								</div>
 								@endif
 							</div>

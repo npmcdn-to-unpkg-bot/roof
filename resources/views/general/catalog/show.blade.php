@@ -25,7 +25,7 @@
 					@if ($company->association) <img src="/img/user-menu-1.png" alt="" class="company-cart__member-label"> @endif
 					@if ($company->rating)
 					<div class="company-cart__rating">
-						рейтинг <div class="company-cart__rating_value">{{$company->rating}}</div>
+						рейтинг <div class="company-cart__rating_value">{{number_format($company->rating,2)}}</div>
 					</div>
 					@endif
 				</div>
