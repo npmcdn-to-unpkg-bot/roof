@@ -90,7 +90,7 @@ class ExampleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($company)
+    public function create()
     {
         $example = new Example();
         return view('admin.universal.edit',[

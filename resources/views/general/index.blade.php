@@ -10,6 +10,9 @@
 					<div class="container__col-sm-12">
 						@include('general.catalog.block')
 					</div>
+					<div class="container__col-sm-12 text_center offset-sm_vertical_30">
+						@include('general.area.banner',['area'=>'Главная 3'])
+					</div>
 				@else
 					<div class="container__col-4">
 						@include('general.area.banner',['area'=>'Главная 1'])

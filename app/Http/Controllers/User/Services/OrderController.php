@@ -53,7 +53,7 @@ class OrderController extends Controller
                     'field'=>$order->service->name,
                     'type'=>'text',
                 ],[
-                    'field'=> $order->status ? trans('order_status.'.$order->status) : 'Ожидает олпаты',
+                    'field'=> $order->status ? trans('order_status.'.$order->status) : 'Ожидает оплаты',
                     'type'=>'text',
                 ],[
                     'html' => (!$order->payed)&&auth()->user()->reserves()->where('service_id',$order->service->id)->first()?'<a href="/user/orders/reserve/'.$order->id.'" class="btn btn-lg btn-primary">Использовать резерв</a>':''  ,

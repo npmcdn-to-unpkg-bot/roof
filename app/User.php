@@ -77,11 +77,11 @@ class User extends Authenticatable
     public static function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => 'required|email|max:255',
+            'email' => 'required|regex:/(.*)@(.*)/|max:255',
             'name' => 'required|max:255',
         ],[
             'email.required' => 'Введите вашу электронную почту.',
-            'email.email' => 'Введите корректную электронную почту.',
+            'email.regex' => 'Введите корректную электронную почту.',
             'email.max' => 'Слишком длинная электронная почта.',
             'name.required' => 'Введите ваше имя.',
             'name.max' => 'Слишком длинное имя.',

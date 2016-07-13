@@ -97,7 +97,7 @@ class Building extends Model
 				.$this->start->year.' г. '
 				.'— '
 				.$this->quarter('end').' Кв-л '
-				.$this->start->year.' г.';
+				.$this->end->year.' г.';
 	}
 
 }

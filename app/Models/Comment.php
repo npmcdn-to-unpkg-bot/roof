@@ -22,19 +22,12 @@ class Comment extends Model
     }
 
     public function printRating(){
-    	$pattern = [
-    		1 => '<span style="color: red">1 балл</span>',
-    		2 => '<span style="color: red">2 балла</span>',
-    		3 => '<span style="color: red">3 балла</span>',
-    		4 => '<span style="color: orange">4 балла</span>',
-    		5 => '<span style="color: orange">5 баллов</span>',
-    		6 => '<span style="color: orange">6 баллов</span>',
-    		7 => '<span style="color: #7dc691">7 баллов</span>',
-    		8 => '<span style="color: #7dc691">8 баллов</span>',
-    		9 => '<span style="color: #7dc691">9 баллов</span>',
-    		10 => '<span style="color: #7dc691">10 балло</span>в'
-    	];
-    	return $pattern[$this->rating];
+        $color = '#7dc691';
+        if ($this->rating < 6)
+            $color = 'orange';
+        if ($this->rating < 3)
+            $color = 'red';
+        return '<span style="color: '.$color.'">'.$this->rating.'</span>';
     }
 
     public static function validator ($fields) {
