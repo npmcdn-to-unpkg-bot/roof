@@ -186,17 +186,10 @@
 			</div>
 		</div>
 		<div class="container__col-4 container__col-sm-12">
-			@if ($company->members->first())
+			@if ($company->users->first())
 				<div class="staff offset_bottom_60 sm_vertical_30">
 					<div class="title">СОТРУДНИКИ</div>
-						<div>
-							<div class="staff__item">
-								<img src="/fit/120/120/{{$company->user->image?$company->user->image:'person.png'}}" alt="" class="staff__image">
-								<div class="staff__name">{{$company->user->name}}</div>
-								<div class="staff__job">{{$company->user->job}}</div>
-							</div>
-						</div>
-					@foreach ($company->members as $member)
+					@foreach ($company->users as $member)
 						<div>
 							<div class="staff__item">
 								<img src="/fit/120/120/{{$member->image?$member->image:'person.png'}}" alt="" class="staff__image">

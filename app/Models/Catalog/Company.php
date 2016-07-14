@@ -61,10 +61,6 @@ class Company extends Model
         return false;
     }
 
-    public function user () {
-    	return $this->belongsTo('App\User');
-    }
-
     public function city () {
         return $this->belongsTo('App\City');
     }
@@ -85,11 +81,11 @@ class Company extends Model
         return $this->hasMany('App\Models\Catalog\Sale');
     }
 
-    public function members () {
-        return $this->hasMany('App\User','company_id');
+    public function users () {
+        return $this->hasMany('App\User');
     }
 
-    public function new_members () {
+    public function new_users () {
         return $this->hasMany('App\User','join_company_id');
     }
 

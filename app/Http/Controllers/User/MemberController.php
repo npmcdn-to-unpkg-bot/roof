@@ -55,10 +55,10 @@ class MemberController extends Controller
     public function index()
     {
         if (!auth()->user()->company)
-            redirect('user');
+            return redirect('user');
 
-        $members = auth()->user()->company->new_members;
-        $members = $members->merge( auth()->user()->company->members );
+        $members = auth()->user()->company->new_users;
+        $members = $members->merge( auth()->user()->company->users );
 
         $th = [
                 [
@@ -139,7 +139,7 @@ class MemberController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        $user = auth()->user()->company->members()->find($request->id);
+        $user = auth()->user()->company->users()->find($request->id);
 
         if (!$user) abort(404);
 
@@ -204,10 +204,10 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
-        auth()->user()->company->new_members()->where('id',$id)->update([
+        auth()->user()->company->new_users()->where('id',$id)->update([
             'join_company_id' => 0
         ]);
-        auth()->user()->company->members()->where('id',$id)->update([
+        auth()->user()->company->users()->where('id',$id)->update([
             'company_id' => 0
         ]);
         return back();
@@ -215,7 +215,7 @@ class MemberController extends Controller
     
     public function accept($id)
     {
-        auth()->user()->company->new_members()->where('id',$id)->update([
+        auth()->user()->company->new_users()->where('id',$id)->update([
             'join_company_id' => 0,
             'company_id' => auth()->user()->company->id
         ]);

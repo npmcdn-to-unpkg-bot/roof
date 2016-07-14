@@ -117,15 +117,6 @@ class CompanyController extends Controller
                 'values' => old() ? (array)old('propositions') : $company->propositions->lists('id')->all(),
                 'options' => Proposition::lists('name','id')
             ],[
-                'name'=>'user_id',
-                'type'=>'select',
-                'settings'=>'',
-                'label'=>'Владелец',
-                'value'=>old() 
-                    ? old('user_id') 
-                    : ($company->user ? $company->user->id : ''),
-                'options'=>User::lists('email','id')
-            ],[
                 'name'=>'meta_title',
                 'type'=>'text',
                 'label'=>'Введите meta title',
@@ -238,7 +229,7 @@ class CompanyController extends Controller
         }
 
         $company
-            ->fill($request->only('name','email','site','logo','phone','entry','about','services','association','privat','user_id','address','lat','lng','city_id','meta_title','meta_description'))
+            ->fill($request->only('name','email','site','logo','phone','entry','about','services','association','privat','address','lat','lng','city_id','meta_title','meta_description'))
             ->save();
         $company->specialisations()->sync((array)$request->specialisations);
         $company->propositions()->sync((array)$request->propositions);

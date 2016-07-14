@@ -21,8 +21,7 @@ class MemberController extends Controller
     public function index($id)
     {
         $company = Company::find($id);
-        $members = $company->members;
-        $members = $members->merge( $company->members );
+        $members = $company->users;
 
         $th = [
                 [
@@ -64,7 +63,6 @@ class MemberController extends Controller
                     'html'=>$member->join_company_id ? '<a class="btn btn-sm btn-success" href="/admin/company/'.$company->id.'/staff/'.$member->id.'/accept" data-toggle="tooltip" data-original-title="Подтвердить"><i class="fa fa-check"></id></a>' : '',
                     'type'=>'html',
                 ],[
-                    'edit' => false,
                     'edit' => route('admin.users.edit', $member),
                     'delete' => route('admin.company.{company}.staff.destroy',['company'=>$company,'staff'=>$member]),
                     'type'=>'actions',
@@ -171,21 +169,8 @@ class MemberController extends Controller
     public function destroy($company, $id)
     {
         $company = Company::find($company);
-        $company->new_members()->where('id',$id)->update([
-            'join_company_id' => 0
-        ]);
-        $company->members()->where('id',$id)->update([
+        $company->users()->where('id',$id)->update([
             'company_id' => 0
-        ]);
-        return back();
-    }
-    
-    public function accept($company, $id)
-    {
-        $company = Company::find($company);
-        $company->new_members()->where('id',$id)->update([
-            'join_company_id' => 0,
-            'company_id' => $company->id
         ]);
         return back();
     }
