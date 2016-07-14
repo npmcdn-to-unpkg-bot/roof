@@ -132,9 +132,12 @@ class CompanyController extends Controller
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
-        $company = Auth::user()
-            ->company()
-            ->firstOrNew(['id' => $request->id]);
+        $user = auth()->user();
+
+        $company = 
+            $user->company 
+            ? $user->company 
+            : new Company;
 
         if ($request->image&&Storage::exists('temp/'.$request->logo)) 
             Storage::move('temp/'.$request->logo,'images/'.$request->logo);
@@ -147,6 +150,9 @@ class CompanyController extends Controller
             ->save();
         $company->specialisations()->sync($request->specialisations ? $request->specialisations : []);
         $company->propositions()->sync($request->propositions ? $request->propositions : []);
+
+        $user->company_id = $company->id;
+        $user->save();
 
         if ($request->promote) return redirect()->route('user.company.services.index');
 
