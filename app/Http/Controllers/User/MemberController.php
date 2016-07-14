@@ -71,6 +71,9 @@ class MemberController extends Controller
                     'title'=>'Email',
                     'width'=>'auto',
                 ],[
+                    'title'=>'Должность', 
+                    'width'=>'auto', 
+                ],[ 
                     'title'=>'',
                     'width'=>'50px',
                 ],[
@@ -91,6 +94,9 @@ class MemberController extends Controller
                     'field'=>$member->email,
                     'type'=>'text',
                 ],[
+                    'field'=>$member->job, 
+                    'type'=>'text', 
+                ],[ 
                     'html'=>$member->join_company_id ? '<a class="btn btn-sm btn-success" href="/user/company/staff/'.$member->id.'/accept" data-toggle="tooltip" data-original-title="Подтвердить"><i class="fa fa-check"></id></a>' : '',
                     'type'=>'html',
                 ],[
