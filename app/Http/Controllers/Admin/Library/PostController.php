@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Library\Post;
 use App\Models\Library\Category;
 use Storage;
+use App\Models\Tag;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -58,6 +59,13 @@ class PostController extends Controller
                 'label'=>'Введите meta description',
                 'placeholder'=>'',
                 'value'=>old() ? old('meta_description') : $post->meta_description
+            ],[
+                'name'=>'tags',
+                'type' => 'select_multiple',
+                'label'=>'Теги',
+                'settings' => 'tags: true,',
+                'values'=>old() ? old('tags') : $post->tags->lists('name','name')->all(),
+                'options'=> Tag::lists('name','name')
             ]
         ];
         
@@ -147,6 +155,14 @@ class PostController extends Controller
         $post->fill($request->only('title','image','entry','content','meta_title','meta_description'));
         $post->save();
         $post->categories()->sync((array)$request->categories);
+
+        $tags = collect();
+        foreach((array)$request->tags as $name) {
+            $tag = Tag::firstOrCreate(['name'=>$name]);
+            $tags->push($tag);
+        }
+
+        $post->tags()->sync($tags->lists('id')->all());
 
         return redirect()->route('admin.library.index');
     }

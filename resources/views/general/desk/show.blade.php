@@ -33,10 +33,12 @@
 						<div class="desk-single__info">№{{$offer->id}}   Дата размещения: {{$offer->created_at->format('d.m.Y')}}</div>
 						<div>Специализация: {{$offer->specialisation}}</div>
 						<div><del>{{$offer->old_price}}</del> {{$offer->price}}</div>
-						@foreach($offer->categories as $category)
-						<a href="" class="desk-single__cat">{{$category->name}}</a>
-						@if($offer->categories->last()!==$category)<span class="desk-single__sep"></span>@endif
-						@endforeach
+						<div class="tags">
+							@foreach($offer->categories as $category)
+							<a href="{{route('desk.index')}}?categories={{$category->id}}" class="tags__item">{{$category->name}}</a>
+							@if($offer->categories->last()!==$category)<span class="tags__sep"></span>@endif
+							@endforeach
+						</div>
 					</div>
 				</div>
 				@include('general.desk.top')

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
 
 class ArticleController extends Controller
 {
@@ -14,11 +15,17 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::orderBy('created_at', 'desc')->paginate(15);
+        $articles = Article::query();
+
+        if ($request->tag) 
+            $articles = Tag::where(['name'=>$request->tag])->firstOrNew([])->articles();
+
+        $articles = $articles->orderBy('created_at','desc');
+
         return view('general.news.index', [
-            'articles' => $articles
+            'articles' => $articles->paginate(15)
         ]);
     }
 
@@ -35,8 +42,16 @@ class ArticleController extends Controller
 
         if (!$article) abort(404);
 
+        $related_articles = Article::whereHas('tags', function($query) use ($article){
+            $query->whereIn('id',$article->tags()->lists('id')->all());
+        })
+        ->where('id','!=',$article->id)
+        ->take(3)
+        ->get();
+
         return view('general.news.show', [
-            'article' => $article
+            'article' => $article,
+            'related_articles' => $related_articles
         ]);
     }
 

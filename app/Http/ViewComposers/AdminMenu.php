@@ -26,10 +26,15 @@ class AdminMenu
                     'active' => Request::is('user/personal*')?'active':'',
                     'children' => [
                         [
-                            'name' => 'Изменить',
+                            'name' => 'Изменить данные',
                             'icon' => 'fa-edit',
                             'href' => route('user.personal.edit', $user),
+                        ],[
+                            'name' => 'Изменить пароль',
+                            'icon' => 'fa-edit',
+                            'href' => route('user.password.index'),
                         ],
+
                     ],
                 ],[
                     'name' => 'Объявления',

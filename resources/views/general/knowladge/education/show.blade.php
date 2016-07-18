@@ -24,11 +24,28 @@
 				<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>
 			</div>
 			<div class="post-page__libraries">
-				@foreach ($post->categories as $category)
-					<a class="post-page__library" href="{{url('knowladge/education/category',$category)}}">{{$category->name}}</a>
-					{{$post->categories->last()!=$category?'|':''}}
+				@foreach ($post->tags as $tag)
+					<a href="{{route('knowladge.education.index')}}?tag={{$tag->name}}" class="tags__item">{{$tag->name}}</a>
+					@if($post->tags->last()!==$tag)<span class="tags__sep"></span>@endif
 				@endforeach
 			</div>
+			<div id="disqus_thread"></div>
+			<script>
+			    var disqus_config = function () {
+			        this.page.url = "{{route('knowladge.education.show',$post)}}";
+			        this.page.identifier = "education_{{$post->id}}";
+			    };
+
+			    (function() { 
+			        var d = document, s = d.createElement('script');
+			        
+			        s.src = '//rooferscomua.disqus.com/embed.js';
+			        
+			        s.setAttribute('data-timestamp', +new Date());
+			        (d.head || d.body).appendChild(s);
+			    })();
+			</script>
+			<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 		</div>
 		<div class="container__col-4 container__col-sm-12">
 			<div class="title">РАЗДЕЛЫ</div>
@@ -43,5 +60,17 @@
 	</div>
 </div>
 
+@if($related_posts->first())
+<div class="container offset_bottom_60">
+	<div class="title offset_vertical_30">ВОЗМОЖНО, ВАМ БУДЕТ ИНТЕРЕСНО</div>
+	<div class="container__row">
+		@foreach($related_posts as $post)
+		<div class="container__col-4">
+			@include('general.knowladge.education.preview')
+		</div>
+		@endforeach
+	</div>
+</div>
+@endif
 
 @endsection

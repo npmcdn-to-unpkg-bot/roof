@@ -21,20 +21,8 @@
 <div class="container">
 	<div class="container__row masonry">
 		@foreach ($posts as $i => $post)
-			<div class="container__col-4 container__col-sm-12 offset-sm_vertical_30 post offset_bottom_45 ">
-				<img src="/width/360/{{$post->image}}" class="post__image">
-				<div class="post__content">
-					<a href="{{route('knowladge.library.show', $post)}}" class="post__title">{{$post->title}}</a>
-					<div class="post__entry">{{$post->entry}}</div>
-					<div class="post__bottom clearfix">
-						<div class="post__created-at">{{$post->created_at->format('d.m.Y')}}</div>
-						<div class="post__libraries post__library">
-							@foreach ($post->categories as $category)
-								<a class="post__library" href="{{url('knowladge/library/category',$category)}}">{{$category->name}}</a>@if ($post->categories->last()!=$category), @endif
-							@endforeach
-						</div>
-					</div>
-				</div>
+			<div class="container__col-4 container__col-sm-12 offset-sm_vertical_30 offset_bottom_45 ">
+				@include('general.knowladge.library.preview')
 			</div>
 			@if ($i==1) <div class="container__col-4 container__col-sm-12 offset-sm_vertical_30 offset_bottom_45">@include('general.area.banner',['area' => 'Библиотека архив 1'])</div> @endif
 		@endforeach

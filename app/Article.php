@@ -26,8 +26,26 @@ class Article extends Model
 
     protected $fillable = ['title','image','entry','content','meta_title','meta_description'];
 
-    public function company () {
-    	return $this->belongsTo('App\Models\Catalog\Company');
+    public function prev(){
+    	$article = self::where('created_at', '>', $this->created_at)->orderBy('created_at','asc')->first();
+
+    	if (!$article)
+    		return false;
+
+    	return $article;
+    }
+
+    public function next(){
+    	$article = self::where('created_at', '<', $this->created_at)->orderBy('created_at','desc')->first();
+
+    	if (!$article)
+    		return false;
+    	
+    	return $article;
+    }
+
+    public function tags () {
+    	return $this->belongsToMany('App\Models\Tag','article_tag','article_id','tag_id');
     }
 
 }

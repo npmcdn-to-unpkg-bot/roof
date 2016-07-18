@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Education\Post;
 use App\Models\Education\Category;
 use App\Http\Requests;
+use App\Models\Tag;
 use App\Http\Controllers\Controller;
 
 class EducationController extends Controller
@@ -15,12 +16,17 @@ class EducationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::orderBy('created_at','desc')->paginate(20);
+        $posts = Post::query();
+
+        if($request->tag)
+            $posts = Tag::where(['name'=>$request->tag])->firstOrNew([])->education_posts();
+
+        $posts = $posts->orderBy('created_at','desc');
 
         return view('general.knowladge.education.index',[
-            'posts' => $posts
+            'posts' => $posts->paginate(20)
         ]);
     }
 
@@ -36,8 +42,16 @@ class EducationController extends Controller
 
         if (!$post) abort(404);
 
+        $related_posts = Post::whereHas('tags', function($query) use ($post){
+            $query->whereIn('id',$post->tags()->lists('id')->all());
+        })
+        ->where('id','!=',$post->id)
+        ->take(3)
+        ->get();
+
         return view('general.knowladge.education.show', [
-            'post' => $post
+            'post' => $post,
+            'related_posts' => $related_posts
         ]);
     }
 

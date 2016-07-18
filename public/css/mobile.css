@@ -660,6 +660,13 @@ a {
 	margin-bottom: 15px;
 }
 
+.market-news__other {
+	font-size: 18px;
+	color: #0a3955;
+	font-family: "Roboto Condensed";
+	font-weight: 300;
+}
+
 .market-news__title {
 	font-size: 20px;
 	font-weight: bold;
@@ -1994,18 +2001,6 @@ td.calendar-block__date_active {
 .desk-item__info {
 	color: #9bafb6;
 }
-.desk-item__cat {
-	color: #0a3955;
-}
-
-.desk-item__sep:after{
-	content:'|';
-	color: #88b2bf;
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 5px;
-	margin-left: 5px;
-}
 
 /*title-light*/
 
@@ -2566,5 +2561,20 @@ td.calendar-block__date_active {
 
 body {
 	margin-top: 131px;
+}
+
+/*tags*/
+
+.tags__item {
+	color: #0a3955;
+}
+
+.tags__sep:after{
+	content:'|';
+	color: #88b2bf;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;
+	margin-left: 5px;
 }
 /*# sourceMappingURL=mobile.css.map */

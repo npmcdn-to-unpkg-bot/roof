@@ -81,7 +81,7 @@ class UserController extends Controller
     public function edit($id)
     {
 
-        $user = User::find($id);
+        $user = auth()->user();
 
         return view('admin.universal.edit',[
             'title' => 'Персональные данные',

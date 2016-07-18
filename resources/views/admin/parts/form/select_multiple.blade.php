@@ -11,6 +11,7 @@
 </div>
 <script>
 	$('#{{$name}}Select').select2({
-		language: 'ru'
+		language: 'ru',
+		@if(isset($settings)) {{$settings}} @endif
 	});
 </script>

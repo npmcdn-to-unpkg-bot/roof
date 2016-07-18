@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Storage;
 use App\Models\Catalog\Company;
 use App\Article;
+use App\Models\Tag;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -52,6 +53,13 @@ class ArticleController extends Controller
                 'label'=>'Введите meta description',
                 'placeholder'=>'',
                 'value'=>old() ? old('meta_description') : $article->meta_description
+            ],[
+                'name'=>'tags',
+                'type' => 'select_multiple',
+                'label'=>'Теги',
+                'settings' => 'tags: true,',
+                'values'=>old() ? old('tags') : $article->tags->lists('name','name')->all(),
+                'options'=> Tag::lists('name','name')
             ]
         ];
         
@@ -142,6 +150,14 @@ class ArticleController extends Controller
 
         $article->fill($request->only('title','image','entry','content','meta_title','meta_description'));
         $article->save();
+
+        $tags = collect();
+        foreach((array)$request->tags as $name) {
+            $tag = Tag::firstOrCreate(['name'=>$name]);
+            $tags->push($tag);
+        }
+
+        $article->tags()->sync($tags->lists('id')->all());
 
         return redirect()->route('admin.news.index');
     }

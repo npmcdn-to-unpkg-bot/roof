@@ -16,6 +16,10 @@ class Post extends Model
     	return $this->belongsToMany('App\Models\Library\Category','library_category_post','post_id','category_id');
     }
 
+    public function tags () {
+    	return $this->belongsToMany('App\Models\Tag','library_post_tag','post_id','tag_id');
+    }
+
     public static function validator ($fields) {
     	return Validator::make($fields,
 		 	[

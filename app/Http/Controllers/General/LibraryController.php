@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Library\Post;
 use App\Models\Library\Category;
 use App\Http\Requests;
+use App\Models\Tag;
 use App\Http\Controllers\Controller;
 
 class LibraryController extends Controller
@@ -17,10 +18,15 @@ class LibraryController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::orderBy('created_at','desc')->paginate(20);
+        $posts = Post::query();
+
+        if($request->tag)
+            $posts = Tag::where(['name'=>$request->tag])->firstOrNew([])->library_posts();
+
+        $posts = $posts->orderBy('created_at','desc');
 
         return view('general.knowladge.library.index',[
-            'posts' => $posts
+            'posts' => $posts->paginate(20)
         ]);
     }
 
@@ -37,8 +43,16 @@ class LibraryController extends Controller
 
         if (!$post) abort(404);
 
+        $related_posts = Post::whereHas('tags', function($query) use ($post){
+            $query->whereIn('id',$post->tags()->lists('id')->all());
+        })
+        ->where('id','!=',$post->id)
+        ->take(3)
+        ->get();
+
         return view('general.knowladge.library.show', [
-            'post' => $post
+            'post' => $post,
+            'related_posts' => $related_posts
         ]);
     }
 

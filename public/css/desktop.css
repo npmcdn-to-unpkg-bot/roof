@@ -266,6 +266,7 @@ a {
 .container__col-4,
 .container__col-6,
 .container__col-8 {
+	min-height: 1px;
 	display: block;
 	float: left;
 	padding-left: 12px;
@@ -652,6 +653,13 @@ a {
 	float: left;
 	margin-right: 15px;
 	margin-bottom: 15px;
+}
+
+.market-news__other {
+	font-size: 18px;
+	color: #0a3955;
+	font-family: "Roboto Condensed";
+	font-weight: 300;
 }
 
 .market-news__title {
@@ -2034,18 +2042,6 @@ td.calendar-block__date_active {
 .desk-single__info {
 	color: #9bafb6;
 }
-.desk-single__cat {
-	color: #0a3955;
-}
-
-.desk-single__sep:after{
-	content:'|';
-	color: #88b2bf;
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 5px;
-	margin-left: 5px;
-}
 
 .desk-single__image {
 	margin-bottom: 20px;
@@ -2486,6 +2482,29 @@ td.calendar-block__date_active {
 	text-decoration: none;
 	transform-origin: bottom right;
 	background: #6fc0d1;
+	z-index: 99;
+}
+
+/*floating-ask-expret*/
+
+.floating-ask-expret {
+	position: fixed;
+	left: 0;
+	top: 20%;
+	line-height: 65px;
+	border-radius: 7px 7px 0 0;
+	height: 60px;
+	width: 220px;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	font-weight: 400;
+	font-family: "Roboto Condensed";
+	transform: rotate(90deg);
+	text-decoration: none;
+	transform-origin: bottom left;
+	background: #d98e64;
+	z-index: 99;	
 }
 
 /*rate-details*/
@@ -2530,5 +2549,20 @@ td.calendar-block__date_active {
 	font-weight: 400;
 	color: black;
 	float: left;
+}
+
+/*tags*/
+
+.tags__item {
+	color: #0a3955;
+}
+
+.tags__sep:after{
+	content:'|';
+	color: #88b2bf;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;
+	margin-left: 5px;
 }
 /*# sourceMappingURL=desktop.css.map */

@@ -26,6 +26,7 @@
             </div>
             <button class="button button_big button_minth reg-page__button">ВХОД</button>
             <div class="reg-page__login">Нет аккаунта? <a href="{{ url('/register') }}" class="reg-page__login">Регистрация</a></div>
+            <div class="reg-page__login">Забыли пароль? <a href="{{ url('/password/reset') }}" class="reg-page__login">Восстановить</a></div>
         </form>
     </div>
     <div class="container__col-left reg-social">

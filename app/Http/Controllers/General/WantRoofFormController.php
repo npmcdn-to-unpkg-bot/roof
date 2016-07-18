@@ -10,10 +10,10 @@ use Validator;
 use Mail;
 use App\Option;
 
-class ContactFormController extends Controller
+class WantRoofFormController extends Controller
 {
     public function index() {
-    	return view('general.contact.index');
+    	return view('general.wantroof.index');
     }
 
     public function store(Request $request) {
@@ -28,7 +28,7 @@ class ContactFormController extends Controller
 		if ($validator->fails())
 			return redirect()->route('want-roof.index')->withErrors($validator)->withInput();
 
-		Mail::send('general.contact.mail', $request->all(), function($m){
+		Mail::send('general.wantroof.mail', $request->all(), function($m){
 			$m->from('sent_form@roofers.com.ua','roofers.com.ua');
 			$m->to(Option::firstOrNew(['name'=>'email_want_roof'])->value,'info')
 				->subject('Новое отправление формы "ХОЧУ КРОВЛЮ"');

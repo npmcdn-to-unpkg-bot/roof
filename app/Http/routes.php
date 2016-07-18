@@ -45,7 +45,8 @@ Route::group(['middleware'=>'csrf'], function (){
 	Route::get('knowladge/library/category/{id}', 'General\LibraryController@category');
 
 	Route::resources([
-		'want-roof'                  => 'General\ContactFormController',
+		'want-roof'                  => 'General\WantRoofFormController',
+		'ask-expert'                 => 'General\AskExpertFormController',
 		'catalog/{company}/post'     => 'General\CatalogPostController',
 		'catalog'                    => 'General\CompanyController',
 		'buildings'                  => 'General\BuildingController',
@@ -87,6 +88,7 @@ Route::group(['middleware'=>'csrf'], function (){
 			'user/offers/services'       => 'User\Services\OfferController',
 			'user/offers'                => 'User\OfferController',
 			'user/personal'              => 'User\UserController',
+			'user/password'              => 'User\PasswordController',
 			'user/tenders'               => 'User\TenderController',
 			'user/reserve'               => 'User\Services\ReserveController',
 			'comment'                    => 'User\CommentController',
