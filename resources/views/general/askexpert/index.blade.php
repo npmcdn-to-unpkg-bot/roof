@@ -4,8 +4,8 @@
 	
 	<div style="margin: auto;width: 315px;" class="offset_vertical_20 offset-sm_vertical_20 ">
 		<div class="container__row">
-			<div class="container__col-4"><img src="/img/criminal_man.png"></div>
-			<div class="container__col-8 title title_small">Эксперт в сфеле кровельных работ</div>
+			<div class="container__col-4 container__col-sm-4"><img src="/img/criminal_man.png"></div>
+			<div class="container__col-8 container__col-sm-8 title title_small">Эксперт в сфеле кровельных работ</div>
 		</div>
 	</div>
 

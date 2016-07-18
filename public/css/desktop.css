@@ -2485,14 +2485,14 @@ td.calendar-block__date_active {
 	z-index: 99;
 }
 
-/*floating-ask-expret*/
+/*floating-ask-expert*/
 
-.floating-ask-expret {
+.floating-ask-expert {
 	position: fixed;
-	left: 0;
+	left: -160px;
 	top: 20%;
 	line-height: 65px;
-	border-radius: 7px 7px 0 0;
+	border-radius: 0 0 7px 7px;
 	height: 60px;
 	width: 220px;
 	text-align: center;
@@ -2500,11 +2500,11 @@ td.calendar-block__date_active {
 	font-size: 24px;
 	font-weight: 400;
 	font-family: "Roboto Condensed";
-	transform: rotate(90deg);
+	transform: rotate(-90deg);
 	text-decoration: none;
-	transform-origin: bottom left;
+	transform-origin: bottom right;
 	background: #d98e64;
-	z-index: 99;	
+	z-index: 99
 }
 
 /*rate-details*/

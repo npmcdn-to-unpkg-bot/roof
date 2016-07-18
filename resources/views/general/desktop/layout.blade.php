@@ -111,7 +111,7 @@
 	</div>
 
 	<a href="/want-roof" class="floating-want-roof fancybox">ХОЧУ КРОВЛЮ</a>
-	<a href="/ask-expert" class="floating-ask-expret fancybox">ВОПРОС ЭКСПЕРТУ</a>
+	<a href="/ask-expert" class="floating-ask-expert fancybox">ВОПРОС ЭКСПЕРТУ</a>
 
 	@include('general.metrika')
 	<script src="/bower/jquery/dist/jquery.min.js"></script>

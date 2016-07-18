@@ -35,13 +35,13 @@
 								</div>
 							</div>
 						</div>
-						<div class="container__row offset_vertical_60">
-							<div class="container__col-6">
+						<div class="container__row offset_vertical_60 offset-sm_vertical_60">
+							<div class="container__col-6 container__col-sm-6">
 								@if($article->prev())
 								<a href="{{route('news.show', $article->prev())}}" class="market-news__other">< ПРЕДЫДУЩАЯ СТАТЬЯ</a>
 								@endif
 							</div>
-							<div class="container__col-6 text_right">
+							<div class="container__col-6 container__col-sm-6 text_right">
 								@if($article->next())
 								<a href="{{route('news.show', $article->next())}}" class="market-news__other">СЛЕДУЮЩАЯ СТАТЬЯ ></a>
 								@endif
