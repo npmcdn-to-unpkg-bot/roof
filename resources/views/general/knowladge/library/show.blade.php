@@ -54,6 +54,7 @@
 					<a href="{{url('knowladge/library/category',$category->id)}}" class="menu__item">{{$category->name}}</a>
 				@endforeach
 			</div>
+			<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.knowladge.library.cloud')</div>
 			<div class="offset_bottom_60 offset-sm_bottom_30">@include('general.area.banner',['area' => 'Библиотека запись 1'])</div>
 			<div class="offset_bottom_60 offset-sm_bottom_30">@include('general.area.banner',['area' => 'Библиотека запись 2'])</div>
 		</div>

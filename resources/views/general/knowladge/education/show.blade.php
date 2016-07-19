@@ -54,6 +54,7 @@
 					<a href="{{url('knowladge/education/category',$category->id)}}" class="menu__item">{{$category->name}}</a>
 				@endforeach
 			</div>
+			<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.knowladge.education.cloud')</div>
 			<div class="offset_bottom_60 offset-sm_bottom_30">@include('general.area.banner',['area' => 'Обучение запись 1'])</div>
 			<div class="offset_bottom_60 offset-sm_bottom_30">@include('general.area.banner',['area' => 'Обучение запись 2'])</div>
 		</div>
