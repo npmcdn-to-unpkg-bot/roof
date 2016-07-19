@@ -46,10 +46,10 @@
 						<a href="{{ route('news.index') }}" class="{{ Request::is('news*')?'menu__item_active':'' }} menu__item">Новости и статьи</a>
 					</div>
 					<div class="menu menu_vertical menu_lh_48 menu_uppercase menu_big menu_white menu_justified menu_main">
-						<a href="http://rau.org.ua/" target="blank" class="menu__item">Об ассоциации</a>
+						<a href="http://rau.org.ua/" target="_blank" class="menu__item">Об ассоциации</a>
 						<a href="{{ route('events.index') }}" class="menu__item">Календарь</a>
 						<a href="{{ route('polls.index') }}" class="menu__item">Опросы</a>
-						<a href="http://forum.roofers.com.ua/" target="blank" class="menu__item">ФОРУМ</a>
+						<a href="http://forum.roofers.com.ua/" target="_blank" class="menu__item">ФОРУМ</a>
 						<a href="{{url('contacts')}}" class="menu__item">Контакты</a>
 					</div>
 				</div>
@@ -68,10 +68,10 @@
 			<a href="/"><img src="/img/logo-gray.png" alt="" class="logo logo_in-footer logo_gray"></a>
 			<br>
 			<div class="social-buttons">
-				<a target="blank" href="{!! App\Option::firstOrNew(['name'=>'facebook'])->value !!}" class="social-buttons__item social-buttons__item_fb"></a>
-				<a target="blank" href="{!! App\Option::firstOrNew(['name'=>'linkedin'])->value !!}" class="social-buttons__item social-buttons__item_li"></a>
-				<a target="blank" href="{!! App\Option::firstOrNew(['name'=>'instagram'])->value !!}" class="social-buttons__item social-buttons__item_in"></a>
-				<a target="blank" href="{!! App\Option::firstOrNew(['name'=>'youtube'])->value !!}" class="social-buttons__item social-buttons__item_yo"></a>
+				<a target="_blank" href="{!! App\Option::firstOrNew(['name'=>'facebook'])->value !!}" class="social-buttons__item social-buttons__item_fb"></a>
+				<a target="_blank" href="{!! App\Option::firstOrNew(['name'=>'linkedin'])->value !!}" class="social-buttons__item social-buttons__item_li"></a>
+				<a target="_blank" href="{!! App\Option::firstOrNew(['name'=>'instagram'])->value !!}" class="social-buttons__item social-buttons__item_in"></a>
+				<a target="_blank" href="{!! App\Option::firstOrNew(['name'=>'youtube'])->value !!}" class="social-buttons__item social-buttons__item_yo"></a>
 			</div>
 		</div>
 	</div>
@@ -87,7 +87,7 @@
 					<a href="{{ route('news.index') }}" class="menu__item">Новости и статьи</a>					
 				</div>
 				<div class="container__col-right text_right menu menu_vertical menu_big menu_uppercase menu_gray">
-					<a href="http://rau.org.ua/" target="blank" class="menu__item">ОБ АССОЦИАЦИИ</a>
+					<a href="http://rau.org.ua/" target="_blank" class="menu__item">ОБ АССОЦИАЦИИ</a>
 					<a href="{{route('events.index')}}" class="menu__item">КАЛЕНДАРЬ</a>
 					<a href="{{route('polls.index')}}" class="menu__item">ОПРОСЫ</a>
 					<a href="{{url('uslovia')}}" class="menu__item">УСЛОВИЯ ПОРТАЛА</a>
@@ -98,7 +98,7 @@
 		</div>
 	</div>
 	<div class="container-fluid container-fluid_gray copyright text_center">
-		©2016 Ассоциация кровельщиков Украины. Разработка сайта - <a target="blank" href="http://ivmar.com.ua/">Ivmar Ukraine</a>
+		©2016 Ассоциация кровельщиков Украины. Разработка сайта - <a target="_blank" href="http://ivmar.com.ua/">Ivmar Ukraine</a>
 	</div>
 
 	<a href="/want-roof" class="floating-want-roof fancybox">ХОЧУ КРОВЛЮ</a>
