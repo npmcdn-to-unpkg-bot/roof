@@ -69,6 +69,7 @@
 			</div>
 			<div class="container__col-4 container__col-sm-12">
 				@include('general.events.block')
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.news.cloud')</div>
 				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Новости запись 1'])</div>
 				<div class="question offset_vertical_55 offset-sm_vertical_30">@include('general.polls.block')</div>
 				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Новости запись 2'])</div>
