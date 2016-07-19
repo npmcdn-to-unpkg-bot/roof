@@ -1,9 +1,9 @@
 <?php
-	$tags = App\Models\Tag::has('articles')->get();
+	$tags = App\Models\Tag::has('library_posts')->get();
 	$avg = $tags->avg(function($tag){
-		return $tag->articles()->count();
+		return $tag->library_posts()->count();
 	});
 ?>
 	@foreach ($tags as $tag)
-		<a href="{{route('knowladge.library.index')}}?tag={{$tag->name}}" style="font-size: {{14*$tag->articles()->count()/$avg}}px;">{{$tag->name}}</a>
+		<a href="{{route('knowladge.library.index')}}?tag={{$tag->name}}" style="font-size: {{14*$tag->library_posts()->count()/$avg}}px;">{{$tag->name}}</a>
 	@endforeach
