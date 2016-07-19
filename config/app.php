@@ -149,6 +149,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -211,6 +212,7 @@ return [
         'FilemanagerLaravel'=> Pqb\FilemanagerLaravel\Facades\FilemanagerLaravel::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ],
 
 ];

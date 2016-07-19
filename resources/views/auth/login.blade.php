@@ -6,6 +6,9 @@
 <div class="container breadcrumbs">
     <span class="breadcumbs__current">АВТОРИЗАЦИЯ</span>
 </div>
+@if(session()->has('message'))
+<div class="container message">{{session()->get('message')}}</div>
+@endif
 <div class="container">
     <div class="container__col-left">
         <form action="{{ url('/login') }}" method="POST" class="reg-page reg-page_layout">

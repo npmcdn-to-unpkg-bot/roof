@@ -13,7 +13,8 @@
         "maatwebsite/excel": "~2.1.0",
         "doctrine/dbal": "^2.5",
         "jenssegers/agent": "^2.3",
-        "liqpay/liqpay": "dev-master"
+        "liqpay/liqpay": "dev-master",
+        "mews/captcha": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

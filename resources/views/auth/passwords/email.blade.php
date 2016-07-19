@@ -14,12 +14,21 @@
                 {!! csrf_field() !!}
                 <div class="offset_vertical_30 offset-sm_vertical_30">
                     <input type="email" class="input input_100 input_bold" name="email" placeholder="ВАШ EMAIL" value="{{ old('email') }}">
+                    @if ($errors->has('email'))
+                        <span class="error">{{ $errors->first('email') }}</span>
+                    @endif
                 </div>
-                @if ($errors->has('email'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
+
+                <div class="offset_vertical_30 offset-sm_vertical_30">
+                    {!!captcha_img()!!}
+                </div>
+
+                <div class="offset_vertical_30 offset-sm_vertical_30">
+                    <input type="text" class="input input_100 input_bold" name="captcha" placeholder="ВВЕДИТЕ ТЕКСТ С КАРТИНКИ">
+                    @if ($errors->has('captcha'))
+                        <span class="error">{{ $errors->first('captcha') }}</span>
+                    @endif
+                </div>
 
                 <button type="submit" class="button button_big button_minth reg-page__button offset_vertical_30 offset-sm_vertical_30">
                     ПОЛУЧИТЬ ССЫЛКУ

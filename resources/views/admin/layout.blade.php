@@ -63,6 +63,13 @@
 		</aside>
 
 		<div class="content-wrapper">
+		
+			@if(session()->has('message'))
+				<div class="callout callout-info">
+	          		<p>{{session()->get('message')}}</p>
+				</div>
+			@endif
+
 			@yield('content')
 		</div>
 
