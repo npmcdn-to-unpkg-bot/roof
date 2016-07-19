@@ -42,6 +42,10 @@ class EducationController extends Controller
 
         if (!$post) abort(404);
 
+        if ($post->price > 0 
+            && auth()->user()->company->level < 3)
+            abort(404);
+
         $related_posts = Post::whereHas('tags', function($query) use ($post){
             $query->whereIn('id',$post->tags()->lists('id')->all());
         })

@@ -18,19 +18,21 @@ class Post extends Model
     	return $this->belongsToMany('App\Models\Tag','education_post_tag','post_id','tag_id');
     }
 
-	protected $fillable = ['id','title','image','entry','content','meta_title','meta_description'];
+	protected $fillable = ['id','title','image','entry','content','meta_title','meta_description','price'];
 
     public static function validator ($fields) {
     	return Validator::make($fields,
 		 	[
 				'title' => 'required|max:255',
 				'entry' => 'required|max:380',
+				'price' => 'numeric'
 		    ],[
 				'title.required' => 'Введите заголовок записи.',
 				'title.max' => 'Заголовок должен быть не больше 255 символов.',
 				'entry.required' => 'Заполните краткое содержание записи.',
 				'entry.max' => 'Краткое содержание должно быть не больше 380 символов.',
 				'content.required' => 'Заполните текст записи.',
+				'price.numeric' => 'Цена должна состоять только из цифр.'
 		    ]);
 
     }

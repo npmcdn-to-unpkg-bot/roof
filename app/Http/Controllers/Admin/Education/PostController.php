@@ -64,8 +64,14 @@ class PostController extends Controller
                 'type' => 'select_multiple',
                 'label'=>'Теги',
                 'settings' => 'tags: true,',
-                'values'=>old() ? old('tags') : $post->tags->lists('name')->all(),
+                'values'=>old() ? (array)old('tags') : $post->tags->lists('name')->all(),
                 'options'=> Tag::lists('name', 'name')
+            ],[
+                'name'=>'price',
+                'type'=>'text',
+                'placeholder'=>'Цена (грн)',
+                'label'=>'Цена (грн)',
+                'value'=>old() ? old('price') : $post->price
             ]
         ];
         
@@ -152,7 +158,7 @@ class PostController extends Controller
         if ($post->image&&$post->image!==$request->image) 
             Storage::delete('images/'.$post->image);
 
-        $post->fill($request->only('title','image','entry','content','meta_title','meta_description'));
+        $post->fill($request->only('title','image','entry','content','meta_title','meta_description','price'));
         $post->save();
         $post->categories()->sync((array)$request->categories);
 

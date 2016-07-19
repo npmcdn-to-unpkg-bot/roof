@@ -58,7 +58,7 @@ class ArticleController extends Controller
                 'type' => 'select_multiple',
                 'label'=>'Теги',
                 'settings' => 'tags: true,',
-                'values'=>old() ? old('tags') : $article->tags->lists('name','name')->all(),
+                'values'=>old() ? (array)old('tags') : $article->tags->lists('name','name')->all(),
                 'options'=> Tag::lists('name','name')
             ]
         ];

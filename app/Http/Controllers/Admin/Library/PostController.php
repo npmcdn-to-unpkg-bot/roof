@@ -52,7 +52,7 @@ class PostController extends Controller
                 'type'=>'text',
                 'label'=>'Введите meta title',
                 'placeholder'=>'',
-                'value'=>old() ? old('meta_title') : $post->meta_title
+                'value'=>old() ? (array)old('meta_title') : $post->meta_title
             ],[
                 'name'=>'meta_description',
                 'type'=>'textarea',

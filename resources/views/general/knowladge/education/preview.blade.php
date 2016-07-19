@@ -13,4 +13,9 @@
 			</div>
 		</div>
 	</div>
+	@if ($post->categories()->find(1))
+		@if($post->price > 0) <span class="post__premium">ПРЕМИУМ ВЕБИНАР</span>
+		@else <span class="post__free">ВЕБИНАР FREE</span>
+		@endif
+	@endif
 </div>

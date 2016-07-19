@@ -2221,6 +2221,7 @@ td.calendar-block__date_active {
 
 /*post*/
 .post {
+	position: relative;
 }
 .post__image {
    border-top: 7px solid #d98e64;
@@ -2263,6 +2264,30 @@ td.calendar-block__date_active {
   font-size: 12px;
   color: #999999;
   text-decoration: none;
+}
+
+.post__premium,
+.post__free {
+	position: absolute;
+	top: 14px;
+	left: -8px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	font-size: 18px;
+	height: 39px;
+	line-height: 32px;
+}
+.post__free {
+	width: 165px;
+	background-image: url(/img/free.png);
+	background-repeat: no-repeat;
+}
+
+.post__premium {
+	width: 200px;
+	background-image: url(/img/premium.png);
+	background-repeat: no-repeat;
 }
 
 /*library*/
