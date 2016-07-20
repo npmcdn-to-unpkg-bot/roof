@@ -28,6 +28,7 @@
 		@endforeach
 		@if ($posts->count() < 2) <div class="container__col-4 container__col-sm-12 offset-sm_vertical_30 offset_bottom_45">@include('general.area.banner',['area' => 'Библиотека архив 1'])</div> @endif
 	</div>
+	<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.knowladge.library.cloud')</div>
 	@include('general.pagenav',['items'=>$posts])
 </div>
 

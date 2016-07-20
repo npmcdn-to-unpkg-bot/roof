@@ -21,12 +21,13 @@
 				</div>
 				@endforeach
 
+				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.news.cloud')</div>
+
 				@include('general.pagenav',['items'=>$articles])
 
 			</div>
 			<div class="container__col-4 container__col-sm-12">
 				@include('general.area.banner',['area' => 'Новости архив 1'])
-				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.news.cloud')</div>
 				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.polls.block')</div>
 				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Новости архив 2'])</div>
 			</div>
