@@ -21,12 +21,12 @@
 						@endif
 						<div class="market-news__text">{!! $article->content !!}</div>
 						<div class="container__row">
-							<div class="container__col-6">
+							<div class="container__col-6 container__col-sm-6">
 							<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
 							<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
 							<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>
 							</div>
-							<div class="container__col-6">
+							<div class="container__col-6 container__col-sm-6">
 								<div class="tags text_right">
 									@foreach($article->tags as $tag)
 									<a href="{{route('news.index')}}?tag={{$tag->name}}" class="tags__item">{{$tag->name}}</a>
@@ -35,6 +35,11 @@
 								</div>
 							</div>
 						</div>
+						@if($article->author)
+						<div class="offset_vertical_20 offset-sm_vertical_20">
+							<b>Автор:</b> <a href="{{route('authors.show',$article->author)}}">{{$article->author->name}}</a>
+						</div>
+						@endif
 						<div class="container__row offset_vertical_60 offset-sm_vertical_60">
 							<div class="container__col-6 container__col-sm-6">
 								@if($article->prev())

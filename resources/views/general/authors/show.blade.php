@@ -4,7 +4,7 @@
 
 @section('content')
 	<div class="container breadcrumbs">
-		<a href="{{route('authors.index')}}" class="breadcrumbs__path">АВТОРСКИЕ КОЛОКНИ</a>
+		<a href="{{route('authors.index')}}" class="breadcrumbs__path">АВТОРСКИЕ КОЛОНКИ</a>
 		<span class="breadcumbs__current">{{$author->name}}</span>
 	</div>
 	<div class="container">
