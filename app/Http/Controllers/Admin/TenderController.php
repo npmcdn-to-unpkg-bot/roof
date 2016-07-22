@@ -11,6 +11,7 @@ use App\Models\Catalog\Company;
 use App\User;
 use Storage;
 use Carbon\Carbon;
+use Mail;
 
 class TenderController extends Controller
 {
