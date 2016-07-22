@@ -2596,4 +2596,42 @@ td.calendar-block__date_active {
 	margin-right: 5px;
 	margin-left: 5px;
 }
+
+/*author*/
+.author {
+	
+}
+
+.author:after {
+	content:'';
+	display: block;
+	clear: both;
+}
+
+.author_link {
+	color: #000;
+	text-decoration: none;
+}
+
+.author__image {
+	float: left;
+	border-radius: 50%;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.author__name {
+	font-size: 24px;
+	color: #0a3955;
+	font-family: "Roboto Condensed";
+	line-height: 30px;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.author__description {
+	line-height: 2;
+}
+
+
 /*# sourceMappingURL=desktop.css.map */

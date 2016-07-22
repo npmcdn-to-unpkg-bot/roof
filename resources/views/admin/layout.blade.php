@@ -44,8 +44,8 @@
 	<div class="wrapper">
 		<header class="main-header">
 			<a href="/" class="logo">
-				<span class="logo-mini"><b>R</b></span>
-				<span class="logo-lg"><b>roofers</b>.com.ua</span>
+				<span class="logo-mini"><b><span class="fa fa-home"></span></b></span>
+				<span class="logo-lg"><b>НА ГЛАВНУЮ</b></span>
 			</a>
 			<nav class="navbar navbar-static-top" role="navigation">
 				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">

@@ -9,6 +9,7 @@ use App\Article;
 use App\Models\Tag;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Author;
 
 class ArticleController extends Controller
 {
@@ -60,6 +61,15 @@ class ArticleController extends Controller
                 'settings' => 'tags: true,',
                 'values'=>old() ? (array)old('tags') : $article->tags->lists('name','name')->all(),
                 'options'=> Tag::lists('name','name')
+            ],[
+                'name'=>'author_id',
+                'type'=>'select',
+                'settings'=>'',
+                'label'=>'Автор',
+                'value'=>old() 
+                    ? old('author_id') 
+                    : ($article->author ? $article->author->id : ''),
+                'options'=>Author::lists('name','id')
             ]
         ];
         
@@ -148,7 +158,7 @@ class ArticleController extends Controller
         if ($article->image&&$article->image!==$request->image) 
             Storage::delete('images/'.$article->image);
 
-        $article->fill($request->only('title','image','entry','content','meta_title','meta_description'));
+        $article->fill($request->only('title','image','entry','content','meta_title','meta_description','author_id'));
         $article->save();
 
         $tags = collect();

@@ -34,6 +34,7 @@
 	<div class="container-fluid container-fluid_gray">
 		<div class="container">
 			<div class="container__col-right menu menu_horizontal menu_uppercase menu_white">
+				<a href="{{url('/')}}" class="menu__item">НА ГЛАВНУЮ</a>
 				<a href="http://rau.org.ua/" target="_blank" class="menu__item">ОБ АССОЦИАЦИИ</a>
 				<a href="{{route('events.index')}}" class="menu__item">КАЛЕНДАРЬ</a>
 				<a href="{{route('polls.index')}}" class="menu__item">ОПРОСЫ</a>

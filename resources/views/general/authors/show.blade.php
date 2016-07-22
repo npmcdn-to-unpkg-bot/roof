@@ -1,15 +1,16 @@
 @extends(Agent::isMobile() ? 'general.mobile.layout' : 'general.desktop.layout')
 
-@section('title')Новости и статьи@endsection
+@section('title'){{$author->name}}@endsection
 
 @section('content')
 	<div class="container breadcrumbs">
-		<span class="breadcumbs__current">НОВОСТИ И СТАТЬИ</span>
+		<a href="{{route('authors.index')}}" class="breadcrumbs__path">АВТОРСКИЕ КОЛОКНИ</a>
+		<span class="breadcumbs__current">{{$author->name}}</span>
 	</div>
 	<div class="container">
 		<div class="container__row">
 			<div class="container__col-8 container__col-sm-12">
-				<div class="title">НОВОСТИ И СТАТЬИ</div>
+				<div class="title">{{$author->name}}</div>
 
 				@foreach ($articles as $article)
 				<div class="market-news offset_vertical_30  offset-sm_vertical_30">
@@ -27,7 +28,7 @@
 
 			</div>
 			<div class="container__col-4 container__col-sm-12">
-				<a href="{{route('authors.index')}}" class="button button_minth button_huge offset_vertical_55 offset-sm_vertical_30">АВТОРСКИЕ КОЛОНКИ</a>
+				<a href="{{route('news.index')}}" class="button button_minth button_huge offset_vertical_55 offset-sm_vertical_30">НОВОСТИ И СТАТЬИ</a>
 				@include('general.area.banner',['area' => 'Новости архив 1'])
 				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.polls.block')</div>
 				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Новости архив 2'])</div>

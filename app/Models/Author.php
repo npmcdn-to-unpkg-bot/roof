@@ -7,16 +7,12 @@ use Validator;
 
 class Author extends Model
 {
-	protected $fillable = ['name', 'image'];
+	protected $fillable = ['name', 'image', 'description'];
 	
 	public $timestamps = false;
 
-    public function library_posts() {
-    	return $this->hasMany('App\Library\Posts');
-    }
-
-    public function education_posts() {
-    	return $this->hasMany('App\Education\Posts');
+    public function articles() {
+    	return $this->hasMany('App\Article');
     }
 
     public static function validator ($fields) {

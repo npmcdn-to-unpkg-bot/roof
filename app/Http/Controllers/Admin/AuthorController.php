@@ -29,7 +29,13 @@ class AuthorController extends Controller
                 'values' => old() 
                     ? (array)old('image') 
                     : (array)$author->image
-            ]
+            ],[
+                'name'=>'description',
+                'type'=>'textarea',
+                'placeholder'=>'Описание',
+                'label'=>'Описание',
+                'value'=>old() ? old('description') : $author->description
+            ],
         ];
         
     }
@@ -64,8 +70,8 @@ class AuthorController extends Controller
                     'field'=>$author->name,
                     'type'=>'text',
                 ],[
-                    'edit' => route('admin.authors.edit', $author),
-                    'delete' => route('admin.authors.destroy', $author),
+                    'edit' => route('admin.news.authors.edit', $author),
+                    'delete' => route('admin.news.authors.destroy', $author),
                     'type'=>'actions',
                 ],
             ]);
@@ -75,7 +81,7 @@ class AuthorController extends Controller
             'table' => $table,
             'items' => $authors,
             'title' => 'Авторы',
-            'add' => route('admin.authors.create'),
+            'add' => route('admin.news.authors.create'),
             'pagination' => $authors->render()
         ]);
     }
@@ -91,7 +97,7 @@ class AuthorController extends Controller
 
         return view('admin.universal.edit',[
             'title' => 'Добавить автора',
-            'action' => route('admin.authors.store'),
+            'action' => route('admin.news.authors.store'),
             'fields' => $this->fields($author),
             'item' => $author
         ]);
@@ -117,10 +123,10 @@ class AuthorController extends Controller
         if ($author->image&&$author->image!==$request->image) 
             Storage::delete('images/'.$author->image);
 
-        $author->fill($request->only('name','image'));
+        $author->fill($request->only('name','image','description'));
         $author->save();
 
-        return redirect()->route('admin.authors.index');
+        return redirect()->route('admin.news.authors.index');
     }
 
     /**
@@ -146,7 +152,7 @@ class AuthorController extends Controller
 
         return view('admin.universal.edit',[
             'title' => 'Редактировать данные автора',
-            'action' => route('admin.authors.store'),
+            'action' => route('admin.news.authors.store'),
             'fields' => $this->fields($author),
             'item' => $author
         ]);

@@ -46,10 +46,11 @@
 						<a href="{{ route('news.index') }}" class="{{ Request::is('news*')?'menu__item_active':'' }} menu__item">Новости и статьи</a>
 					</div>
 					<div class="menu menu_vertical menu_lh_48 menu_uppercase menu_big menu_white menu_justified menu_main">
+						<a href="{{ url('/') }}" class="menu__item">На главную</a>
 						<a href="http://rau.org.ua/" target="_blank" class="menu__item">Об ассоциации</a>
 						<a href="{{ route('events.index') }}" class="menu__item">Календарь</a>
 						<a href="{{ route('polls.index') }}" class="menu__item">Опросы</a>
-						<a href="http://forum.roofers.com.ua/" target="_blank" class="menu__item">ФОРУМ</a>
+						<a href="http://forum.roofers.com.ua/" target="_blank" class="menu__item">Форум</a>
 						<a href="{{url('contacts')}}" class="menu__item">Контакты</a>
 					</div>
 				</div>

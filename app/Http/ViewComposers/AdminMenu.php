@@ -220,7 +220,11 @@ class AdminMenu
                             'name' => 'Добавить новость',
                             'icon' => 'fa-plus',
                             'href' => route('admin.news.create'),
-                        ],
+                        ],[
+                            'name' => 'Авторы',
+                            'icon' => 'fa-user',
+                            'href' => route('admin.news.authors.index')
+                        ]
                     ],
                 ],[
                     'name' => 'Акции и скидки',
@@ -269,10 +273,6 @@ class AdminMenu
                             'name' => 'Категории',
                             'icon' => 'fa-list',
                             'href' => route('admin.library.all.categories.index')
-                        ],[
-                            'name' => 'Авторы',
-                            'icon' => 'fa-user',
-                            'href' => route('admin.authors.index')
                         ]
                     ],
                 ],[
@@ -292,10 +292,6 @@ class AdminMenu
                             'name' => 'Категории',
                             'icon' => 'fa-list',
                             'href' => route('admin.education.all.categories.index')
-                        ],[
-                            'name' => 'Авторы',
-                            'icon' => 'fa-user',
-                            'href' => route('admin.authors.index')
                         ]
                     ],
                 ],[

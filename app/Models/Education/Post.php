@@ -18,11 +18,7 @@ class Post extends Model
     	return $this->belongsToMany('App\Models\Tag','education_post_tag','post_id','tag_id');
     }
 
-	protected $fillable = ['id','title','image','entry','content','meta_title','meta_description','price','author_id'];
-
-    public function author() {
-        return $this->belongsTo('App\Models\Author');
-    }
+	protected $fillable = ['id','title','image','entry','content','meta_title','meta_description','price'];
 
     public static function validator ($fields) {
     	return Validator::make($fields,

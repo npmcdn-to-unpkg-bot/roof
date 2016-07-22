@@ -9,7 +9,6 @@ use Storage;
 use App\Models\Tag;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Author;
 
 class PostController extends Controller
 {
@@ -67,15 +66,6 @@ class PostController extends Controller
                 'settings' => 'tags: true,',
                 'values'=>old() ? old('tags') : $post->tags->lists('name','name')->all(),
                 'options'=> Tag::lists('name','name')
-            ],[
-                'name'=>'author_id',
-                'type'=>'select',
-                'settings'=>'',
-                'label'=>'Автор',
-                'value'=>old() 
-                    ? old('author_id') 
-                    : ($post->author ? $post->author->id : ''),
-                'options'=>Author::lists('name','id')
             ]
         ];
         
@@ -162,7 +152,7 @@ class PostController extends Controller
         if ($post->image&&$post->image!==$request->image) 
             Storage::delete('images/'.$post->image);
 
-        $post->fill($request->only('title','image','entry','content','meta_title','meta_description','author_id'));
+        $post->fill($request->only('title','image','entry','content','meta_title','meta_description'));
         $post->save();
         $post->categories()->sync((array)$request->categories);
 

@@ -16,12 +16,10 @@ class CreateAuthorsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('image');
+            $table->text('description');
         });
 
-        Schema::table('library_posts',function($table){
-            $table->integer('author_id')->index();
-        });
-        Schema::table('education_posts',function($table){
+        Schema::table('articles',function($table){
             $table->integer('author_id')->index();
         });
     }
@@ -35,12 +33,9 @@ class CreateAuthorsTable extends Migration
     {
         Schema::drop('authors');
 
-        Schema::table('library_posts',function($table){
+        Schema::table('articles',function($table){
             $table->dropColumn('author_id');
         });
 
-        Schema::table('education_posts',function($table){
-            $table->dropColumn('author_id');
-        });
     }
 }
