@@ -265,11 +265,14 @@ class AdminMenu
                             'name' => 'Добавить запись',
                             'icon' => 'fa-plus',
                             'href' => route('admin.library.create'),
-                        ],
-                        [
+                        ],[
                             'name' => 'Категории',
                             'icon' => 'fa-list',
                             'href' => route('admin.library.all.categories.index')
+                        ],[
+                            'name' => 'Авторы',
+                            'icon' => 'fa-user',
+                            'href' => route('admin.authors.index')
                         ]
                     ],
                 ],[
@@ -285,11 +288,14 @@ class AdminMenu
                             'name' => 'Добавить запись',
                             'icon' => 'fa-plus',
                             'href' => route('admin.education.create'),
-                        ],
-                        [
+                        ],[
                             'name' => 'Категории',
                             'icon' => 'fa-list',
                             'href' => route('admin.education.all.categories.index')
+                        ],[
+                            'name' => 'Авторы',
+                            'icon' => 'fa-user',
+                            'href' => route('admin.authors.index')
                         ]
                     ],
                 ],[

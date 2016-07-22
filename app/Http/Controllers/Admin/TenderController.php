@@ -207,6 +207,19 @@ class TenderController extends Controller
         $tender->fill($request->only('name','description','budget','image','end','person','email','phone','user_id','meta_title','meta_description'));
         $tender->save();
 
+        if (!$request->id)
+            Mail::send('general.tenders.mail', ['tender'=>$tender], function($m){
+                $m->from('no-reply@roofers.com.ua','roofers.com.ua')
+                ->subject('Новый тендер на roofers.com.ua')
+                ->to(
+                    User::whereHas('company',function($query){
+                        $query->whereIn('level',[2,3]);
+                    })
+                    ->lists('email','id')
+                    ->all()
+                );
+            });
+
         return redirect()->route('admin.tenders.index');
     }
 

@@ -147,7 +147,6 @@ class CompanyController extends Controller
             ->push([ 'title'=>'Название компании', 'width'=>'auto']);
         if (!Agent::isMobile())
             $th
-                ->push([ 'title'=>'Пользователь', 'width'=>'10%'])
                 ->push([ 'title'=>'Специализации', 'width'=>'20%'])
                 ->push([ 'title'=>'Предложения', 'width'=>'20%']);
 
@@ -161,7 +160,6 @@ class CompanyController extends Controller
                 
             if (!Agent::isMobile())
                 $td
-                    ->push(['type'=>'user','field'=>$company->user,])
                     ->push(['type'=>'taxonomy','field'=>$company->specialisations])
                     ->push(['type'=>'taxonomy','field'=>$company->propositions]);
 

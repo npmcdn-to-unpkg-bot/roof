@@ -203,9 +203,11 @@
 			@if ( auth()->user() && !auth()->user()->member_in_company )
 			<a href="{{url('catalog/join',$company->id)}}" class="button button_orange button_huge offset-sm_vertical_30 offset_bottom_60">ВСТУПИТЬ В КОМПАНИЮ</a>
 			@endif
+			@if ($company->level < 2)
 			<div class="offset_bottom_60 offset-sm_vertical_30">
 				@include('general.area.banner',['area' => 'Каталог запись 1'])
 			</div>
+			@endif
 			@if ($company->posts->first())
 				<div class="company-blog offset_bottom_60">
 					<div class="title">БЛОГ КОМПАНИИ</div>

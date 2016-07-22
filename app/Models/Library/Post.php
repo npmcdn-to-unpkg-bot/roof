@@ -10,7 +10,7 @@ class Post extends Model
 
 	protected $table = 'library_posts';
 
-	protected $fillable = ['id','title','image','entry','content','meta_title','meta_description'];
+	protected $fillable = ['id','title','image','entry','content','meta_title','meta_description','author_id'];
 	
     public function categories () {
     	return $this->belongsToMany('App\Models\Library\Category','library_category_post','post_id','category_id');
@@ -18,6 +18,10 @@ class Post extends Model
 
     public function tags () {
     	return $this->belongsToMany('App\Models\Tag','library_post_tag','post_id','tag_id');
+    }
+
+    public function author() {
+        return $this->belongsTo('App\Models\Author');
     }
 
     public static function validator ($fields) {

@@ -181,18 +181,10 @@ class CompanyController extends Controller
         $user = Auth::user();
         $company = $user->company ? $user->company : new Company;
 
-        $fields = collect();
-        if ($user->company)
-            $fields->push([
-                'type'=>'html',
-                'html'=>'<h4>Поздравляем! Вы добавили компанию, теперь у Вас есть возможность заполнить расширенную информацию. Для этого используйте вкладки на странице управления компанией в Личном Кабинете</h4>'
-            ]);
-        $fields = $fields->merge($this->fields($company));
-
         return view('admin.universal.edit',[
             'title' => $user->company ? 'Редактировать компанию' : 'Добавить компанию',
             'action' => route('user.company.store'),
-            'fields' => $fields,
+            'fields' => $this->fields($company),
             'item' => $company,
             'promote' => !$company->level,
         ]);

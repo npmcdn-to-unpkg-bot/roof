@@ -19,14 +19,15 @@ class AskExpertFormController extends Controller
     public function store(Request $request) {
     	$validator = Validator::make($request->all(),[
     		'name' => 'required',
-    		'phone' => 'required',
+    		'phone' => 'required|regex:"^\+38[0-9]{10}$"',
 		],[
 			'name.required' => 'Поле имя обязательно для ввода',
 			'phone.required' => 'Поле телефон обязательно для ввода',
+			'phone.regex' => 'Введите телефон в формате +38XXXXXXXXXX'
 		]);
 
 		if ($validator->fails())
-			return redirect()->route('want-roof.index')->withErrors($validator)->withInput();
+			return redirect()->route('ask-expert.index')->withErrors($validator)->withInput();
 
 		Mail::send('general.askexpert.mail', $request->all(), function($m){
 			$m->from('sent_form@roofers.com.ua','roofers.com.ua');

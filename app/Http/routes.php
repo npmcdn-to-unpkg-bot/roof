@@ -123,6 +123,7 @@ Route::group(['middleware'=>'csrf'], function (){
 				'admin/offers'                          => 'Admin\OfferController',
 				'admin/offers/all/categories'           => 'Admin\CategoryController',
 				'admin/events'                          => 'Admin\EventController',
+				'admin/authors'                         => 'Admin\AuthorController',
 				'admin/library'                         => 'Admin\Library\PostController',
 				'admin/library/all/categories'          => 'Admin\Library\CategoryController',
 				'admin/options/library'                 => 'Admin\Library\BlockController',

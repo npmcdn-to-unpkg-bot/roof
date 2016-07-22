@@ -10,6 +10,8 @@ use App\Models\Tender;
 use App\Models\Catalog\Company;
 use Storage;
 use Carbon\Carbon;
+use App\User;
+use Mail;
 
 class TenderController extends Controller
 {
@@ -158,7 +160,9 @@ class TenderController extends Controller
         $request->merge(['end' => Carbon::parse($request->end)]);
 
         $tender = auth()->user()->tenders()->firstOrNew(['id' => $request->id]);
+
         $tender->user_id = auth()->user()->id;
+
         $tender->company_id = auth()->user()->company ? auth()->user()->company->id : '';
 
         if ($request->image&&Storage::exists('temp/'.$request->image)) 
@@ -168,7 +172,21 @@ class TenderController extends Controller
             Storage::delete('images/'.$tender->image);
 
         $tender->fill($request->only('name','description','budget','image','end','person','email','phone'));
+
         $tender->save();
+
+        if (!$request->id)
+            Mail::send('general.tenders.mail', ['tender'=>$tender], function($m){
+                $m->from('no-reply@roofers.com.ua','roofers.com.ua')
+                ->subject('Новый тендер на roofers.com.ua')
+                ->to(
+                    User::whereHas('company',function($query){
+                        $query->whereIn('level',[2,3]);
+                    })
+                    ->lists('email','id')
+                    ->all()
+                );
+            });
 
         return redirect()->route('user.tenders.index');
     }

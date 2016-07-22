@@ -1575,6 +1575,12 @@ td.calendar-block__date_active {
 	font-size: 12px;
 }
 
+.company-cart__label {
+	position: absolute;
+	top: -3px;
+	left: -3px;
+}
+
 .company-cart__post-date {
 	font-size: 12px;
 	color: #88b2bf;
@@ -2516,7 +2522,7 @@ td.calendar-block__date_active {
 	position: fixed;
 	left: -160px;
 	top: 20%;
-	line-height: 65px;
+	line-height: 60px;
 	border-radius: 0 0 7px 7px;
 	height: 60px;
 	width: 220px;
