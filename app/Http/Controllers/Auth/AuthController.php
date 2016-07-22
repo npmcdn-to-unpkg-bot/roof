@@ -32,6 +32,26 @@ class AuthController extends Controller
     protected $redirectTo = 'user';
 
     /**
+     * Show the application login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        $view = property_exists($this, 'loginView')
+                    ? $this->loginView : 'auth.authenticate';
+
+        if (view()->exists($view)) {
+            return view($view);
+        }
+
+        if (request('backurl'))
+            session()->put('url.intended',request('backurl'));
+
+        return view('auth.login');
+    }
+
+    /**
      * Create a new authentication controller instance.
      *
      * @return void

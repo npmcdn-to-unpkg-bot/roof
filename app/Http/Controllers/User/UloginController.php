@@ -13,6 +13,7 @@ use Image;
 
 class UloginController extends Controller
 {
+
     public function index (Request $request) {
         $uLogin = json_decode(
             file_get_contents('http://ulogin.ru/token.php?token=' . $request->uToken . '&host=' . $_SERVER['HTTP_HOST']),
@@ -30,6 +31,7 @@ class UloginController extends Controller
         }
         $user->save();
         auth()->login($user, $remember = true);
-		return back();
+
+		return redirect()->intended('user');
     }
 }

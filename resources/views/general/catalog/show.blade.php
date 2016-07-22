@@ -130,6 +130,7 @@
 						<div class="comment__text">Наша молодая динамично развивающаяся компания представлена на Рынке кровельных услуг Украины с 2001 года. </div>
 					</div> -->
 				@endforeach
+				@if(auth()->user())
 				<form action="{{route('comment.store')}}" class="reviews-form" method="POST">
 					{!! csrf_field() !!}
 					<input type="hidden" name="company_id" value="{{$company->id}}">
@@ -183,6 +184,11 @@
 						<button class="button button_big button_blue reviews-form__submit">ОТПРАВИТЬ</button>
 					</div>
 				</form>
+				@else
+				<div>
+					Для того что бы оставить отзыв о компании <a href="{{url('login')}}?backurl=/catalog/{{$company->id}}">авторизируйтесь на сайте.</a>
+				</div>
+				@endif
 			</div>
 		</div>
 		<div class="container__col-4 container__col-sm-12">
