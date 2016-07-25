@@ -6,7 +6,7 @@
 	<title>roofer.com.ua</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	@if(Agent::isMobile())
-		<meta name="viewport" content="width=500px, user-scalable=no">
+		<meta name="viewport" content="width=720px, user-scalable=no">
 	@else
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	@endif
