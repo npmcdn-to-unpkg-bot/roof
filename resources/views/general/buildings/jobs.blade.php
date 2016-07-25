@@ -8,7 +8,23 @@
 			<span class="breadcumbs__current">СТРОЙКИ И ВАКАНСИИ</span>
 		</div>
 		@include('general.buildings.map')
-		@include('general.buildings.filter')
+		<div class="container offset_vertical_60">
+			<div class="title">ВАКАНСИИ ПО СПЕЦИАЛИЗАЦИИ</div>
+			<form action="" class="offset_vertical_15 jus">
+				<select style="width: 280px;" name="speciality" class="input_select input jus__item offset-sm_vertical_15">
+					<option value="">ВАКАНСИИ ПО СПЕЦИАЛЬНОСТИ</option>
+					@foreach ($specialities as $speciality) @if (!empty($speciality))
+						<option value="{{$speciality}}" {{Request::get('speciality')==$speciality?'selected':''}}>{{$speciality}}</option>
+					@endif @endforeach
+				</select>
+				<select style="width: 170px;" name="seasonality" class="input_select input jus__item offset-sm_vertical_15">
+					<option value="">СЕЗОННОСТЬ</option>
+					<option value="1" {{Request::get('seasonality')==='1'?'selected':''}}>Сезонная работа</option>
+					<option value="0" {{Request::get('seasonality')==='0'?'selected':''}}>Регулярная работа</option>
+				</select>
+				<button class="jus__item offset-sm_vertical_15 button button_search"></button>
+			</form>
+		</div>
 		<div id="jobs" class="container">
 			@foreach ($jobs as $i => $job)
 				<div class="job">
