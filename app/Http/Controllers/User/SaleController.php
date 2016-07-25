@@ -7,7 +7,7 @@ use Validator;
 use Storage;
 use Auth;
 use App\Models\Catalog\Company;
-use App\Models\Catalog\Sale;
+use App\Sale;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Storage;
-use App\Models\Catalog\Sale;
+use App\Sale;
 use App\Models\Catalog\Company;
 use Carbon\Carbon;
 

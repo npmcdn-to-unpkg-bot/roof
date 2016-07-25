@@ -78,7 +78,7 @@ class Company extends Model
     }
 
     public function sales () {
-        return $this->hasMany('App\Models\Catalog\Sale');
+        return $this->hasMany('App\Sale');
     }
 
     public function users () {
