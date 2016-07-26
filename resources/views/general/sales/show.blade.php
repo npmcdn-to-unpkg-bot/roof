@@ -20,7 +20,7 @@
 							{!! $sale->content !!}
 							@if ($sale->company)
 							<div>
-								<b>Компания: </b> <a href="{{route('catalog',$sale->company)}}">{{$sale->company->name}}</a>
+								<b>Компания: </b> <a href="{{route('catalog.show',$sale->company)}}">{{$sale->company->name}}</a>
 							</div>
 							<div>
 								<b>Телефон: </b> {{$sale->company->phone}}
