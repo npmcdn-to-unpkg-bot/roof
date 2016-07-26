@@ -47,7 +47,7 @@ class CompanyController extends Controller
 
         return response()
             ->view('general.catalog.index', [
-                'companies' => $companies,
+                'companies' => $companies->appends( $request->except('page') ),
                 'search' => $request->search
             ])
             ->header('X-Robots-Tag', $XRobotsTag);;

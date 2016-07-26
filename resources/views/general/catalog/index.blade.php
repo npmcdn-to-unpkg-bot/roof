@@ -40,7 +40,7 @@
 	</div>
 	<div class="container text_center offset-sm_vertical_30">
 		<form action="{{ route('catalog.index') }}">
-			<input type="text" name="search" value="{{ isset($search) ? $search : '' }}" placeholder="КЛЮЧЕВОЕ СЛОВО" size="40" class="input">
+			<input type="text" name="search" value="{{ isset($search) ? $search : '' }}" placeholder="ПОИСК ПО НАЗВАНИЮ" size="40" class="input">
 			<button class="button button_search"></button>
 		</form>
 	</div>
