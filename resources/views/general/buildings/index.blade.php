@@ -32,7 +32,7 @@
 		</form>
 	</div>
 	<div id="buildings" class="container">
-		@foreach ($buildings as $i => $building)
+		@forelse ($buildings as $i => $building)
 			@if ($i%3==0) <div class="container__row offset_vertical_60"> @endif
 				<div class="container__col-4 container__col-sm-12 offset-sm_vertical_60 building">
 					@if ($building->images->first()) <a href="{{ route('buildings.show', $building) }}"><img src="/fit/{{Agent::isMobile()?'610/420':'370/200'}}/{{ $building->images->first()->name }}" alt="" class="building__image"></a> @endif
@@ -51,7 +51,9 @@
 					@endif
 				</div>
 			@if ($i+1==count($buildings)||$i%3==2) </div> @endif
-		@endforeach
+		@empty
+		По вашему запросу ничего не найдено.
+		@endforelse
 	</div>
 	@include('general.pagenav',['items'=>$buildings])
 	@include('general.news.block2')

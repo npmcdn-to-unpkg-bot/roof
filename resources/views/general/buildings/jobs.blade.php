@@ -26,7 +26,7 @@
 			</form>
 		</div>
 		<div id="jobs" class="container">
-			@foreach ($jobs as $i => $job)
+			@forelse ($jobs as $i => $job)
 				<div class="job">
 					<div class="container__row">
 						<a href="{{route('jobs.show',$job)}}" class="container__col-6 job__title">
@@ -63,7 +63,9 @@
 					</div>
 					<div class="job__toggle"></div>
 				</div>
-			@endforeach
+			@empty
+			По вашему запросу ничегоне найдено.
+			@endforelse
 		</div>
 	</div>
 	@include('general.pagenav',['items'=>$jobs])
