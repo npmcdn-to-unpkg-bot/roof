@@ -10,6 +10,7 @@ use Storage;
 use App\Sale;
 use App\Models\Catalog\Company;
 use Carbon\Carbon;
+use Validator;
 
 class SaleController extends Controller
 {
@@ -153,7 +154,7 @@ class SaleController extends Controller
      */
     public function store(Request $request, $company)
     {
-        $validator = Sale::validator($request->all());
+        $validator = Validator::make($request->all(), Sale::$rules, Sale::$messages);
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 

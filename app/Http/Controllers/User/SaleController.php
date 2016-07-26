@@ -11,6 +11,7 @@ use App\Sale;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Validator;
 
 class SaleController extends Controller
 {
@@ -151,7 +152,7 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Sale::validator($request->all());
+        $validator = Validator::make($request->all(), Sale::$rules, Sale::$messages);
         if ($validator->fails())
             return back()->withInput()->withErrors($validator);
 
