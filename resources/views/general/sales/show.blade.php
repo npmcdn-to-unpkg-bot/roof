@@ -18,6 +18,14 @@
 						@if ($sale->image) <img src="/width/{{Agent::isMobile() ? '610' : '240'}}/{{$sale->image}}" alt="" class="market-news__image"> @endif
 						<div class="market-news__text">
 							{!! $sale->content !!}
+							@if ($sale->company)
+							<div>
+								<b>Компания: </b> <a href="{{route('catalog',$sale->company)}}">{{$sale->company->name}}</a>
+							</div>
+							<div>
+								<b>Телефон: </b> {{$sale->company->phone}}
+							</div>
+							@endif
 							@if ($sale->end > Carbon\Carbon::now()->addYear(-500))
 							<div>
 								<b>Дата окончания: </b> {{$sale->end->format('d.m.Y')}}

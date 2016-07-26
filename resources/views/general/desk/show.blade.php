@@ -44,18 +44,7 @@
 				@include('general.desk.top')
 			</div>
 			<div class="container__col-4 container__col-sm-12">
-				<div class="title">КАТЕГОРИИ</div>
-				<form class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare">
-					@foreach (App\Category::all() as $category)
-						<label class="menu__item">
-							<input class="input_checkbox" type="checkbox" name="category" value="{{$category->id}}">
-							<span></span>
-							{{$category->name}}
-						</label>
-					@endforeach
-					<button class="button button_100 button_cyan button_big">ПОКАЗАТЬ</button>
-				</form>
-				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' =>'Объявления запись 1'])</div>
+				@include('general.area.banner',['area' =>'Объявления запись 1'])
 				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Объявления запись 2'])</div>
 			</div>
 		</div>
