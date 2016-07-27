@@ -27,25 +27,25 @@ class Article extends Model
     protected $fillable = ['title','image','entry','content','meta_title','meta_description','author_id'];
 
     public function prev(){
+        $article = self::where('created_at', '<', $this->created_at)->orderBy('created_at','desc')->first();
+
+        if (!$article)
+            return false;
+
+        return $article;
+    }
+
+    public function next(){
     	$article = self::where('created_at', '>', $this->created_at)->orderBy('created_at','asc')->first();
 
-    	if (!$article)
-    		return false;
-
-    	return $article;
+        if (!$article)
+            return false;
+        
+        return $article;
     }
 
     public function author() {
         return $this->belongsTo('App\Models\Author');
-    }
-
-    public function next(){
-    	$article = self::where('created_at', '<', $this->created_at)->orderBy('created_at','desc')->first();
-
-    	if (!$article)
-    		return false;
-    	
-    	return $article;
     }
 
     public function tags () {

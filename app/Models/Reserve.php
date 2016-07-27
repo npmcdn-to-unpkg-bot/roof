@@ -10,7 +10,7 @@ class Reserve extends Model
 
 	public $timestamps = false;
 
-    public function user () {
+    public function company () {
     	return $this->belongsTo('App\User');
     }
 

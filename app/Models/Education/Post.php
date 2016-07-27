@@ -36,4 +36,22 @@ class Post extends Model
 		    ]);
 
     }
+
+    public function prev(){
+        $post = self::where('created_at', '<', $this->created_at)->orderBy('created_at','desc')->first();
+
+        if (!$post)
+            return false;
+
+        return $post;
+    }
+
+    public function next(){
+        $post = self::where('created_at', '>', $this->created_at)->orderBy('created_at','asc')->first();
+
+        if (!$post)
+            return false;
+        
+        return $post;
+    }
 }

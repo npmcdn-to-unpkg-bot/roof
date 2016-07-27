@@ -85,6 +85,10 @@ class Company extends Model
         return $this->hasMany('App\User');
     }
 
+    public function reserves () {
+        return $this->hasMany('App\Models\Reserve');
+    }
+
     public function new_users () {
         return $this->hasMany('App\User','join_company_id');
     }

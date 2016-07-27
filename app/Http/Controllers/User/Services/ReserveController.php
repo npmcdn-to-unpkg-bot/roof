@@ -16,7 +16,7 @@ class ReserveController extends Controller
      */
     public function index()
     {
-        $reserves = auth()->user()->reserves()->paginate(15);
+        $reserves = auth()->user()->company->reserves()->paginate(15);
 
         $th = [
             [

@@ -95,30 +95,27 @@ class AdminMenu
                     ],
                 ],
             ];
-        if (Request::is('user*')&&auth()->user()->orders()->first())
+        if (Request::is('user*')&&(auth()->user()->orders()->first()||auth()->user()->company&&auth()->user()->company->reserves()->first()))
             $menu = array_merge($menu, [
                 'payment'=>[
                     'name' => 'Счета',
                     'icon' => 'fa-bank',
                     'active' => Request::is('user/orders*')?'active':'',
-                    'children' => [
-                        [
-                            'name' => 'Список счетов',
-                            'icon' => 'fa-list',
-                            'href' => route('user.orders.index'),
-                        ]
-                    ]
+                    'children' => []
                 ]
             ]);
-        if (Request::is('user*')&&auth()->user()->reserves()->first())
-            $menu['payment']['children'] = array_merge(
-                $menu['payment']['children'],[
-                        [
-                            'name' => 'Зарезервированые услуги',
-                            'icon' => 'fa-list',
-                            'href' => route('user.reserve.index'),
-                        ]
-                ]);
+        if (Request::is('user*')&&auth()->user()->orders()->first())
+            array_push($menu['payment']['children'],[
+                'name' => 'Список счетов',
+                'icon' => 'fa-list',
+                'href' => route('user.orders.index'),
+            ]);
+        if (Request::is('user*')&&auth()->user()->company&&auth()->user()->company->reserves()->first())
+            array_push($menu['payment']['children'],[
+                'name' => 'Зарезервированые услуги',
+                'icon' => 'fa-list',
+                'href' => route('user.reserve.index'),
+            ]);
         if (Request::is('user*')&&Auth::user()->company)
             $menu['company']['children'] = array_merge(
                 $menu['company']['children'],[
@@ -402,6 +399,10 @@ class AdminMenu
                             'name' => 'Библиотека на главной',
                             'icon' => 'fa-list',
                             'href' => route('admin.options.library.index'),
+                        ],[
+                            'name' => 'Цены на услуги',
+                            'icon' => 'fa-money',
+                            'href' => route('admin.services.index'),
                         ],
                     ],
                 ],

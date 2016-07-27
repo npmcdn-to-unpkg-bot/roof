@@ -10,6 +10,8 @@ class Service extends Model
 {
     protected $table = 'services';
 
+    public $timestamps = false;
+
     public function orders() {
     	return $this->hasMany('App\Models\Order');
     }
@@ -39,7 +41,7 @@ class Service extends Model
         }
 
         if ($this->value == 1) {
-            $reserveOffers = $orderable->user->reserves()->firstOrNew([
+            $reserveOffers = $orderable->reserves()->firstOrNew([
                 'service_id' => Service::where('group','offer_framed')->where('value','7')->firstOrNew([])->id
             ]);
             $reserveOffers->count += 10;
@@ -47,17 +49,13 @@ class Service extends Model
         }
 
         if ($this->value == 2) {
-            $reserveOffers = $orderable->user->reserves()->firstOrNew([
+            $reserveOffers = $orderable->reserves()->firstOrNew([
                 'service_id' => Service::where('group','offer_top')->where('value','7')->firstOrNew([])->id
             ]);
             $reserveOffers->count += 10;
             $reserveOffers->save();
         }
         
-        if ($orderable->max_level_ever < $orderable->level) {
-            $orderable->max_level_start = Carbon::now();
-            $orderable->max_level_ever = $orderable->level;
-        }
         $orderable->save();
     }
 }

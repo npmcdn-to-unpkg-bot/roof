@@ -15,6 +15,7 @@ use App\Http\Requests;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Agent;
+use App\Models\Service;
 
 class CompanyController extends Controller
 {
@@ -217,14 +218,8 @@ class CompanyController extends Controller
         if ($company->logo&&$company->logo!==$request->logo) 
             Storage::delete('images/'.$company->logo);
 
-        if ($company->max_level_ever < $request->level) {
-            $company->max_level_start = Carbon::now();
-            $company->max_level_ever = $request->level;
-        }
-        if ($company->level != $request->level) {
-            $company->level = $request->level;
-            $company->level_end = Carbon::now()->addYear();
-        }
+        if ($company->level != $request->level) 
+            Service::where(['group'=>'company_level','value'=>$request->level])->first()->apply($company);
 
         $company
             ->fill($request->only('name','email','site','logo','phone','entry','about','services','association','privat','address','lat','lng','city_id','meta_title','meta_description'))

@@ -22,6 +22,18 @@
 				<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
 				<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
 				<div class="ya-share2" data-services="facebook,gplus,twitter" data-counter=""></div>
+				<div class="container__row offset_vertical_60 offset-sm_vertical_60">
+					<div class="container__col-6 container__col-sm-6">
+						@if($post->prev())
+						<a href="{{route('knowladge.education.show', $post->prev())}}" class="market-news__other">< ПРЕДЫДУЩАЯ СТАТЬЯ</a>
+						@endif
+					</div>
+					<div class="container__col-6 container__col-sm-6 text_right">
+						@if($post->next())
+						<a href="{{route('knowladge.education.show', $post->next())}}" class="market-news__other">СЛЕДУЮЩАЯ СТАТЬЯ ></a>
+						@endif
+					</div>
+				</div>
 			</div>
 			<div class="post-page__libraries">
 				@foreach ($post->tags as $tag)
@@ -46,6 +58,7 @@
 			    })();
 			</script>
 			<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+			@if(Agent::isMobile())	@include('general.knowladge.education.related') @endif
 		</div>
 		<div class="container__col-4 container__col-sm-12">
 			<div class="title">РАЗДЕЛЫ</div>
@@ -60,18 +73,5 @@
 		</div>
 	</div>
 </div>
-
-@if($related_posts->first())
-<div class="container offset_bottom_60">
-	<div class="title offset_vertical_30">ВОЗМОЖНО, ВАМ БУДЕТ ИНТЕРЕСНО</div>
-	<div class="container__row">
-		@foreach($related_posts as $post)
-		<div class="container__col-4">
-			@include('general.knowladge.education.preview')
-		</div>
-		@endforeach
-	</div>
-</div>
-@endif
-
+@if(!Agent::isMobile())	@include('general.knowladge.education.related') @endif
 @endsection

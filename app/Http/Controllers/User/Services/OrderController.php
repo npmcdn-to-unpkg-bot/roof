@@ -53,10 +53,10 @@ class OrderController extends Controller
                     'field'=>$order->service->name,
                     'type'=>'text',
                 ],[
-                    'field'=> $order->status ? trans('order_status.'.$order->status) : 'Ожидает оплаты',
+                    'field'=> $order->payed ? 'Оплачено' : ($order->status ? trans('order_status.'.$order->status) : 'Ожидает оплаты'),
                     'type'=>'text',
                 ],[
-                    'html' => (!$order->payed)&&auth()->user()->reserves()->where('service_id',$order->service->id)->first()?'<a href="/user/orders/reserve/'.$order->id.'" class="btn btn-lg btn-primary">Использовать резерв</a>':''  ,
+                    'html' => (!$order->payed)&&auth()->user()->company&&auth()->user()->company->reserves()->where('service_id',$order->service->id)->first()?'<a href="/user/orders/reserve/'.$order->id.'" class="btn btn-lg btn-primary">Использовать резерв</a>':''  ,
                     'type'=>'html',
                 ],[
                     'html' => $order->payed ? '' : $liqpay->cnb_form([
@@ -124,8 +124,9 @@ class OrderController extends Controller
 
     public function use_reserve($id) {
         $user = auth()->user();
+        $company = $user->company;
         $order = Order::find($id);
-        $reserve = $user->reserves()->where('service_id',$order->service->id)->first();
+        $reserve = $company->reserves()->where('service_id',$order->service->id)->first();
         if ($order->user_id == $user->id && $reserve->count > 0) {
             $order->payed = 1;
             $order->apply();

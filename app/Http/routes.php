@@ -134,6 +134,7 @@ Route::group(['middleware'=>'csrf'], function (){
 				'admin/pages'                           => 'Admin\PageController',
 				'admin/users'                           => 'Admin\UserController',
 				'admin/options'                         => 'Admin\OptionController',
+				'admin/services'                        => 'Admin\ServiceController',
 			]);
 
 		});
