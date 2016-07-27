@@ -25,7 +25,6 @@ class AddCompanyIdColumnToOrder extends Migration
      */
     public function down()
     {
-
         Schema::table('reserves',function($table){
             $table->dropColumn('company_id');
             $table->integer('user_id')->index();
