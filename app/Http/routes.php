@@ -15,11 +15,10 @@ Route::group(['middleware'=>'csrf'], function (){
 
 	Route::get('/', function () {	
 		return view('general.index',
-			[
-				'companies' => App\Models\Catalog\Company::orderBy('level','desc')
-			            ->orderBy(DB::raw('level*max_level_start'))
-			            ->orderBy('rating', 'desc')
-			            ->orderBy('created_at', 'desc')
+			[        
+				'companies' => App\Models\Catalog\Company::
+						  orderBy('rating', 'desc')
+                        ->orderBy('created_at', 'desc')
 			            ->take(6)
 			            ->get()
 			]
