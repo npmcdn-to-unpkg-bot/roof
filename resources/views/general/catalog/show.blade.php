@@ -37,7 +37,7 @@
 					<a href="#services" class="jus__item tabs__nav">УСЛУГИ</a>
 					<a href="#prices" class="jus__item tabs__nav">ПРАЙСЫ</a>
 					<a href="#sales" class="jus__item tabs__nav">АКЦИИ</a>
-					@if (Agent::isMobile()) <a href="{{route('catalog.{company}.post.index', $company)}}" class="jus__item tabs__link">БЛОГ</a> @endif
+					@if (Agent::isMobile()&&$company->posts->first()) <a href="{{route('catalog.{company}.post.index', $company)}}" class="jus__item tabs__link">БЛОГ</a> @endif
 				</div>
 				<div id="description" class="tabs__tab tabs__tab_active">
 					{!!$company->about!!}

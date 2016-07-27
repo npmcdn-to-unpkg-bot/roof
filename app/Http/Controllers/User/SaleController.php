@@ -11,7 +11,6 @@ use App\Sale;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Validator;
 
 class SaleController extends Controller
 {
