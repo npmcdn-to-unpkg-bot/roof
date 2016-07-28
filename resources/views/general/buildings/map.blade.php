@@ -41,7 +41,7 @@
 					infowindow_{{$building->id}}: new google.maps.InfoWindow({
 						content:
 						'<div class="building">'+
-							'<a href="http://roof.app/buildings/14" class="building__name"><?php echo addslashes($building->name) ?></a>'+
+							'<a href="{{ route('building.show', $building) }}" class="building__name"><?php echo addslashes($building->name) ?></a>'+
 							'<span class="field field_type">Жилой комплекс</span>'+
 							@if ($building->company)
 							'<a href="{{ route('catalog.show', $building->company) }}" class="field field_company"><?php echo addslashes($building->company->name) ?></a>'+
