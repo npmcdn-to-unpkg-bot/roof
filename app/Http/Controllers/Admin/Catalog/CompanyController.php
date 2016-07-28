@@ -213,7 +213,7 @@ class CompanyController extends Controller
 
         $company = Company::firstOrNew(['id' => $request->id]);
 
-        if (Storage::exists('temp/'.$request->logo)) 
+        if (Storage::exists('temp/'.$request->logo)&&!Storage::exists('images/'.$request->logo)) 
             Storage::move('temp/'.$request->logo,'images/'.$request->logo);
         if ($company->logo&&$company->logo!==$request->logo) 
             Storage::delete('images/'.$company->logo);

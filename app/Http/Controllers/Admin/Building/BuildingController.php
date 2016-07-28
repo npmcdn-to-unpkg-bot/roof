@@ -213,7 +213,7 @@ class BuildingController extends Controller
         }
         $images=collect();
         foreach ($request->images as $order => $name) {
-            if ( Storage::exists('temp/'.$name) ) 
+            if ( Storage::exists('temp/'.$name)&&!Storage::exists('images/'.$name) ) 
                 Storage::move('temp/'.$name,'images/'.$name);
             $image = Image::firstOrNew(['name'=>$name]);
             $image
