@@ -148,7 +148,7 @@ class PostController extends Controller
 
         $post = Post::firstOrNew(['id' => $request->id]);
 
-        if (Storage::exists('temp/'.$request->image)&&!&&Storage::exists('images/'.$request->image)) 
+        if (Storage::exists('temp/'.$request->image)&&!Storage::exists('images/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
         if ($post->image&&$post->image!==$request->image) 
             Storage::delete('images/'.$company->image);

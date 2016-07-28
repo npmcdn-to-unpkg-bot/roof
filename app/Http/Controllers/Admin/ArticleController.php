@@ -152,7 +152,7 @@ class ArticleController extends Controller
 
         $article = Article::firstOrNew(['id' => $request->id]);
 
-        if (Storage::exists('temp/'.$request->image)&&!&&Storage::exists('images/'.$request->image)) 
+        if (Storage::exists('temp/'.$request->image)&&!Storage::exists('images/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
 
         if ($article->image&&$article->image!==$request->image) 

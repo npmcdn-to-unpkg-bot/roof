@@ -60,7 +60,7 @@ class UserController extends Controller
 
         $user = auth()->user();
 
-        if (Storage::exists('temp/'.$request->image)&&!&&Storage::exists('images/'.$request->image)) 
+        if (Storage::exists('temp/'.$request->image)&&!Storage::exists('images/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
 
         if ($user->image&&$user->image!==$request->image) 

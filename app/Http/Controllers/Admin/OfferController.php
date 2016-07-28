@@ -207,7 +207,7 @@ class OfferController extends Controller
 
         $offer = Offer::firstOrNew(['id' => $request->id]);
         
-        if (Storage::exists('temp/'.$request->image)&&!&&Storage::exists('images/'.$request->image)) 
+        if (Storage::exists('temp/'.$request->image)&&!Storage::exists('images/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
         
         if ($offer->image&&$offer->image!==$request->image) 
