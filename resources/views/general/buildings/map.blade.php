@@ -26,19 +26,47 @@
 				zoom: 6,
 				scrollwheel: false
 			});
+			var markers = {
+				@foreach ($map->reject(function($v){return $v->lng==0&&$v->lat==0;}) as $building)
+					marker_{{$building->id}}: new google.maps.Marker({
+						position: {lat: {{$building->lat}}, lng: {{$building->lng}}},
+						map: map,
+						title: '<?php echo addslashes($building->name) ?>'
+					}),
+				@endforeach
+			}
+
+			var infowindows = {
+				@foreach ($map->reject(function($v){return $v->lng==0&&$v->lat==0;}) as $building)
+					infowindow_{{$building->id}}: new google.maps.InfoWindow({
+						content:
+						'<div class="building">'+
+							'<a href="http://roof.app/buildings/14" class="building__name"><?php echo addslashes($building->name) ?></a>'+
+							'<span class="field field_type">Жилой комплекс</span>'+
+							@if ($building->company)
+							'<a href="{{ route('catalog.show', $building->company) }}" class="field field_company"><?php echo addslashes($building->company->name) ?></a>'+
+							@elseif($building->company_name)
+							'<span class="field field_company"><?php echo addslashes($building->company_name) ?></span>'+
+							@endif
+							'<span class="field field_address"><?php echo addslashes($building->printAddress()) ?></span>'+
+							'<span class="field field_period"><?php echo addslashes($building->calendar()) ?></span>'+
+						'</div>'
+					}),
+				@endforeach	
+			}
 
 			@foreach ($map->reject(function($v){return $v->lng==0&&$v->lat==0;}) as $building)
-				var marker_{{$building->id}} = new google.maps.Marker({
-					position: {lat: {{$building->lat}}, lng: {{$building->lng}}},
-					map: map,
-					title: '<?php echo addslashes($building->name) ?>'
-				});
-				console.log(marker_1.position)
-				marker_{{$building->id}}.addListener('click', function() {
-					
+				markers.marker_{{$building->id}}.addListener('click', function() {
+					for (var index in infowindows){
+						infowindows[index].close()
+					}
+					infowindows.infowindow_{{$building->id}}.open(map, markers.marker_{{$building->id}})
 				});
 			@endforeach
+
+
 		});
 	</script>
 @endif
 </div>
+

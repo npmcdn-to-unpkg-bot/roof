@@ -1326,6 +1326,7 @@ td.calendar-block__date_active {
 /*buding*/
 
 .building {
+	font-family: "PT Sans", sans-serif;
 }
 
 .building__image {
@@ -1343,6 +1344,7 @@ td.calendar-block__date_active {
 	margin-bottom: 16px;
 	display: block;
 	font-family: "Roboto Condensed";
+	font-weight: 400;
 }
 
 .building__job-list {
@@ -2199,6 +2201,7 @@ td.calendar-block__date_active {
 .field_company {
 	background-image: url(../img/building-icon-2.png);
 	color: #0a3955;
+	text-decoration: none;
 }
 
 .field_address {
