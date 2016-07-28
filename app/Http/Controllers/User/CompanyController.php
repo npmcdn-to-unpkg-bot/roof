@@ -139,7 +139,7 @@ class CompanyController extends Controller
             ? $user->company 
             : new Company;
 
-        if ($request->image&&Storage::exists('temp/'.$request->logo)) 
+        if ($request->image&&Storage::exists('temp/'.$request->logo)&&!Storage::exists('images/'.$request->logo)) 
             Storage::move('temp/'.$request->logo,'images/'.$request->logo);
         
         if ($company->logo&&$company->logo!==$request->logo) 

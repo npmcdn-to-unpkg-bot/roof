@@ -185,7 +185,7 @@ class EventController extends Controller
         
         $event = Event::firstOrNew(['id' => $request->id]);
 
-        if ($request->image&&Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)&&!&&Storage::exists('images/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
         
         if ($event->image&&$event->image!==$request->image) 

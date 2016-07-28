@@ -149,7 +149,7 @@ class MemberController extends Controller
 
         if (!$user) abort(404);
 
-        if ($request->image&&Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)&&!&&Storage::exists('images/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
 
         if ($user->image&&$user->image!==$request->image) 

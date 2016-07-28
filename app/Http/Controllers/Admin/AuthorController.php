@@ -117,7 +117,7 @@ class AuthorController extends Controller
 
         $author = Author::firstOrNew(['id' => $request->id]);
 
-        if ($request->image&&Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)&&!&&Storage::exists('images/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
 
         if ($author->image&&$author->image!==$request->image) 

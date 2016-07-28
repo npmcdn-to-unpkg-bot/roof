@@ -199,7 +199,7 @@ class TenderController extends Controller
             $tender->company_name = $request->company;
         }
 
-        if ($request->image&&Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)&&!&&Storage::exists('images/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
 
         if ($tender->image&&$tender->image!==$request->image) 

@@ -152,7 +152,7 @@ class SaleController extends Controller
 
         $sale = Sale::firstOrNew(['id' => $request->id]);
 
-        if ($request->image&&Storage::exists('temp/'.$request->image)) 
+        if ($request->image&&Storage::exists('temp/'.$request->image)&&!&&Storage::exists('images/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
 
         if ($sale->image&&$sale->image!==$request->image) 
