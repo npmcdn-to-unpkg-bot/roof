@@ -33,10 +33,9 @@
 					map: map,
 					title: '<?php echo addslashes($building->name) ?>'
 				});
-
+				console.log(marker_1.position)
 				marker_{{$building->id}}.addListener('click', function() {
-					map.setZoom(8);
-					map.setCenter(marker.getPosition());
+					
 				});
 			@endforeach
 		});
