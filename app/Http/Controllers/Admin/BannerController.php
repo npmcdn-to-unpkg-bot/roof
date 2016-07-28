@@ -135,7 +135,7 @@ class BannerController extends Controller
         
         $banner = Banner::firstOrNew(['id' => $request->id]);
 
-        if ($request->image&&Storage::exists('temp/'.$request->image)&&!&&Storage::exists('images/'.$request->image)) 
+        if (Storage::exists('temp/'.$request->image)&&!&&Storage::exists('images/'.$request->image)) 
             Storage::move('temp/'.$request->image,'images/'.$request->image);
         if ($banner->image&&$banner->image!==$request->image) 
             Storage::delete('images/'.$banner->image);
