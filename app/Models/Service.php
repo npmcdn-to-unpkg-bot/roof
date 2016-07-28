@@ -55,7 +55,16 @@ class Service extends Model
             $reserveOffers->count += 10;
             $reserveOffers->save();
         }
+
+        if ($this->value == 3) {
+            $reserveOffers = $orderable->reserves()->firstOrNew([
+                'service_id' => Service::where('group','offer_top')->where('value','7')->firstOrNew([])->id
+            ]);
+            $reserveOffers->count += 10;
+            $reserveOffers->save();
+        }
         
+
         $orderable->save();
     }
 }
