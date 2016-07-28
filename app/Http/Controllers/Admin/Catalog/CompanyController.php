@@ -218,7 +218,7 @@ class CompanyController extends Controller
         if ($company->logo&&$company->logo!==$request->logo) 
             Storage::delete('images/'.$company->logo);
 
-        if ($company->level != $request->level) 
+        if ($company->level < $request->level) 
             Service::where(['group'=>'company_level','value'=>$request->level])->first()->apply($company);
 
         $company
