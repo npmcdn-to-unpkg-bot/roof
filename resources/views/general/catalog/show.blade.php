@@ -9,6 +9,9 @@
 	<div class="container__row">
 		<div class="container__col-8 container__col-sm-12">
 			<div class="company-cart clearfix company-cart_page company-cart_white">
+				@if($company->level==1)<img src="/img/bronze_recomend.png" alt="" class="company-cart__label">@endif
+				@if($company->level==2)<img src="/img/silver_recomend.png" alt="" class="company-cart__label">@endif
+				@if($company->level==3)<img src="/img/gold_recomend.png" alt="" class="company-cart__label">@endif
 				<img src="/resize/160/140/{{$company->logo}}" alt="" class="company-cart__logo">
 				<div class="company-cart__name">{{$company->name}}</div>
 				<div class="company-cart__description">{{$company->entry}}</div>

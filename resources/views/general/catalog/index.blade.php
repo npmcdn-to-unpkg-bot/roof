@@ -51,7 +51,7 @@
 					@if ($i%2==0) <div class="container__row {{ $i!==0?'offset_vertical_55':''}}"> @endif
 						<div class="container__col-6 container__col-sm-12 offset-sm_vertical_30">
 							<div class="company-cart company-cart_heihgt_220 company-cart_gray">
-								@if($company->level==1)<img src="/img/silver_recomend.png" alt="" class="company-cart__label">@endif
+								@if($company->level==1)<img src="/img/bronze_recomend.png" alt="" class="company-cart__label">@endif
 								@if($company->level==2)<img src="/img/silver_recomend.png" alt="" class="company-cart__label">@endif
 								@if($company->level==3)<img src="/img/gold_recomend.png" alt="" class="company-cart__label">@endif
 								<a href="{{ route('catalog.show', $company) }}"><img src="/resize/85/85/{{$company->logo}}" alt="" class="company-cart__logo"></a>

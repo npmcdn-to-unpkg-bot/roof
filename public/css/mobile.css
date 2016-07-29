@@ -1548,6 +1548,13 @@ td.calendar-block__date_active {
 	background-color: #E9E7E7;
 }
 
+.company-cart__label {
+	position: absolute;
+	top: -10px;
+	left: -10px;
+}
+
+
 .company-cart_heihgt_220 {
 	height: 280px;
 }

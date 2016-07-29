@@ -1580,8 +1580,8 @@ td.calendar-block__date_active {
 
 .company-cart__label {
 	position: absolute;
-	top: -3px;
-	left: -3px;
+	top: -10px;
+	left: -10px;
 }
 
 .company-cart__post-date {
