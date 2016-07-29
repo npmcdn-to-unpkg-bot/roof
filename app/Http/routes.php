@@ -108,6 +108,7 @@ Route::group(['middleware'=>'csrf'], function (){
 			Route::resources([
 				'admin/company'                         => 'Admin\Catalog\CompanyController',
 				'admin/company/{company}/examples'      => 'Admin\Catalog\ExampleController',
+				'admin/company/{company}/reserves'      => 'Admin\Catalog\ReserveController',
 				'admin/company/{company}/staff'         => 'Admin\Catalog\MemberController',
 				'admin/company/{company}/sales'         => 'Admin\Catalog\SaleController',
 				'admin/company/{company}/blog'          => 'Admin\Catalog\PostController',

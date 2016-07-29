@@ -133,6 +133,8 @@ class OrderController extends Controller
             $order->save();
             
             $reserve->count -= 1;
+            if ($reserve->count <= 0)
+                $reserve->delete();
             $reserve->save();
         }
         return back();

@@ -5,4 +5,5 @@
 	<li class="{{Route::is('admin.company.{company}.sales.*')?'active':''}}"><a href="{{route('admin.company.{company}.sales.index',$company)}}">Акции</a></li>
 	<li class="{{Route::is('admin.company.{company}.blog.*')?'active':''}}"><a href="{{route('admin.company.{company}.blog.index',$company)}}">Блог</a></li>
 	<li class="{{Route::is('admin.company.{company}.prices.*')?'active':''}}"><a href="{{route('admin.company.{company}.prices.index',$company)}}">Прайсы</a></li>
+	<li class="{{Route::is('admin.company.{company}.reserves.*')?'active':''}}"><a href="{{route('admin.company.{company}.reserves.index',$company)}}">Резерв</a></li>
 </ul>

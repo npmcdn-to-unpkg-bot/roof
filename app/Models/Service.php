@@ -46,6 +46,18 @@ class Service extends Model
             ]);
             $reserveOffers->count += 10;
             $reserveOffers->save();
+
+            $reserveOffers = $orderable->reserves()->firstOrNew([
+                'service_id' => Service::where('group','poll')->firstOrNew([])->id
+            ]);
+            $reserveOffers->count += 2;
+            $reserveOffers->save();
+
+            $reserveOffers = $orderable->reserves()->firstOrNew([
+                'service_id' => Service::where('group','article')->firstOrNew([])->id
+            ]);
+            $reserveOffers->count += 2;
+            $reserveOffers->save();
         }
 
         if ($this->value == 2) {
@@ -54,6 +66,24 @@ class Service extends Model
             ]);
             $reserveOffers->count += 10;
             $reserveOffers->save();
+
+            $reserveOffers = $orderable->reserves()->firstOrNew([
+                'service_id' => Service::where('group','poll')->firstOrNew([])->id
+            ]);
+            $reserveOffers->count += 5;
+            $reserveOffers->save();
+
+            $reserveOffers = $orderable->reserves()->firstOrNew([
+                'service_id' => Service::where('group','article')->firstOrNew([])->id
+            ]);
+            $reserveOffers->count += 2;
+            $reserveOffers->save();
+
+            $reserveOffers = $orderable->reserves()->firstOrNew([
+                'service_id' => Service::where('group','mailer')->firstOrNew([])->id
+            ]);
+            $reserveOffers->count += 1;
+            $reserveOffers->save();
         }
 
         if ($this->value == 3) {
@@ -61,6 +91,17 @@ class Service extends Model
                 'service_id' => Service::where('group','offer_top')->where('value','7')->firstOrNew([])->id
             ]);
             $reserveOffers->count += 10;
+            $reserveOffers->save();
+
+            $reserveOffers = $orderable->reserves()->firstOrNew([
+                'service_id' => Service::where('group','mailer')->firstOrNew([])->id
+            ]);
+            $reserveOffers->save();
+
+            $reserveOffers = $orderable->reserves()->firstOrNew([
+                'service_id' => Service::where('group','banner')->firstOrNew([])->id
+            ]);
+            $reserveOffers->count += 1;
             $reserveOffers->save();
         }
         
