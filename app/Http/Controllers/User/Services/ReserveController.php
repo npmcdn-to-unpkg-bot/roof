@@ -41,7 +41,7 @@ class ReserveController extends Controller
         }
 
         return view('admin.universal.index', [
-            'title' => 'Список зарезервированных услуги',
+            'title' => 'Список зарезервированных услуг',
             'table' => $table,
             'pagination' => $reserves->render(),
         ]);

@@ -66,6 +66,15 @@ class SaleController extends Controller
                 'format' => 'DD.MM.YYYY HH:mm',
                 'label' => 'Конец',
                 'value' => old() ? old('end') : ($sale->end > Carbon::parse('1975') ? $sale->end->format('d.m.Y H:i') : '')
+            ],[
+                'name'=>'company_id',
+                'type'=>'select',
+                'settings'=>'',
+                'label'=>'Компания',
+                'value'=>old() 
+                    ? old('company_id') 
+                    : ($sale->company ? $sale->company->id : ''),
+                'options'=>Company::lists('name','id')
             ],
         ];
 
@@ -79,7 +88,7 @@ class SaleController extends Controller
     public function index()
     {
 
-        $sales = Sale::paginate(15);
+        $sales = Sale::orderBy('created_at','DESC')->paginate(15);
         $th = [
             [
                 'title'=>'Картинка',
@@ -160,7 +169,7 @@ class SaleController extends Controller
 
 
         $sale
-            ->fill($request->only('title','image','entry','content','meta_title','meta_description','end','start'))
+            ->fill($request->only('title','image','entry','content','meta_title','meta_description','end','start','company_id'))
             ->save();
 
         return redirect()->route('admin.sales.index');

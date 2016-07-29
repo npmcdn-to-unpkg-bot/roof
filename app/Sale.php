@@ -26,7 +26,7 @@ class Sale extends Model
 		'content.max' => 'Текст должен быть не больше 65535 символов.',
     ];
 
-    protected $fillable = ['title','image','entry','content','meta_title','meta_description', 'end', 'start'];
+    protected $fillable = ['title','image','entry','content','meta_title','meta_description', 'end', 'start','company_id'];
 
     public function company () {
     	return $this->belongsTo('App\Models\Catalog\Company');
