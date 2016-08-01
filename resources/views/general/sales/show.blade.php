@@ -17,7 +17,7 @@
 					<div class="offset_vertical_20 offset-sm_vertical_30">
 						@if ($sale->image) <img src="/width/{{Agent::isMobile() ? '610' : '240'}}/{{$sale->image}}" alt="" class="market-news__image"> @endif
 						<div class="market-news__text">
-							{!! $sale->content !!}
+							<div class="@if($sale->company&&$sale->company->level == 3) text_bold @endif">{!! $sale->content !!}</div>
 							@if ($sale->company)
 							<div>
 								<b>Компания: </b> <a href="{{route('catalog.show',$sale->company)}}">{{$sale->company->name}}</a>
@@ -41,8 +41,10 @@
 				</div>
 			</div>
 			<div class="container__col-4 container__col-sm-12">
+				@if ($sale->user&&$sale->user->company->level < 2)
 				@include('general.area.banner',['area' => 'Акции запись 1'])
 				<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.area.banner',['area' => 'Акции запись 2'])</div>
+				@endif
 			</div>
 		</div>
 	</div>

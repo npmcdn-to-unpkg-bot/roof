@@ -358,6 +358,10 @@ a {
 	text-align: center;
 }
 
+.text_bold {
+	font-weight: bold;
+}
+
 /*menu*/
 
 .menu_horizontal {

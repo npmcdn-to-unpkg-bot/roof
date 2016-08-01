@@ -24,7 +24,7 @@
 					</div>
 					<div class="container__col-6 container__col-sm-12">
 						<div class="desk-single__title">{{$offer->title}}</div>
-						<div class="desk-single__text">{{$offer->information}}</div>
+						<div class="desk-single__text @if($offer->user&&$offer->user->company&&$offer->user->company->level == 3) text_bold @endif">{{$offer->information}}</div>
 						<div class="text_right">
 							<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
 							<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>

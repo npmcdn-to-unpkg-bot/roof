@@ -56,7 +56,7 @@
 								@if($company->level==3)<img src="/img/gold_recomend.png" alt="" class="company-cart__label">@endif
 								<a href="{{ route('catalog.show', $company) }}"><img src="/resize/85/85/{{$company->logo}}" alt="" class="company-cart__logo"></a>
 								<a href="{{ route('catalog.show', $company) }}" class="company-cart__name">{{$company->name}}</a>
-								<div class="company-cart__description">{{str_limit($company->entry, 150)}}</div>
+								<div class="company-cart__description @if($company->level==3) text_bold @endif">{{str_limit($company->entry, 150)}}</div>
 								<div class="company-cart__bottom">
 									<div class="company-cart__address">{{$company->printAddress()}}</div>
 									@if($company->site)

@@ -14,7 +14,7 @@
 				@if($company->level==3)<img src="/img/gold_recomend.png" alt="" class="company-cart__label">@endif
 				<img src="/resize/160/140/{{$company->logo}}" alt="" class="company-cart__logo">
 				<div class="company-cart__name">{{$company->name}}</div>
-				<div class="company-cart__description">{{$company->entry}}</div>
+				<div class="company-cart__description @if($company->level==3) text_bold @endif">{{$company->entry}}</div>
 				<div class="container__row">
 					<div class="container__col-8 container__col-sm-12">
 						<div class="company-cart__address">{{$company->printAddress()}}</div>
@@ -78,7 +78,7 @@
 								<img src="/fit/120/85/{{$sale->image}}" alt="" class="company-sale__image">
 								<div class="company-sale__text">
 									<a href="/catalog/{{$company->id}}/sales/{{$sale->id}}" class="company-sale__title">{{$sale->title}}</a>
-									<p>{{$sale->entry}}</p>
+									<p class="@if($company->level == 3) text_bold @endif">{{$sale->entry}}</p>
 								</div>
 							</div>
 						@endforeach
@@ -223,7 +223,7 @@
 					@foreach ($company->posts as $post)
 						<div class="company-blog__item">
 							<a href="{{route('catalog.{company}.post.show', ['company' => $company, 'post' => $post])}}" class="company-blog__title">{{$post->title}}</a>
-							<p>{{$post->entry}}</p>
+							<p class="@if($company->level == 3) text_bold @endif">{{$post->entry}}</p>
 						</div>
 					@endforeach
 					<div class="company-blog__item">

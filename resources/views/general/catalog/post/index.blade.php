@@ -18,7 +18,7 @@
 					@if ($article->image) <a href="{{route('catalog.{company}.post.show', ['company' => $company, 'post' => $article])}}"><img src="/fit/85/85/{{$article->image}}" alt="" class="market-news__image"></a> @endif
 					<a href="{{route('catalog.{company}.post.show', ['company' => $company, 'post' => $article])}}" class="market-news__title">{{$article->title}}</a>
 					<div class="market-news__createdat">{{$article->created_at->format('d.m.Y')}}</div>
-					<div class="market-news__text">{{$article->entry}}</div>
+					<div class="market-news__text @if($company->level == 3) text_bold @endif">{{$article->entry}}</div>
 					<a href="{{route('catalog.{company}.post.show', ['company' => $company, 'post' => $article])}}" class="market-news__more">Читать подробнее</a>
 				</div>
 				@endforeach
@@ -27,9 +27,13 @@
 
 			</div>
 			<div class="container__col-4 container__col-sm-12">
+				@if ($company->level < 2)
 				@include('general.area.banner',['area' => 'Новости архив 1'])
+				@endif
 				<div class="offset_vertical_55  offset-sm_vertical_30">@include('general.polls.block')</div>
+				@if ($company->level < 2)
 				<div class="offset_vertical_55  offset-sm_vertical_30">@include('general.area.banner',['area' => 'Новости архив 2'])</div>
+				@endif
 			</div>
 		</div>
 	</div>
