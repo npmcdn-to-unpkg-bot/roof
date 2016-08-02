@@ -82,7 +82,7 @@ class ArticleController extends Controller
     public function index()
     {
 
-        $articles = Article::paginate(15);
+        $articles = Article::orderBy('created_at','DESC')->paginate(15);
         $th = [
                 [
                     'title'=>'Картинка',
