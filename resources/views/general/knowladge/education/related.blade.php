@@ -4,7 +4,7 @@
 	<div class="container__row">
 		@foreach($related_posts as $post)
 		<div class="container__col-4 container__col-sm-12 offset-sm_bottom_30">
-			@include('general.knowladge.education.preview')
+			@include('general.knowledge.education.preview')
 		</div>
 		@endforeach
 	</div>

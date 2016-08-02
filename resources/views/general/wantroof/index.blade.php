@@ -6,7 +6,7 @@
 		@if ($errors->first('name')) <div class="error">{{$errors->first('name')}}</div> @endif
 	</div>
 	<div class="offset_vertical_20 offset-sm_vertical_20 text_center">
-		<input style="width: 315px;" name="phone" value="{{old('phone')}}" type="text" class="input input_bold" placeholder="ТЕЛЕФОН* +380990000000">
+		<input style="width: 315px;" name="phone" value="{{old('phone')}}" type="text" class="input input_bold" placeholder="ТЕЛЕФОН +380990000000*">
 		@if ($errors->first('phone')) <div class="error">{{$errors->first('phone')}}</div> @endif
 	</div>
 	<div class="offset_vertical_20 offset-sm_vertical_20 text_center">

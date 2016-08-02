@@ -712,24 +712,24 @@ a {
     display: block;
 }
 
-/*knowladge-slider*/
+/*knowledge-slider*/
 
-.knowladge-slider {
+.knowledge-slider {
 	height: 292px;
 	background-color: #393939;
 	position: relative;
 }
 
-.knowladge-slider_offset-bottom {
+.knowledge-slider_offset-bottom {
 	margin-bottom: 60px;
 }
 
-.knowladge-slider__navigation {
+.knowledge-slider__navigation {
 	width: 371px;
 	float: left;
 }
 
-.knowladge-slider__navigation-item {
+.knowledge-slider__navigation-item {
 	display: block;
 	border-right: 12px solid transparent;
 	border-left: 12px solid transparent;
@@ -739,29 +739,29 @@ a {
 	line-height: 24px;
 }
 
-.knowladge-slider__navigation-item:before {
+.knowledge-slider__navigation-item:before {
 	content: '>';
 	float: right;
 	font-size: 18px;
 	margin-top: 18px;
 }
 
-.knowladge-slider__navigation-item:not(:first-child) {
+.knowledge-slider__navigation-item:not(:first-child) {
 	border-top: 1px solid white;
 }
 
-.knowladge-slider:not(:hover) .knowladge-slider__navigation-item:first-child,
-.knowladge-slider__navigation-item:hover{
+.knowledge-slider:not(:hover) .knowledge-slider__navigation-item:first-child,
+.knowledge-slider__navigation-item:hover{
 	color: #d98e64;
 }
 
-.knowladge-slider:not(:hover) .knowladge-slider__navigation-item:nth-child(2),
-.knowladge-slider__navigation-item:hover+.knowladge-slider__navigation-item,
-.knowladge-slider__navigation-item:hover:not(:first-child) {
+.knowledge-slider:not(:hover) .knowledge-slider__navigation-item:nth-child(2),
+.knowledge-slider__navigation-item:hover+.knowledge-slider__navigation-item,
+.knowledge-slider__navigation-item:hover:not(:first-child) {
 	border-top: 1px solid #d98e64;
 }
 
-.knowladge-slider__image {
+.knowledge-slider__image {
 	position: absolute;
 	opacity: 0;
 	top: 0;
@@ -769,13 +769,13 @@ a {
 	transition: 0.3s;
 }
 
-.knowladge-slider:not(:hover) .knowladge-slider__navigation-item:first-child .knowladge-slider__image,
-.knowladge-slider__navigation-item:hover .knowladge-slider__image{
+.knowledge-slider:not(:hover) .knowledge-slider__navigation-item:first-child .knowledge-slider__image,
+.knowledge-slider__navigation-item:hover .knowledge-slider__image{
 	opacity: 1;
 	z-index: 9;
 }
 
-.knowladge-slider__text {
+.knowledge-slider__text {
 	display: table-cell;
 	vertical-align: middle;
 	height: 57px;

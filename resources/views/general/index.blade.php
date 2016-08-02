@@ -50,13 +50,13 @@
 				@include('general.news.block')
 			</div>
 			<div class="container__col-8 container__col-sm-12 offset-sm_vertical_30">
-				<div class="knowladge-slider knowladge-slider_offset-bottom">
-					<div class="knowladge-slider__navigation">
+				<div class="knowledge-slider knowledge-slider_offset-bottom">
+					<div class="knowledge-slider__navigation">
 						<?php $ids = (array)json_decode(App\Option::firstOrNew(['name'=>'library_slider'])->value); ?>
 						@foreach (App\Models\Library\Post::find($ids)->take(5) as $library)
-							<a href="{{route('knowladge.library.show', $library)}}" class="knowladge-slider__navigation-item">
-								<span class="knowladge-slider__text">{{str_limit($library->title, 60)}}</span>
-								<img src="/fit/{{Agent::isMobile() ? '240/292' : '395/292'}}/{{$library->image}}" class="knowladge-slider__image" alt="">
+							<a href="{{route('knowledge.library.show', $library)}}" class="knowledge-slider__navigation-item">
+								<span class="knowledge-slider__text">{{str_limit($library->title, 60)}}</span>
+								<img src="/fit/{{Agent::isMobile() ? '240/292' : '395/292'}}/{{$library->image}}" class="knowledge-slider__image" alt="">
 							</a>
 						@endforeach
 					</div>

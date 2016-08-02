@@ -25,7 +25,7 @@ class LibraryController extends Controller
 
         $posts = $posts->orderBy('created_at','desc');
 
-        return view('general.knowladge.library.index',[
+        return view('general.knowledge.library.index',[
             'posts' => $posts->paginate(20)
         ]);
     }
@@ -50,7 +50,7 @@ class LibraryController extends Controller
         ->take(3)
         ->get();
 
-        return view('general.knowladge.library.show', [
+        return view('general.knowledge.library.show', [
             'post' => $post,
             'related_posts' => $related_posts
         ]);
@@ -59,7 +59,7 @@ class LibraryController extends Controller
     public function category($id) {
         $posts = Category::find($id)->posts()->orderBy('created_at','desc')->paginate(20);
 
-        return view('general.knowladge.library.index',[
+        return view('general.knowledge.library.index',[
             'posts' => $posts
         ]);
     }

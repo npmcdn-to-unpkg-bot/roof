@@ -42,7 +42,7 @@
 						<a href="{{ route('desk.index') }}" class="{{ Request::is('desk*')?'menu__item_active':'' }} menu__item">Доска объявлений</a>
 						<a href="{{ route('tenders.index') }}" class="{{ Request::is('tenders*')?'menu__item_active':'' }} menu__item">Тендеры</a>
 						<a href="{{ route('sales.index') }}" class="{{ Request::is('sales*')?'menu__item_active':'' }} menu__item">Акции и скидки</a>
-						<a href="{{ route('knowladge.index') }}" class="{{ Request::is('knowladge*')?'menu__item_active':'' }} menu__item">База знаний</a>
+						<a href="{{ route('knowledge.index') }}" class="{{ Request::is('knowledge*')?'menu__item_active':'' }} menu__item">База знаний</a>
 						<a href="{{ route('news.index') }}" class="{{ Request::is('news*')?'menu__item_active':'' }} menu__item">Новости и статьи</a>
 					</div>
 					<div class="menu menu_vertical menu_lh_48 menu_uppercase menu_big menu_white menu_justified menu_main">
@@ -84,7 +84,7 @@
 					<a href="{{ route('buildings.index') }}" class="menu__item">Стройки и вакансии</a>
 					<a href="{{ route('desk.index') }}" class="menu__item">Доска объявлений</a>
 					<a href="{{ route('sales.index') }}" class="menu__item">Акции и скидки</a>
-					<a href="{{ route('knowladge.index') }}" class="menu__item">База знаний</a>
+					<a href="{{ route('knowledge.index') }}" class="menu__item">База знаний</a>
 					<a href="{{ route('news.index') }}" class="menu__item">Новости и статьи</a>					
 				</div>
 				<div class="container__col-right text_right menu menu_vertical menu_big menu_uppercase menu_gray">

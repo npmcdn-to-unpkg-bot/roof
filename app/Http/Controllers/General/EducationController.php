@@ -25,7 +25,7 @@ class EducationController extends Controller
 
         $posts = $posts->orderBy('created_at','desc');
 
-        return view('general.knowladge.education.index',[
+        return view('general.knowledge.education.index',[
             'posts' => $posts->paginate(20)
         ]);
     }
@@ -53,7 +53,7 @@ class EducationController extends Controller
         ->take(3)
         ->get();
 
-        return view('general.knowladge.education.show', [
+        return view('general.knowledge.education.show', [
             'post' => $post,
             'related_posts' => $related_posts
         ]);
@@ -62,7 +62,7 @@ class EducationController extends Controller
     public function category($id) {
         $posts = Category::find($id)->posts()->orderBy('created_at','desc')->paginate(20);
 
-        return view('general.knowladge.education.index',[
+        return view('general.knowledge.education.index',[
             'posts' => $posts
         ]);
     }

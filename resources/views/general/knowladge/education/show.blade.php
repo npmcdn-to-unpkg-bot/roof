@@ -6,8 +6,8 @@
 
 @section('content')
 <div class="container breadcrumbs">
-	<a href="{{route('knowladge.index')}}" class="breadcrumbs__path">БАЗА ЗНАНИЙ</a>
-	<a href="{{route('knowladge.education.index')}}" class="breadcrumbs__path">ОБУЧЕНИЕ</a>
+	<a href="{{route('knowledge.index')}}" class="breadcrumbs__path">БАЗА ЗНАНИЙ</a>
+	<a href="{{route('knowledge.education.index')}}" class="breadcrumbs__path">ОБУЧЕНИЕ</a>
 	<span class="breadcumbs__current">{{$post->title}}</span>
 </div>
 
@@ -25,26 +25,26 @@
 				<div class="container__row offset_vertical_60 offset-sm_vertical_60">
 					<div class="container__col-6 container__col-sm-6">
 						@if($post->prev())
-						<a href="{{route('knowladge.education.show', $post->prev())}}" class="market-news__other">< ПРЕДЫДУЩАЯ СТАТЬЯ</a>
+						<a href="{{route('knowledge.education.show', $post->prev())}}" class="market-news__other">< ПРЕДЫДУЩАЯ СТАТЬЯ</a>
 						@endif
 					</div>
 					<div class="container__col-6 container__col-sm-6 text_right">
 						@if($post->next())
-						<a href="{{route('knowladge.education.show', $post->next())}}" class="market-news__other">СЛЕДУЮЩАЯ СТАТЬЯ ></a>
+						<a href="{{route('knowledge.education.show', $post->next())}}" class="market-news__other">СЛЕДУЮЩАЯ СТАТЬЯ ></a>
 						@endif
 					</div>
 				</div>
 			</div>
 			<div class="post-page__libraries">
 				@foreach ($post->tags as $tag)
-					<a href="{{route('knowladge.education.index')}}?tag={{$tag->name}}" class="tags__item">{{$tag->name}}</a>
+					<a href="{{route('knowledge.education.index')}}?tag={{$tag->name}}" class="tags__item">{{$tag->name}}</a>
 					@if($post->tags->last()!==$tag)<span class="tags__sep"></span>@endif
 				@endforeach
 			</div>
 			<div id="disqus_thread"></div>
 			<script>
 			    var disqus_config = function () {
-			        this.page.url = "{{route('knowladge.education.show',$post)}}";
+			        this.page.url = "{{route('knowledge.education.show',$post)}}";
 			        this.page.identifier = "education_{{$post->id}}";
 			    };
 
@@ -58,20 +58,20 @@
 			    })();
 			</script>
 			<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-			@if(Agent::isMobile())	@include('general.knowladge.education.related') @endif
+			@if(Agent::isMobile())	@include('general.knowledge.education.related') @endif
 		</div>
 		<div class="container__col-4 container__col-sm-12">
 			<div class="title">РАЗДЕЛЫ</div>
 			<div class="menu menu_blue menu_medium menu_vertical menu_no_underline menu_rare">
 				@foreach(App\Models\Education\Category::all() as $category)
-					<a href="{{url('knowladge/education/category',$category->id)}}" class="menu__item">{{$category->name}}</a>
+					<a href="{{url('knowledge/education/category',$category->id)}}" class="menu__item">{{$category->name}}</a>
 				@endforeach
 			</div>
-			<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.knowladge.education.cloud')</div>
+			<div class="offset_vertical_55 offset-sm_vertical_30">@include('general.knowledge.education.cloud')</div>
 			<div class="offset_bottom_60 offset-sm_bottom_30">@include('general.area.banner',['area' => 'Обучение запись 1'])</div>
 			<div class="offset_bottom_60 offset-sm_bottom_30">@include('general.area.banner',['area' => 'Обучение запись 2'])</div>
 		</div>
 	</div>
 </div>
-@if(!Agent::isMobile())	@include('general.knowladge.education.related') @endif
+@if(!Agent::isMobile())	@include('general.knowledge.education.related') @endif
 @endsection

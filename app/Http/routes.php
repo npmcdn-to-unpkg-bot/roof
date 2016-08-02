@@ -38,10 +38,10 @@ Route::group(['middleware'=>'csrf'], function (){
 	Route::get('example/{id}', 'General\CompanyController@example');
 	Route::get('events/calendar/{date}', 'General\EventController@calendar');
 	Route::get('search', 'General\SearchController@index');
-	Route::get('knowladge', ['as' => 'knowladge.index', function () {
-			return view('general.knowladge.index');
+	Route::get('knowledge', ['as' => 'knowledge.index', function () {
+			return view('general.knowledge.index');
 		}]);
-	Route::get('knowladge/library/category/{id}', 'General\LibraryController@category');
+	Route::get('knowledge/library/category/{id}', 'General\LibraryController@category');
 
 	Route::resources([
 		'want-roof'                  => 'General\WantRoofFormController',
@@ -57,7 +57,7 @@ Route::group(['middleware'=>'csrf'], function (){
 		'events'                     => 'General\EventController',
 		'tenders'                    => 'General\TenderController',
 		'polls'                      => 'General\PollController',
-		'knowladge/library'          => 'General\LibraryController',
+		'knowledge/library'          => 'General\LibraryController',
 	]);
 
 	Route::post('ulogin', 'User\UloginController@index');
@@ -68,7 +68,7 @@ Route::group(['middleware'=>'csrf'], function (){
 		Route::get('catalog/join/{id}', 'General\CompanyController@join');
 		Route::get('autocomplete/country', 'General\Autocomplete@country');
 		Route::get('autocomplete/city', 'General\Autocomplete@city');
-		Route::get('knowladge/education/category/{id}', 'General\EducationController@category');
+		Route::get('knowledge/education/category/{id}', 'General\EducationController@category');
 		Route::get('user', 'User\CompanyController@edit');
 		Route::get('user/offers/up/{id}', 'User\OfferController@up');
 		Route::get('user/company/staff/{id}/accept', 'User\MemberController@accept');
@@ -93,7 +93,7 @@ Route::group(['middleware'=>'csrf'], function (){
 			'user/reserve'               => 'User\Services\ReserveController',
 			'comment'                    => 'User\CommentController',
 			'upload'                     => 'User\UploadController',
-			'knowladge/education'        => 'General\EducationController',
+			'knowledge/education'        => 'General\EducationController',
 		]);
 
 

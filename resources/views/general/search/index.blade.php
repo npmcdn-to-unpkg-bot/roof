@@ -27,7 +27,7 @@
 			  			setInterval(function(){
 				    		$('.gsc-adBlock').remove();
 							$('.gs-visibleUrl').each(function(key, item){
-				  				if ($(item).text().search('/knowladge')>0) $(item).text('БАЗА ЗНАНИЙ');
+				  				if ($(item).text().search('/knowledge')>0) $(item).text('БАЗА ЗНАНИЙ');
 				  				if ($(item).text().search('/catalog')>0) $(item).text('КАТАЛОГ КОМПАНИЙ');
 				  				if ($(item).text().search('/buildings')>0) $(item).text('СТРОЙКИ И ВАКАНСИИ');
 				  				if ($(item).text().search('/jobs')>0) $(item).text('СТРОЙКИ И ВАКАНСИИ');
