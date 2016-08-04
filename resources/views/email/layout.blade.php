@@ -9,10 +9,10 @@
 		<header style="text-align: center; border-bottom: 4px solid #0a3955; padding: 20px;">
 			<img src="{{url('/img/logo.png')}}" alt="">
 		</header>
-		<main style="padding: 20px;">
+		<div style="padding: 20px;">
 			@yield('content')	
-		</main>
-		<footer style="padding: 20px; background-color: #0a3955;">
+		</div>
+		<footer style="padding: 20px; background-color: #0a3955; text-align: center; color: white;">
 			<a style="font-size: 18px; color: white; font-family: sans-serif;" href="{{route('catalog.index')}}">Каталог компаний</a> |
 			<a style="font-size: 18px; color: white; font-family: sans-serif;" href="{{route('buildings.index')}}">Стройка и вакансии</a> |
 			<a style="font-size: 18px; color: white; font-family: sans-serif;" href="{{route('desk.index')}}">Доска объявлений</a> |
