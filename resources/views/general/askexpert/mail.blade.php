@@ -1,9 +1,9 @@
 @extends('email.layout')
 
 @section('content')
-<div class="title">Вопро эксперту</div>
-<div>Имя: <span class="value">{{$name}}</span></div>
-<div>Телефон: <span class="value">{{$phone}}</span></div>
-<div>Email: <span class="value"><a href="mailto:{{$email}}">{{$email}}</a></span></div>
-<div>Вопрос: <span class="value">{{$question}}</span></div>
+<div style="color: #0a3955;text-transform: uppercase;font-weight: bold;text-align: center;">Вопро эксперту</div>
+<div style="font-size: 18px;">Имя: <strong>{{$name}}</strong></div>
+<div style="font-size: 18px;">Телефон: <strong>{{$phone}}</strong></div>
+<div style="font-size: 18px;">Email: <strong><a href="mailto:{{$email}}">{{$email}}</a></strong></div>
+<div style="font-size: 18px;">Вопрос: <strong>{{$question}}</strong></div>
 @endsection

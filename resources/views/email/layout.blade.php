@@ -3,57 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Письмо от roofers.com.ua</title>
-	<style>
-		body {
-			font-family: sans-serif !important;
-			font-size: 18px !important;
-		}
-		.wrapper{
-			background-color: #eeeeee !important;
-		}
-		header {
-			text-align: center !important;
-			border-bottom: 4px solid #0a3955 !important;
-			padding: 20px !important;
-		}
-		main {
-			padding: 20px !important;
-		}
-		.title {
-			color: #0a3955 !important;
-			text-transform: uppercase !important;
-			font-weight: bold !important;
-			text-align: center !important;
-		}
-		.value {
-			font-weight: bold !important;
-		}
-		footer {
-			text-align: center !important;
-			padding: 20px !important;
-			background-color: #0a3955 !important;
-			color: white !important;
-		}
-		footer a {
-			color: white !important;
-		}
-	</style>
 </head>
 <body>
-	<div class="wrapper">
-		<header>
+	<div style="background-color: #eeeeee">
+		<header style="text-align: center; border-bottom: 4px solid #0a3955; padding: 20px;">
 			<img src="{{url('/img/logo.png')}}" alt="">
 		</header>
-		<main>
+		<main style="padding: 20px;">
 			@yield('content')	
 		</main>
-		<footer>
-			<a href="{{route('catalog.index')}}">Каталог компаний</a> |
-			<a href="{{route('buildings.index')}}">Стройка и вакансии</a> |
-			<a href="{{route('desk.index')}}">Доска объявлений</a> |
-			<a href="{{route('sales.index')}}">Акции и скидки</a> |
-			<a href="{{route('knowledge.index')}}">База знаний</a> |
-			<a href="{{route('news.index')}}">Новости и статьи</a>
+		<footer style="padding: 20px; background-color: #0a3955;">
+			<a style="font-size: 18px; color: white; font-family: sans-serif;" href="{{route('catalog.index')}}">Каталог компаний</a> |
+			<a style="font-size: 18px; color: white; font-family: sans-serif;" href="{{route('buildings.index')}}">Стройка и вакансии</a> |
+			<a style="font-size: 18px; color: white; font-family: sans-serif;" href="{{route('desk.index')}}">Доска объявлений</a> |
+			<a style="font-size: 18px; color: white; font-family: sans-serif;" href="{{route('sales.index')}}">Акции и скидки</a> |
+			<a style="font-size: 18px; color: white; font-family: sans-serif;" href="{{route('knowledge.index')}}">База знаний</a> |
+			<a style="font-size: 18px; color: white; font-family: sans-serif;" href="{{route('news.index')}}">Новости и статьи</a>
 		</footer>
 	</div>
 </body>
