@@ -9,7 +9,7 @@
 		<header style="text-align: center; border-bottom: 4px solid #0a3955; padding: 20px;">
 			<img src="{{url('/img/logo.png')}}" alt="">
 		</header>
-		<div style="padding: 20px;">
+		<div style="padding: 20px; font-size: 18px;">
 			@yield('content')	
 		</div>
 		<footer style="padding: 20px; background-color: #0a3955; text-align: center; color: white;">
