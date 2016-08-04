@@ -2164,6 +2164,7 @@ td.calendar-block__date_active {
 	left: 0;
 	top: 0;
 	color: white;
+	white-space: nowrap;
 }
 
 /*clearfix*/
