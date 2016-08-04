@@ -5,34 +5,37 @@
 	<title>Письмо от roofers.com.ua</title>
 	<style>
 		body {
-			font-family: sans-serif;
-			font-size: 18px;
+			font-family: sans-serif !important;
+			font-size: 18px !important;
 		}
 		.wrapper{
-			background-color: #eeeeee;
-		}
-		.title {
-			color: #0a3955;
-			text-transform: uppercase;
-			font-weight: bold;
-			text-align: center;
-		}
-		.value {
-			font-weight: bold;
+			background-color: #eeeeee !important;
 		}
 		header {
-			text-align: center;
-			border-bottom: 4px solid #0a3955;
-			padding: 20px;
+			text-align: center !important;
+			border-bottom: 4px solid #0a3955 !important;
+			padding: 20px !important;
+		}
+		main {
+			padding: 20px !important;
+		}
+		.title {
+			color: #0a3955 !important;
+			text-transform: uppercase !important;
+			font-weight: bold !important;
+			text-align: center !important;
+		}
+		.value {
+			font-weight: bold !important;
 		}
 		footer {
-			text-align: center;
-			padding: 20px;
-			background-color: #0a3955;
-			color: white;
+			text-align: center !important;
+			padding: 20px !important;
+			background-color: #0a3955 !important;
+			color: white !important;
 		}
 		footer a {
-			color: white;
+			color: white !important;
 		}
 	</style>
 </head>
