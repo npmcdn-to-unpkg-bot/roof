@@ -49,7 +49,7 @@
 			<a href="{{route('buildings.index')}}">Стройка и вакансии</a> |
 			<a href="{{route('desk.index')}}">Доска объявлений</a> |
 			<a href="{{route('sales.index')}}">Акции и скидки</a> |
-			<a href="{{route('knowladge.index')}}">База знаний</a> |
+			<a href="{{route('knowledge.index')}}">База знаний</a> |
 			<a href="{{route('news.index')}}">Новости и статьи</a>
 		</footer>
 	</div>
