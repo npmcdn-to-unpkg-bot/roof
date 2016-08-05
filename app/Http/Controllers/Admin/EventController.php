@@ -97,7 +97,7 @@ class EventController extends Controller
     public function index()
     {
 
-        $events = Event::orderBy('created_at','DESC')paginate(15);
+        $events = Event::orderBy('created_at','DESC')->paginate(15);
         $th = [
             [
                 'title'=>'Картинка',
