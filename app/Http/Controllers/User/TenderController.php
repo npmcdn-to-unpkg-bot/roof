@@ -179,7 +179,7 @@ class TenderController extends Controller
             Mail::send('general.tenders.mail', ['tender'=>$tender], function($m){
                 $m->from('no-reply@roofers.com.ua','roofers.com.ua')
                 ->subject('Новый тендер на roofers.com.ua')
-                ->to(
+                ->bcc(
                     User::whereHas('company',function($query){
                         $query->whereIn('level',[2,3]);
                     })
