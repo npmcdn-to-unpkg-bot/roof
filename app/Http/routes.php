@@ -96,10 +96,10 @@ Route::group(['middleware'=>'csrf'], function (){
 			'knowledge/education'        => 'General\EducationController',
 		]);
 
+	    Route::controller('filemanager', 'FilemanagerLaravelController');
 
 		Route::group(['middleware' => 'role:admin'], function () {
 
-	    	Route::controller('filemanager', 'FilemanagerLaravelController');
 			Route::get('admin', 'Admin\Catalog\CompanyController@index');
 			Route::get('offers/up/{id}', 'Admin\OfferController@up');
 			Route::get('users.xls', 'Admin\UserController@excel');
