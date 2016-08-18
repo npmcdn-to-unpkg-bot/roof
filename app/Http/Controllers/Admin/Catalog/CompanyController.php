@@ -223,7 +223,7 @@ class CompanyController extends Controller
             ->fill($request->only('name','email','site','logo','phone','entry','about','services','association','privat','address','lat','lng','city_id','meta_title','meta_description'))
             ->save();
 
-        if ($company->level < $request->level) 
+        if ( $company->level < $request->level && $request->level > 0 )
             Service::where(['group'=>'company_level','value'=>$request->level])->first()->apply($company);
 
         $company->level = $request->level;
