@@ -52,7 +52,7 @@ class PostController extends Controller
                 'type'=>'text',
                 'label'=>'Введите meta title',
                 'placeholder'=>'',
-                'value'=>old() ? (array)old('meta_title') : $post->meta_title
+                'value'=>old() ? old('meta_title') : $post->meta_title
             ],[
                 'name'=>'meta_description',
                 'type'=>'textarea',
@@ -64,7 +64,7 @@ class PostController extends Controller
                 'type' => 'select_multiple',
                 'label'=>'Теги',
                 'settings' => 'tags: true,',
-                'values'=>old() ? old('tags') : $post->tags->lists('name','name')->all(),
+                'values'=>old() ? (array)old('tags') : $post->tags->lists('name','name')->all(),
                 'options'=> Tag::lists('name','name')
             ]
         ];
@@ -123,7 +123,7 @@ class PostController extends Controller
     public function create()
     {
 
-        $post = new Post;
+        $post = new Post();
 
         return view('admin.universal.edit',[
             'title' => 'Добавить запись',
