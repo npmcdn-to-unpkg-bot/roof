@@ -12,6 +12,7 @@ use App\User;
 use Storage;
 use Carbon\Carbon;
 use Mail;
+use App\Jobs\SendTenderEmail;
 
 class TenderController extends Controller
 {
@@ -113,7 +114,7 @@ class TenderController extends Controller
     public function index()
     {
 
-        $tenders = Tender::paginate(15);
+        $tenders = Tender::orderBy('created_at', 'desc')->paginate(15);
         $th = [
                 [
                     'title'=>'Название',
@@ -209,17 +210,7 @@ class TenderController extends Controller
         $tender->save();
 
         if (!$request->id)
-            Mail::send('general.tenders.mail', ['tender'=>$tender], function($m){
-                $m->from('no-reply@roofers.com.ua','roofers.com.ua')
-                ->subject('Новый тендер на roofers.com.ua')
-                ->bcc(
-                    User::whereHas('company',function($query){
-                        $query->whereIn('level',[2,3]);
-                    })
-                    ->lists('email','id')
-                    ->all()
-                );
-            });
+            dispatch( new SendTenderEmail( $tender ) );
 
         return redirect()->route('admin.tenders.index');
     }
