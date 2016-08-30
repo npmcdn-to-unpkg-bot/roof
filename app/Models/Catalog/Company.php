@@ -130,4 +130,19 @@ class Company extends Model
     public function orders () {
         return $this->morphMany('App\Models\Order','orderable');
     }
+
+    public function level_print(){
+
+        if ($this->association)
+            return 'Член ассоциации';
+
+        $pattern = [
+            0 => '',
+            1 => 'Старт',
+            2 => 'Бизнес',
+            3 => 'Премиум'
+        ];
+        
+        return $pattern[$this->level];
+    }
 }

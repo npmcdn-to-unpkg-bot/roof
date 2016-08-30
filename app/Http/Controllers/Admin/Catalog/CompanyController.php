@@ -145,7 +145,8 @@ class CompanyController extends Controller
 
         $th = collect()
             ->push([ 'title'=>'Логотип', 'width'=>'40px'])
-            ->push([ 'title'=>'Название компании', 'width'=>'auto']);
+            ->push([ 'title'=>'Название компании', 'width'=>'auto'])
+            ->push([ 'title'=>'Статус', 'width'=>'auto']);
         if (!Agent::isMobile())
             $th
                 ->push([ 'title'=>'Специализации', 'width'=>'20%'])
@@ -157,7 +158,8 @@ class CompanyController extends Controller
         foreach ($companies as $company) {
             $td = collect()
                 ->push([ 'type'=>'image','field'=>$company->logo ])
-                ->push([ 'type'=>'text', 'field'=>$company->name ]);
+                ->push([ 'type'=>'text', 'field'=>$company->name ])
+                ->push([ 'type'=>'text','field'=>$company->level_print() ]);
                 
             if (!Agent::isMobile())
                 $td

@@ -24,7 +24,14 @@
 				<div class="small-title offset_vertical_20 offset-sm_vertical_30">ВАКАНСИИ НА ОБЪЕКТЕ</div>
 					@foreach ($building->jobs as $job)
 						<div class="job offset-sm_vertical_30">
-							<div class="job__title">{{ $job->name }}</div>
+							<div class="container__row">
+								<div class="container__col-6 job__title">
+									{{$job->name}}
+								</div>
+								<div class="container__col-6 text_right">
+									{{$job->created_at->format('d.m.Y')}}
+								</div>
+							</div>
 							<div class="job__pay">ЗАРПЛАТА: {{ $job->pay }}</div>
 							<div class="job__preview">
 								@if ($job->information) <p>{{ $job->information }}</p> @endif
