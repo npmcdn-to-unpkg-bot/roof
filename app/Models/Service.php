@@ -74,6 +74,12 @@ class Service extends Model
             $reserveOffers->save();
 
             $reserveOffers = $orderable->reserves()->firstOrNew([
+                'service_id' => Service::where('group','webinar')->firstOrNew([])->id
+            ]);
+            $reserveOffers->count += 5;
+            $reserveOffers->save();
+
+            $reserveOffers = $orderable->reserves()->firstOrNew([
                 'service_id' => Service::where('group','article')->firstOrNew([])->id
             ]);
             $reserveOffers->count += 2;
@@ -101,6 +107,12 @@ class Service extends Model
 
             $reserveOffers = $orderable->reserves()->firstOrNew([
                 'service_id' => Service::where('group','article')->firstOrNew([])->id
+            ]);
+            $reserveOffers->count += 2;
+            $reserveOffers->save();
+
+            $reserveOffers = $orderable->reserves()->firstOrNew([
+                'service_id' => Service::where('group','video')->firstOrNew([])->id
             ]);
             $reserveOffers->count += 2;
             $reserveOffers->save();
