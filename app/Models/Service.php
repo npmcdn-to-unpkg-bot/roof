@@ -44,7 +44,7 @@ class Service extends Model
             $reserveOffers = $orderable->reserves()->firstOrNew([
                 'service_id' => Service::where('group','offer_framed')->where('value','7')->firstOrNew([])->id
             ]);
-            $reserveOffers->count += 10;
+            $reserveOffers->count += 5;
             $reserveOffers->save();
 
             $reserveOffers = $orderable->reserves()->firstOrNew([
@@ -108,6 +108,7 @@ class Service extends Model
             $reserveOffers = $orderable->reserves()->firstOrNew([
                 'service_id' => Service::where('group','mailer')->firstOrNew([])->id
             ]);
+            $reserveOffers->count += 3;
             $reserveOffers->save();
 
             $reserveOffers = $orderable->reserves()->firstOrNew([
